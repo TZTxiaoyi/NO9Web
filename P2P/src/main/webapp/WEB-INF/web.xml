@@ -12,6 +12,6 @@
   </servlet>
   <servlet-mapping>
   		<servlet-name>seckill-dispatcher</servlet-name>
-  		<url-pattern>/</url-pattern>
+  		<url-pattern>*.do</url-pattern>
   </servlet-mapping>
 </web-app>

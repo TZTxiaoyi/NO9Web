@@ -31,7 +31,7 @@
 		<!-- 扫描entity包 -->
 		<property name="typeAliasesPackage" value="com.entity"/>
 		<!--扫描sql配置文件：mapper需要的xml文件  -->
-		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
+		<property name="mapperLocations" value="classpath:mapper/*/*.xml"/>
 	</bean>
 	<!--配置扫描dao接口包，动态实现dao接口，注入到spring容器中  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
