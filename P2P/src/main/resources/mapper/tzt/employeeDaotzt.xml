@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.tzt.employeeDaotzt">
+	<select id="queryEmployee" parameterType="com.entity.tzt.Employee" resultType="map">
+		
+		select 
+			empid,
+			username,
+			empname,
+			idcard,
+			sex,
+			age,
+			address,
+			telephone,
+			balance,
+			empstate 		
+	 	from employee
+	 	<where>
+	 		<if test ="empid!=null">
+	 			empid= #{empid}
+	 		</if>
+	 	</where>
+	</select>
+	<!--  账户余额为0 状态为可使用4 -->
+	<insert id="addEmployee" parameterType="com.entity.tzt.Employee" keyProperty="empid">
+		 <selectKey keyProperty="empid" resultType="int" order="AFTER">  
+	         SELECT list_employee.currval  as id from DUAL 
+	    </selectKey> 
+		insert into employee values(list_employee.nextval,#{username,jdbcType=VARCHAR},#{empname,jdbcType=VARCHAR},#{idcard,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{age,jdbcType=NUMERIC},#{address,jdbcType=VARCHAR},#{telephone,jdbcType=NUMERIC},0.00,4) 
+	</insert>
+</mapper>
