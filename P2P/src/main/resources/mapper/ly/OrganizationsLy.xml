@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ly.OrganizationsDaoLy">
+	<select id="selectOrgas" resultType="map">
+		select o1.organizationsrid,p1.projectsid,o1.oname,o1.ocode,o1.corporation,o1.register_address,o1.linkman,o1.linkphone,o1.abbreviation,o1.business_address,pt.protypename,o1.poundage
+		from organizations o1,projects p1,protype pt
+		where o1.projectsid=p1.projectsid and pt.protypeid=o1.protypeid
+	</select>
+</mapper>
