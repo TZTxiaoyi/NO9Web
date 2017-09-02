@@ -21,7 +21,6 @@
 		(2)允许使用"/"做整体映射
 	 -->
 	<mvc:default-servlet-handler/>
-	<mvc:resources location="/" mapping="/resources/**"/>
 	<!--配置jsp   -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -46,3 +45,4 @@
         </mvc:message-converters>
     </mvc:annotation-driven> -->
 </beans>
+
