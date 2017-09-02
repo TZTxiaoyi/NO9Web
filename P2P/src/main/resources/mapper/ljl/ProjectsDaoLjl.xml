@@ -2,7 +2,14 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.ljl.ProjectsDaoLjl">
-	
-	
+<mapper namespace="com.dao.ljl.ProjectsDaoLjl" >
+	<select id="AllProjects" parameterType="com.entity.ljl.UserLjl" resultType="map">
+		select * from projects where empid=#{empid}
+	</select>
+	<insert id="SaveProjects" parameterType="com.entity.ljl.ProjectsLjl">
+		insert into projects values(list_projects.nextval,#{empid},#{originatortype},#{addtime},#{projectsstate})	
+	</insert>
+	<select id="AllProjectsType" resultType="map">
+		select * from protype
+	</select>
 </mapper>
