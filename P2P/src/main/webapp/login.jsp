@@ -49,9 +49,10 @@
 				if(result.resultType=="true"){
 					alert("登陆成功");
 					alert(result.result);
+					alert(result.result[0].EMPID);
 				}else{
 					alert(result.resultType);
-				}
+				} 
 					
 			},
 			error : function() {

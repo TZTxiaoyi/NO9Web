@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.entity.tzt.Employee;
 
-public interface employeeDaotzt {
+public interface EmployeeDaotzt {
 	List<Map> queryEmployee(Employee employee);
 	int  addEmployee(Employee employee);
 }

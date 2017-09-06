@@ -6,7 +6,8 @@ import java.util.Map;
 import com.entity.tzt.Accounts;
 import com.entity.tzt.Employee;
 
-public interface accountsDaotzt {
+public interface AccountsDaotzt {
 	public List<Map> queryAccounts(Accounts accounts);
 	public int addAccounts(Accounts accounts);
+	public int updateAccounts(Accounts accounts);
 }

@@ -11,7 +11,7 @@ import com.entity.tzt.Roletable;
  * @作者：TZT  
  * @创建时间：2017年9月1日 下午7:14:30
  */
-public interface roletableDaotzt {
+public interface RoletableDaotzt {
 	public List<Map> queryRoletable();
 	public int addRoletable(Roletable roletable);
 }

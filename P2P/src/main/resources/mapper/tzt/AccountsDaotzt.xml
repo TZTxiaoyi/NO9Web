@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.tzt.AccountsDaotzt">
+	<select id="queryAccounts" parameterType="com.entity.tzt.Accounts"  resultType="map">
+		select 
+			a.accountsid,
+			a.accounts,
+			a.passwords,
+			a.empid,
+			r.rolename,
+			w.value	
+	 	from accounts a,roletable r ,word w
+	 	<where>
+	 		 a.roleid=r.roleid and a.accountsstate=w.key	
+	 		<if test ="accounts!=null">
+	 			and accounts= #{accounts}
+	 		</if>
+	 		<if test ="roleid!=null">
+	 			and roleid= #{roleid}
+	 		</if>
+	 		
+	 	</where>
+	</select>
+	
+	<!--  账号状态默认为4可用 -->
+	<insert id="addAccounts" parameterType="com.entity.tzt.Accounts" >
+		insert into accounts values(list_accounts.nextval,#{accounts,jdbcType=VARCHAR},#{passwords,jdbcType=VARCHAR},#{empid,jdbcType=NUMERIC},<!-- #{roleid,jdbcType=NUMERIC} -->0,2) 
+	</insert>
+	
+	<update id="updateAccounts" parameterType="com.entity.tzt.Accounts" >
+		update  accounts set
+		<if test="accounts!=null">
+		 accounts=#{accounts,jdbcType=VARCHAR}
+		</if>
+		<if test="passwords!=null">
+		,passwords=#{passwords,jdbcType=VARCHAR}
+		 </if>
+		 <if test="empid!=null">
+		 , empid=#{empid,jdbcType=NUMERIC}
+		 </if>
+		 <if test="roleid!=null">
+		,roleid=#{roleid,jdbcType=NUMERIC}
+		 </if>
+		 <if test="accountsstate!=null">
+		,accountsstate=#{accountsstate,jdbcType=NUMERIC} 
+		 </if>
+			<where>
+	 		accountsid=#{accountsid}
+	 		</where>
+	</update>
+</mapper>
