@@ -10,11 +10,11 @@
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 	<!-- <script type="text/javascript" src="js/page.js" ></script> -->
 
-	<script type="text/javascript" src="../bootstrap/jquery/jquery-2.1.3.min.js"></script>
-	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" type="text/css"></link>
-	<script type="text/javascript" src="../bootstrap/dist/bootstrap-table.js"></script>
-	<link rel="stylesheet" href="../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
+	<script type="text/javascript" src="../../bootstrap/jquery/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css"></link>
+	<script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
+	<link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
 	<script type="text/javascript">
 	
   $("input.mh_date").manhuaDate({
@@ -49,7 +49,7 @@
 						</div>
 						<div class="cfD">
 							<input class="addUser" type="text" placeholder="输入用户名/ID/手机号/城市"/>
-							<button class="button">搜索ss</button>
+							<button class="button">搜索</button>
 							<a class="addA addA1" href="vipadd.html">新增会员+</a> <a
 								class="addA addA1 addA2" href="vipadd.html">密码重置</a>
 						</div>
@@ -57,6 +57,10 @@
 				</div>
 				<!-- vip 表格 显示 -->
 				<div class="conShow">
+					<!-- href='javascript:show()' -->
+					<a type="button" id="detail"  class="btn btn-info" data-toggle="modal" data-target="#myModal">信息</a>
+					<a type="button" id="describe" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">描述</a>
+					<a href="auditing.jsp?" class="btn btn-warning">审核</a>		
 					<table border="1" cellspacing="0" cellpadding="0" id="protab">
 						
 					</table>
@@ -66,7 +70,6 @@
 			</div>
 			<!-- vip页面样式end -->
 		</div>
-
 	</div>
 	
 		<!-- 项目详情模态框 -->
@@ -78,11 +81,16 @@
 						&times;
 					</button>
 					<h4 class="modal-title" id="myModalLabel">
-						项目描述
+						项目信息
 					</h4>
 				</div>
 				<div class="modal-body">
-					在这里添加一些文本
+					项目标题：<span id=pro_title></span>;&nbsp;&nbsp;&nbsp;&nbsp;
+					筹金目的：<span id=pro_goal></span>;<br>
+					项目地点：<span id=pro_place></span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					筹金金额：<span id=pro_money></span>;<br>
+					筹金天数：<span id=pro_day></span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					项目封面：<span id=pro_img></span><br>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -101,12 +109,15 @@
 						&times;
 					</button>
 					<h4 class="modal-title" id="myModalLabel">
-						项目信息
+						项目描述
 					</h4>
 				</div>
 				<div class="modal-body">
-					在这里添加一些文本
+					项目地址：<span id="place"></span><br>
+					标题：<span id="title"></span><br>
+					文本：<span id="bodys"></span><br>		    
 				</div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 					</button>				
@@ -116,27 +127,75 @@
 	</div>
 	
 
-	<!-- 删除弹出框 -->
-	<div class="banDel">
-		<div class="delete">
-			<div class="close">
-				<a><img src="img/shanchu.png" /></a>
-			</div>
-			<p class="delP1">你确定要删除此条记录吗？</p>
-			<p class="delP2">
-				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
-			</p>
-		</div>
-	</div>
+	
 	<!-- 删除弹出框  end-->
 <script type="text/javascript">
-		function marks(row,index,value){
-			return ["<button type=\"button\" class=\"btn btn-info btn-xs\" data-toggle=\"modal\" data-target=\"#myModal1\">信息</button>"+
-					"<button type=\"button\" class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#myModal\">描述</button>"+
-					"<a href=\"connoisseuradd.jsp\" class=\"btn btn-warning btn-xs\">审核</button>"]
-		}
+		$("#detail").click(function(){
+			$("#pro_title").html("");
+			$("#pro_goal").html("");
+			$("#pro_place").html("");
+			$("#pro_money").html("");
+			$("#pro_day").html("");
+			var ss=$("#protab").bootstrapTable('getSelections');	
+			//var dd=JSON.stringify(ss);			
+			var dd1=parseInt(ss[0].PROJECTSID);
+
+			var dd={};
+			dd["projectsid"]=dd1;
+			alert(dd);
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/indetail.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					$.each(data,function(index,value){
+						var title=value.TITLE;
+						var goal=value.GOAL;
+						var place=value.PROJECTS_PLACE;
+						var financing=value.FINANCING;
+						var days=value.FINANCING_DAY;
+						$("#pro_title").append(title);
+						$("#pro_goal").append(goal);
+						$("#pro_place").append(place);
+						$("#pro_money").append(financing);
+						$("#pro_day").append(days);
+					})
+				}
+			})
+		})
+		//项目描述，将数据打印到模态框中
+		$("#describe").click(function(){
+			$("#place").html("");
+			$("#title").html("");
+			$("#bodys").html("");
+			var ss=$("#protab").bootstrapTable('getSelections');	
+			//var dd=JSON.stringify(ss);			
+			var dd2=parseInt(ss[0].PROJECTSID);
+			alert(dd2);
+			var dd={};
+			dd["projectsid"]=dd2;
+			$.ajax({
+				type:"post",
+				url:"/P2P/project/describe.do",
+				dataType:"json",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					$.each(data,function(index,value){
+						var place=value.places;
+						var title=value.title;
+						var body=value.body;
+						$("#place").append(place);
+						$("#title").append(title);
+						$("#bodys").append(body);
+					})
+				}
+			})
+		});
 	
-		$(function (){
+		$(function (){			
 		$('#protab').bootstrapTable({
 	        url: '/P2P/project/orga.do',         //请求后台的URL（*）
 	        method: 'post',                      //请求方式（*）
@@ -200,9 +259,6 @@
 	        },{
 	        	field: 'POUNDAGE',
 	            title: '平台渠道费',
-	        },{
-	        	formatter: marks,
-	            title: '操作',
 	        }]]
 	    });
 		});

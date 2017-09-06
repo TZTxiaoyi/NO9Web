@@ -8,4 +8,9 @@
 		from originator o1,projects p1,protype pt
 		where o1.projectsid=p1.projectsid and o1.protypeid=pt.protypeid  
 	</select>
+	<select id="selectsin" resultType="map" parameterType="com.entity.ly.SingleProjectLy">
+		select o1.originatorid,p1.projectsid,o1.idcard,o1.originatorname,o1.address,o1.telephone,pt.protypename,o1.cardimage1,o1.cardimage2,o1.poundage 
+		from originator o1,projects p1,protype pt
+		where o1.projectsid=p1.projectsid and o1.protypeid=pt.protypeid and p1.projectsid=#{projectsid}
+	</select>
 </mapper>

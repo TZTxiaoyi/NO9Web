@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ly.RepayDao">
+	<select id="selReturn" resultType="map" parameterType="int">
+		select p1.projectsid,w1.value,p1.offer_money,p1.return_title,p1.return_content,p1.limit_people,p1.return_time,p1.image
+		from word w1,pro_return p1
+		where p1.return_type=w1.key and projectsid=#{projectsid}
+	</select>
+</mapper>
