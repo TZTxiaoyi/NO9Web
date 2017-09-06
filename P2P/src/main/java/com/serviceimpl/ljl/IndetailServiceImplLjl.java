@@ -32,7 +32,8 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 
 	@Override
 	public int SvaeText(Map map) {
-		
+		Map index=(Map)map.get("index");
+		Map index1=(Map)map.get("index");
 		IndetailDao.SvaeText(map);
 		return 0;
 	}
