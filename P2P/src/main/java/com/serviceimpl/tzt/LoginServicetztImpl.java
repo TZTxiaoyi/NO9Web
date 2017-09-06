@@ -27,8 +27,8 @@ public class LoginServicetztImpl implements LoginServicetzt {
 	/**
 	 * 
 	 * Title: register 
-	 * Description:  注册账号
-	 * @param accounts 账号信息
+	 * Description:  娉ㄥ唽璐﹀彿
+	 * @param accounts 璐﹀彿淇℃伅
 	 * @return   int
 	 * @see com.service.tzt.LoginServicetzt#register(com.entity.tzt.Accounts)
 	 */
@@ -37,12 +37,11 @@ public class LoginServicetztImpl implements LoginServicetzt {
 		Employee employee = new Employee();
 		employee.setUsername(accounts.getAccounts());
 		employeeDaotzt.addEmployee(employee);
-		
 		accounts.setEmpid(employee.getEmpid());
 		return accountsDaotzt.addAccounts(accounts);
-
-
 	}
+
+	
 	/**
 	 * 
 	 * Title: login  查找关于该账号的信息方法 然后匹配登录
@@ -67,6 +66,7 @@ public class LoginServicetztImpl implements LoginServicetzt {
 			result.put("resultEmployee", loginEmployee);
 			
 			return JSON.toJSONString(result);
+
 		}else{
 			result.put("resultType", "passwordsFalse");
 			
@@ -74,5 +74,7 @@ public class LoginServicetztImpl implements LoginServicetzt {
 		}
 		
 	}
+
+
 
 }
