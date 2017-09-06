@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.zb.BankAccountDao">	
+	 <select id="queryBankAccount" resultType="map">
+		select b.bank_account_id,e.empname,b.bank_account,b.bank_name from bank_account b,employee e
+		where e.empid = b.empid
+	</select> 
+	<insert id="addBankAccount" parameterType="com.entity.zb.BankAccount">
+		insert into bank_account values(#{bankAccountId},#{empId},#{bankAccounts},#{bankName})
+	</insert>
+</mapper>

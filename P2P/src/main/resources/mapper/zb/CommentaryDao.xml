@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.zb.CommentaryDao">	
+	 <select id="queryCommentary" resultType="map">
+		select c.commentary_id,p.protypename,e.empname,c.content,c.time from commentary c,protype p,employee e
+ 		where p.protypeid=c.projectsid and e.empid= c.empid
+	</select> 
+	<delete id = "deleteCommentary" parameterType = "int">
+		delete from commentary where COMMENTARY_ID =#{COMMENTARY_ID}
+	</delete>
+</mapper>
