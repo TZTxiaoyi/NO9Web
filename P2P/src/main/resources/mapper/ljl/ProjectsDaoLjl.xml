@@ -6,10 +6,39 @@
 	<select id="AllProjects" parameterType="com.entity.ljl.UserLjl" resultType="map">
 		select * from projects where empid=#{empid}
 	</select>
-	<insert id="SaveProjects" parameterType="com.entity.ljl.ProjectsLjl">
-		insert into projects values(list_projects.nextval,#{empid},#{originatortype},#{addtime},#{projectsstate})	
-	</insert>
-	<select id="AllProjectsType" resultType="map">
+	
+	<select id="AllProjectsType" resultType="HashMap">
 		select * from protype
 	</select>
+	
+	<insert id="SaveProjects" parameterType="com.entity.ljl.ProjectsLjl">
+		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="projectsid">  
+            select list_projects.nextval  as projectsid  from dual  
+        </selectKey>
+		insert into projects values(#{projectsid},#{empid},#{originatortype},#{addtime},#{projectsstate})	
+	</insert>
+	<!-- //个人项目基础信息 -->
+	<insert id="SavePersonalProjects" parameterType="map">
+		insert into originator(originatorid,projectsid) values(list_originator.nextval,#{projectsid})	
+	</insert>
+	
+	<!-- //机构项目基础信息 -->
+	<insert id="SaveOrganizationsProjects" parameterType="map">
+		insert into organizations(organizationsrid,projectsid) values(list_originator.nextval,#{projectsid})	
+	</insert>
+	
+	<!-- //项目描述表 -->
+	<insert id="SaveDescribeProjects" parameterType="map">
+		insert into projects_describe(pdid,projectsid) values(list_projects_describe.nextval,#{projectsid})	
+	</insert>
+	
+	<!-- //项目详情表 -->
+	<insert id="SaveIndetailProjects" parameterType="map">
+		insert into projects_indetail(indetailid,projectsid) values(list_projects_indetail.nextval,#{projectsid})	
+	</insert>
+	
+	<!-- //项目回报 -->
+	<insert id="SaveReturnProjects" parameterType="map">
+		insert into pro_return(pro_returnid,projectsid) values(list_pro_return.nextval,#{projectsid})	
+	</insert>
 </mapper>

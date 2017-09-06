@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ljl.PersonalProjectsDaoLjl" >
+	<update id="UpdatePersonalProjects" parameterType="com.entity.ljl.PerProLjl">
+		update originator
+		<!-- <trim prefix="set" suffixOverrides=","> 在前面加上set  去掉最后的逗号 -->
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="idcard!=null and idcard!=0">
+				idcard=#{idcard},
+			</if>
+			<if test="originatorname!=null">
+				originatorname=#{originatorname},
+			</if>
+			<if test="telephone!=null">
+				telephone=#{telephone},
+			</if>
+			<if test="protypeid!=0">
+				protypeid=#{protypeid},
+			</if>
+			<if test="cardimage1!=null">
+				cardimage1=#{cardimage1},
+			</if>
+			<if test="cardimage2!=null">
+				cardimage2=#{cardimage2}
+			</if>
+		</trim>
+		,poundage=1.5 where  projectsid=#{projectsid}	
+	</update>
+	<select id="AllPersonalProjects" parameterType="com.entity.ljl.PerProLjl" resultType="map">
+		select * from originator where projectsid=#{projectsid}
+	</select>
+</mapper>

@@ -9,7 +9,7 @@ public class ProjectsLjl {
 	int originatortype;//1个人2机构0未选
 	String addtime;
 	int projectsstate;//3草稿箱45
-	int getProjectsid() {
+	public int getProjectsid() {
 		return projectsid;
 	}
 	public void setProjectsid(int projectsid) {

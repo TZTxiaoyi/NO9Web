@@ -5,6 +5,11 @@
 <mapper namespace="com.dao.sxm.ProDao">
 	<select id="selectProject" resultType="Map">
 		select * from projects_describe
+		<where>
+	 		<if test="projectsid>0">
+	 			projectsid= #{projectsid}
+	 		</if>
+	 		
+	 	</where>
 	</select>
-	
 </mapper>

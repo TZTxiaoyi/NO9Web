@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-import com.dao.tzt.roletableDaotzt;
+import com.dao.tzt.RoletableDaotzt;
 import com.entity.tzt.Roletable;
 import com.service.tzt.RoleTableServicetzt;
 
@@ -21,7 +21,7 @@ public class RoleTableServicetztImpl implements RoleTableServicetzt {
 	 * 角色表增删查接口
 	 */
 	@Autowired
-	private roletableDaotzt roletableDaotzt;
+	private RoletableDaotzt roletableDaotzt;
 	
 	/**
 	 * 
@@ -36,6 +36,14 @@ public class RoleTableServicetztImpl implements RoleTableServicetzt {
 			return JSON.toJSONString(roletableDaotzt.queryRoletable());
 	}
 
+	/**
+	 * 
+	 * Title: addRoletable  
+	 * Description:  增加一个角色
+	 * @param roletable
+	 * @return   
+	 * @see com.service.tzt.RoleTableServicetzt#addRoletable(com.entity.tzt.Roletable)
+	 */
 	@Override
 	public String addRoletable(Roletable roletable) {
 		Map result =new HashMap();

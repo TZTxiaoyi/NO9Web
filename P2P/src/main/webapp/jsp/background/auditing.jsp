@@ -440,8 +440,7 @@
 				url:"/P2P/project/singleAu.do",
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
-				success:function(data){
-					
+				success:function(data){					
 					alert(data[0].VALUE1);
 					if(data[0].VALUE1=="yes"){
 						$("input:radio[value='VALUE1']").attr('checked','true');
