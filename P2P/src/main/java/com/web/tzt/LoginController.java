@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,16 +24,16 @@ public class LoginController {
 	
 	
 	/**
-	 * 登录业务接口
+	 * 鐧诲綍涓氬姟鎺ュ彛
 	 */
 	@Autowired
 	LoginServicetzt loginServicetzt;
 		/**
 		 * 
-		* @Title: register 注册功能 
-		* @param @param accounts  页面传输的账号信息
-		* @param @param response    设定文件 
-		* @return void    返回类型 
+		* @Title: register 娉ㄥ唽鍔熻兘 
+		* @param @param accounts  椤甸潰浼犺緭鐨勮处鍙蜂俊鎭�
+		* @param @param response    璁惧畾鏂囦欢 
+		* @return void    杩斿洖绫诲瀷 
 		* @throws
 		 */
 	@RequestMapping("/register.do")
@@ -55,20 +57,22 @@ public class LoginController {
 	
 	/**
 	 * 
-	* @Title: login 登录功能
+	* @Title: login 鐧诲綍鍔熻兘
 	* @param @param accounts
-	* @param @param response    设定文件 
-	* @return void    返回类型 
+	* @param @param response    璁惧畾鏂囦欢 
+	* @return void    杩斿洖绫诲瀷 
 	* @throws
 	 */
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public void login(@RequestBody Accounts accounts , HttpServletResponse response){
-		System.out.println(accounts.getAccounts());
+	public void login(@RequestBody Accounts accounts , HttpServletResponse response,HttpServletRequest request){
+		//System.out.println(accounts.getAccounts());
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("contentType", "text/JSON;charset=UTF-8");
-		 
+		HttpSession session = request.getSession(); 
+		session.setAttribute("accounts", accounts.getAccounts()); 
 		System.out.println(JSON.toJSONString(loginServicetzt.login(accounts)));
+	
 			try {
 				response.getWriter().write(loginServicetzt.login(accounts));
 				response.getWriter().flush();
