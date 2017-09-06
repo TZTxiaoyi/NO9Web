@@ -97,8 +97,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 </html>
 <script>
+	var initialindex=0;
 	var index=0;
 	$("#upda").click(function(){
+		var projectsid=parseInt($.cookie('projectsid'));
+		alert(projectsid);
 		var data={};
 		var index={};
 		var title={};
@@ -126,7 +129,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		data["index"]=index;
 		data["title"]=title;
 		data["body"]=body;
-		
+		data["projectsid"]=projectsid;
+		alert(initialindex);
+		data["initialindex"]=initialindex;
 		//data["photo"]=photo;
 		updateIndetail(data);
 	})
