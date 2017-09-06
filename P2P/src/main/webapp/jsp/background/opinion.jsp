@@ -2,15 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script type="text/javascript" src="../jq/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
-<link rel="stylesheet" href="../bootstrap/css/bootstrap.css"
-	type="text/css"></link>
-<script type="text/javascript" src="../bootstrap/dist/bootstrap-table.js"></script>
-<link rel="stylesheet" href="../bootstrap/dist/bootstrap-table.css"
-	type="text/css"></link>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/css.css" />
+
+
+<script type="text/javascript" src="../../bootstrap/jquery/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css"></link>
+<script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
+
+<link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
+<script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
 </head>
 
 <body>
@@ -124,7 +124,7 @@ oTableInit.Init = function () {
         showRefresh: true,                  //是否显示刷新按钮
         minimumCountColumns: 2,             //最少允许的列数
         clickToSelect: true,                //是否启用点击选中行
-        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+       // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
         uniqueId: "ACCOUNTSID",                     //每一行的唯一标识，一般为主键列
        // showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
        // cardView: false,                    //是否显示详细视图
@@ -167,6 +167,7 @@ oTableInit.queryParams = function (params) {
 	};
 	return oTableInit;
 };
+// 保存账号修改提交
  $("#submitAccounts").click(function(){
 	var  data={
 			accountsid:$("#ACCOUNTSID").text(),
@@ -196,10 +197,12 @@ oTableInit.queryParams = function (params) {
 		});
 	 
  });
+ 
+ // 表格中的按钮绑定点击事件
 window.operateEvents = {
         'click .selectinfo': function (e, value, row, index) {
             var data= {
-     		empid:$('#tb_departments').bootstrapTable('getRowByUniqueId', row.EMPID).EMPID,
+     		empid:row.EMPID,
             }   
         	$("#queryEmployee").modal();
             $(".modal-body").empty();

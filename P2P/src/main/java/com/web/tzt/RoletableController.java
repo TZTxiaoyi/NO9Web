@@ -111,13 +111,40 @@ public class RoletableController {
 			System.out.println(JSON.toJSONString(AccountsServicetztImpl.queryEmployee(employee)));
 			return JSON.toJSONString(AccountsServicetztImpl.queryEmployee(employee));
 		}
-		
+		/**
+		 * 
+		 * 方法功能说明：   更新账号信息
+		 * 创建：2017年9月6日 by TZT  
+		 * @参数： @param accounts
+		 * @参数： @param response
+		 * @参数： @return      
+		 * @return String     
+		 * @throws
+		 */
 		@RequestMapping("/updateAccounts.do")
 		@ResponseBody
 		public String updateAccounts(@RequestBody Accounts accounts,HttpServletResponse response){
 			response.setCharacterEncoding("UTF-8");
 			response.setHeader("contentType", "text/JSON;charset=UTF-8");
 			return AccountsServicetztImpl.updateAccounts(accounts);
+			
+		}
+		
+		/**
+		 * 方法功能说明：  更新角色修改操作
+		 * 创建：2017年9月6日 by TZT  
+		 * @参数： @param roletable
+		 * @参数： @param response
+		 * @参数： @return      
+		 * @return String     
+		 * @throws
+		 */
+		@RequestMapping("/updateRoletable.do")
+		@ResponseBody
+		public String updateRoletable(@RequestBody Roletable roletable,HttpServletResponse response){
+			response.setCharacterEncoding("UTF-8");
+			response.setHeader("contentType", "text/JSON;charset=UTF-8");
+			return roleTableServicetzt.updateRoletable(roletable);
 			
 		}
 }
