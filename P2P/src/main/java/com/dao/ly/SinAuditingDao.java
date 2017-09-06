@@ -6,4 +6,5 @@ import com.entity.ly.Project;
 
 public interface SinAuditingDao {
 	List<Object> selSinAu(Project projectsid);
+	List<Object> selDeAuditing(Project projectsid);
 }

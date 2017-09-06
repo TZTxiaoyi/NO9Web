@@ -3,12 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="../jq/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
-<link rel="stylesheet" href="../bootstrap/css/bootstrap.css"
+<script type="text/javascript" src="../../jq/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" href="../../bootstrap/css/bootstrap.css"
 	type="text/css"></link>
-<script type="text/javascript" src="../bootstrap/dist/bootstrap-table.js"></script>
-<link rel="stylesheet" href="../bootstrap/dist/bootstrap-table.css"
+<script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
+<link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css"
 	type="text/css"></link>
 </head>
 <body>
@@ -29,7 +29,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" 
-						aria-hidden="true">×
+						aria-hidden="true">
 				</button>
 				<h4 class="modal-title" id="myModalLabel">
 					添加角色

@@ -126,60 +126,60 @@
 									<td>项目标题</td>
 									<td id="detail_one"></td>
 									<td>
-										<label><input type="radio" name="title" />&nbsp;是</label>
+										<label><input type="radio" name="title" value="right1"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="title" />&nbsp;否</label>
+										<label><input type="radio" name="title" value="right2"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>筹金目的</td>
 									<td id="detail_two"></td>
 									<td>
-										<label><input type="radio" name="goal" />&nbsp;是</label>
+										<label><input type="radio" name="goal" value="right3"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="goal" />&nbsp;否</label>
+										<label><input type="radio" name="goal" value="right4"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>项目地点</td>
 									<td id="detail_three"></td>
 									<td>
-										<label><input type="radio" name="location" />&nbsp;是</label>
+										<label><input type="radio" name="location" value="right5"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="location" />&nbsp;否</label>
+										<label><input type="radio" name="location" value="right6"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>筹金金额（元）</td>
 									<td id="detail_four"></td>
 									<td>
-										<label><input type="radio" name="money" />&nbsp;是</label>
+										<label><input type="radio" name="money" value="right7"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="money" />&nbsp;否</label>
+										<label><input type="radio" name="money" value="right8"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>筹金天数</td>
 									<td id="detail_five"></td>
 									<td>
-										<label><input type="radio" name="days" />&nbsp;是</label>
+										<label><input type="radio" name="days" value="right9"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="days" />&nbsp;否</label>
+										<label><input type="radio" name="days" value="right10"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>项目封面</td>
 									<td id="detail_six"></td>
 									<td>
-										<label><input type="radio" name="cover" />&nbsp;是</label>
+										<label><input type="radio" name="cover" value="right11"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="cover" />&nbsp;否</label>
+										<label><input type="radio" name="cover" value="right12"/>&nbsp;否</label>
 									</td>
 								</tr>								
 							</table>
@@ -479,7 +479,60 @@
 					}
 				}
 			});
-		})
+		});
+		$(function(){
+			var auditing=parseInt($.cookie("project_auditing"));
+			alert("ssdd:"+auditing);
+			var dd={};
+			dd["projectsid"]=auditing;
+			
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/proDetail.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					alert(data[0].VALUE1);
+					if(data[0].VALUE1=="yes"){
+						$("input:radio[value='right1']").attr('checked','true');
+					}else if(data[0].VALUE1=="no"){
+						$("input:radio[value='right2']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE2=="yes"){
+						$("input:radio[value='right3']").attr('checked','true');
+					}else if(data[0].VALUE2=="no"){
+						$("input:radio[value='right4']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE3=="yes"){
+						$("input:radio[value='right5']").attr('checked','true');
+					}else if(data[0].VALUE3=="no"){
+						$("input:radio[value='right6']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE4=="yes"){
+						$("input:radio[value='right7']").attr('checked','true');
+					}else if(data[0].VALUE4=="no"){
+						$("input:radio[value='right8']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE5=="yes"){
+						$("input:radio[value='right9']").attr('checked','true');
+					}else if(data[0].VALUE5=="no"){
+						$("input:radio[value='right10']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE6=="yes"){
+						$("input:radio[value='right11']").attr('checked','true');
+					}else if(data[0].VALUE6=="no"){
+						$("input:radio[value='right12']").attr('checked','true');
+					}
+				}
+			});
+		});
+		
 	</script>
 </body>
 </html>
