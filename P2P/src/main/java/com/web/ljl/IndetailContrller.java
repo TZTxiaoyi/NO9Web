@@ -22,7 +22,7 @@ public class IndetailContrller {
 		JSON json=JSONObject.parseObject(str);
 		Map map =(Map)json;
 		IndetailService.SvaeText(map);
-		System.out.println(map);
+		//System.out.println(map);
 		
 		
 	}

@@ -1,5 +1,6 @@
 package com.serviceimpl.ljl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +33,44 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 
 	@Override
 	public int SvaeText(Map map) {
-		Map index=(Map)map.get("index");
-		Map index1=(Map)map.get("index");
-		IndetailDao.SvaeText(map);
+		int projectsid=(int)map.get("projectsid");
+		//String initial=(String)map.get("initialindex");
+		//System.out.println(initial);
+		int initialindex=(int)map.get("initialindex");
+		Map<String ,Integer> index=(Map<String ,Integer>)map.get("index");
+		Map<String ,String> title=(Map<String ,String>)map.get("title");
+		Map<String ,String> body=(Map<String ,String>)map.get("body");
+		System.out.println(index);
+		System.out.println(title);
+		System.out.println(body);
+		 for (Map.Entry<String ,Integer> entry : index.entrySet()) {
+			 // System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+			  String indexKey=(String)entry.getKey();
+			  int places=entry.getValue();
+			  if(title.get(indexKey)!=null&places>initialindex){
+				  String mtitle=title.get(indexKey);
+				  String mbody=body.get(indexKey);
+				  Map indetailtext=new HashMap();
+				  indetailtext.put("projectsid", projectsid);
+				  indetailtext.put("title", mtitle);
+				  indetailtext.put("body", mbody);
+				  indetailtext.put("places", places);
+				  IndetailDao.SvaeText(indetailtext);
+			  }else if(title.get(indexKey)!=null&places<initialindex){
+				  String mtitle=title.get(indexKey);
+				  String mbody=body.get(indexKey);
+				  Map indetailtext=new HashMap();
+				  indetailtext.put("projectsid", projectsid);
+				  indetailtext.put("title", mtitle);
+				  indetailtext.put("body", mbody);
+				  indetailtext.put("places", places);
+				  IndetailDao.UpdateText(indetailtext);
+				  
+			  }
+			  
+			  
+		 }
+		//IndetailDao.SvaeText(map);
 		return 0;
 	}
 
