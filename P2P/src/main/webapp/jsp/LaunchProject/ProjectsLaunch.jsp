@@ -162,7 +162,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	} else if(cardimage=="cardimage2"){
 	    		
 	    		return { "cardimage2":cardimage,"projectsid":projectsid};
-	    		
 	    	}
 	    	
 	    } ,
