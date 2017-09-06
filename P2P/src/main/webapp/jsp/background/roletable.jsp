@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <script type="text/javascript"
 	src="../../bootstrap/jquery/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
@@ -10,6 +11,7 @@
 	type="text/css"></link>
 <script type="text/javascript"
 	src="../../bootstrap/dist/bootstrap-table.js"></script>
+
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css"
 	type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
@@ -32,7 +34,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" 
-						aria-hidden="true">×
+						aria-hidden="true">
 				</button>
 				<h4 class="modal-title" >
 					添加角色
