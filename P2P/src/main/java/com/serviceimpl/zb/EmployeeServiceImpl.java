@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.zb.EmployeeDao;
-import com.entity.zb.Employee;
+import com.entity.zb.Employeezb;
 import com.service.zb.EmployeeService;
 /**
  * 
  * @ClassName:  EmployeeServiceImpl   
- * @Description:TODO(shiwuceng¸öÈË×ÊÁÏ)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ1ÈÕ ÏÂÎç7:39:47   
+ * @Description:TODO(shiwucengï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½7:39:47   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -30,13 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public int addEmployee(Employee employee) {
+	public int addEmployee(Employeezb employee) {
 		// TODO Auto-generated method stub
 		return edao.addEmployee(employee);
 	}
 
 	@Override
-	public int updateEmployee(Employee employee) {
+	public int updateEmployee(Employeezb employee) {
 		// TODO Auto-generated method stub
 		return edao.updateEmployee(employee);
 	}

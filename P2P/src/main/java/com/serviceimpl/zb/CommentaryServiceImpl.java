@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.zb.CommentaryDao;
-import com.entity.zb.Commentary;
+import com.entity.zb.Commentarys;
 import com.service.zb.CommentaryService;
 /**
  * 
  * @ClassName:  CommentaryServiceImpl   
- * @Description:TODO(ÆÀÂÛµÄÒµÎñ²ã)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ4ÈÕ ÏÂÎç4:19:34   
+ * @Description:TODO(ï¿½ï¿½ï¿½Ûµï¿½Òµï¿½ï¿½ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½4:19:34   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -30,7 +30,7 @@ public class CommentaryServiceImpl implements CommentaryService {
 	}
 
 	@Override
-	public int addCommentary(Commentary commentary) {
+	public int addCommentary(Commentarys commentary) {
 		// TODO Auto-generated method stub
 		return cdao.addCommentary(commentary);
 	}

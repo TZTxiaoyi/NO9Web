@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ljl.DescribeProjectsDaoLjl" >
+	<update id="UpdateDescribeProjects" parameterType="com.entity.ljl.DescribeLjl">
+		update projects_describe
+		<!-- <trim prefix="set" suffixOverrides=","> 在前面加上set  去掉最后的逗号 -->
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title!=null">
+				title=#{title},
+			</if>
+			<if test="goal!=null">
+				goal=#{goal},
+			</if>
+			<if test="projects_place!=null">
+				projects_place=#{projects_place},
+			</if>
+			<if test="financing!=0">
+				financing=#{financing},
+			</if>
+			<if test="financing_day!=0">
+				financing_day=#{financing_day},
+			</if>
+			<if test="cover!=null">
+				cover=#{cover}
+			</if>
+		</trim>
+		where  projectsid=#{projectsid}	
+	</update>
+	<select id="AllDescribeProjects" parameterType="com.entity.ljl.DescribeLjl" resultType="map">
+		select * from projects_describe where projectsid=#{projectsid}
+	</select>
+</mapper>

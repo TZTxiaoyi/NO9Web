@@ -2,19 +2,19 @@ package com.service.zb;
 
 import java.util.List;
 
-import com.entity.zb.Commentary;
+import com.entity.zb.Commentarys;
 /**
  * 
  * @ClassName:  CommentaryService   
- * @Description:TODO(ÆÀÂÛµÄService½Ó¿Ú)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ4ÈÕ ÏÂÎç4:16:44   
+ * @Description:TODO(ï¿½ï¿½ï¿½Ûµï¿½Serviceï¿½Ó¿ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½4:16:44   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
  */
 public interface CommentaryService {
 	public List<Object>queryCommentary();
-	public int addCommentary(Commentary commentary);
+	public int addCommentary(Commentarys commentary);
 	public int deleteComment(int id);
 }

@@ -3,12 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.zb.EmployeeDao">	
-	 <select id="queryEmployee" resultType="Employee">
+	 <select id="queryEmployee" resultType="Employeezb">
 		select e.empid,e.username,e.empname,e.idcard,e.sex,e.age,e.address,e.telephone,e.balance,e.empstate from employee e, word w
 		 where e.empstate = w.key
 		 
 	</select> 
-	<update id="updateEmployee"  parameterType="com.entity.zb.Employee">
+	<update id="updateEmployee"  parameterType="com.entity.zb.Employeezb">
      	 
      update employee set username=#{UserName},age=#{Age},address=#{Address},telePhone=#{TelePhone} where EmpId=#{empId}
   	</update>

@@ -2,20 +2,20 @@ package com.dao.zb;
 
 import java.util.List;
 
-import com.entity.zb.Employee;
+import com.entity.zb.Employeezb;
 
 /**
  * 
  * @ClassName:  EmployeeDao   
- * @Description:TODO(¸öÈË×ÊÁÏµÄdao½Ó¿Ú)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ1ÈÕ ÏÂÎç7:33:21   
+ * @Description:TODO(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½daoï¿½Ó¿ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½7:33:21   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
  */
 public interface EmployeeDao {
 	public List<Object> queryEmployee();
-	public int addEmployee(Employee employee);
-	public int updateEmployee(Employee employee);
+	public int addEmployee(Employeezb employee);
+	public int updateEmployee(Employeezb employee);
 }

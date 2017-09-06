@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.entity.zb.Employee;
+import com.entity.zb.Employeezb;
 import com.service.zb.EmployeeService;
 
 /**
  * 
  * @ClassName:  EmployeeController   
- * @Description:TODO(¸öÈË×ÊÁÏ¿ØÖÆ²ã)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ1ÈÕ ÏÂÎç7:43:34   
+ * @Description:TODO(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½Æ²ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½7:43:34   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -34,16 +34,16 @@ public class EmployeeController {
 	/**
 	 * 
 	* @Title: addEmployee
-	* @Description: TODO(¸öÈË×ÊÁÏµÄÌí¼Ó·½·¨)
+	* @Description: TODO(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½)
 	* @param @param str
-	* @param @param resp    Éè¶¨ÎÄ¼þ
-	* @return void    ·µ»ØÀàÐÍ
+	* @param @param resp    ï¿½è¶¨ï¿½Ä¼ï¿½
+	* @return void    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	* @throws
 	 */
 	@RequestMapping("/addEmployee.do")
 	public void addEmployee(@RequestBody String str,HttpServletResponse resp){
 		System.out.println(str);
-		Employee employee = JSON.parseObject(str,Employee.class);
+		Employeezb employee = JSON.parseObject(str,Employeezb.class);
 		System.out.println(employee.getUserName());
 		int flag = -1;
 		flag = eService.addEmployee(employee);
@@ -60,14 +60,14 @@ public class EmployeeController {
 	/**
 	 * 
 	* @Title: updateEmployee
-	* @Description: TODO(¸öÈË×ÊÁÏÐÞ¸Ä·½·¨)
+	* @Description: TODO(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä·ï¿½ï¿½ï¿½)
 	* @param @param emp
-	* @param @param resp    Éè¶¨ÎÄ¼þ
-	* @return void    ·µ»ØÀàÐÍ
+	* @param @param resp    ï¿½è¶¨ï¿½Ä¼ï¿½
+	* @return void    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	* @throws
 	 */
 	@RequestMapping("/updateEmployee.do")
-	public void updateEmployee(@RequestBody Employee emp,HttpServletResponse resp){
+	public void updateEmployee(@RequestBody Employeezb emp,HttpServletResponse resp){
 		System.out.println(emp.getEmpName());
 		int flag = eService.updateEmployee(emp);
 		try {
@@ -81,9 +81,9 @@ public class EmployeeController {
 	/**
 	 * 
 	* @Title: queryEmployee
-	* @Description: TODO(²éÑ¯·½·¨)
-	* @param @param resp    Éè¶¨ÎÄ¼þ
-	* @return void    ·µ»ØÀàÐÍ
+	* @Description: TODO(ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½)
+	* @param @param resp    ï¿½è¶¨ï¿½Ä¼ï¿½
+	* @return void    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	* @throws
 	 */
 	@RequestMapping("/queryEmployee.do")

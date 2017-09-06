@@ -2,23 +2,23 @@ package com.entity.zb;
 /**
  * 
  * @ClassName:  Employee   
- * @Description:TODO(Ô±¹¤±àºÅÊµÌåÀà)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ1ÈÕ ÏÂÎç7:11:37   
+ * @Description:TODO(Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½7:11:37   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
  */
-public class Employee {
-	private int EmpId;//Ô±¹¤±àºÅ
-	private String UserName;//ÓÃ»§Ãû
-	private String EmpName;//ÕæÊµÐÕÃû
-	private int IdCard;//Éí·ÝÖ¤ºÅÂë
-	private String Sex;//ÐÔ±ð
-	private int Age;//ÄêÁä
-	private String Address;//µØÖ·
-	private int TelePhone;//µç»°
-	private float Balance;//ÕË»§Óà¶î
+public class Employeezb {
+	private int EmpId;//Ô±ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String UserName;//ï¿½Ã»ï¿½ï¿½ï¿½
+	private String EmpName;//ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
+	private int IdCard;//ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
+	private String Sex;//ï¿½Ô±ï¿½
+	private int Age;//ï¿½ï¿½ï¿½ï¿½
+	private String Address;//ï¿½ï¿½Ö·
+	private int TelePhone;//ï¿½ç»°
+	private float Balance;//ï¿½Ë»ï¿½ï¿½ï¿½ï¿½
 	private int EmpState;//×´Ì¬
 	
 	public int getIdCard() {

@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.entity.zb.Commentary;
+import com.entity.zb.Commentarys;
 /**
  * 
  * @ClassName:  CommentaryDao   
- * @Description:TODO(ÆÀÂÛµÄDao½Ó¿Ú)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ4ÈÕ ÏÂÎç4:12:29   
+ * @Description:TODO(ï¿½ï¿½ï¿½Ûµï¿½Daoï¿½Ó¿ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½4:12:29   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -18,6 +18,6 @@ import com.entity.zb.Commentary;
 
 public interface CommentaryDao {
 	public List<Object> queryCommentary();
-	public int addCommentary(Commentary commentary);
+	public int addCommentary(Commentarys commentary);
 	public int deleteCommentary(int id);
 }
