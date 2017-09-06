@@ -124,7 +124,7 @@ oTableInit.Init = function () {
         showRefresh: true,                  //是否显示刷新按钮
         minimumCountColumns: 2,             //最少允许的列数
         clickToSelect: true,                //是否启用点击选中行
-        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+       // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
         uniqueId: "ACCOUNTSID",                     //每一行的唯一标识，一般为主键列
        // showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
        // cardView: false,                    //是否显示详细视图
@@ -167,6 +167,7 @@ oTableInit.queryParams = function (params) {
 	};
 	return oTableInit;
 };
+// 保存账号修改提交
  $("#submitAccounts").click(function(){
 	var  data={
 			accountsid:$("#ACCOUNTSID").text(),
@@ -196,6 +197,8 @@ oTableInit.queryParams = function (params) {
 		});
 	 
  });
+ 
+ // 表格中的按钮绑定点击事件
 window.operateEvents = {
         'click .selectinfo': function (e, value, row, index) {
             var data= {

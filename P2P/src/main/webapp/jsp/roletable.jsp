@@ -31,11 +31,12 @@
 				<button type="button" class="close" data-dismiss="modal" 
 						aria-hidden="true">×
 				</button>
-				<h4 class="modal-title" id="myModalLabel">
+				<h4 class="modal-title" >
 					添加角色
 				</h4>
 			</div>
 			<div class="modal-body">
+				
 				 角色名称：<input type="text" id="rolename">
 			</div>
 			<div class="modal-footer">
@@ -50,10 +51,46 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+	
+	
+		<!--表格  -->
 		<table id="tb_departments">
 
 		</table>
+		
+<!-- 编辑模态框（Modal） -->
+<div class="modal fade" id="updataModal" tabindex="-1" role="dialog" aria-labelledby="updataModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">×
+				</button>
+				<h4 class="modal-title" >
+					编辑角色
+				</h4>
+			</div>
+			<div class="modal-body">
+				角色序列：<span id = "updataId"></span><br/>
+				原角色名称：<span id="updataP"></span><br/>
+				 角色名称：<input type="text" id="updaterolename">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" 
+						data-dismiss="modal">关闭
+				</button>
+				<button id="updateSubmit" class="btn btn-primary" >
+					提交更改
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 	</div>
+	
+	
+	<!-- 编辑账号模态框（Modal） -->
+
 </body>
 </html>
 
@@ -82,6 +119,35 @@ $("#submit").click(function() {
 		}
 	});
 })
+
+// 保存角色修改提交
+ $("#updateSubmit").click(function(){
+	var data = {
+			roleid:$("#updataId").text(),
+			rolename:$("#updaterolename").val()
+	 }
+	   $.ajax({
+			type : "post",
+			dataType : "json",
+			data:JSON.stringify(data),
+			url : "/P2P/back/updateRoletable.do",//要访问的后台地址  
+			contentType :"application/json;charset=utf-8",
+			success : function(data1) {//data为返回的数据，在这里做数据绑定  
+				if(data1.resultType){
+					alert("修改成功");
+					$('#updataModal').modal('hide');	
+					 $('#tb_departments').bootstrapTable("refresh");
+				}else{
+					alert("修改失败");
+				} 
+							
+			},error : function() {
+				alert("error");
+			}	
+		}); 
+	 
+ });
+ 
 	$(function () {
 	    //1.初始化Table
 	    var oTable = new TableInit();
@@ -119,7 +185,7 @@ $("#submit").click(function() {
 	        showRefresh: true,                  //是否显示刷新按钮
 	        minimumCountColumns: 2,             //最少允许的列数
 	        clickToSelect: true,                //是否启用点击选中行
-	        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+	       // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 	        uniqueId: "ROLEID",                     //每一行的唯一标识，一般为主键列
 	        showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
 	        cardView: false,                    //是否显示详细视图
@@ -127,28 +193,65 @@ $("#submit").click(function() {
 	        columns: [{
 	            field: 'ROLENAME',
 	            title: '角色名字'
-	        },{
-                title: '操作',
-                field: 'id',
-                align: 'center',
-                formatter:function(value,row,index){  
-             var e = '<a href="#" mce_href="#" onclick="edit(\''+ row.id + '\')">编辑</a> ';  
-             var d = '<a href="#" mce_href="#" onclick="del(\''+ row.id +'\')">删除</a> ';  
-                  return e+d;  
+	        },{       
+	        	title: '操作',
+                events:operateEvents,
+                formatter:function(value,row,index){ 
+                	return ['<button class=" remove btn btn-danger " > 删除  </button>',
+                	        '<button class=" updata btn btn-warning " > 编辑 </button>'
+              			  ].join('');
                 }
-              }]
+	            }
+	        
+	        ]
 	    });
 	};
+	//绑定点击事件
+	window.operateEvents = {
+				 'click .updata': function (e, value, row, index) {
+					 $("#updataModal").modal();
+					   $("#updataP").empty();
+					   $("#updataId").empty();
+						var b =row.ROLEID;
+					 var a=row.ROLENAME;
+					$(" #updataP").append(a); 
+					$("#updataId").append(b);
+				} ,
+	 'click .remove': function (e, value, row, index) {
+		 var	data={
+				 roleid:row.ROLEID, 
+				 rolename:row.ROLENAME,
+				 rolestate:19
+		 }
+		   $.ajax({
+				type : "post",
+				dataType : "json",
+				data:JSON.stringify(data),
+				url : "/P2P/back/updateRoletable.do",//要访问的后台地址  
+				contentType :"application/json;charset=utf-8",
+				success : function(data1) {//data为返回的数据，在这里做数据绑定  
+					if(data1.resultType){
+						alert("删除成功");
+						 $('#tb_departments').bootstrapTable("refresh");
+					}else{
+						alert("删除失败");
+					} 
+								
+				},error : function() {
+					alert("error");
+				}	
+			}); 
+	 } 
+	    };
 	
 	//得到查询的参数
 	oTableInit.queryParams = function (params) {
 		    var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 		    };
-		    return temp;
+		    return temp;	 
 		};
 		return oTableInit;
 	};
-	
 	
 	var ButtonInit = function () {
 		var oInit = new Object();
@@ -156,7 +259,6 @@ $("#submit").click(function() {
 		oInit.Init = function () {
 		    //初始化页面上面的按钮事件
 		};
-		
-		return oInit;
+			return oInit;
 	};
 </script>
