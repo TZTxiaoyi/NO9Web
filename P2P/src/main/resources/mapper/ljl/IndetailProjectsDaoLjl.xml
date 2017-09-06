@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ljl.IndetailProjectsDaoLjl" >
+	<insert id="SvaeText" parameterType="map">
+		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="indetailid">  
+            select list_projects_indetail_text.nextval  as indetailid  from dual  
+        </selectKey>
+		insert into projects_indetail_text values(#{indetailid},#{title},#{body})
+	</insert>
+	<update id="UpdateText" parameterType="map">
+		update projects_indetail_text where  projectsid=#{projectsid}	
+	</update>
+</mapper>

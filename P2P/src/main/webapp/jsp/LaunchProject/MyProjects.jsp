@@ -12,21 +12,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-  <script type="text/javascript" src="../jq/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css"></link>
-  <script type="text/javascript" src="../bootstrap/dist/bootstrap-table.js"></script>
-  <link rel="stylesheet" href="../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
+  <script type="text/javascript" src="../../jq/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../../jq/jquery.cookie1.4.1.js"></script>
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css"></link>
+  <script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
   </head>
   
   <body>
 	<div class="panel-body" style="padding-bottom:0px;">
         <div class="panel panel-default">
             <div class="panel-body">
-                我的发起
+                我的发起<input class="editbtn" type="button" value="45545">
             </div>
         </div>       
-
+		
         <input type="button" class="saveprojects" value="个人发起众筹"/>
         <input type="button" class="saveprojects" value="机构发起众筹"/>
         <table id="tb_departments">
@@ -51,83 +52,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:{"empid":22,"originatortype":0,"addtime":time,"projectsstate":3,"launchtype":launchtype},
 			success:function(data){
 				alert(data);
-				
+				if(data=="success"){
+					window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/ProjectsLaunch.jsp';
+				}				
 			}
 		})
 		
 	})
-	function tijiao(data){
-		alert(data);
-		$.ajax({
-    			type:"post",
-    			dataType:"json",
-    			url:"sts",
-    			contentType:"application/json;charset=utf-8",
-    			//data:{"Dept.deptno":dno,"Dept.dname":dname,"Dept.loc":loc},
-    			data:JSON.stringify(data),
-    			success:function(data){
-    				alert(data);
-    				var ss="";
-    				var ss1="";
-    				$.each(data,function(index,value){
-    					var ss=value.STUNAME;
-    					//alert(value.SUBNAME);
-    					/* if(index==0){
-    						$("#sname").append(value.STUNAME);
-    						$("#sno").append(value.STUNO);
-    					} */
-    					if(ss!=ss1){
-    						ss1=value.STUNAME;
-    						$("#sname").append(value.STUNAME);
-    						$("#sno").append(value.STUNO);
-    					}
-    					
-    					
-    					var alloption="<option value=\""+value.TSID+"\">"+value.THNAME+"老师教授的"+value.SUBNAME+"课程</option>";
-    					$("#sts").append(alloption);
-    				})
-    			},
-    			error:function(){
-    				alret("error")
-    			}
-    	});
-	}
-	$(function(){
-	alert("55");
-		$.ajax({
-    			type:"post",
-    			dataType:"json",
-    			url:"stulogin",
-    			contentType:"application/json;charset=utf-8",
-    			//data:{"Dept.deptno":dno,"Dept.dname":dname,"Dept.loc":loc},
-    			//data:JSON.stringify(data),
-    			success:function(data){
-    				alert(data);
-    				var ss="";
-    				var ss1="";
-    				$.each(data,function(index,value){
-    					var ss=value.STUNAME;
-    					//alert(value.SUBNAME);
-    					/* if(index==0){
-    						$("#sname").append(value.STUNAME);
-    						$("#sno").append(value.STUNO);
-    					} */
-    					if(ss!=ss1){
-    						ss1=value.STUNAME;
-    						$("#sname").append(value.STUNAME);
-    						$("#sno").append(value.STUNO);
-    					}
-    					
-    					
-    					var alloption="<option value=\""+value.TSID+"\">"+value.THNAME+"老师教授的"+value.SUBNAME+"课程</option>";
-    					$("#sts").append(alloption);
-    				})
-    			},
-    			error:function(){
-    				alret("error")
-    			}
-    	});
-	})
+	
 	$(function () {
 		alert("1");
 	    //1.初始化Table
@@ -180,14 +112,41 @@ var TableInit = function () {
             },{
                 field: 'ORIGINATORTYPE',
                 title: '结算状态'
+            },{
+            	title: '操作',
+            	events:operateEvents,
+            	formatter: function(row,value,index){	
+                	return ["<input class=\"editbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"编辑\" /><input class=\"delectbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"删除\" />"];
+                }
             }]
         });
     };
-
+    
+    window.operateEvents={
+    		"click .editbtn":function(e,value,row,index){
+					alert(row.PROJECTSID);
+					var projectsid=row.PROJECTSID;
+					$.cookie('projectsid', projectsid);
+					alert("dd");
+					window.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/ProjectsLaunch.jsp";
+					
+					
+    		},"click .delectbtn":function(e,value,row,index){
+    			
+    			
+    		}
+    		
+    		
+    }
+    $(".editbtn").click(function(){
+    	alert("789");
+    	//var projects=$(this).name();
+    	alert(projects);
+    })
     //得到查询的参数
     oTableInit.queryParams = function (params) {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-            empid:100032
+            empid:22
         };
         return temp;
     };
