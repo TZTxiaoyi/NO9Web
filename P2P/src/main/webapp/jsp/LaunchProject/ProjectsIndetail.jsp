@@ -45,12 +45,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	height:34px;
   	line-height:34px; 
   }
-  
+  .formgroupdiv{
+  	margin:50px;
+  	padding:20px;
+  	width:550px;
+  	border:2px solid #e0e0e0;
+  }
+  .photodiv{
+  	border:1px solid #e0e0e0;
+  }
   textarea{ resize:none;}
   </style>
   </head>
   <body>
-  	
   			<div  id="colpadding">
   				
   				<form class="form-horizontal">
@@ -69,6 +76,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 </html>
 <script>
+	function delectindetail(btnindex,choicebtn){
+		alert(btnindex);
+		var projectsid=parseInt($.cookie('projectsid'));
+		/* var data={};
+		data["projectsid"]=projectsid;
+		data[""]= */
+		$.ajax({
+			type:"post",
+			url:"http://localhost:9088/P2P/IndetailContrller/DelectIndetail.do",
+			contentType:"application/json;charset=utf-8",
+			data:{"projectsid":projectsid,"places":btnindex,"choicebtn":choicebtn},
+			success:function(data){
+				alert(data);
+				if(data!=0){
+					
+					
+				}
+				
+			}
+		})
+		
+	}
 	$(function(){
 		var projectsid=parseInt($.cookie('projectsid'));
 		alert(projectsid);
@@ -82,18 +111,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			success:function(data){
 				$.each(data,function(index,value){
 					if (value.TEXTID!=undefined){
-						var text="<div class=\"form-group\"><label for=\"\" class=\"font-normal\">添加文本：</label><div class=\"col-sm-8 input-group\"><input type=\"text\"  index=\""+value.PLACES+"\" name=\"title\" class=\"form-control\" value=\""+value.TITLE+"\" placeholder=\"我需要更多的支持\"><br><textarea class=\"form-control\" index=\""+value.PLACES+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\">"+value.BODY +"</textarea> </div></div>";
+						var text="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+value.PLACES+"\" name=\"title\" class=\"form-control\" value=\""+value.TITLE+"\" placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+value.PLACES+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\">"+value.BODY +"</textarea> </div></div>";
 						$("#Relevantdata").append(text);
 					}else if(value.PHOTOID!=undefined){
-						var photo="<div class=\"form-group\"><label for=\"\" class=\"col-sm-2 control-label\">添加图片：</label><div class=\"col-sm-3\"> <div id=\"Cover"+value.PLACES+"\"><img src=\"http://localhost:9088/P2P/images/"+value.URL+"\" style=\"width:350px;height:250px\"></div><input type=\"file\" class=\"myFile\" index=\""+value.PLACES+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
+						var photo="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label  class=\"col-sm-10 font-normal\">添加图片</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"photo\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-3 input-group\"> <div id=\"Cover"+value.PLACES+"\" class=\"input-group photodiv\" style=\"border:1px solid #e0e0e0\"><img src=\"http://localhost:9088/P2P/images/"+value.URL+"\" style=\"width:350px;height:250px\"></div><input type=\"file\" class=\"myFile\" index=\""+value.PLACES+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
 						$("#Relevantdata").append(photo);
 					}
 					initialindex=value.PLACES;
 					
 					indexq=value.PLACES;
-					alert("index:"+index);
-					initphoto();
+					//alert("index:"+index);
+					
 				})
+				initphoto();
 				
 			}
 			
@@ -173,6 +203,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//图片上传
 	
 	function initphoto(){
+		alert("qwe");
+		$(this).remove();
+		$(".delectbtn").click(function(){
+			var btnindex=parseInt($(this).attr("index"));
+			var choicebtn=$(this).attr("choicebtn")
+			alert(btnindex);
+			$(".deldiv[index=\""+btnindex+"\"]").remove();
+			if(btnindex<=initialindex||choicebtn=="photo"){
+				delectindetail(btnindex,choicebtn);
+				
+			}
+		})
+		
 		var photoindex=0;
 		$(".myFile").bind("click",function(){
 			//alert("ssd");
@@ -180,6 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//alert(photoindex);
 			//$(this).unbind('click');
 		});
+		
 		$(".myFile").fileinput({
 	    language : 'zh',
 	    uploadUrl : "http://localhost:9088/P2P/IndetailContrller/SvaePhoto.do",//上传地址

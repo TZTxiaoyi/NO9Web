@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.entity.ljl.DescribeLjl;
+import com.entity.ljl.IndetailLjl;
 import com.entity.ljl.IndetailPhotoLjl;
 import com.entity.ljl.ProjectsLjl;
 import com.service.Tool.FileUploadService;
@@ -29,6 +30,7 @@ public class IndetailContrller {
 	@Autowired
 	FileUploadService SaveCover;
 	@RequestMapping("/SvaeText")
+	//保存项目详细文本
 	public void SvaeText(@RequestBody String str){
 		JSON json=JSONObject.parseObject(str);
 		Map map =(Map)json;
@@ -37,6 +39,7 @@ public class IndetailContrller {
 		
 		
 	}
+	//保存项目详细图片
 	@RequestMapping(value="/SvaePhoto",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public Map SvaePhoto(@RequestParam("file_data") MultipartFile myfile,IndetailPhotoLjl IndetailPhoto) throws IllegalStateException, IOException{
@@ -50,6 +53,7 @@ public class IndetailContrller {
 		return map;
 		
 	}
+	//查询项目详细内容
 	@RequestMapping(value="/AllIndetail",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public List AllIndetail(@RequestBody ProjectsLjl projects ){
@@ -57,6 +61,16 @@ public class IndetailContrller {
 		List list=IndetailService.AllIndetail(projects);
 		System.out.println(list);
 		return list;
+		
+	}
+	@RequestMapping(value="/DelectIndetail",produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public int DelectIndetail(IndetailLjl indetail){
+		System.out.println(indetail.getProjectsid());
+		System.out.println(indetail.getPlaces());
+		System.out.println(indetail.getChoice());
+		return 0;
+		
 		
 	}
 }

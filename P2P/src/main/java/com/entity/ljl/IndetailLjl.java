@@ -6,6 +6,13 @@ public class IndetailLjl {
 	private int textid;
 	private int photoid;
 	private int places;
+	private String choice;
+	public String getChoice() {
+		return choice;
+	}
+	public void setChoice(String choice) {
+		this.choice = choice;
+	}
 	public int getIndetailid() {
 		return indetailid;
 	}
