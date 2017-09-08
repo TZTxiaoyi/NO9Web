@@ -9,7 +9,6 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -52,9 +51,6 @@ public class ProjectsController {
 	public String AllProjects(@RequestBody UserLjl user,HttpServletRequest request,HttpServletResponse response){
 		response.setHeader("Content-type", "text/html;charset=UTF-8");  
 		//System.out.println(user.getEmpid());
-		/*HttpSession session = request.getSession(); 
-		
-		System.out.println(session.getAttribute("accounts"));*/
 		String str= projectsServiceLjl.AllProjects(user);
 		try {
 			response.getWriter().write(str);

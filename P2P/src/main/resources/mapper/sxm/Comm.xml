@@ -5,5 +5,10 @@
 <mapper namespace="com.dao.sxm.CommDao">
 	<insert id="saveComm" parameterType="com.entity.sxm.Commentary">
 		insert into commentary values(list_commentary.nextval,#{projectsid},#{empid},#{content},#{time})
+		<where>
+			<if test="empid>0">
+			
+			</if>
+		</where>
 	</insert>
 </mapper>

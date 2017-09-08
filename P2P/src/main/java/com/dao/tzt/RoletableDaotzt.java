@@ -14,5 +14,4 @@ import com.entity.tzt.Roletable;
 public interface RoletableDaotzt {
 	public List<Map> queryRoletable();
 	public int addRoletable(Roletable roletable);
-	public int updateRoletable(Roletable  roletable);
 }

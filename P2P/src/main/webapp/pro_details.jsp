@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			height:50px;
  			font-size:20px;
  		}
- 		#sup div{
+ 		#sup>div{
  			margin-top:30px;
  		}
  		#progress{
@@ -204,6 +204,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		#userid{
 			display:none;
+		}
+		#progress{
+			width:400px;
 		}
  	</style>
  	
@@ -347,12 +350,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				out.print(ss);
 				%> --%>
 				</h2>
-				<div id="pid">
-				<%-- <%
-				String pid=(String)request.getParameter("pid");
-				out.print(pid);
-				%> --%>
-				</div>
 			</div>
 			<hr id="hr"/>
 			<!-- 中间*图片 -->
@@ -365,11 +362,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-12" id="sup">
 					<div><span>26</span>支持数</div>
-					<div><span>￥6000</span>已筹款</div>
-					<div class="progress">
-						<div class="progress-bar progress-bar-success" id="progress">
-							<span>已完成90%</span>
-						</div>
+					<div><span id="raise"></span>已筹款</div>
+					<div id="progress">
+				
 					</div>
     
 					<div>
@@ -391,7 +386,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div class="col-md-8 col-sm-8 col-xs-12" data-spy="scroll" data-target="#navbar" >  
                     
                     <div class="h3"><h3 id="update">项目更新</h3> </div>
-                    <div style="width:auto;">  
+                    <div style="width:auto;" id="detailUpdate">  
                         
                     </div>  
                     <div class="h3"><h3 id="comment">评论</h3></div>  
@@ -474,11 +469,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    $("#fabu").click(function(){
 	   	var data = {};
         var time = new Date().Format("yyyy-MM-dd hh:mm:ss");  
-		data["empid"] = parseInt($("#userid").html());
+		data["empid"] = parseInt($("#userid").text());
 		data["projectsid"]=parseInt($.cookie('pid'));
 		data["content"]=$("#textarea").val();
 		data["time"]=time;
-		if(data["empid"]==""){
+		if($("#userid").text()==""){
 			alert("请先登录");
 		}else if(data["content"]=="说点什么吧。。。"){
 			alert("请发表你的评论");
@@ -486,7 +481,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    $.ajax({
 				type:"post",
 				dataType:"json",
-				url:"pro/savecomm.do",
+				url:"comm/savecomm.do",
 				contentType:"application/json;charset=utf-8",
 				data:JSON.stringify(data),
 				success:function(data){	 
@@ -547,7 +542,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			success : function(result) {//data为返回的数据，在这里做数据绑定  
 				
 				if(result.resultType=="true"){
-					alert(result.resultEmployee[0].EMPID);
 					$("#userid").append(result.resultEmployee[0].EMPID);
 					$("#user").append(result.resultEmployee[0].USERNAME);
 					$("#log_reg").hide();
@@ -585,7 +579,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		} 
 	})
 	/*
-		页面加载时自动加载项目
+		页面加载时自动加载项目封面图片
 	*/
 	$(function(){
 		var pid=$.cookie('pid');
@@ -597,17 +591,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			url:"pro/selectPro.do",
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data),
-			success:function(data){	 
-				
+			success:function(data){	
+				var targeMoney=data[0].TARGE_MONEY;
+				var raiseMoney=data[0].RAISE_MONEY;
+				var bart=(raiseMoney/targeMoney)*100;
+				var bar="<div class=\"progress\">"
+					+"<div class=\"progress-bar progress-bar-success\" style=\"width:"+bart+"%;\">"
+					+"<i>已完成"+bart+"%</i></div></div>";
 				var img="<img src=\"images/"+data[0].COVER+"\" alt=\"\" width=\"100%\" height=\"400px\">";
 				$("#headimg").append(img);
 				$("#title").append(data[0].TITLE);
+				$("#progress").append(bar);
+				$("#raise").append(raiseMoney);
 			},
 			error:function(){
 				alret("error");
 			}
 		});
 	});
+	/*
+		页面加载时自动加载项目详情
+	*/
+	$(function(){
+		var pid=$.cookie('pid');
+		var data={};
+		data["projectsid"]=parseInt(pid);
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:"detal/selectProDetal.do",
+			contentType:"application/json;charset=utf-8",
+			data:JSON.stringify(data),
+			success:function(data){	 
+				$.each(data,function(index,value){
+					var detail=value.URL;
+					var aa=value.BODY;
+					alert(detail);
+					alert(aa);
+				})
+			},
+			error:function(){
+				alret("error");
+			}
+		});
+	})
 	/*
 		退出按钮点击事件
 	*/

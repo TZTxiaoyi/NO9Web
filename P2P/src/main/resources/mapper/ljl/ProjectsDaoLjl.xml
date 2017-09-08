@@ -13,7 +13,7 @@
 	
 	<insert id="SaveProjects" parameterType="com.entity.ljl.ProjectsLjl">
 		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="projectsid">  
-            select list_projects.nextval  as projectsid from dual 
+            select list_projects.nextval  as projectsid  from dual  
         </selectKey>
 		insert into projects values(#{projectsid},#{empid},#{originatortype},#{addtime},#{projectsstate})	
 	</insert>

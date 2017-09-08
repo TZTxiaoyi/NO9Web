@@ -126,7 +126,7 @@ var TableInit = function () {
     		"click .editbtn":function(e,value,row,index){
 					alert(row.PROJECTSID);
 					var projectsid=row.PROJECTSID;
-					$.cookie('projectsid', projectsid,{path:"/"});
+					$.cookie('projectsid', projectsid);
 					alert("dd");
 					window.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/ProjectsLaunch.jsp";
 					
@@ -188,4 +188,5 @@ var ButtonInit = function () {
 var time1 = new Date().Format("yyyy-MM-dd");
 
 </script>
+
 

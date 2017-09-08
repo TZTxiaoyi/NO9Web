@@ -21,17 +21,4 @@
 	<insert id="addRoletable" parameterType="com.entity.tzt.Roletable" >
 		insert into roletable values(list_roletable.nextval,#{rolename,},20) 
 	</insert>
-	
-	<update id="updateRoletable" parameterType="com.entity.tzt.Roletable" >
-		update  roletable set
-		<if test="rolename!=null">
-		 rolename=#{rolename,jdbcType=VARCHAR}
-		</if>
-		 <if test="rolestate!=null">
-		,rolestate=#{rolestate,jdbcType=NUMERIC}
-		 </if>
-			<where>
-	 		roleid=#{roleid}
-	 		</where>
-	</update>
 </mapper>

@@ -173,7 +173,6 @@
 			var dd2=parseInt(ss[0].PROJECTSID);
 			alert(dd2);
 			var dd={};
-			
 			dd["projectsid"]=dd2;
 			$.ajax({
 				type:"post",

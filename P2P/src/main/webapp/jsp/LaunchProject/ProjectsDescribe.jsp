@@ -12,15 +12,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-  <script type="text/javascript" src="../jq/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="../jq/jquery.cookie1.4.1.js"></script>
-  <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css"></link>
-  <script type="text/javascript" src="../bootstrap/dist/bootstrap-table.js"></script>
-  <link rel="stylesheet" href="../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
-  <script type="text/javascript" src="../bootstrap/fileinput/js/fileinput.js"></script>
-  <script type="text/javascript" src="../bootstrap/fileinput/css/fileinput.css"></script>
-  <script type="text/javascript" src="../bootstrap/fileinput/js/locales/zh.js"></script>
+  <script type="text/javascript" src="../../jq/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../../jq/jquery.cookie1.4.1.js"></script>
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css"></link>
+  <script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
+  <script type="text/javascript" src="../../bootstrap/fileinput/js/fileinput.js"></script>
+  <script type="text/javascript" src="../../bootstrap/fileinput/css/fileinput.css"></script>
+  <script type="text/javascript" src="../../bootstrap/fileinput/js/locales/zh.js"></script>
   <style>
   	body
   {
