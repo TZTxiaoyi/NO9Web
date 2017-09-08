@@ -79,14 +79,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function delectindetail(btnindex,choicebtn){
 		alert(btnindex);
 		var projectsid=parseInt($.cookie('projectsid'));
-		/* var data={};
+		var data={};
 		data["projectsid"]=projectsid;
-		data[""]= */
+		data["places"]=btnindex;
 		$.ajax({
 			type:"post",
 			url:"http://localhost:9088/P2P/IndetailContrller/DelectIndetail.do",
 			contentType:"application/json;charset=utf-8",
-			data:{"projectsid":projectsid,"places":btnindex,"choicebtn":choicebtn},
+			data:JSONStringify(data),
 			success:function(data){
 				alert(data);
 				if(data!=0){
