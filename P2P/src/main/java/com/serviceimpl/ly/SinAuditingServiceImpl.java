@@ -14,10 +14,21 @@ public class SinAuditingServiceImpl implements SinAuditingService{
 	@Autowired
 	SinAuditingDao sinAuditingDao;
 
-
+	/**
+	 * 个人项目审核
+	 */
 	public List<Object> selSinAuditing(Project projectsid){
 		// TODO Auto-generated method stub
 		return sinAuditingDao.selSinAu(projectsid);
+	}
+
+
+	/**
+	 * 项目详情审核
+	 */
+	public List<Object> selDeAudi(Project projectsid) {
+		// TODO Auto-generated method stub
+		return sinAuditingDao.selDeAuditing(projectsid);
 	}
 	
 }

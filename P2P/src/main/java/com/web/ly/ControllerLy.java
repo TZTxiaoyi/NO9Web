@@ -172,12 +172,18 @@ public class ControllerLy {
 	@ResponseBody
 	@RequestMapping(value="/singleAu")
 	public List selSinauditings(@RequestBody Project projectsid,HttpServletResponse response){
-		System.out.println("------------:"+projectsid.getProjectsid());
+		//System.out.println("------------:"+projectsid.getProjectsid());
 		response.setHeader("content-type","text/html;charset=UTF-8");
 		List<Object> sList = SinAuditingService.selSinAuditing(projectsid);
 		return sList;		
 	}
-	/*@ResponseBody
-	@RequestMapping(value="/")
-	public List*/
+	@ResponseBody
+	@RequestMapping(value="/proDetail")
+	public List selDetailAu(@RequestBody Project projectsid,HttpServletResponse response){
+		System.out.println("------------:"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		List<Object> dList=SinAuditingService.selDeAudi(projectsid);
+		System.out.println("----------00:"+dList);
+		return dList;
+	}
 }

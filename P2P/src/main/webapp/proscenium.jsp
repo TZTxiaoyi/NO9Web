@@ -110,7 +110,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#myModal1 h4{
 			text-align:left;
 		}
-		
  	</style>
  	
   </head>
@@ -280,21 +279,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 设置轮播图片 -->
 			<div class="carousel-inner">
 				<div class="item active">
-			 		<a class="image" pid="100050" href='pro_details.jsp'><img src="images/tudou.png" alt="" style="height: 300px;width: 100%"></a>
+			 		<a href='pro_details.jsp'><img src="images/tudou.png" alt="" style="height: 300px;width: 100%"></a>
 			 			<div class="carousel-caption">
 			 				<h3></h3>
 			 				<p></p>
 			 			</div>
 			 	</div>
  				<div class="item">
- 					<a class="image" pid="1" href='pro_details.jsp'><img src="images/liangshi.png" alt="" style="height: 300px;width: 100%"></a>
+ 					<a href='pro_details.jsp'><img src="images/liangshi.png" alt="" style="height: 300px;width: 100%"></a>
  					<div class="carousel-caption">
  						<h3></h3>
  						<p></p>
  					</div>
  				</div>
  				<div class="item">
-					 <a class="image" pid="100052" href='pro_details.jsp'><img src="images/zishahu.png" alt="" style="height: 300px;width: 100%"></a>
+					 <a href='pro_details.jsp'><img src="images/zishahu.png" alt="" style="height: 300px;width: 100%"></a>
 					 <div class="carousel-caption">
 					 	<h3></h3>
 					 	<p></p>
@@ -356,16 +355,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					+"<div class=\"progress-bar progress-bar-success\" style=\"width: 90%;\">"
 					+"<span>已完成90%</span></div></div></div>";
 					$("#moddel").append(moddel); */
-					var targeMoney=value.TARGE_MONEY;
-					var raiseMoney=value.RAISE_MONEY;
-					var pid=value.PROJECTSID;
-					var bar=(raiseMoney/targeMoney)*100;
-					
 					var moddel="<div class=\"col-md-3 col-sm-3 col-xs-12\"><a href='pro_details.jsp' class=\"img\" pid="+value.PROJECTSID+"><img src=\"images/"
 					+value.COVER+"\" alt=\"\" width=\"300\" height=\"260\"><h4>"+value.TITLE+"</h4><hr/><h5>"+value.GOAL+"</h5></a>"
 					+"<div class=\"progress\">"
-					+"<div class=\"progress-bar progress-bar-success\" style=\"width:"+bar+"%;\">"
-					+"</div><span id=\"bar\">已完成"+bar+"%</span></div></div>";
+					+"<div class=\"progress-bar progress-bar-success\" style=\"width: 90%;\">"
+					+"<span>已完成90%</span></div></div></div>";
 					$("#moddel").append(moddel);
 					
 				})
@@ -375,14 +369,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		});
 	});
-	$(".image").click(function(){
-		
-		var pid=$(this).attr("pid");
-		alert(pid);
-		$.cookie('pid', pid);
-	})
 	$("#moddel").on('click',".img",function(){
 		var pid=$(this).attr("pid");
+		alert(pid);
 		$.cookie('pid', pid);
 	})
 	/*
@@ -425,6 +414,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		注册登录调用函数
 	*/
 	function login(data){
+		alert(data.accounts);
+		alert(data.passwords);
 		$.ajax({
 			type : "post",
 			dataType : "json",
@@ -474,7 +465,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		退出按钮点击事件
 	*/
 	$("#exit").click(function(){
-		window.location.href="proscenium.jsp"; 
+		window.location.href="proscenium.jsp";
+		 
 		$("#log_reg").show();
 		$("#log_img").hide();
 		$.cookie('account', '', { expires: -1 });

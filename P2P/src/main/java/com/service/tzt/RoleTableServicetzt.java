@@ -12,4 +12,5 @@ import com.entity.tzt.Roletable;
 public interface RoleTableServicetzt {
 	public String queryRoletable();
 	public String addRoletable(Roletable roletable);
+	public String updateRoletable(Roletable roletable);
 }

@@ -57,5 +57,24 @@ public class RoleTableServicetztImpl implements RoleTableServicetzt {
 		}
 		
 	}
+	/**
+	 * 
+	 * Title: updateRoletable  更新角色表信息
+	 * Description:  
+	 * @param roletable
+	 * @return   
+	 * @see com.service.tzt.RoleTableServicetzt#updateRoletable(com.entity.tzt.Roletable)
+	 */
+	public String updateRoletable(Roletable roletable) {
+		
+		Map result =new HashMap();
+		int flag = roletableDaotzt.updateRoletable(roletable);
+		if(flag!=0){
+			result.put("resultType", true);
+		}else{
+			result.put("resultType", false);
+		}
+		return JSON.toJSONString(result);
+	}
 
 }
