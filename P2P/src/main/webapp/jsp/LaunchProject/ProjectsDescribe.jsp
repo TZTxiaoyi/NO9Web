@@ -52,6 +52,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	
   			<div  id="colpadding">
+  				<b>创建您的项目信息</b>
+  				<hr>
   				<form class="form-horizontal" method="post"
                     action="<%=basePath%>DescribeContrller/UpdateDescribe.do">
 				<div>

@@ -70,7 +70,8 @@ public class LoginController {
 		//System.out.println(accounts.getAccounts());
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("contentType", "text/JSON;charset=UTF-8");
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
+		System.out.println(accounts.getAccounts());
 		session.setAttribute("accounts", accounts.getAccounts()); 
 		System.out.println(JSON.toJSONString(loginServicetzt.login(accounts)));
 	
