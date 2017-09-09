@@ -63,13 +63,15 @@ public class IndetailContrller {
 		return list;
 		
 	}
+	//删除项目详情文本和图片
 	@RequestMapping(value="/DelectIndetail",produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public int DelectIndetail(IndetailLjl indetail){
+	public int DelectIndetail(@RequestBody IndetailLjl indetail){
 		System.out.println(indetail.getProjectsid());
 		System.out.println(indetail.getPlaces());
 		System.out.println(indetail.getChoice());
-		return 0;
+		int flag =IndetailService.DelectIndetail(indetail);
+		return flag;
 		
 		
 	}

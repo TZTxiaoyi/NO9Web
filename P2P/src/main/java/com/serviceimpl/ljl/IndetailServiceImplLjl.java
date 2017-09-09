@@ -33,6 +33,10 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 	@Override
 	public List AllIndetail(ProjectsLjl projects) {
 		List list=IndetailDao.AllIndetailProjects(projects);
+		if (list.size()==0){
+			
+			
+		}
 		return list;
 	}
 
@@ -112,8 +116,28 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 
 	@Override
 	public int DelectIndetail(IndetailLjl indetail) {
-		IndetailDao.DelectIndetail(indetail);
+		int flag=IndetailDao.DelectIndetail(indetail);
+		int flag1=0;
+		int flag2=0;
+		if(indetail.getChoice()=="text"){
+			System.out.println("dsfsfa");
+			flag1=IndetailDao.DelectText(indetail);
+			
+		}else if(indetail.getChoice()=="photo"){
+			System.out.println("photo");
+			flag2=IndetailDao.DelectPhoto(indetail);
+		}
 		//IndetailDao.
+		System.out.println(flag);
+		System.out.println(flag1);
+		System.out.println(flag2);
+		if (flag==1&&flag1==1 ){
+			
+			return 1;
+		}else if(flag==1&&flag2==1){
+			return 1;
+			
+		}
 		return 0;
 	}
 
