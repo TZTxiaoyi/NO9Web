@@ -29,7 +29,13 @@
  	#bank{
  		width:160px;		
  	}
- 	
+ 	.dataTd1{
+ 		font-size:32px;
+ 	}
+ 	.input1{
+ 		width:200px;
+ 		height:40px;
+ 	}
 </style>
 </head>
 
@@ -45,29 +51,29 @@
 		<div class=" col-md-offset-2" id = "content">
 		<table id = "dataTable">
 			<tr>
-				<td><span>用户名：</span></td>
-				<td><input type = "text" id = "UserName" placeholder="用户名"/></td>
+				<td class = "dataTd1">用户名</td>
+				<td><input type = "text" id = "UserName" placeholder="用户名" class = "input1"/></td>
 			</tr>
 			<tr>
-				<td><span>性别：</span></td>
-				<td><input type = "radio" name = "sex" value="1" checked/>男
-					<input type = "radio" name = "sex" value = "0" />女 
+				<td class = "dataTd1">&nbsp;性&nbsp;别</td>
+				<td><input type = "radio" name = "sex" value="1" checked class = "dataTd1"/>男
+					<input type = "radio" name = "sex" value = "0"  class = "dataTd1"/>女 
 				</td>
 			</tr>
 			<tr>
-				<td>年龄：</td>
-				<td><input type = "text" id = "Age" placeholder="年龄" onkeyup="value=value.replace(/[^\d]/g,'')"/></td>
+				<td class = "dataTd1">&nbsp;年&nbsp;龄</td>
+				<td><input type = "text" id = "Age" placeholder="年龄" class = "input1" onkeyup="value=value.replace(/[^\d]/g,'')"/></td>
 			</tr>
 			<tr>
-				<td id = "rightfloat">地址：</td>
-				<td><input type = "text" id = "Address" placeholder="地址"/></td>
+				<td id = "rightfloat" class = "dataTd1">&nbsp;地&nbsp;址</td>
+				<td><input type = "text" class = "input1" id = "Address" placeholder="地址"/></td>
 			</tr>
 			<tr>
-				<td>联系电话：</td>
-				<td><input type ="text" id = "TelePhone"placeholder="联系电话" onkeyup="value=value.replace(/[^\d]/g,'')"/></td>
+				<td class = "dataTd1">&nbsp;电&nbsp;话</td>
+				<td><input type ="text" class = "input1" id = "TelePhone"placeholder="联系电话" onkeyup="value=value.replace(/[^\d]/g,'')"/></td>
 			</tr>
 			<tr>
-				<td  colspan = 2 >
+				<td  colspan = "2">
 					
 					<input type = "button" id="submit" value = "提交" class = "btn btn-danger"/>
 				</td>
@@ -77,12 +83,12 @@
 		
 		<table id = "nameTable">
 			<tr>
-				<td>真实姓名：</td>
-				<td><input type ="text"  id = "realName"/></td>
+				<td class = "dataTd1">真实姓名：</td>
+				<td><input type ="text"  id = "realName" class = "input1"/></td>
 			</tr>
 			<tr>
-				<td>身份证号：</td>
-				<td><input type = "text" id = "idCard"/></td>
+				<td class = "dataTd1">身份证号：</td>
+				<td><input type = "text" id = "idCard" class = "input1"/></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -93,20 +99,20 @@
 		</table>
 		<table id = "cardTable">
 			<tr>
-				<td>账户ID：</td>
-				<td><input type = "text" name = "bankAccountId" id="bankAccountId"/></td>
+				<td class = "dataTd1">账户ID</td>
+				<td><input type = "text" name = "bankAccountId" id="bankAccountId" class = "input1"/></td>
 			</tr>
 			<tr>
-				<td>用户id：</td>
-				<td><input type = "text" name = "empId" id="empId"/></td>
+				<td class = "dataTd1">用户ID</td>
+				<td><input type = "text" name = "empId" id="empId" class = "input1"/></td>
 			</tr>
 			<tr>
-				<td>银行账号：</td>
-				<td><input type = "text" name = "bankAccounts" id="bankAccounts"/></td>
+				<td class = "dataTd1">银行账号</td>
+				<td><input type = "text" name = "bankAccounts" id="bankAccounts" class = "input1"/></td>
 			</tr>
 			<tr>
-				<td>银行名称</td>
-				<td><select id ="bank" name = "bankName" id = "bankName">
+				<td class = "dataTd1">银行名称</td>
+				<td><select id ="bank" name = "bankName" id = "bankName" class = "input1">
 					<option>中国银行</option>
 					<option>农村信用社</option>
 					<option>中国建设银行</option>
