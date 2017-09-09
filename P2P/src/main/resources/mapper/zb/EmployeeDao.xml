@@ -8,9 +8,7 @@
 		 where e.empstate = w.key
 		 
 	</select> 
-	<update id="updateEmployee"  parameterType="com.entity.zb.Employeezb">
-     	 
-     update employee set username=#{UserName},age=#{Age},address=#{Address},telePhone=#{TelePhone} where EmpId=#{empId}
+	<update id="updateEmployee"  parameterType="com.entity.zb.Employeezb">    	 
+     	update employee set username=#{UserName},age=#{Age},address=#{Address},telePhone=#{TelePhone} where EmpId=#{empId}
   	</update>
-	
 </mapper>

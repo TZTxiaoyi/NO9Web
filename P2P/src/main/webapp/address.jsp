@@ -26,13 +26,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
   
   <style type="text/css">
+  	body{
+  		  .size(100%; 100%); 
+  	}
   	td{
   		width:200px;
   		text-align:center;
   	}
   	#trsize{
   		font-weight:bold;
-  		font-size:20px;
+  		font-size:26px;
   	}
   	input{
   		width:300px;
@@ -49,13 +52,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <a href = "addAddress.jsp">
-    	<button class = "btn btn-danger">
+    	<button class = "btn btn-danger btn-block active">
     		<span class = "glyphicon glyphicon-plus"></span>  添加地址 
     	</button>
     </a>
 
    	
-	<table id ="table"  class="table table-bordered table-responsive"></table>
+	<table id ="table"  class="table table-bordered">
+	
+	</table>
 	
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
@@ -109,11 +114,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			url : "/P2P/zhubin/queryAddress.do",
 			contentType : "application/json;charset=utf-8",
 			success : function(data) {
-				var th = "<tr id='trsize'><td>地址id</td><td>收货人姓名</td><td>联系方式</td><td>邮编</td><td>详细地址</td><td>操作</td></tr>";
+				var th = "<tr id='trsize'><td>地址编号</td><td>收货人姓名</td><td>联系方式</td><td>邮编</td><td>详细地址</td><td>操作</td></tr>";
 				$("#table").append(th);
 				$.each(data,function(index, value) {
 					//alert(value.addressId);
-					var dd = "<tr class='table table-bordered table-striped  table-hover' height=30><td>"
+					var dd = "<tr class='table table-bordered table-striped  table-hover' height='50'><td>"
 					+ value.addressId
 					+ "</td><td id=\"namealter"+value.addressId+"\">"
 					+ value.name

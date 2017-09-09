@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.entity.tzt.Accounts;
 import com.service.tzt.LoginServicetzt;
 
@@ -42,7 +43,7 @@ public class LoginController {
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("contentType", "text/JSON;charset=UTF-8");
-		System.out.println(accounts.getAccounts());
+		System.out.println(accounts.getAccounts()+"-"+accounts.getPasswords());
 		if(loginServicetzt.register(accounts)>0){
 			try {
 				response.getWriter().write(JSON.toJSONString("ok"));
@@ -81,6 +82,21 @@ public class LoginController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	}
+	@RequestMapping("/updateAccounts.do")
+	public void updateAccounts(@RequestBody String str,HttpServletResponse resp){
+		System.out.println("=========="+str);
+				JSON json=new JSONArray();		
+				Map map=(Map)json.parse(str);
+				System.out.println("-------"+map);
+				int flag = loginServicetzt.updateAccounts(map);
+				try {
+					resp.getWriter().flush();
+					resp.getWriter().close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	}
 	
 }

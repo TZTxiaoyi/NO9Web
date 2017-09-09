@@ -6,9 +6,9 @@ import com.entity.zb.BankAccount;
 /**
  * 
  * @ClassName:  BankAccountDao   
- * @Description:TODO(ÒøĞĞÕËºÅµÄdao½Ó¿Ú)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ5ÈÕ ÏÂÎç9:50:08   
+ * @Description:TODO(é“¶è¡Œè´¦å·çš„Daoæ¥å£)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ3:06:47   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *

@@ -7,9 +7,9 @@ import com.entity.zb.Employeezb;
 /**
  * 
  * @ClassName:  EmployeeDao   
- * @Description:TODO(�������ϵ�dao�ӿ�)   
- * @author: ���
- * @date:   2017��9��1�� ����7:33:21   
+ * @Description:TODO(员工的Dao接口)   
+ * @author: 朱彬
+ * @date:   2017年9月6日 下午3:07:46   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *

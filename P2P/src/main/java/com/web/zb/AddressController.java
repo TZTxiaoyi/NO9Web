@@ -21,9 +21,9 @@ import com.service.zb.AddressService;
 /**
  * 
  * @ClassName:  AddressController   
- * @Description:TODO(ÊÕ»õµØÖ·µÄ¿ØÖÆ²ã)   
- * @author: Öì±ò
- * @date:   2017Äê8ÔÂ31ÈÕ ÏÂÎç8:00:15   
+ * @Description:TODO(æ”¶è´§åœ°å€çš„æ§åˆ¶å±‚)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ7æ—¥ ä¸Šåˆ11:08:13   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -36,10 +36,10 @@ public class AddressController {
 	/**
 	 * 
 	* @Title: addAddress
-	* @Description: TODO(Ìí¼ÓÊÕ»õµØÖ·µÄ·½·¨)
+	* @Description: TODO(æ·»åŠ åœ°å€çš„æ–¹æ³•)
 	* @param @param str
-	* @param @param resp    Éè¶¨ÎÄ¼ş
-	* @return void    ·µ»ØÀàĞÍ
+	* @param @param resp    è®¾å®šæ–‡ä»¶
+	* @return void    è¿”å›ç±»å‹
 	* @throws
 	 */
 	@RequestMapping("/addAddress.do")
@@ -61,9 +61,9 @@ public class AddressController {
 	/**
 	 * 
 	* @Title: queryAddress
-	* @Description: TODO(²éÑ¯ÊÕ»õµØÖ·µÄ·½·¨)
-	* @param @param resp    Éè¶¨ÎÄ¼ş
-	* @return void    ·µ»ØÀàĞÍ
+	* @Description: TODO(æŸ¥è¯¢åœ°å€çš„æ–¹æ³•)
+	* @param @param resp    è®¾å®šæ–‡ä»¶
+	* @return void    è¿”å›ç±»å‹
 	* @throws
 	 */
 	@RequestMapping("/queryAddress.do")
@@ -82,10 +82,10 @@ public class AddressController {
 	/**
 	 * 
 	* @Title: updateAddress
-	* @Description: TODO(ĞŞ¸ÄÊÕ»õµØÖ·µÄ·½·¨)
+	* @Description: TODO(ä¿®æ”¹åœ°å€çš„æ–¹æ³•)
 	* @param @param address
-	* @param @param resp    Éè¶¨ÎÄ¼ş
-	* @return void    ·µ»ØÀàĞÍ
+	* @param @param resp    è®¾å®šæ–‡ä»¶
+	* @return void    è¿”å›ç±»å‹
 	* @throws
 	 */
 	@RequestMapping("/updateAddress.do")
@@ -103,14 +103,14 @@ public class AddressController {
 			e.printStackTrace();
 		}
 	}
+
 	/**
-	 * @param <Msg>
-	 * @param <Msg>
 	 * 
-	* @Title: deleteAddress
-	* @Description: TODO(µØÖ·É¾³ı·½·¨)
-	* @param     Éè¶¨ÎÄ¼ş
-	* @return void    ·µ»ØÀàĞÍ
+	* @Title: deleteAddressById
+	* @Description: TODO(åˆ é™¤åœ°å€çš„æ–¹æ³•)
+	* @param @param addressId
+	* @param @return    è®¾å®šæ–‡ä»¶
+	* @return boolean    è¿”å›ç±»å‹
 	* @throws
 	 */
 	@ResponseBody
