@@ -1,10 +1,10 @@
 package com.entity.zb;
 /**
  * 
- * @ClassName:  Employee   
- * @Description:TODO(Ա�����ʵ����)   
- * @author: ���
- * @date:   2017��9��1�� ����7:11:37   
+ * @ClassName:  Employeezb   
+ * @Description:TODO(员工的实体类)   
+ * @author: 朱彬
+ * @date:   2017年9月6日 下午3:02:51   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *

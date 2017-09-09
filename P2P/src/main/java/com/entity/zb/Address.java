@@ -2,20 +2,20 @@ package com.entity.zb;
 /**
  * 
  * @ClassName:  Address   
- * @Description:TODO(ÊÕ»õµØÖ·µÄÊµÌåÀà)   
- * @author: Öì±ò
- * @date:   2017Äê8ÔÂ31ÈÕ ÏÂÎç7:43:21   
+ * @Description:TODO(åœ°å€çš„å®ä½“ç±»)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ2:57:51   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
  */
 public class Address {
 
-	private int AddressId;
-	private String Name;
-	private int Phone;
-	private int postCodes;
-	private String AddressInfo;
+	private int AddressId;//åœ°å€id
+	private String Name;//æ”¶è´§äººå§“å
+	private int Phone;//è”ç³»ç”µè¯
+	private int postCodes;//é‚®æ”¿ç¼–ç 
+	private String AddressInfo;//è¯¦ç»†åœ°å€
 	public int getPostCodes() {
 		return postCodes;
 	}

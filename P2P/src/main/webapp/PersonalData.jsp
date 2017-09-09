@@ -27,9 +27,9 @@
  		
  	}
  	#bank{
- 		width:160px;
- 		
+ 		width:160px;		
  	}
+ 	
 </style>
 </head>
 
@@ -46,15 +46,7 @@
 		<table id = "dataTable">
 			<tr>
 				<td><span>用户名：</span></td>
-				<td><input type = "text" id = "UserName"/></td>
-			</tr>
-			<tr>
-				<td><span>真实姓名：</span></td>
-				<td><input type = "text" id = "EmpName" readonly="true"/></td>
-			</tr>
-			<tr>
-				<td><span>身份证号：</span></td>
-				<td><input type = "text" id = "IdCard" readonly="true"/></td>
+				<td><input type = "text" id = "UserName" placeholder="用户名"/></td>
 			</tr>
 			<tr>
 				<td><span>性别：</span></td>
@@ -64,27 +56,20 @@
 			</tr>
 			<tr>
 				<td>年龄：</td>
-				<td><input type = "text" id = "Age"/></td>
+				<td><input type = "text" id = "Age" placeholder="年龄" onkeyup="value=value.replace(/[^\d]/g,'')"/></td>
 			</tr>
 			<tr>
 				<td id = "rightfloat">地址：</td>
-				<td><input type = "text" id = "Address"/></td>
+				<td><input type = "text" id = "Address" placeholder="地址"/></td>
 			</tr>
 			<tr>
 				<td>联系电话：</td>
-				<td><input type ="text" id = "TelePhone"/></td>
-			</tr>
-			<tr>
-				<td>账户余额：</td>
-				<td><input type = "text" id = "Balance" readonly="true"/></td>
-			</tr>
-			<tr>
-				<td>状态:</td>
-				<td><input type = "text" id = "EmpState" readonly="true"/></td>
+				<td><input type ="text" id = "TelePhone"placeholder="联系电话" onkeyup="value=value.replace(/[^\d]/g,'')"/></td>
 			</tr>
 			<tr>
 				<td  colspan = 2 >
-					<input type = "button" value = "确定修改" id = "submit"/>
+					
+					<input type = "button" id="submit" value = "提交" class = "btn btn-danger"/>
 				</td>
 			</tr>
 		</table>

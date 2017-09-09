@@ -4,12 +4,12 @@ public class SinAuditing {
 	int id;
 	int projectsid;
 	int idcard;
-	String originatorname;
-	String address;
+	int originatorname;
+	int address;
 	int telephone;
 	int protypeid;
-	String cardimage1;
-	String cardimage2;
+	int cardimage1;
+	int cardimage2;
 	public int getId() {
 		return id;
 	}
@@ -28,16 +28,16 @@ public class SinAuditing {
 	public void setIdcard(int idcard) {
 		this.idcard = idcard;
 	}
-	public String getOriginatorname() {
+	public int getOriginatorname() {
 		return originatorname;
 	}
-	public void setOriginatorname(String originatorname) {
+	public void setOriginatorname(int originatorname) {
 		this.originatorname = originatorname;
 	}
-	public String getAddress() {
+	public int getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(int address) {
 		this.address = address;
 	}
 	public int getTelephone() {
@@ -52,16 +52,16 @@ public class SinAuditing {
 	public void setProtypeid(int protypeid) {
 		this.protypeid = protypeid;
 	}
-	public String getCardimage1() {
+	public int getCardimage1() {
 		return cardimage1;
 	}
-	public void setCardimage1(String cardimage1) {
+	public void setCardimage1(int cardimage1) {
 		this.cardimage1 = cardimage1;
 	}
-	public String getCardimage2() {
+	public int getCardimage2() {
 		return cardimage2;
 	}
-	public void setCardimage2(String cardimage2) {
+	public void setCardimage2(int cardimage2) {
 		this.cardimage2 = cardimage2;
 	}
 	

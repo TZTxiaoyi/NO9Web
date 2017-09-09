@@ -3,13 +3,118 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ljl.IndetailProjectsDaoLjl" >
+	<!-- sql片段对应字段名,id属性值任意 -->
+    <sql id="key">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="projectsid!=0">
+                projectsid,
+            </if>
+            <if test="places!=0">
+            	places,
+            </if>
+            <if test="textid!=0">
+                textid,
+            </if>
+            <if test="photoid!=0">
+                photoid,
+            </if>
+            
+        </trim>
+    </sql>
+
+
+    <!-- sql片段对应?,id属性值任意 -->
+    <sql id="value">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="projectsid!=0">
+                #{projectsid},
+            </if>
+            <if test="places!=0">
+                #{places},
+            </if>
+            <if test="textid!=0">
+                #{textid},
+            </if>
+            <if test="photoid!=0">
+                #{photoid},
+            </if>
+            
+        </trim>
+    </sql>
+    <!--  <include refid="key"/>和<include refid="value"/>表示引用上面定义的sql片段 -->
+    <!-- <insert id="dynaInsert" parameterType="cn.itcast.javaee.mybatis.app14.Student">
+        insert into students(<include refid="key"/>) values(<include refid="value"/>)
+    </insert> -->
+	<insert id="SaveIndetailProjects" parameterType="map">
+		insert into projects_indetail(indetailid,<include refid="key"/>) values(list_projects_indetail.nextval,<include refid="value"/>)
+	</insert>
+	
 	<insert id="SvaeText" parameterType="map">
-		<!-- <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="indetailid">  
-            select list_projects_indetail_text.nextval  as indetailid  from dual  
-        </selectKey> -->
-		insert into projects_indetail_text values(list_projects_indetail_text.nextval,#{projectsid},#{title},#{body},#{places})
+		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="textid">  
+            select list_projects_indetail_text.nextval  as textid  from dual  
+        </selectKey> 
+		insert into projects_indetail_text values(#{textid},#{projectsid},#{places},#{title},#{body})
 	</insert>
 	<update id="UpdateText" parameterType="map">
-		update projects_indetail_text title=#{title},body=#{body}  where  projectsid=#{projectsid} places=#{places}
+		update projects_indetail_text set title=#{title},body=#{body}  where  projectsid=#{projectsid} and places=#{places}
 	</update>
+	
+	<insert id="SvaePhoto" parameterType="map">
+		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="photoid">  
+            select list_projects_indetail_photo.nextval  as photoid  from dual  
+        </selectKey>
+		insert into projects_indetail_photo values(#{photoid},#{projectsid},#{places},#{url})
+	</insert>
+	<update id="UpdatePhoto" parameterType="map">
+		update projects_indetail_photo set url=#{url}  where  projectsid=#{projectsid} and places=#{places}
+	</update>
+	
+	<select id="AllIndetailProjects" parameterType="com.entity.ljl.ProjectsLjl" resultType="map">
+		select * from (select pi.indetailid,pi.projectsid,pi.textid,pi.photoid,pi.places,it.title,it.body,ip.url from projects_indetail pi left join projects_indetail_text it on pi.textid=it.textid
+		left join projects_indetail_photo ip on pi.photoid=ip.photoid ) where PROJECTSID=#{projectsid} order by PLACES
+	</select>
+	
+	<delete id="DelectIndetail" parameterType="com.entity.ljl.IndetailLjl">
+		delete from projects_indetail
+		<where>
+			<if test="places!=0">
+				and places=#{places}
+			</if>
+			<if test="textid!=0">
+				and textid=#{textid}
+			</if>
+			<if test="photoid!=0">
+				and photoid=#{photoid}
+			</if>
+			<if test="projectsid!=0">
+				and projectsid=#{projectsid}
+			</if>
+		</where>
+		
+	</delete>
+	<delete id="DelectText" parameterType="com.entity.ljl.IndetailLjl">
+		delect from projects_indetail_text
+		<where>
+			<if test="places!=0">
+				and places=#{places}
+			</if>
+			<if test="projectsid!=0">
+				and projectsid=#{projectsid}
+			</if>
+		</where>
+		
+	</delete>
+	<delete id="DelectPhoto" parameterType="com.entity.ljl.IndetailLjl">
+		delect from projects_indetail_photo
+		<where>
+			<if test="places!=0">
+				and places=#{places}
+			</if>
+			<if test="projectsid!=0">
+				and projectsid=#{projectsid}
+			</if>
+		</where>
+	</delete>
 </mapper>

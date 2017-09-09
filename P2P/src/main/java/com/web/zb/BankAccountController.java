@@ -19,9 +19,9 @@ import com.service.zb.BankAccountService;
 /**
  * 
  * @ClassName:  BankAccountController   
- * @Description:TODO(ÒøĞĞÕËºÅµÄ¿ØÖÆ²ã)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ5ÈÕ ÏÂÎç9:57:08   
+ * @Description:TODO(é“¶è¡Œè´¦å·çš„æ§åˆ¶å±‚)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ3:11:59   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -34,9 +34,9 @@ public class BankAccountController {
 	/**
 	 * 
 	* @Title: queryBankAccount
-	* @Description: TODO(²éÑ¯)
-	* @param @param resp    Éè¶¨ÎÄ¼ş
-	* @return void    ·µ»ØÀàĞÍ
+	* @Description: TODO(æŸ¥è¯¢é“¶è¡Œè´¦æˆ·çš„æ–¹æ³•)
+	* @param @param resp    è®¾å®šæ–‡ä»¶
+	* @return void    è¿”å›ç±»å‹
 	* @throws
 	 */
 	@RequestMapping("/queryBankAccount.do")
@@ -55,14 +55,14 @@ public class BankAccountController {
 	}
 	/**
 	 * 
-	* @Title: AddBankAccount
-	* @Description: TODO(Ìí¼ÓÒøĞĞ·½·¨)
-	* @param     Éè¶¨ÎÄ¼ş
-	* @return void    ·µ»ØÀàĞÍ
+	* @Title: addBankAccount
+	* @Description: TODO(æ·»åŠ é“¶è¡Œä¿¡æ¯çš„æ–¹æ³•)
+	* @param @param str
+	* @param @param resp    è®¾å®šæ–‡ä»¶
+	* @return void    è¿”å›ç±»å‹
 	* @throws
 	 */
-	@RequestMapping("/addBankAccount.do")
-	
+	@RequestMapping("/addBankAccount.do")	
 	public void addBankAccount(@RequestBody String str,HttpServletResponse resp){
 		System.out.println("=====================");
 		System.out.println("str="+str);
@@ -79,6 +79,15 @@ public class BankAccountController {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 
+	* @Title: saveBankAccount
+	* @Description: TODO(ä¿å­˜)
+	* @param @param bankaccount
+	* @param @return    è®¾å®šæ–‡ä»¶
+	* @return String    è¿”å›ç±»å‹
+	* @throws
+	 */
 	@RequestMapping(value="/saveBankAccount.do",method=RequestMethod.POST)
 	public String saveBankAccount(BankAccount bankaccount){
 		bac.addBankAccount(bankaccount);
