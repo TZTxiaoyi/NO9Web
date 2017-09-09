@@ -29,8 +29,9 @@
 		insert into accounts values(list_accounts.nextval,#{accounts,jdbcType=VARCHAR},#{passwords,jdbcType=VARCHAR},#{empid,jdbcType=NUMERIC},<!-- #{roleid,jdbcType=NUMERIC} -->0,2) 
 	</insert>
 	
-	<update id="updateAccounts" parameterType="com.entity.tzt.Accounts" >
-		update  accounts set
+	<update id="updateAccounts" parameterType="map" >
+		update accounts set passwords = #{passwords} where empid=#{empid}
+		<!-- update  accounts set
 		<if test="accounts!=null">
 		 accounts=#{accounts,jdbcType=VARCHAR}
 		</if>
@@ -48,6 +49,6 @@
 		 </if>
 			<where>
 	 		accountsid=#{accountsid}
-	 		</where>
+	 		</where> -->
 	</update>
 </mapper>

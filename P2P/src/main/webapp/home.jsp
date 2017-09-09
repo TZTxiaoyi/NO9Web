@@ -16,8 +16,7 @@
 		width:auto;
 		height:100px;
 		margin-left:20px;
-		background-color:#BBB8BC;
-		
+		background-color:#BBB8BC;		
 		background:url(image/top.png) no-repeat 50% 100%;
 		background-size:100% 100%;
 	}

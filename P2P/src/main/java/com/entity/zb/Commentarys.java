@@ -1,5 +1,14 @@
 package com.entity.zb;
-
+/**
+ * 
+ * @ClassName:  Commentarys   
+ * @Description:TODO(评论的实体类)   
+ * @author: 朱彬
+ * @date:   2017年9月6日 下午2:58:34   
+ *     
+ * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
+ *
+ */
 public class Commentarys {
 	int commentary_id;
     int projectsid; 

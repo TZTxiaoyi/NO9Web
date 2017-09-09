@@ -2,9 +2,9 @@ package com.entity.zb;
 /**
  * 
  * @ClassName:  Protype   
- * @Description:TODO(ÏîÄ¿ÀàĞÍµÄÊµÌåÀà)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ4ÈÕ ÏÂÎç4:52:31   
+ * @Description:TODO(é¡¹ç›®ç±»å‹çš„å®ä½“ç±»)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ3:04:37   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *

@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="jq/jquery-3.2.1.min.js"></script>
   <style type="text/css">
-  	body{
+  	table{
   		margin-top:40px;
   		margin-left:100px;
   	}
@@ -40,11 +40,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	#addAddress{
   		margin-left:100px;
   	}
+  	span{
+  		font-size:28px;
+  	}
   </style>
   </head>
   
   <body>
-  	<table>
+  	<a href="address.jsp"><span class = "glyphicon glyphicon-arrow-left"> </span></a>
+  	<table class = "has-feedback">
   		<tr>
   			<td id = "tdone"> 地址id:</td>
   			<td><input type="text" id="AddressId" placeholder="地址id"/></td>
@@ -129,9 +133,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				data["AddressId"] = $("#AddressId").val();
 				data["Name"] = $("#Name").val();
 				data["Phone"] = $("#Phone").val();
-				data["postCodes"] = $("postCodes").val();
+				data["postCodes"] = $("#postCodes").val();
 				data["AddressInfo"] = $("#AddressInfo").val();
-				alert(data["PostCodes"]);
+				//alert($("#postCodes").val()+"==========="+data["postCodes"]);
 				$.ajax({
 					type : "post",//使用post方法访问后台  
 					/*dataType : "json",//返回json格式的数据   */ 

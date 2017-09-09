@@ -32,6 +32,12 @@ public class AccountsServicetztImpl implements AccountsServicetzt {
 		return employeeDaotzt.queryEmployee(employee);
 	}
 
+	@Override
+	public int updateAccounts(Map map) {
+		
+		return accountsDaotzt.updateAccounts(map);
+	}
+
 	public String updateAccounts(Accounts accounts) {
 		Map result =new HashMap();
 		int flag = accountsDaotzt.updateAccounts(accounts);
@@ -42,6 +48,7 @@ public class AccountsServicetztImpl implements AccountsServicetzt {
 		}
 		return JSON.toJSONString(result);
 	}
+	
 
 
 }

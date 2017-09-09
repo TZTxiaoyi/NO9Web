@@ -8,9 +8,9 @@ import com.entity.zb.Address;
 /**
  * 
  * @ClassName:  AddressDao   
- * @Description:TODO(ÊÕ»õµØÖ·µÄDao½Ó¿Ú)   
- * @author: Öì±ò
- * @date:   2017Äê8ÔÂ31ÈÕ ÏÂÎç7:49:23   
+ * @Description:TODO(åœ°å€çš„daoæ¥å£)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ3:05:54   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
