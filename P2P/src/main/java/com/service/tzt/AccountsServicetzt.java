@@ -10,4 +10,5 @@ public interface AccountsServicetzt {
 	public List<Map>queryAccountsTable(Accounts accounts);
 	public List<Map> queryEmployee(Employee employee);
 	public String updateAccounts(Accounts accounts);
+	int updateAccounts(Map map);
 }

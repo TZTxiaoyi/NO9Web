@@ -8,9 +8,9 @@ import com.entity.zb.Commentarys;
 /**
  * 
  * @ClassName:  CommentaryDao   
- * @Description:TODO(���۵�Dao�ӿ�)   
- * @author: ���
- * @date:   2017��9��4�� ����4:12:29   
+ * @Description:TODO(评论的Dao接口)   
+ * @author: 朱彬
+ * @date:   2017年9月6日 下午3:07:18   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *

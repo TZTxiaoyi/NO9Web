@@ -2,9 +2,9 @@ package com.entity.zb;
 /**
  * 
  * @ClassName:  BankAccount   
- * @Description:TODO(ÒøĞĞÕË»§±í)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ5ÈÕ ÏÂÎç9:45:44   
+ * @Description:TODO(é“¶è¡Œè´¦å·çš„å®ä½“ç±»)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ2:35:21   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *

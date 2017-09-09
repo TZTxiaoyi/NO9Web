@@ -12,9 +12,9 @@ import com.service.zb.AddressService;
 /**
  * 
  * @ClassName:  AddressServiceImpl   
- * @Description:TODO(ÊÕ»õµØÖ·)   
- * @author: Öì±ò
- * @date:   2017Äê8ÔÂ31ÈÕ ÏÂÎç7:56:16   
+ * @Description:TODO(åœ°å€çš„äº‹åŠ¡å±‚)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ3:09:49   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -23,26 +23,32 @@ import com.service.zb.AddressService;
 public class AddressServiceImpl implements AddressService {
 	@Autowired
 	AddressDao ad;
-	
+	/**
+	 * æŸ¥è¯¢
+	 */
 	@Override
 	public List<Object> queryAddress() {
 		// TODO Auto-generated method stub
 		return ad.queryAddress();
 	}
-
+	/**
+	 * æ·»åŠ 
+	 */
 	@Override
 	public int addAddress(Address address) {
 		// TODO Auto-generated method stub
 		return ad.addAddress(address);
 	}
-
+	/**
+	 * æ›´æ–°
+	 */
 	@Override
 	public int updateAddress(Map map) {
 		// TODO Auto-generated method stub
 		return ad.updateAddress(map);
 	}
 	/**
-	 * É¾³ı·½·¨
+	 * åˆ é™¤
 	 */
 	@Override
 	public void deleteAddress(Integer addressId) {

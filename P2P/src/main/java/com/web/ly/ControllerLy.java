@@ -1,5 +1,6 @@
 package com.web.ly;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.entity.ly.DetailAuditing;
 import com.entity.ly.OrganizationsLy;
 import com.entity.ly.Project;
+import com.entity.ly.RepayAuditing;
+import com.entity.ly.SinAuditing;
 import com.service.ly.OrganizationsServiceLy;
 import com.service.ly.ProIndetailService;
 import com.service.ly.RepayService;
@@ -165,7 +170,7 @@ public class ControllerLy {
 		}
 	}
 	/**
-	 * selSinauditings:个人项目审核
+	 * selSinauditings:个人信息审核
 	 * @param projectsid
 	 * @param response
 	 */
@@ -177,13 +182,128 @@ public class ControllerLy {
 		List<Object> sList = SinAuditingService.selSinAuditing(projectsid);
 		return sList;		
 	}
+	/**
+	 * selDetailAu:个人项目信息审核
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/proDetail")
 	public List selDetailAu(@RequestBody Project projectsid,HttpServletResponse response){
-		System.out.println("------------:"+projectsid.getProjectsid());
+		//System.out.println("------------:"+projectsid.getProjectsid());
 		response.setHeader("content-type","text/html;charset=UTF-8");
 		List<Object> dList=SinAuditingService.selDeAudi(projectsid);
-		System.out.println("----------00:"+dList);
+		//System.out.println("----------00:"+dList);
 		return dList;
 	}
+	/** selecOrgasAudi
+	 * seleOrgaAuditing:机构信息审核
+	 * @param response
+	 */
+	@ResponseBody
+	@RequestMapping(value="/OraAuditing")
+	public List seleOrgaAuditing(@RequestBody Project projectsid,HttpServletResponse response){
+		//System.out.println("------------:"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		List<Object> oList= OrganizationsServiceLy.selOraAuditing(projectsid);
+		//System.out.println("```````````333:"+oList);
+		return oList;
+	}
+	/**
+	 * 机构信息审核记录
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/orAuditingRecord")
+	public List selOrAudiRecord(@RequestBody Project projectsid,HttpServletResponse response){
+		//System.out.println("------------:"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		List<Object> rList = OrganizationsServiceLy.selecOrgasAudi(projectsid);
+		//System.out.println("zzzzzzzzzzzzz:"+rList);
+		return rList;
+	}
+	/**
+	 * 回报审核合记录
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/repayAuditingRecord")
+	public List selReAuRecord(@RequestBody Project projectsid,HttpServletResponse response){
+		//System.out.println("------------:"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		List<Object> reList = RepayService.selReturnRec(projectsid);
+		return reList;
+	}
+	/**
+	 * 点击审核后，修改项目状态
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/upSinProState")
+	public int upSinProSta(@RequestBody Project projectsid,HttpServletResponse response){
+		//System.out.println("------------6666:"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		int dList = SinAuditingService.upSinProSt(projectsid);
+		//System.out.println("rrrrrrrrr:"+dList);
+		return dList;
+	}
+	/**
+	 * 先删除个人信息审核记录表中的数据
+	 * 再将新记录插数据库
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/inseSinAudi")
+	public int insSinProAuRecord(@RequestBody SinAuditing projectsid,HttpServletResponse response){
+		//System.out.println("1:"+projectsid.getProjectsid()+"2:"+projectsid.getIdcard()+"3:"+projectsid.getOriginatorname()+"4："+projectsid.getAddress()+"5:"+projectsid.getTelephone()+"6:"+projectsid.getCardimage1());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		int delrecord =SinAuditingService.deProRecord(projectsid);
+		int insrecord =SinAuditingService.inProRecord(projectsid);
+		return insrecord;
+	}
+	/**
+	 * 删除原有项目信息审核记录之后，再次审核之后，把新审核记录插入项目信息审核记录表
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/inProAuRecord")
+	public int inProAuditingRe(@RequestBody DetailAuditing projectsid,HttpServletResponse response){
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		int delrecord=SinAuditingService.deProjectRe(projectsid);
+		int insrecord=SinAuditingService.inProAuRe(projectsid);
+		return insrecord;
+	}
+	/**
+	 * 删除原有项目回报审核记录，再次审核之后，把新审核记录插入项目回报审核记录表
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/inProReturn")
+	public int intProReturnRecord(@RequestBody RepayAuditing auditing,HttpServletResponse response){
+		
+		response.setHeader("content-type","text/html;charset=UTF-8");
+	//	int delrecord=SinAuditingService.deProReRecord(projectsid);
+		//System.out.println(projectsid.getProjectsid()+"--"+projectsid.getReturn_type()+"--"+projectsid.getOffer_money()+"--"+projectsid.getReturn_title()+"--"+projectsid.getReturn_content()+"--"+projectsid.getLimit_people()+"--"+projectsid.getReturn_time()+"--"+projectsid.getImage());
+		JSON json =new JSONArray();
+		
+		Map mm=(Map)json.toJSON(auditing);
+		System.out.println("MM:"+mm);
+		int insrecord=SinAuditingService.inProReturnRer(mm);
+		
+		return 0;
+	}
+	
 }

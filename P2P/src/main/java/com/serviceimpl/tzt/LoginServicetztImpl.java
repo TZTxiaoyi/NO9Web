@@ -75,6 +75,15 @@ public class LoginServicetztImpl implements LoginServicetzt {
 		
 	}
 
+	/**
+	 * 修改密码
+	 */
+	@Override
+	public int updateAccounts(Map map) {
+		// TODO Auto-generated method stub
+		return accountsDaotzt.updateAccounts(map);
+	}
+
 
 
 }
