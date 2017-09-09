@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css"></link>
 	<script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
 	<link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
+	<script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
 	<script type="text/javascript">
 	
   $("input.mh_date").manhuaDate({
@@ -41,26 +42,13 @@
 		<div class="page">
 			<!-- vip页面样式 -->
 			<div class="vip">
-				<div class="conform">
-					<form>
-						<div class="cfD">
-							时间段：<input class="vinput mh_date" type="text" readonly="true" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-							<input class="vinput mh_date" type="text" readonly="true" />
-						</div>
-						<div class="cfD">
-							<input class="addUser" type="text" placeholder="输入用户名/ID/手机号/城市"/>
-							<button class="button">搜索</button>
-							<a class="addA addA1" href="vipadd.html">新增会员+</a> <a
-								class="addA addA1 addA2" href="vipadd.html">密码重置</a>
-						</div>
-					</form>
-				</div>
+				
 				<!-- vip 表格 显示 -->
 				<div class="conShow">
 					<!-- href='javascript:show()' -->
 					<a type="button" id="detail"  class="btn btn-info" data-toggle="modal" data-target="#myModal">信息</a>
 					<a type="button" id="describe" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">描述</a>
-					<a href="auditing.jsp?" class="btn btn-warning">审核</a>		
+					<a id="orauditing" class="btn btn-warning">审核</a>		
 					<table border="1" cellspacing="0" cellpadding="0" id="protab">
 						
 					</table>
@@ -129,140 +117,149 @@
 
 	
 	<!-- 删除弹出框  end-->
-<script type="text/javascript">
-		$("#detail").click(function(){
-			$("#pro_title").html("");
-			$("#pro_goal").html("");
-			$("#pro_place").html("");
-			$("#pro_money").html("");
-			$("#pro_day").html("");
-			var ss=$("#protab").bootstrapTable('getSelections');	
-			//var dd=JSON.stringify(ss);			
-			var dd1=parseInt(ss[0].PROJECTSID);
-
-			var dd={};
-			dd["projectsid"]=dd1;
-			alert(dd);
-			$.ajax({
-				type:"post",
-				dataType:"json",
-				url:"/P2P/project/indetail.do",
-				data:JSON.stringify(dd),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){
-					$.each(data,function(index,value){
-						var title=value.TITLE;
-						var goal=value.GOAL;
-						var place=value.PROJECTS_PLACE;
-						var financing=value.FINANCING;
-						var days=value.FINANCING_DAY;
-						$("#pro_title").append(title);
-						$("#pro_goal").append(goal);
-						$("#pro_place").append(place);
-						$("#pro_money").append(financing);
-						$("#pro_day").append(days);
-					})
-				}
-			})
-		})
-		//项目描述，将数据打印到模态框中
-		$("#describe").click(function(){
-			$("#place").html("");
-			$("#title").html("");
-			$("#bodys").html("");
-			var ss=$("#protab").bootstrapTable('getSelections');	
-			//var dd=JSON.stringify(ss);			
-			var dd2=parseInt(ss[0].PROJECTSID);
-			alert(dd2);
-			var dd={};
-			dd["projectsid"]=dd2;
-			$.ajax({
-				type:"post",
-				url:"/P2P/project/describe.do",
-				dataType:"json",
-				data:JSON.stringify(dd),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){
-					$.each(data,function(index,value){
-						var place=value.places;
-						var title=value.title;
-						var body=value.body;
-						$("#place").append(place);
-						$("#title").append(title);
-						$("#bodys").append(body);
-					})
-				}
-			})
-		});
+<script type="text/javascript">		
 	
-		$(function (){			
-		$('#protab').bootstrapTable({
-	        url: '/P2P/project/orga.do',         //请求后台的URL（*）
-	        method: 'post',                      //请求方式（*）
-	        toolbar: '#toolbar',                //工具按钮用哪个容器
-	        striped: true,                      //是否显示行间隔色
-	        cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-	        pagination: true,                   //是否显示分页（*）
-	        sortable: false,                     //是否启用排序
-	        sortOrder: "asc",                   //排序方式
-	       // queryParams: oTableInit.queryParams,//传递参数（*）
-	      //  sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-	        pageNumber:1,                       //初始化加载第一页，默认第一页
-	        pageSize: 10,                       //每页的记录行数（*）
-	        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-	       // search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-	       // strictSearch: true,
-	        showColumns: true,                  //是否显示所有的列
-	        showRefresh: true,                  //是否显示刷新按钮
-	        minimumCountColumns: 2,             //最少允许的列数
-	        clickToSelect: true,                //是否启用点击选中行
-	        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-	        uniqueId: "organizationsrid",                     //每一行的唯一标识，一般为主键列
-	        showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
-	        cardView: false,                    //是否显示详细视图
-	        detailView: false,                   //是否显示父子表
-	        columns: [[{
-	            checkbox: true
-	        }, {
-	            field: 'ORGANIZATIONSRID',
-	            title: '序号',                
-	        }, {
-	        	field: 'PROJECTSID',
-	            title: '项目序号',
-	        } ,{
-	        	field: 'ONAME',
-	            title: '机构名称',
-	        } , {
-	        	field: 'OCODE',
-	            title: '机构代码',
-	        } , {
-	        	field: 'CORPORATION',
-	            title: '法定代表人',
-	        } , {
-	        	field: 'REGISTER_ADDRESS',
-	            title: '机构注册地址',
-	        } , {
-	        	field: 'LINKMAN',
-	            title: '联系人姓名',
-	        } ,{
-	        	field: 'LINKPHONE',
-	            title: '联系方式',
-	        } ,{
-	        	field: 'ABBREVIATION',
-	            title: '机构简称',
-	        },{
-	        	field: 'BUSINESS_ADDRESS',
-	            title: '经营地址',
-	        },{
-	        	field: 'PROTYPENAME',
-	            title: '项目类型',
-	        },{
-	        	field: 'POUNDAGE',
-	            title: '平台渠道费',
-	        }]]
-	    });
-		});
+	$("#orauditing").click(function() {
+		var ss = $("#protab").bootstrapTable('getSelections');
+		var dd1 = parseInt(ss[0].PROJECTSID);
+		//alert(dd1);
+		$.cookie('orga_auditing', dd1);
+		var auditing = $.cookie("orga_auditing");
+		//alert(auditing);
+		window.location.replace("Orauditing.jsp");
+	});
+	$("#detail").click(function() {
+		$("#pro_title").html("");
+		$("#pro_goal").html("");
+		$("#pro_place").html("");
+		$("#pro_money").html("");
+		$("#pro_day").html("");
+		var ss = $("#protab").bootstrapTable('getSelections');
+		//var dd=JSON.stringify(ss);			
+		var dd1 = parseInt(ss[0].PROJECTSID);
 
+		var dd = {};
+		dd["projectsid"] = dd1;
+		alert(dd);
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "/P2P/project/indetail.do",
+			data : JSON.stringify(dd),
+			contentType : "application/json;charset=UTF-8",
+			success : function(data) {
+				$.each(data, function(index, value) {
+					var title = value.TITLE;
+					var goal = value.GOAL;
+					var place = value.PROJECTS_PLACE;
+					var financing = value.FINANCING;
+					var days = value.FINANCING_DAY;
+					$("#pro_title").append(title);
+					$("#pro_goal").append(goal);
+					$("#pro_place").append(place);
+					$("#pro_money").append(financing);
+					$("#pro_day").append(days);
+				})
+			}
+		})
+	})
+	//项目描述，将数据打印到模态框中
+	$("#describe").click(function() {
+		$("#place").html("");
+		$("#title").html("");
+		$("#bodys").html("");
+		var ss = $("#protab").bootstrapTable('getSelections');
+		//var dd=JSON.stringify(ss);			
+		var dd2 = parseInt(ss[0].PROJECTSID);
+		alert(dd2);
+		var dd = {};
+		dd["projectsid"] = dd2;
+		$.ajax({
+			type : "post",
+			url : "/P2P/project/describe.do",
+			dataType : "json",
+			data : JSON.stringify(dd),
+			contentType : "application/json;charset=UTF-8",
+			success : function(data) {
+				$.each(data, function(index, value) {
+					var place = value.places;
+					var title = value.title;
+					var body = value.body;
+					$("#place").append(place);
+					$("#title").append(title);
+					$("#bodys").append(body);
+				})
+			}
+		})
+	});
+
+	$(function() {
+		$('#protab').bootstrapTable({
+			url : '/P2P/project/orga.do', //请求后台的URL（*）
+			method : 'post', //请求方式（*）
+			toolbar : '#toolbar', //工具按钮用哪个容器
+			striped : true, //是否显示行间隔色
+			cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+			pagination : true, //是否显示分页（*）
+			sortable : false, //是否启用排序
+			sortOrder : "asc", //排序方式
+			// queryParams: oTableInit.queryParams,//传递参数（*）
+			//  sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+			pageNumber : 1, //初始化加载第一页，默认第一页
+			pageSize : 10, //每页的记录行数（*）
+			pageList : [ 10, 25, 50, 100 ], //可供选择的每页的行数（*）
+			// search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+			// strictSearch: true,
+			showColumns : true, //是否显示所有的列
+			showRefresh : true, //是否显示刷新按钮
+			minimumCountColumns : 2, //最少允许的列数
+			clickToSelect : true, //是否启用点击选中行
+			height : 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+			uniqueId : "organizationsrid", //每一行的唯一标识，一般为主键列
+			showToggle : true, //是否显示详细视图和列表视图的切换按钮
+			cardView : false, //是否显示详细视图
+			detailView : false, //是否显示父子表
+			columns : [ [ {
+				checkbox : true
+			}, {
+				field : 'ORGANIZATIONSRID',
+				title : '序号',
+			}, {
+				field : 'PROJECTSID',
+				title : '项目序号',
+			}, {
+				field : 'ONAME',
+				title : '机构名称',
+			}, {
+				field : 'OCODE',
+				title : '机构代码',
+			}, {
+				field : 'CORPORATION',
+				title : '法定代表人',
+			}, {
+				field : 'REGISTER_ADDRESS',
+				title : '机构注册地址',
+			}, {
+				field : 'LINKMAN',
+				title : '联系人姓名',
+			}, {
+				field : 'LINKPHONE',
+				title : '联系方式',
+			}, {
+				field : 'ABBREVIATION',
+				title : '机构简称',
+			}, {
+				field : 'BUSINESS_ADDRESS',
+				title : '经营地址',
+			}, {
+				field : 'PROTYPENAME',
+				title : '项目类型',
+			}, {
+				field : 'POUNDAGE',
+				title : '平台渠道费',
+			} ] ]
+		});
+	});
 </script>
 </body>
 <script type="text/javascript">

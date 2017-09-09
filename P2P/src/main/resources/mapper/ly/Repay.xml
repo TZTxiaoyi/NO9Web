@@ -3,9 +3,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ly.RepayDao">
+	<!-- 回报审核 -->
 	<select id="selReturn" resultType="map" parameterType="int">
 		select p1.projectsid,w1.value,p1.offer_money,p1.return_title,p1.return_content,p1.limit_people,p1.return_time,p1.image
 		from word w1,pro_return p1
 		where p1.return_type=w1.key and projectsid=#{projectsid}
+	</select>
+	<!-- 回报审核记录 -->
+	<select id="selReturnRecord" resultType="map" parameterType="int">
+		select r1.projectsid,w1.value value1,a1.value value2,b1.value value3,c1.value value4,d1.value value5,e1.value value6,f1.value value7
+		from retur_auditing_record r1,word w1,word a1,word b1,word c1,word d1,word e1,word f1
+		where r1.return_type=w1.key and r1.offer_money=a1.key and r1.return_title=b1.key 
+		and r1.return_content=c1.key and r1.limit_people=d1.key and r1.return_time=e1.key and r1.image=f1.key and projectsid=#{projectsid}
 	</select>
 </mapper>

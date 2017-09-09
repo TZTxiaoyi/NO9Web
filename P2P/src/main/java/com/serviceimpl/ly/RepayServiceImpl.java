@@ -1,4 +1,4 @@
-package com.serviceimpl.ljl;
+package com.serviceimpl.ly;
 
 import java.util.List;
 
@@ -13,10 +13,19 @@ public class RepayServiceImpl implements RepayService{
 
 	@Autowired
 	RepayDao repayDao;
-	
-	public List<Object> selReturn(Project projectsid) {
+	/**
+	 * 回报审核
+	 */
+	public List<Object> selReturn(Project projectsid){
 		// TODO Auto-generated method stub
 		return repayDao.selReturn(projectsid);
 	}
-	
+	/**
+	 * 回报审核记录
+	 */
+	@Override
+	public List<Object> selReturnRec(Project projectsid) {
+		// TODO Auto-generated method stub
+		return repayDao.selReturnRecord(projectsid);
+	}	
 }

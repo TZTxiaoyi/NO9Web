@@ -33,21 +33,7 @@
 
 		<div class="page">
 			<!-- vip页面样式 -->
-			<div class="vip">
-				<div class="conform">
-					<form>
-						<div class="cfD">
-							时间段：<input class="vinput mh_date" type="text" readonly="true" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-							<input class="vinput mh_date" type="text" readonly="true" />
-						</div>
-						<div class="cfD">
-							<input class="addUser" type="text" placeholder="输入用户名/ID/手机号/城市" />
-							<button class="button">搜索12</button>
-							<a class="addA addA1" href="vipadd.html">新增会员+</a> <a
-								class="addA addA1 addA2" href="vipadd.html">密码重置</a>
-						</div>
-					</form>
-				</div>
+			<div class="vip">				
 				<!-- vip 表格 显示 -->
 				<div class="conShow">
 					<a type="button" id="detail"  class="btn btn-info" data-toggle="modal" data-target="#myModal">信息</a>
@@ -125,7 +111,7 @@
 		//alert(dd1);
 		$.cookie('project_auditing',dd1);
 		var auditing=$.cookie("project_auditing");
-		alert(auditing);
+		//alert(auditing);
 		 window.location.replace("auditing.jsp");
 	});
 	$("#detail").click(function(){
@@ -137,10 +123,10 @@
 		var ss=$("#protab").bootstrapTable('getSelections');	
 		//var dd=JSON.stringify(ss);			
 		var dd1=parseInt(ss[0].PROJECTSID);
-		alert(dd1);
+		//alert(dd1);
 		var dd={};
 		dd["projectsid"]=dd1;
-		alert(dd);
+		//alert(dd);
 		$.ajax({
 			type:"post",
 			dataType:"json",
@@ -243,16 +229,19 @@
         	field: 'PROTYPENAME',
             title: '项目类型',
         } ,{
-        	field: 'CARDIMAGE1',
+        	formatter:mark,
             title: '身份证正面',
         } ,{
         	field: 'CARDIMAGE2',
             title: '身份证反面',
         },{
-        	field: 'POUNDAGE',
-            title: '平台渠道费',
+        	field: 'STATE',
+            title: '项目状态',
         }]]
     });
+	function mark(row,index,value){
+		return ["<img src='"+index.CARDIMAGE1+"'>"];
+	}
   $("input.mh_date").manhuaDate({
     Event : "click",//可选               
     Left : 0,//弹出时间停靠的左边位置

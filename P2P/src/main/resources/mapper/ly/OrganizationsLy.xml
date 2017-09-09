@@ -8,4 +8,18 @@
 		from organizations o1,projects p1,protype pt
 		where o1.projectsid=p1.projectsid and pt.protypeid=o1.protypeid
 	</select>
+	<!-- 机构审核 -->
+	<select id="selOrgAuditing" resultType="map" parameterType="int">
+		select o1.projectsid,o1.oname,o1.ocode,o1.corporation,o1.register_address,o1.linkman,o1.linkphone,o1.abbreviation,o1.business_address
+		from organizations o1
+		where o1.projectsid=#{projectsid} 
+	</select>
+	<!-- 机构信息审核记录 -->
+	<select id="selOrAudit" resultType="map" parameterType="int">
+		select r1.projectsid,w1.value value1,a1.value value2,b1.value value3,c1.value value4,d1.value value5,e1.value value6,f1.value value7,g1.value value8
+		from organiza_auditing r1,word w1,word a1,word b1,word c1,word d1,word e1,word f1,word g1
+		where r1.oname=w1.key and r1.ocode=a1.key and r1.corporation=b1.key 
+		and r1.register_address=c1.key and r1.linkman=d1.key and r1.linkphone=e1.key 
+		and r1.abbreviation=f1.key and r1.business_address=g1.key and projectsid=#{projectsid}
+	</select>
 </mapper>
