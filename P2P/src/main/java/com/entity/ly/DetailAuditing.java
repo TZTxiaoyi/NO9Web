@@ -4,15 +4,15 @@ package com.entity.ly;
  * @author luccy
  *
  */
-public class DetailAuditing {
+public class DetailAuditing{
 	int id; //项目详情id
 	int projectsid;//项目id
-	String title;//项目标题
-	String goal;//筹款目的
-	String projects_place;//项目地点
+	int title;//项目标题
+	int goal;//筹款目的
+	int projects_place;//项目地点
 	int financing;//筹资金额
 	int financing_day;//筹资天数
-	String cover;//封面
+	int cover;//封面
 	public int getId() {
 		return id;
 	}
@@ -25,22 +25,22 @@ public class DetailAuditing {
 	public void setProjectsid(int projectsid) {
 		this.projectsid = projectsid;
 	}
-	public String getTitle() {
+	public int getTitle() {
 		return title;
 	}
-	public void setTitle(String title) {
+	public void setTitle(int title) {
 		this.title = title;
 	}
-	public String getGoal() {
+	public int getGoal() {
 		return goal;
 	}
-	public void setGoal(String goal) {
+	public void setGoal(int goal) {
 		this.goal = goal;
 	}
-	public String getProjects_place() {
+	public int getProjects_place() {
 		return projects_place;
 	}
-	public void setProjects_place(String projects_place) {
+	public void setProjects_place(int projects_place) {
 		this.projects_place = projects_place;
 	}
 	public int getFinancing() {
@@ -55,10 +55,10 @@ public class DetailAuditing {
 	public void setFinancing_day(int financing_day) {
 		this.financing_day = financing_day;
 	}
-	public String getCover() {
+	public int getCover() {
 		return cover;
 	}
-	public void setCover(String cover) {
+	public void setCover(int cover) {
 		this.cover = cover;
 	}
 	

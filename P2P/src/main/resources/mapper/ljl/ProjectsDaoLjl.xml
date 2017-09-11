@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ljl.ProjectsDaoLjl" >
 	<select id="AllProjects" parameterType="com.entity.ljl.UserLjl" resultType="map">
-		select * from projects where empid=#{empid}
+		select pr.projectsid,pr.empid,w1.value as ORIGINATORTYPE,w2.value as PROJECTSSTATE,pr.addtime from projects pr,word w1,word w2 where pr.originatortype=w1.key and pr.projectsstate=w2.key and empid=#{empid}
 	</select>
 	
 	<select id="AllProjectsType" resultType="HashMap">

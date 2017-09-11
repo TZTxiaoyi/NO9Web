@@ -18,9 +18,9 @@ import com.service.zb.EmployeeService;
 /**
  * 
  * @ClassName:  EmployeeController   
- * @Description:TODO(�������Ͽ��Ʋ�)   
- * @author: ���
- * @date:   2017��9��1�� ����7:43:34   
+ * @Description:TODO(员工的控制层)   
+ * @author: 朱彬
+ * @date:   2017年9月6日 下午3:17:21   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -34,10 +34,10 @@ public class EmployeeController {
 	/**
 	 * 
 	* @Title: addEmployee
-	* @Description: TODO(�������ϵ���ӷ���)
+	* @Description: TODO(添加员工的方法)
 	* @param @param str
-	* @param @param resp    �趨�ļ�
-	* @return void    ��������
+	* @param @param resp    设定文件
+	* @return void    返回类型
 	* @throws
 	 */
 	@RequestMapping("/addEmployee.do")
@@ -60,10 +60,10 @@ public class EmployeeController {
 	/**
 	 * 
 	* @Title: updateEmployee
-	* @Description: TODO(���������޸ķ���)
+	* @Description: TODO(更新员工的方法)
 	* @param @param emp
-	* @param @param resp    �趨�ļ�
-	* @return void    ��������
+	* @param @param resp    设定文件
+	* @return void    返回类型
 	* @throws
 	 */
 	@RequestMapping("/updateEmployee.do")
@@ -81,9 +81,9 @@ public class EmployeeController {
 	/**
 	 * 
 	* @Title: queryEmployee
-	* @Description: TODO(��ѯ����)
-	* @param @param resp    �趨�ļ�
-	* @return void    ��������
+	* @Description: TODO(查询员工的方法)
+	* @param @param resp    设定文件
+	* @return void    返回类型
 	* @throws
 	 */
 	@RequestMapping("/queryEmployee.do")

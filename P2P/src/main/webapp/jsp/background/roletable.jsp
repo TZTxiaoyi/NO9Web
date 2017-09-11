@@ -215,10 +215,10 @@ $("#submit").click(function() {
 	window.operateEvents = {
 				 'click .updata': function (e, value, row, index) {
 					 $("#updataModal").modal();
-					   $("#updataP").empty();
-					   $("#updataId").empty();
-						var b =row.ROLEID;
-					 var a=row.ROLENAME;
+					 $("#updataP").empty();
+					 $("#updataId").empty();
+					var b =row.ROLEID;
+					var a=row.ROLENAME;
 					$(" #updataP").append(a); 
 					$("#updataId").append(b);
 				} ,

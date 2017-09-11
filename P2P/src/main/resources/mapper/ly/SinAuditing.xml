@@ -9,10 +9,39 @@
 		where r1.idcard=w1.key and r1.originatorname=a1.key and r1.address=b1.key 
 		and r1.telephone=c1.key and r1.cardimage1=d1.key and r1.cardimage2=e1.key and projectsid=#{projectsid}
 	</select>
+	<!-- 项目信息审核 -->
 	<select id="selDeAuditing" resultType="map" parameterType="int">
 		select r1.projectsid,w1.value value1,a1.value value2,b1.value value3,c1.value value4,d1.value value5,e1.value value6
 		from proindetail_auditing r1,word w1,word a1,word b1,word c1,word d1,word e1
 		where r1.title=w1.key and r1.goal=a1.key and r1.projects_place=b1.key 
 		and r1.financing=c1.key and r1.financing_day=d1.key and r1.cover=e1.key and projectsid=#{projectsid}
 	</select>
+	<!-- 修改项目状态 -->
+	<update id="upSinProSt"  parameterType="int">
+		update projects set projectsstate=14 where projectsid=#{projectsid}
+	</update>
+	<!-- //插入个人信息记录之前先将个人信息记录审核表中的删除 -->
+	<delete id="deSinProAuRe" parameterType="int">
+		delete from resumes_auditings where projectsid=#{projectsid}
+	</delete>
+	<!-- 插入个人信息审核记录 -->
+	<insert id="inSinProAuRe" parameterType="int">
+		insert into resumes_auditings values(resumes_auditing.nextval,#{projectsid},#{idcard},#{originatorname},#{address},#{telephone},#{cardimage1},#{cardimage2})
+	</insert>
+	<!-- 审核项目信息，点击保存先删除表中该项目之前有的数据 -->
+	<delete id="deProAuRe" parameterType="int">
+		delete from proindetail_auditing where projectsid=#{projectsid}
+	</delete>
+	<!-- 出入个人信息审核记录 -->
+	<insert id="inProAuRecord" parameterType="int">
+		insert into proindetail_auditing values(list_pro_indetail.nextval,#{projectsid},#{title},#{goal},#{projects_place},#{financing},#{financing_day},#{cover})
+	</insert>
+	<!-- 审核项目信息，点击保存先删除表中该项目之前有的数据 -->
+	<delete id="deProAuReturn" parameterType="int">
+		delete from retur_auditing_record where projectsid=#{projectsid}
+	</delete>
+	<!-- 出入个人信息审核记录 -->
+	<insert id="inProReturnRe" parameterType="map">
+		insert into retur_auditing_record(id,projectsid,return_type,offer_money,return_title,return_content,limit_people,return_time,image) values(retur_auditing_record_list.nextval,#{projectsid},#{return_type},#{offer_money},#{return_title},40,#{limit_people},#{return_time},#{image})
+	</insert>
 </mapper>

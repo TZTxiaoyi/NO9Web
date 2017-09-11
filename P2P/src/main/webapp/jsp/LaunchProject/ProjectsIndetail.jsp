@@ -59,7 +59,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <body>
   			<div  id="colpadding">
-  				
+  				<b>描述你的项目详情</b>
+  				<hr>
   				<form class="form-horizontal">
 				<div>
 					<div id="Relevantdata">
@@ -82,16 +83,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var data={};
 		data["projectsid"]=projectsid;
 		data["places"]=btnindex;
+		data["choice"]=choicebtn;
 		$.ajax({
 			type:"post",
 			url:"http://localhost:9088/P2P/IndetailContrller/DelectIndetail.do",
 			contentType:"application/json;charset=utf-8",
-			data:JSONStringify(data),
+			data:JSON.stringify(data),
 			success:function(data){
 				alert(data);
-				if(data!=0){
+				if(data==1){
+					alert("删除成功");
 					
+				}else{
 					
+					alert("删除失败");
 				}
 				
 			}
@@ -110,16 +115,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:JSON.stringify(data),
 			success:function(data){
 				$.each(data,function(index,value){
+					alert();
 					if (value.TEXTID!=undefined){
+						alert(value.TITLE);
 						var text="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+value.PLACES+"\" name=\"title\" class=\"form-control\" value=\""+value.TITLE+"\" placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+value.PLACES+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\">"+value.BODY +"</textarea> </div></div>";
 						$("#Relevantdata").append(text);
 					}else if(value.PHOTOID!=undefined){
+						alert(value.URL);
 						var photo="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label  class=\"col-sm-10 font-normal\">添加图片</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"photo\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-3 input-group\"> <div id=\"Cover"+value.PLACES+"\" class=\"input-group photodiv\" style=\"border:1px solid #e0e0e0\"><img src=\"http://localhost:9088/P2P/images/"+value.URL+"\" style=\"width:350px;height:250px\"></div><input type=\"file\" class=\"myFile\" index=\""+value.PLACES+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
 						$("#Relevantdata").append(photo);
 					}
-					initialindex=value.PLACES;
+					if(value.PLACES!=undefined){
+						initialindex=value.PLACES;
+						indexq=value.PLACES;
+						
+					}
 					
-					indexq=value.PLACES;
 					//alert("index:"+index);
 					
 				})
@@ -184,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		alert("indexq:"+indexq);
 		indexq=indexq+1;
 		alert(indexq);
-		var addtext="<div class=\"form-group\"><label for=\"\" class=\"col-sm-2 control-label\">添加文本：</label><div class=\"col-sm-8\"><input type=\"text\"  index=\""+indexq+"\" name=\"title\" class=\"form-control\"  placeholder=\"我需要更多的支持\"><br><textarea class=\"form-control\" index=\""+indexq+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\"></textarea> </div></div>";
+		var addtext="<div index=\""+indexq+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+indexq+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+indexq+"\" name=\"title\" class=\"form-control\"  placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+indexq+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\"></textarea> </div></div>";
 		$("#Relevantdata").append(addtext);
 		alert("7487");
 		initphoto();
@@ -196,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		alert("7ere");
 		indexq=indexq+1;
 		alert(indexq);
-		var addphoto="<div class=\"form-group\"><label for=\"\" class=\"col-sm-2 control-label\">添加图片：</label><div class=\"col-sm-3\"> <div id=\"Cover"+indexq+"\"></div><input type=\"file\" class=\"myFile\" index=\""+indexq+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
+		var addphoto="<div index=\""+indexq+"\" class=\"form-group formgroupdiv deldiv\"><label  class=\"col-sm-10 font-normal\">添加图片</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"photo\" value=\"删除\" index=\""+indexq+"\" type=\"button\"></label><div class=\"col-sm-3 input-group\"> <div id=\"Cover"+indexq+"\" class=\"input-group photodiv\" style=\"border:1px solid #e0e0e0\"></div><input type=\"file\" class=\"myFile\" index=\""+indexq+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
 		$("#Relevantdata").append(addphoto);
 		initphoto();
 	})

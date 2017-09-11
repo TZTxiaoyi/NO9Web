@@ -22,14 +22,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
 	<div class="panel-body" style="padding-bottom:0px;">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                我的发起<input class="editbtn" type="button" value="45545">
-            </div>
-        </div>       
+              
 		
-        <input type="button" class="saveprojects" value="个人发起众筹"/>
-        <input type="button" class="saveprojects" value="机构发起众筹"/>
+        <!-- <input type="button" class="saveprojects" value="个人发起众筹"/>
+        <input type="button" class="saveprojects" value="机构发起众筹"/> -->
         <table id="tb_departments">
         	
         </table>
@@ -107,15 +103,18 @@ var TableInit = function () {
                 field: 'PROJECTSID',
                 title: '项目信息'
             },{
+                field: 'ADDTIME',
+                title: '创建时间'
+            },{
                 field: 'PROJECTSSTATE',
                 title: '项目状态'
             },{
                 field: 'ORIGINATORTYPE',
-                title: '结算状态'
+                title: '发起类别'
             },{
             	title: '操作',
             	events:operateEvents,
-            	formatter: function(row,value,index){	
+            	formatter: function(row,value,index){
                 	return ["<input class=\"editbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"编辑\" /><input class=\"delectbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"删除\" />"];
                 }
             }]
@@ -146,7 +145,7 @@ var TableInit = function () {
     //得到查询的参数
     oTableInit.queryParams = function (params) {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-            empid:22
+            empid:100032
         };
         return temp;
     };

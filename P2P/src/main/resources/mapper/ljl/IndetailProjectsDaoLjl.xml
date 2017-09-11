@@ -55,7 +55,7 @@
 		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="textid">  
             select list_projects_indetail_text.nextval  as textid  from dual  
         </selectKey> 
-		insert into projects_indetail_text values(list_projects_indetail_text.nextval,#{projectsid},#{places},#{title},#{body})
+		insert into projects_indetail_text values(#{textid},#{projectsid},#{places},#{title},#{body})
 	</insert>
 	<update id="UpdateText" parameterType="map">
 		update projects_indetail_text set title=#{title},body=#{body}  where  projectsid=#{projectsid} and places=#{places}
@@ -65,7 +65,7 @@
 		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="photoid">  
             select list_projects_indetail_photo.nextval  as photoid  from dual  
         </selectKey>
-		insert into projects_indetail_photo values(list_projects_indetail_photo.nextval,#{projectsid},#{places},#{url})
+		insert into projects_indetail_photo values(#{photoid},#{projectsid},#{places},#{url})
 	</insert>
 	<update id="UpdatePhoto" parameterType="map">
 		update projects_indetail_photo set url=#{url}  where  projectsid=#{projectsid} and places=#{places}
@@ -75,4 +75,46 @@
 		select * from (select pi.indetailid,pi.projectsid,pi.textid,pi.photoid,pi.places,it.title,it.body,ip.url from projects_indetail pi left join projects_indetail_text it on pi.textid=it.textid
 		left join projects_indetail_photo ip on pi.photoid=ip.photoid ) where PROJECTSID=#{projectsid} order by PLACES
 	</select>
+	
+	<delete id="DelectIndetail" parameterType="com.entity.ljl.IndetailLjl">
+		delete from projects_indetail
+		<where>
+			<if test="places!=0">
+				and places=#{places}
+			</if>
+			<if test="textid!=0">
+				and textid=#{textid}
+			</if>
+			<if test="photoid!=0">
+				and photoid=#{photoid}
+			</if>
+			<if test="projectsid!=0">
+				and projectsid=#{projectsid}
+			</if>
+		</where>
+		
+	</delete>
+	<delete id="DelectText" parameterType="com.entity.ljl.IndetailLjl">
+		delect from projects_indetail_text
+		<where>
+			<if test="places!=0">
+				and places=#{places}
+			</if>
+			<if test="projectsid!=0">
+				and projectsid=#{projectsid}
+			</if>
+		</where>
+		
+	</delete>
+	<delete id="DelectPhoto" parameterType="com.entity.ljl.IndetailLjl">
+		delect from projects_indetail_photo
+		<where>
+			<if test="places!=0">
+				and places=#{places}
+			</if>
+			<if test="projectsid!=0">
+				and projectsid=#{projectsid}
+			</if>
+		</where>
+	</delete>
 </mapper>

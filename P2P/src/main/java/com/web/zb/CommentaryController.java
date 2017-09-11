@@ -18,9 +18,9 @@ import com.service.zb.CommentaryService;
 /**
  * 
  * @ClassName:  CommentaryController   
- * @Description:TODO(ÆÀÂÛµÄ¿ØÖÆ²ã)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ4ÈÕ ÏÂÎç4:22:38   
+ * @Description:TODO(è¯„è®ºçš„æ§åˆ¶å±‚)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ6æ—¥ ä¸‹åˆ3:15:28   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -33,9 +33,9 @@ public class CommentaryController {
 	/**
 	 * 
 	* @Title: queryCommentary
-	* @Description: TODO(²éÑ¯ÆÀÂÛµÄ·½·¨)
-	* @param @param resp    Éè¶¨ÎÄ¼ş
-	* @return void    ·µ»ØÀàĞÍ
+	* @Description: TODO(æŸ¥è¯¢è¯„è®º)
+	* @param @param resp    è®¾å®šæ–‡ä»¶
+	* @return void    è¿”å›ç±»å‹
 	* @throws
 	 */
 	@RequestMapping("/queryCommentary.do")
@@ -54,9 +54,10 @@ public class CommentaryController {
 	/**
 	 * 
 	* @Title: deleteCommentary
-	* @Description: TODO(É¾³ıÆÀÂÛµÄ·½·¨)
-	* @param @return    Éè¶¨ÎÄ¼ş
-	* @return boolean    ·µ»ØÀàĞÍ
+	* @Description: TODO(åˆ é™¤è¯„è®º)
+	* @param @param COMMENTARY_ID
+	* @param @return    è®¾å®šæ–‡ä»¶
+	* @return boolean    è¿”å›ç±»å‹
 	* @throws
 	 */
 	@ResponseBody
