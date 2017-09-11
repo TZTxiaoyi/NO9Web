@@ -6,6 +6,6 @@
 	<select id="selectProdetal" resultType="Map">
 		select pt.projectsid,title,body,url 
 		from projects_indetail_text pt,projects_indetail_photo pp 
-		where pt.projectsid=pp.projectsid and pt.projectsid=${projectsid}
+		where pt.projectsid=pp.projectsid and pt.projectsid=#{projectsid}
 	</select>
 </mapper>
