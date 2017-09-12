@@ -11,9 +11,9 @@ import com.service.zb.BankAccountService;
 /**
  * 
  * @ClassName:  BankAccountServiceImpl   
- * @Description:TODO(ÒøÐÐÕËºÅµÄÒµÎñ²ã)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ5ÈÕ ÏÂÎç9:53:01   
+ * @Description:TODO(ï¿½ï¿½ï¿½ï¿½ï¿½ËºÅµï¿½Òµï¿½ï¿½ï¿½)   
+ * @author: ï¿½ï¿½ï¿½
+ * @date:   2017ï¿½ï¿½9ï¿½ï¿½5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½9:53:01   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -28,13 +28,18 @@ public class BankAccountServiceImpl implements BankAccountService {
 		return bad.queryBankAccount();
 	}
 	/**
-	 * Ìí¼ÓÒøÐÐ¿¨
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½
 	 * @param bankaccount 
 	 */
 	@Override
 	public int addBankAccount(BankAccount bankaccount) {
 		// TODO Auto-generated method stub
 		return bad.addBankAccount(bankaccount);
+	}
+	@Override
+	public void addBankAccount(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

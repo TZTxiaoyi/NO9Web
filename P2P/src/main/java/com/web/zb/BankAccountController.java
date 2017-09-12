@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -79,6 +80,7 @@ public class BankAccountController {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * 
 	* @Title: saveBankAccount
@@ -88,9 +90,13 @@ public class BankAccountController {
 	* @return String    返回类型
 	* @throws
 	 */
-	@RequestMapping(value="/saveBankAccount.do",method=RequestMethod.POST)
-	public String saveBankAccount(BankAccount bankaccount){
-		bac.addBankAccount(bankaccount);
-		return "success";
-	}
+	/*@RequestMapping("/saveBankAccount.do")
+	@ResponseBody
+	public List saveBankAccount(BankAccount bankaccount){
+		System.out.println("___+___"+bankaccount);
+
+		List <Object> listbank =  bac.addBankAccount(bankaccount);
+		System.out.println("zhubin"+listbank);
+		return listbank;
+	}*/
 }

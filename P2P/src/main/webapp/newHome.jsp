@@ -16,6 +16,11 @@
 			height:100px;
 			
 		}
+		#spantop{
+			text-align:center;
+			margin-left:500px;
+			margin-top:-30px;
+		}
 		.btn-circle.btn-xl {
 			background-color:#00CCFF;
 			 width: 70px;
@@ -45,9 +50,10 @@
 	<div class= "container-fluid">
 <!-- 标题 -->
 		<div class = "row"  id = "top">
-			<div class = "col-lg-12">
+			<div class = "col-lg-12">			
 				<a href= "proscenium.jsp" type="button" class="btn btn-default btn-circle btn-xl">
 					<i class="glyphicon glyphicon-equalizer"></i>
+					<h1 id = "spantop"> 个人中心 </h1>
 				</a>			
 			</div>
 		</div>
@@ -75,10 +81,8 @@
 				  <tr class="info"><td><button class = "btn btn-link btn-info" id = "DeliveryAddress"><span class="glyphicon glyphicon-map-marker"></span> 收货地址</button></td></tr>
 				</table>
 			</div><!-- 左菜单 -->
-			<div class = "col-lg-10" id = "right">
-				
-					<iframe id = "urlIframe" src = "" width=100% height=100% ></iframe>
-				
+			<div class = "col-lg-10" id = "right">	
+					<iframe id = "urlIframe" src = "" width=100% height=100% > </iframe>	
 			</div>
 		</div>
 
@@ -87,30 +91,31 @@
 </body>
 </html>
 	<script>
+//---------------------------------点击我的发起按钮-----------------------------------------
 		$("#Myfollow").click(function(){
 			$("iframe").show();
 			$("#urlIframe").attr("src","jsp/LaunchProject/MyProjects.jsp");
 		});
-//----------------------点击收货地址按钮-------------------
+//---------------------------------点击收货地址按钮----------------------------------------
 		$("#DeliveryAddress").click(function(){
 			$("iframe").show();
 			$("#urlIframe").attr("src","address.jsp");
 		});
-//-----------------------点击个人资料按钮-----------
+//--------------------------------点击个人资料按钮----------------------------------------
 		$("#PersonalData").click(function chageIframe(url){
 				$("iframe").show();		
 			  // $("#i1").attr("src","PersonalData.jsp");
 				$("#urlIframe").attr("src","PersonalData.jsp");
 			   
 		});
-//----------------点击修改密码按钮----------------
+//---------------------------------点击修改密码按钮------------------------------------------
 		$("#ModifyPassword").click(function chageIframe(url){
 			$("iframe").show();		
 			$("#urlIframe").attr("src","account.jsp");
 			
 		   
 		});
-//--------------------点击我的评论按钮-----------------------
+//--------------------------------点击我的评论按钮----------------------------------------
 		$("#MyComment").click(function chageIframe(url){
 			$("iframe").show();		
 			$("#urlIframe").attr("src","commentary.jsp");

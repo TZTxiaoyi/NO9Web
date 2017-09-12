@@ -26,7 +26,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 		        String oldFileName =myfile.getOriginalFilename(); // 获取上传文件的原名
 		        //System.out.println(oldFileName);
 		        // 存储图片的虚拟本地路径（这里需要配置tomcat的web模块路径，双击猫进行配置）
-		        String saveFilePath =tomcaturl+"\\wtpwebapps\\P2P\\images";//"D:\\NO9Web\\P2P\\src\\main\\webapp\\images"; 
+		        String saveFilePath =tomcaturl+"\\teswebapps\\P2P\\images";//"D:\\NO9Web\\P2P\\src\\main\\webapp\\images"; 
 		       // System.out.println(saveFilePath);
 		        // 上传图片
 		        if (myfile != null && oldFileName != null && oldFileName.length() > 0) {

@@ -356,7 +356,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$.ajax({
 				type : "post",
 				dataType : "json",
+<<<<<<< HEAD
 				url : "OrdersWeb/insertOrders.do",
+=======
+				url : "capital/payService.do",
+>>>>>>> c23752153b0809d1d17b8690371df9d7b40dd374
 				contentType : "application/json;charset=utf-8",
 				data :JSON.stringify(data),
 				success : function(data) {//data为返回的数据，在这里做数据绑定  

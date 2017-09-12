@@ -87,7 +87,7 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 			  
 		 }
 		//IndetailDao.SvaeText(map);
-		return 0;
+		return 1;
 	}
 	@Override
 	public Map SvaePhoto(Map map,IndetailPhotoLjl  IndetailPhoto) {
@@ -115,17 +115,17 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 	}
 
 	@Override
-	public int DelectIndetail(IndetailLjl indetail) {
-		int flag=IndetailDao.DelectIndetail(indetail);
+	public int DeleteIndetail(IndetailLjl indetail) {
+		int flag=IndetailDao.DeleteIndetail(indetail);
 		int flag1=0;
 		int flag2=0;
 		if(indetail.getChoice()=="text"){
 			System.out.println("dsfsfa");
-			flag1=IndetailDao.DelectText(indetail);
+			flag1=IndetailDao.DeleteText(indetail);
 			
 		}else if(indetail.getChoice()=="photo"){
 			System.out.println("photo");
-			flag2=IndetailDao.DelectPhoto(indetail);
+			flag2=IndetailDao.DeletePhoto(indetail);
 		}
 		//IndetailDao.
 		System.out.println(flag);
@@ -142,13 +142,13 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 	}
 
 	@Override
-	public int DelectText(IndetailLjl indetail) {
+	public int DeleteText(IndetailLjl indetail) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int DelectPhoto(IndetailLjl indetail) {
+	public int DeletePhoto(IndetailLjl indetail) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

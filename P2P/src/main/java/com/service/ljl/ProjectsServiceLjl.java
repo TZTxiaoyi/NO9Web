@@ -7,4 +7,5 @@ public interface ProjectsServiceLjl {
 	public String AllProjects(UserLjl user);
 	public String SaveProjects(ProjectsLjl proLjl);
 	public String AllProjectsType();
+	public String DelProjects(ProjectsLjl proLjl);
 }
