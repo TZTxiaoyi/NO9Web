@@ -42,6 +42,6 @@
 	</delete>
 	<!-- 出入个人信息审核记录 -->
 	<insert id="inProReturnRe" parameterType="map">
-		insert into retur_auditing_record(id,projectsid,return_type,offer_money,return_title,return_content,limit_people,return_time,image) values(retur_auditing_record_list.nextval,#{projectsid},#{return_type},#{offer_money},#{return_title},40,#{limit_people},#{return_time},#{image})
+		insert into retur_auditing_record(id,projectsid,return_type,offer_money,return_title,return_content,limit_people,return_time,image) values(retur_auditing_record_list.nextval,#{projectsid},#{return_type},#{offer_money},#{return_title},#{return_content},#{limit_people},#{return_time},#{image})
 	</insert>
 </mapper>

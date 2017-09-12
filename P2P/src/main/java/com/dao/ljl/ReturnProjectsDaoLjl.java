@@ -1,9 +1,15 @@
 package com.dao.ljl;
 
 import java.util.List;
+import java.util.Map;
+
+import com.entity.ljl.ProjectsLjl;
+import com.entity.ljl.ReturnLjl;
 
 public interface ReturnProjectsDaoLjl {
-	public int SaveReturnProjects();
-	public int UpdateReturnProjects();
-	public List AllReturnProjects();
+	public int SaveReturnProjects(Map map);
+	public int UpdateReturnProjects(Map map);
+	public List AllReturnProjects(ReturnLjl returnljl);
+	public int DeleteReturnProjects(ReturnLjl returnljl);
+	public int SExamine(ProjectsLjl projectsljl);
 }

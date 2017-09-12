@@ -12,40 +12,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-  <script type="text/javascript" src="../jq/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="../jq/jquery.cookie1.4.1.js"></script>
-  <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css"></link>
-  <script type="text/javascript" src="../bootstrap/dist/bootstrap-table.js"></script>
-  <link rel="stylesheet" href="../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
-  <script type="text/javascript" src="../bootstrap/fileinput/js/fileinput.js"></script>
-  <script type="text/javascript" src="../bootstrap/fileinput/css/fileinput.css"></script>
-  <script type="text/javascript" src="../bootstrap/fileinput/js/locales/zh.js"></script>
+  <script type="text/javascript" src="../../jq/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../../jq/jquery.cookie1.4.1.js"></script>
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css"></link>
+  <script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
+  <script type="text/javascript" src="../../bootstrap/fileinput/js/fileinput.js"></script>
+  <script type="text/javascript" src="../../bootstrap/fileinput/css/fileinput.css"></script>
+  <script type="text/javascript" src="../../bootstrap/fileinput/js/locales/zh.js"></script>
   <style>
-  	body
+  /* 	body
   {
   background-color:#F0F0F0;
   
-  }
+  } */
   #colpadding{
-  	margin:100px auto;
-  	padding:100px;
   	background-color:#FFFFFF;
-  	width:900px;
-  }
-  #inputpadding{
+  	width:800px;
+  }  
+ /*  #inputpadding{
   	margin:0 auto;
   	width:80%;
   	
-  }
-  #filediv{
+  } */
+ /*  #filediv{
   	width:300px;
-  }
+  } */
   #formspan{
-  	height:34px;
-  	line-height:34px; 
+  	position:relative;
+  	top:-26;
+  	left:100%;
+  	
   }
-  
+  .form-group{
+  	width:500px;
+  }
   textarea{ resize:none;}
   </style>
   </head>
@@ -71,42 +73,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">项目标题：</label>
-						   <div class="col-sm-8">
-						    	<input type="text" id="title" name="title" class="form-control" placeholder="给自己的项目取个响亮的名字吧！注意不要超过40个汉字哦"><br>
+						   <div class="col-sm-6">
+						    	<input type="text" id="title" name="title" class="form-control" placeholder="给自己的项目取个响亮的名字吧！注意不要超过40个汉字哦" ><br>
 						   </div>
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">筹款目的：</label>
-						   <div class="col-sm-8">
+						   <div class="col-sm-6">
 						    	<textarea class="form-control" rows="3" id="goal" name="goal" placeholder="一句话简单介绍下你的项目吧！"></textarea> 
 						   </div>
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">筹资金额：</label>
-						   <div class="col-sm-8">
+						   <div class="col-sm-3">
 						   	
-						    	<input type="text" id="financing" name="financing" class="form-control" placeholder="输入你需要筹资的金额">
+						    	<input type="text" id="financing" name="financing" class="form-control" placeholder="输入你需要筹资的金额" >
 						   </div><span id="formspan">元</span>
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">筹资天数：</label>
-						   <div class="col-sm-8 ">
+						   <div class="col-sm-6 ">
 						   
-						    	<input type="text" id="financing_day" name="financing_day" class="form-control" placeholder="输入你要筹资时间周期">
-						   		
-						   </div><span id="formspan">天</span>
+						    	<input type="text" id="financing_day" name="financing_day" class="form-control" placeholder="输入你要筹资时间周期" >
+						   	
+						   </div><span id="formspan">天</span>	
   						</div>
   					</div>
 					
 				</div>
-				<input  class="btn btn-info" type="submit" value="下一步" style="position:relative;top:150;left:45%;width:100px">
+				<input id="wewr"  class="btn btn-info"  value="保存" style="position:relative;top:20;width:100px">
 			</form>
 			</div>
 			
 	</body>
 </html>
 <script>
-	
+	$("#wewr").click(function(){
+		alert("555");
+			var projectsid=$.cookie('projectsid');
+			var title=$("#title").val();
+			alert(title);
+			var goal=$("#goal").val();
+			alert(goal);
+			var financing=$("#financing").val();
+			alert(financing);
+			var financing_day=$("#financing_day").val();
+			alert(financing_day);
+			var data ={};
+			data["projectsid"]=parseInt(projectsid);
+			data["title"]=title;
+			data["goal"]=goal;
+			data["financing"]=parseInt(financing);
+			data["financing_day"]=parseInt(financing_day);
+			alert("456");
+			$.ajax({
+				type:"post",
+				url:"http://localhost:9088/P2P/DescribeContrller/UpdateDescribe.do",
+				contentType:"application/json;charset=utf-8",
+				data:JSON.stringify(data),
+				success:function(data){
+					if(data="success"){
+						window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/ProjectsIndetail.jsp';
+						
+					}else {
+						alert("保存失败");
+					}
+					
+				}
+			})
+	})
 	$(function(){
 		var projectsid=$.cookie('projectsid');
 		

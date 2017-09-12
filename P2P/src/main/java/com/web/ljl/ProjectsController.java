@@ -67,6 +67,7 @@ public class ProjectsController {
 		
 	}
 	@RequestMapping("/SaveProjects")
+	@ResponseBody
 	public String SaveProjects(ProjectsLjl proLjl,HttpServletRequest request,HttpServletResponse response){
 		System.out.println("55");
 		String str=projectsServiceLjl.SaveProjects(proLjl);
@@ -74,10 +75,16 @@ public class ProjectsController {
 		//System.out.println(str);
 		if (str=="success"){
 			//System.out.println("444");
-			return "success";
+			return Projectsid+"";
 		}
 		return "err";
 		
+	}
+	@RequestMapping("/DelProjects")
+	@ResponseBody
+	public String DelProjects(ProjectsLjl proLjl){
+		String str=projectsServiceLjl.DelProjects(proLjl);
+		return str;
 	}
 	
 }
