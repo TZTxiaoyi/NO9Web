@@ -3,8 +3,8 @@ package com.entity.tzt;
 public class Promoney {
 	public Integer moenyid;
 	public Integer projectsid;
-	public Integer targemoney;
-	public Integer raisemoney;
+	public float targemoney;
+	public float  raisemoney;
 	public Integer getMoenyid() {
 		return moenyid;
 	}
@@ -17,16 +17,16 @@ public class Promoney {
 	public void setProjectsid(Integer projectsid) {
 		this.projectsid = projectsid;
 	}
-	public Integer getTargemoney() {
+	public float getTargemoney() {
 		return targemoney;
 	}
-	public void setTargemoney(Integer targemoney) {
+	public void setTargemoney(float targemoney) {
 		this.targemoney = targemoney;
 	}
-	public Integer getRaisemoney() {
+	public float getRaisemoney() {
 		return raisemoney;
 	}
-	public void setRaisemoney(Integer raisemoney) {
+	public void setRaisemoney(float raisemoney) {
 		this.raisemoney = raisemoney;
 	}
 

@@ -5,44 +5,35 @@
 <mapper namespace="com.dao.tzt.PromoneyDaotzt">
 	<select id="queryPromoney" parameterType="com.entity.tzt.Promoney"  resultType="map">
 		select 
-			a.capitalid,
-			a.accountsid,
-			a.ordid,
-			a.projectsid,
-			r.value,
-			a.capital,
-			a.time
-	 	from capital a,capitaltype r 
-	 	<where>
-	 		 a.capitalflow=r.key 	
+			a.mon_id,
+			a.pro_id,
+			a.targe_money,
+			a.raise_money,
+	 	from capital a
 	 		<if test ="capitalid !=null">
-	 			and a.capitalid= #{capitalid}
+	 			 a.mon_id= #{capitalid}
 	 		</if>
 	 		<if test ="accountsid !=null">
-	 			and a.accountsid= #{accountsid}
+	 			and a.pro_id= #{accountsid}
 	 		</if>
 	 		<if test ="ordid !=null">
-	 			and a.ordid= #{ordid}
+	 			and a.targe_money= #{ordid}
 	 		</if>
 	 		<if test ="projectsid !=null">
-	 			and a.projectsid= #{projectsid}
+	 			and a.raise_money= #{projectsid}
 	 		</if>
-	 		<if test ="capitalflow !=null">
-	 			and a.capitalflow= #{capitalflow}
-	 		</if>
-	 		<if test ="starttime !=null ">
-	 			and a.time &gt;= to_date(#{starttime},'yyyy-MM-dd HH24:MI:SS')
-	 		</if>
-	 		<if test ="endtime !=null">
-	 			and a.time &lt; = to_date(#{endtime},'yyyy-MM-dd HH24:MI:SS')
-	 		</if>
-	 		
-	 	</where>
 	</select>
 	
-	<insert id="addPromoney" parameterType="com.entity.tzt.Capital" >
-		insert into capital values(list_capital.nextval,#{accountsid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
-		#{projectsid,jdbcType=NUMERIC},#{cap	italflow,jdbcType=NUMERIC},
-		#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
+	<insert id="addPromoney" parameterType="com.entity.tzt.Promoney" >
+		insert into pro_money values(list_capital.nextval,#{accountsid,jdbcType=NUMERIC},#{proid,jdbcType=NUMERIC},
+		#{targemoney,jdbcType=REAL},#{raisemoney,jdbcType=REAL}
 	</insert>
+	
+		<update id="updatePromoney" parameterType="com.entity.tzt.Promoney" >
+		update  pro_money set
+		targe_money=#{targemoney,jdbcType=REAL}
+			<where>
+	 		money_id=#{moneyid}
+	 		</where>
+	</update>
 </mapper>
