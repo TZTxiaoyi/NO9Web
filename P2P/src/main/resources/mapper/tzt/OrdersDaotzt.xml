@@ -7,7 +7,6 @@
 		select 
 			a.ord_id,
 			a.empid,
-			e.username,
 			a.fraction,
 			a.projectsid,
 			a.paymoney,
@@ -17,7 +16,7 @@
 			a.pro_returnid,
 			a.order_time,
 			w.value
-	 	from orders a,address r ,word w ,employee e
+	 	from orders a,address r ,word w 
 	 	<where>
 	 		 a.address=r.addressid 	and w.key=a.ord_status and e.empid=a.empid
 	 		<if test ="ord_id !=null">
@@ -45,9 +44,9 @@
 	</select>
 	
 	<insert id="addOrders" parameterType="com.entity.tzt.Orders" >
-		insert into capital values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
-		#{paymoney,jdbcType=REAL},1,#{address,jdbcType=NUMERIC},to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS'),
-		,20,#{proreturnid,jdbcType=NUMERIC},) 
+		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
+		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')
+		,76,#{proreturnid,jdbcType=NUMERIC}) 
 	</insert>
 	
 	<update id="updateOrders" parameterType="com.entity.tzt.Orders">

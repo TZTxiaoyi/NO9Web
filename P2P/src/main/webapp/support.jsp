@@ -356,7 +356,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$.ajax({
 				type : "post",
 				dataType : "json",
-				url : "return/selectProReturn.do",
+				url : "capital/payService.do",
 				contentType : "application/json;charset=utf-8",
 				data :JSON.stringify(data),
 				success : function(data) {//data为返回的数据，在这里做数据绑定  
