@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.tzt.OrdersDaotzt">
+	<select id="queryOrders" parameterType="com.entity.tzt.Orders"  resultType="map">
+		select 
+			a.ord_id,
+			a.empid,
+			e.username,
+			a.fraction,
+			a.projectsid,
+			a.paymoney,
+			r.name,
+			r.phone,
+			r.addressinfo,
+			a.pro_returnid,
+			a.order_time,
+			w.value
+	 	from orders a,address r ,word w ,employee e
+	 	<where>
+	 		 a.address=r.addressid 	and w.key=a.ord_status and e.empid=a.empid
+	 		<if test ="ord_id !=null">
+	 			and a.ord_id= #{ord_id}
+	 		</if>
+	 		<if test ="empid !=null">
+	 			and a.empid= #{empid}
+	 		</if>
+	 		<if test ="ordid !=null">
+	 			and a.ordid= #{ordid}
+	 		</if>
+	 		<if test ="projectsid !=null">
+	 			and a.projectsid= #{projectsid}
+	 		</if>
+	 		<if test ="paymoney !=null">
+	 			and a.paymoney= #{paymoney}
+	 		</if>
+	 		<if test ="ordertime !=null">
+	 			and a.order_time= #{order_ime}
+	 		</if>
+	 		<if test ="proreturnid !=null">
+	 			and a.pro_returnid= #{proreturnid}
+	 		</if>
+	 	</where>
+	</select>
+	
+	<insert id="addOrders" parameterType="com.entity.tzt.Orders" >
+		insert into capital values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
+		#{paymoney,jdbcType=REAL},1,#{address,jdbcType=NUMERIC},to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS'),
+		,20,#{proreturnid,jdbcType=NUMERIC},) 
+	</insert>
+	
+	<update id="updateOrders" parameterType="com.entity.tzt.Orders">
+
+		update orders
+		<set>
+			<if test="ordstatus !=null">
+				 ord_status=#{ordstatus,jdbcType=NUMERIC},
+			</if>
+		</set>
+		<where>
+			ord_id=#{ordid}
+		</where>
+	</update>
+</mapper>

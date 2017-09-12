@@ -7,10 +7,22 @@
 		select p1.title,p1.goal,p1.projects_place,p1.financing,p1.financing_day,p1.cover from projects_describe p1
 		where projectsid=#{projectsid}
 	</select>
-	<!--  -->
+	<!-- 项目描述审核信息 -->
 	<select id="selDescribe" resultType="com.entity.ly.ProDescribe" parameterType="int">
 		select p1.projectsid,pt.places,pt.title,pt.body    
 		from projects p1,projects_indetail_text pt  
 		where p1.projectsid=pt.projectsid and pt.projectsid=#{projectsid}
 	</select>
+	
+	<!-- //查询项目描述审核记录 -->
+	<select id="selProDeAuRe" resultType="map" parameterType="int">
+		select r1.projectsid,w1.value value1,a1.value value2
+		from pro_describe_auditing r1,word w1,word a1
+		where r1.place=w1.key and r1.body=a1.key and projectsid=#{projectsid} 
+	</select>
+	
+	<!-- 保存项目描述审核记录 -->
+	<update id="inProDesAuRe" parameterType="int">
+		update pro_describe_auditing set place=#{place},body=#{body} where projectsid=#{projectsid}
+	</update>
 </mapper>

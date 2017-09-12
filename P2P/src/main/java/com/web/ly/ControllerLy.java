@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.entity.ly.DescribeAudi;
 import com.entity.ly.DetailAuditing;
+import com.entity.ly.OrgAuditing;
 import com.entity.ly.OrganizationsLy;
 import com.entity.ly.Project;
 import com.entity.ly.RepayAuditing;
@@ -183,7 +185,7 @@ public class ControllerLy {
 		return sList;		
 	}
 	/**
-	 * selDetailAu:个人项目信息审核
+	 * selDetailAu:个人项目信息审核查询
 	 * @param projectsid
 	 * @param response
 	 * @return
@@ -211,7 +213,7 @@ public class ControllerLy {
 		return oList;
 	}
 	/**
-	 * 机构信息审核记录
+	 * 机构信息审核记录查询
 	 * @param projectsid
 	 * @param response
 	 * @return
@@ -226,7 +228,7 @@ public class ControllerLy {
 		return rList;
 	}
 	/**
-	 * 回报审核合记录
+	 * 回报审核合记录查询
 	 * @param projectsid
 	 * @param response
 	 * @return
@@ -255,8 +257,8 @@ public class ControllerLy {
 		return dList;
 	}
 	/**
-	 * 先删除个人信息审核记录表中的数据
-	 * 再将新记录插数据库
+	 * 
+	 * 保存个人信息审核记录
 	 * @param projectsid
 	 * @param response
 	 * @return
@@ -266,12 +268,26 @@ public class ControllerLy {
 	public int insSinProAuRecord(@RequestBody SinAuditing projectsid,HttpServletResponse response){
 		//System.out.println("1:"+projectsid.getProjectsid()+"2:"+projectsid.getIdcard()+"3:"+projectsid.getOriginatorname()+"4："+projectsid.getAddress()+"5:"+projectsid.getTelephone()+"6:"+projectsid.getCardimage1());
 		response.setHeader("content-type","text/html;charset=UTF-8");
-		int delrecord =SinAuditingService.deProRecord(projectsid);
+		
 		int insrecord =SinAuditingService.inProRecord(projectsid);
 		return insrecord;
 	}
 	/**
-	 * 删除原有项目信息审核记录之后，再次审核之后，把新审核记录插入项目信息审核记录表
+	 * 保存机构审核记录
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/inseOraAuRecord")
+	public int insOraProRecord(@RequestBody OrgAuditing projectsid,HttpServletResponse response){
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		System.out.println("----------ooo:"+projectsid.getOname());
+		int ora=SinAuditingService.inOraProRecord(projectsid);
+		return ora;
+	}
+	/**
+	 * 保存项目信息审核记录表
 	 * @param projectsid
 	 * @param response
 	 * @return
@@ -280,12 +296,12 @@ public class ControllerLy {
 	@RequestMapping(value="/inProAuRecord")
 	public int inProAuditingRe(@RequestBody DetailAuditing projectsid,HttpServletResponse response){
 		response.setHeader("content-type","text/html;charset=UTF-8");
-		int delrecord=SinAuditingService.deProjectRe(projectsid);
+		
 		int insrecord=SinAuditingService.inProAuRe(projectsid);
 		return insrecord;
 	}
 	/**
-	 * 删除原有项目回报审核记录，再次审核之后，把新审核记录插入项目回报审核记录表
+	 * 保存项目回报审核记录表
 	 * @param projectsid
 	 * @param response
 	 * @return
@@ -295,15 +311,58 @@ public class ControllerLy {
 	public int intProReturnRecord(@RequestBody RepayAuditing auditing,HttpServletResponse response){
 		
 		response.setHeader("content-type","text/html;charset=UTF-8");
-	//	int delrecord=SinAuditingService.deProReRecord(projectsid);
+	
 		//System.out.println(projectsid.getProjectsid()+"--"+projectsid.getReturn_type()+"--"+projectsid.getOffer_money()+"--"+projectsid.getReturn_title()+"--"+projectsid.getReturn_content()+"--"+projectsid.getLimit_people()+"--"+projectsid.getReturn_time()+"--"+projectsid.getImage());
 		JSON json =new JSONArray();
 		
 		Map mm=(Map)json.toJSON(auditing);
-		System.out.println("MM:"+mm);
+		//System.out.println(mm.size());
+		//System.out.println("MM:"+mm);
 		int insrecord=SinAuditingService.inProReturnRer(mm);
 		
-		return 0;
+		return insrecord;
 	}
-	
+	/**
+	 * 项目描述审核记录
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/proIndeAuditing")
+	public List selProDescribeRecord(@RequestBody Project projectsid,HttpServletResponse response){
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		List<Object> dList=ProIndetailService.selProDesRe(projectsid);
+		//System.out.println("-------------dddd:"+dList);
+		return dList;
+	}
+	/**
+	 * 保存项目描述审核记录
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/inProDescribeAudi")
+	public int inseProDesAuRe(@RequestBody DescribeAudi projectsid,HttpServletResponse response){
+		//System.out.println("-------------www"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		int des=ProIndetailService.inProDescribeReco(projectsid);
+		return des;
+	}
+	/**
+	 * 项目描述文本详情
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/proContent")
+	public List selProContent(@RequestBody Project projectsid,HttpServletResponse response){
+		System.out.println("----------sss:"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		List<Object> cList=SinAuditingService.selProCnnten(projectsid);
+		System.out.println("**********:"+cList);
+		return cList;
+	}
 }

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-
+<title>账号管理</title>
 <script type="text/javascript" src="../../bootstrap/jquery/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css"></link>

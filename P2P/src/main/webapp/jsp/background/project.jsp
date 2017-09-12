@@ -19,6 +19,8 @@
 	
 	</style>
 	<script type="text/javascript">
+	
+	
 	$(function (){
 		
 
@@ -40,7 +42,7 @@
 		<div class="pageTop">
 			<div class="page">
 				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
-					href="#">公共管理</a>&nbsp;-</span>&nbsp;意见管理
+					href="#">公共管理</a>&nbsp;-</span>&nbsp;在线项目
 			</div>
 		</div>
 
@@ -58,29 +60,32 @@
 			</div>
 			<!-- vip页面样式end -->
 		</div>
-
-	</div>
-
-
-	<!-- 删除弹出框 -->
-	<div class="banDel">
-		<div class="delete">
-			<div class="close">
-				<a><img src="img/shanchu.png" /></a>
-			</div>
-			<p class="delP1">你确定要删除此条记录吗？</p>
-			<p class="delP2">
-				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
-			</p>
-		</div>
 	</div>
 	<!-- 删除弹出框  end-->
 <script type="text/javascript">
-	function marks(row,index,value){
-		return ["<a href=\"connoisseuradd.jsp\" class=\"btn btn-info btn-xs\">修改</a>"+
-		"<button type=\"button\" class=\"btn btn-danger btn-xs\">删除</button>"+
-		"<button type=\"button\" class=\"btn btn-warning btn-xs\">审核</button>"]
+	window.operateEvents = {
+		'click #pro_auditing': function (e, value, row, index) {			 
+			alert(55);
+			projectsid=parseInt(row.PROJECTSID);
+			alert(projectsid);
+			var data={};
+			data["projectsid"]=projectsid;
+			$.ajax({
+				url:"/P2P/AddState/inseProState.do",
+				dataType:"json",
+				type:"post",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					alert(data);
+				}
+			});
+		},
 	}
+	function marks(row,index,value){
+		return ["<a type=\"button\" id=\"pro_auditing\" class=\"btn btn-warning btn-xs\">审核</a>"]
+	}
+	
 	$('#protab').bootstrapTable({
         url: '/P2P/project/jects.do',         //请求后台的URL（*）
         method: 'post',                      //请求方式（*）
@@ -128,9 +133,11 @@
             title: '项目状态',
         }, {
         	formatter:marks,
+        	events:operateEvents,
             title: '操作',
         }]]
     });
+	
 </script>
 </body>
 
