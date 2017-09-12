@@ -255,8 +255,8 @@
 				field : 'PROTYPENAME',
 				title : '项目类型',
 			}, {
-				field : 'POUNDAGE',
-				title : '平台渠道费',
+				field : 'VALUE',
+				title : '状态',
 			} ] ]
 		});
 	});

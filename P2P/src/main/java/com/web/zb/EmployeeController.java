@@ -2,6 +2,7 @@ package com.web.zb;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -67,9 +68,13 @@ public class EmployeeController {
 	* @throws
 	 */
 	@RequestMapping("/updateEmployee.do")
-	public void updateEmployee(@RequestBody Employeezb emp,HttpServletResponse resp){
-		System.out.println(emp.getEmpName());
-		int flag = eService.updateEmployee(emp);
+	public void updateEmployee(@RequestBody String emp,HttpServletResponse resp){
+		System.out.println("+++++++"+emp);
+		JSON json=new JSONArray();		
+		Map map=(Map) json.parse(emp);
+		int flag = eService.updateEmployee(map);
+		System.out.println("_____map++++"+map);
+		System.out.println(flag);
 		try {
 			resp.getWriter().flush();
 			resp.getWriter().close();

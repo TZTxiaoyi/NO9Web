@@ -7,9 +7,9 @@ import com.entity.zb.BankAccount;
 /**
  * 
  * @ClassName:  BankAccountService   
- * @Description:TODO(ÒøĞĞÕËºÅµÄService)   
- * @author: Öì±ò
- * @date:   2017Äê9ÔÂ5ÈÕ ÏÂÎç9:51:21   
+ * @Description:TODO(è¿™é‡Œç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªç±»çš„ä½œç”¨)   
+ * @author: æœ±å½¬
+ * @date:   2017å¹´9æœˆ11æ—¥ ä¸Šåˆ8:39:44   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -17,4 +17,5 @@ import com.entity.zb.BankAccount;
 public interface BankAccountService {
 	public List<Object> queryBankAccount();
 	public int addBankAccount(BankAccount bankaccount);
+	public void addBankAccount(String string);
 }

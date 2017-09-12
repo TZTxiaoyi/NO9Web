@@ -1,6 +1,7 @@
 package com.serviceimpl.zb;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +12,9 @@ import com.service.zb.EmployeeService;
 /**
  * 
  * @ClassName:  EmployeeServiceImpl   
- * @Description:TODO(shiwuceng��������)   
- * @author: ���
- * @date:   2017��9��1�� ����7:39:47   
+ * @Description:TODO(employee的事务层)   
+ * @author: 朱彬
+ * @date:   2017年9月11日 下午2:43:55   
  *     
  * @Copyright: 2017 www.tydic.com Inc. All rights reserved. 
  *
@@ -35,10 +36,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return edao.addEmployee(employee);
 	}
 
-	@Override
+	/*@Override
 	public int updateEmployee(Employeezb employee) {
-		// TODO Auto-generated method stub
 		return edao.updateEmployee(employee);
+	}*/
+
+	@Override
+	public int updateEmployee(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -10,21 +10,22 @@ package com.entity.zb;
  *
  */
 public class Employeezb {
-	private int EmpId;//Ա�����
-	private String UserName;//�û���
-	private String EmpName;//��ʵ����
-	private int IdCard;//���֤����
-	private String Sex;//�Ա�
-	private int Age;//����
-	private String Address;//��ַ
-	private int TelePhone;//�绰
-	private float Balance;//�˻����
-	private int EmpState;//״̬
+	private int EmpId;//编号
+	private String UserName;//用户名
+	private String EmpName;//真实名字
+	private String IdCard;//身份证号码
+	private String Sex;//性别
+	private int Age;//年龄
+	private String Address;//地址ַ
+	private int TelePhone;//电话
+	private float Balance;//余额
+	private int EmpState;//状态״̬
 	
-	public int getIdCard() {
+	
+	public String getIdCard() {
 		return IdCard;
 	}
-	public void setIdCard(int idCard) {
+	public void setIdCard(String idCard) {
 		IdCard = idCard;
 	}
 	public int getEmpId() {
@@ -63,6 +64,7 @@ public class Employeezb {
 	public void setAddress(String address) {
 		Address = address;
 	}
+	
 	public int getTelePhone() {
 		return TelePhone;
 	}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.tzt.PromoneyDaotzt">
+	<select id="queryPromoney" parameterType="com.entity.tzt.Promoney"  resultType="map">
+		select 
+			money_id,
+			projectsid,
+			targe_money,
+			raise_money
+	 		from pro_money 
+	 		<where>
+		 		<if test ="moenyid !=null">
+		 			 money_id= #{moenyid}
+		 		</if>
+		 		<if test ="projectsid !=null">
+		 			and projectsid= #{projectsid}
+		 		</if>
+		 		<if test ="targemoney !=0">
+		 			and targe_money= #{targemoney}
+		 		</if>
+		 		<if test ="raisemoney !=0">
+		 			and raise_money= #{raisemoney}
+		 		</if>
+	 		</where>
+	</select>
+	
+	<insert id="addPromoney" parameterType="com.entity.tzt.Promoney" >
+		insert into pro_money values(list_capital.nextval,#{projectsid,jdbcType=NUMERIC},
+		#{targemoney,jdbcType=REAL},#{raisemoney,jdbcType=REAL}
+	</insert>
+	
+	<update id="updatePromoney" parameterType="com.entity.tzt.Promoney" >
+		update  pro_money set raise_money=#{raisemoney,jdbcType=REAL}
+			<where>
+	 		projectsid=#{projectsid}
+	 		</where>
+	</update>
+</mapper>
