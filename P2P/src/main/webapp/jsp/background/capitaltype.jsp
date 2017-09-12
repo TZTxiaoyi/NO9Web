@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 <script type="text/javascript"
 	src="../../bootstrap/jquery/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
@@ -17,19 +16,18 @@
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
 </head>
 <body>
-
-
-	<div class="panel-body" style="padding-bottom: 0px;">
+	
+<div class="panel-body" style="padding-bottom: 0px;">
 		<div class="panel panel-default">
-			<div class="panel-body">角色管理</div>
+			<div class="panel-body">资金流向类型管理</div>
 		</div>
 
 <!-- 按钮触发模态框 -->
-<button class="btn btn-primary " data-toggle="modal" data-target="#addRoleTable">
-	添加角色
+<button class="btn btn-primary " data-toggle="modal" data-target="#addCapitaltype">
+	添加类型
 </button>
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="addRoleTable" tabindex="-1" role="dialog" aria-labelledby="addRoleTable" aria-hidden="true">
+<div class="modal fade" id="addCapitaltype" tabindex="-1" role="dialog" aria-labelledby="addCapitaltype" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -37,12 +35,21 @@
 						aria-hidden="true">
 				</button>
 				<h4 class="modal-title" >
-					添加角色
+					添加类型
 				</h4>
 			</div>
 			<div class="modal-body">
+				<table>
+					<tr>
+						<td>类型名称：</td><td> <input type="text" id="value"></td>
+					</tr>
+					<tr>
+						<td> 备注:</td><td><input type="text" id ="remark"></td>
+					</tr>
 				
-				 角色名称：<input type="text" id="rolename">
+				</table>
+				<br/>
+				
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" 
@@ -64,7 +71,7 @@
 		</table>
 		
 <!-- 编辑模态框（Modal） -->
-<div class="modal fade" id="updataModal" tabindex="-1" role="dialog" aria-labelledby="updataModal" aria-hidden="true">
+<div class="modal fade" id="updateCapitaltype" tabindex="-1" role="dialog" aria-labelledby="updateCapitaltype" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -76,9 +83,14 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				角色序列：<span id = "updataId"></span><br/>
-				原角色名称：<span id="updataP"></span><br/>
-				 角色名称：<input type="text" id="updaterolename">
+				<table>
+					<tr><td>类型序列：</td><td><span id = "updateId"></span></td></tr>
+					<tr><td>原类型名称：</td><td><span id="updateName"></span></td></tr>
+					<tr><td>原备注信息：</td><td><span id="updateMark"></span></td></tr>
+					<tr><td>类型名称：</td><td><input type="text" id="updatevalue"></td></tr>
+					<tr><td> 备注:</td> <td>	<input type="text" id ="updateremark"></td></tr>
+				</table>
+				
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" 
@@ -91,31 +103,27 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-	</div>
-	
-	
-	<!-- 编辑账号模态框（Modal） -->
-
+</div>
 </body>
 </html>
-
 <script>
 $("#submit").click(function() {
 	var data = {
-		rolename : $("#rolename").val(),
+		value : $("#value").val(),
+		remark:$("#remark").val()
 	};
-	alert($("#rolename").val());
+	alert($("#value").val());
 	$.ajax({
 		type : "post",
 		dataType : "json",
 		data:data,
-		url : "/P2P/back/addRoleTable.do",//要访问的后台地址  
+		url : "/P2P/capital/addCapitaltype.do",//要访问的后台地址  
 		contentType :"application/json;charset=utf-8",
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
 			if(result.resultType=="true"){
 				alert("添加成功");
-				$('#addRoleTable').modal('hide');
+				$('#updateCapitaltype').modal('hide');
 			}else{
 				alert("添加失败");
 			}
@@ -124,18 +132,18 @@ $("#submit").click(function() {
 		}
 	});
 })
-
 // 保存角色修改提交
  $("#updateSubmit").click(function(){
 	var data = {
-			roleid:$("#updataId").text(),
-			rolename:$("#updaterolename").val()
+			key:$("#updateId").text(),
+			value:$("#updatevalue").val(),
+			remark:$("#updateremark").val()
 	 }
 	   $.ajax({
 			type : "post",
 			dataType : "json",
 			data:JSON.stringify(data),
-			url : "/P2P/back/updateRoletable.do",//要访问的后台地址  
+			url : "/P2P/capital/updateCapitaltype.do",//要访问的后台地址  
 			contentType :"application/json;charset=utf-8",
 			success : function(data1) {//data为返回的数据，在这里做数据绑定  
 				if(data1.resultType){
@@ -152,7 +160,6 @@ $("#submit").click(function() {
 		}); 
 	 
  });
- 
 	$(function () {
 	    //1.初始化Table
 	    var oTable = new TableInit();
@@ -170,7 +177,7 @@ $("#submit").click(function() {
 	//初始化Table
 	oTableInit.Init = function () {
 	    $('#tb_departments').bootstrapTable({
-	        url: '/P2P/back/queryRoleTable.do'  ,  //请求后台的URL（*）
+	        url: '/P2P/capital/queryCapitaltype.do'  ,  //请求后台的URL（*）
 	        method: 'post',                      //请求方式（*）
 	        toolbar: '#toolbar',                //工具按钮用哪个容器
 	        striped: true,                      //是否显示行间隔色
@@ -184,20 +191,27 @@ $("#submit").click(function() {
 	        pageSize: 10,                       //每页的记录行数（*）
 	        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 	        singleSelect: false,
-	        search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+	        search: true,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 	        strictSearch: false,
 	        showColumns: true,                  //是否显示所有的列
 	        showRefresh: true,                  //是否显示刷新按钮
 	        minimumCountColumns: 2,             //最少允许的列数
 	        clickToSelect: true,                //是否启用点击选中行
 	       // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-	        uniqueId: "ROLEID",                     //每一行的唯一标识，一般为主键列
-	        showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
-	        cardView: false,                    //是否显示详细视图
-	        detailView: false,                   //是否显示父子表
+	        uniqueId: "KEY",                     //每一行的唯一标识，一般为主键列
+	       // showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+	       // cardView: false,                    //是否显示详细视图
+	        //detailView: false,                  //是否显示父子表
+	        showColumns:true, 					//是否显示列下拉框           
 	        columns: [{
-	            field: 'ROLENAME',
-	            title: '角色名字'
+	            field: 'KEY',
+	            title: '类型序列'
+	        },{
+	            field: 'VALUE',
+	            title: '类型名称'
+	        },{
+	            field: 'REMARK',
+	            title: '备注'
 	        },{       
 	        	title: '操作',
                 events:operateEvents,
@@ -211,28 +225,30 @@ $("#submit").click(function() {
 	        ]
 	    });
 	};
+	
 	//绑定点击事件
 	window.operateEvents = {
 				 'click .updata': function (e, value, row, index) {
-					 $("#updataModal").modal();
-					 $("#updataP").empty();
-					 $("#updataId").empty();
-					var b =row.ROLEID;
-					var a=row.ROLENAME;
-					$(" #updataP").append(a); 
-					$("#updataId").append(b);
+					 $("#updateCapitaltype").modal();
+					 $("#updateId").empty();
+					 $("#updateName").empty();
+					 $("#updateMark").empty();
+					 $("#updateId").append(row.KEY);
+					 $("#updateName").append(row.VALUE);
+					 $("#updateMark").append(row.REMARK);
 				} ,
 	 'click .remove': function (e, value, row, index) {
 		 var	data={
-				 roleid:row.ROLEID, 
-				 rolename:row.ROLENAME,
-				 rolestate:19
+					key:row.KEY,
+					value:row.VALUE,
+					remark:row.REMARK,
+					state:19,
 		 }
 		   $.ajax({
 				type : "post",
 				dataType : "json",
 				data:JSON.stringify(data),
-				url : "/P2P/back/updateRoletable.do",//要访问的后台地址  
+				url : "/P2P/capital/updateCapitaltype.do",//要访问的后台地址  
 				contentType :"application/json;charset=utf-8",
 				success : function(data1) {//data为返回的数据，在这里做数据绑定  
 					if(data1.resultType){

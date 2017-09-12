@@ -5,5 +5,13 @@
 <mapper namespace="com.dao.sxm.CommDao">
 	<insert id="saveComm" parameterType="com.entity.sxm.Commentary">
 		insert into commentary values(list_commentary.nextval,#{projectsid},#{empid},#{content},#{time})
+		<where>
+			<if test="empid>0">
+			
+			</if>
+		</where>
 	</insert>
+	<select id="selectComm" resultType="Map">
+		select username,commentary_id,projectsid,c.empid,content,time from commentary c,employee e where c.empid=e.empid
+	</select>
 </mapper>

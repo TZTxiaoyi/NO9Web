@@ -202,10 +202,11 @@ oTableInit.queryParams = function (params) {
 window.operateEvents = {
         'click .selectinfo': function (e, value, row, index) {
             var data= {
-     		empid:row.EMPID,
+     			empid:row.EMPID,
             }   
         	$("#queryEmployee").modal();
             $(".modal-body").empty();
+           
         	 $.ajax({
      			type : "post",
      			dataType : "json",

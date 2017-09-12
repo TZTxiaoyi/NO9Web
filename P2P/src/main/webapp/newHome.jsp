@@ -33,9 +33,11 @@
 		}
 		#right{
 			/* border:1px solid blue; */
-			height:560px; 
+			height:660px; 
 			margin-left:-10px;
+			
 		}
+		
 		
 	</style>
 </head>
@@ -54,9 +56,10 @@
 			<div class = "col-lg-2" id ="leftMenu">
 				<table class="table table-bordered  table-hover ">
 				 <!--  <tr class="active"><td></td></tr> -->
-				  <tr class="success"><td><a href = "#"><span class=" glyphicon glyphicon-plus-sign"></span> 我的发起</a></td></tr>
-				  <tr class="success"><td><a href = "#"><span class="glyphicon glyphicon-asterisk"></span> 项目管理</a></td></tr>
-				  <tr class="success"><td><a href = "#"><span class="glyphicon glyphicon-shopping-cart"></span> 我的订单</a></td></tr>
+				  <tr class="success"><td><button class = "btn btn-link btn-info" id = "Myfollow"><span class=" glyphicon glyphicon-plus-sign"></span> 我的发起</button></td></tr>
+
+				  <tr class="success"><td><button class = "btn btn-link btn-info" ><span class="glyphicon glyphicon-asterisk"></span> 项目管理</button></td></tr>
+				  <tr class="success"><td><button class = "btn btn-link btn-info" ><span class="glyphicon glyphicon-shopping-cart"></span> 我的订单</button></td></tr>
 				  <!-- <tr class="success"><td><a href = "#"><span class="glyphicon glyphicon-leaf"></span> 我的理财卷</a></td></tr> -->
 				  <tr class="active"><td><b>我的</b></td></tr>
 				  <tr class="warning"><td><button class = "btn btn-link btn-info"><span class="glyphicon glyphicon-heart"></span> 我的关注</button></td></tr>
@@ -84,6 +87,10 @@
 </body>
 </html>
 	<script>
+		$("#Myfollow").click(function(){
+			$("iframe").show();
+			$("#urlIframe").attr("src","jsp/LaunchProject/MyProjects.jsp");
+		});
 //----------------------点击收货地址按钮-------------------
 		$("#DeliveryAddress").click(function(){
 			$("iframe").show();
