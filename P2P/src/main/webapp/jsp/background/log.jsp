@@ -29,20 +29,14 @@
 			<!-- 输入框 -->
 			<div class="lgD">
 				<img class="img1" src="img/logName.png" /><input type="text"
-					placeholder="输入用户名" />
+				id="accounts"	placeholder="输入用户名" />
 			</div>
 			<div class="lgD">
 				<img class="img1" src="img/logPwd.png" /><input type="text"
-					placeholder="输入用户密码" />
-			</div>
-			<div class="lgD logD2">
-				<input class="getYZM" type="text" />
-				<div class="logYZM">
-					<img class="yzm" src="img/logYZM.png" />
-				</div>
+				id="passwords"placeholder="输入用户密码" />
 			</div>
 			<div class="logC">
-				<button>登 录</button>
+				<button id="submit">登 录</button>
 			</div>
 		</div>
 	</div>
@@ -56,3 +50,29 @@
 	<!-- 登录页面底部end -->
 </body>
 </html>
+<script>
+$("#submit").click(function() {
+	var data = {
+			accounts:$("#accounts").val(),
+			passwords : $("#passwords").val(),
+	};
+	alert($("#accounts").val());
+	$.ajax({
+		type : "post",
+		dataType : "json",
+		data:data,
+		url : "/P2P/ProWeb/backlogin.do",//要访问的后台地址  
+		contentType :"application/json;charset=utf-8",
+		data:JSON.stringify(data),
+		success : function(result) {//data为返回的数据，在这里做数据绑定  
+			if(result.resultType=="true"){
+				window.location.href="http://localhost:9088/P2P/jsp/background/index.jsp"
+			}else{
+				alert("登录失败");
+			}
+		},error : function() {
+			alert("error");
+		}
+	});
+})
+</script>

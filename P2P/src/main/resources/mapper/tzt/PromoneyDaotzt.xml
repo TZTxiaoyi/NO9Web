@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.tzt.CapitalDaotzt">
-	<select id="queryCapital" parameterType="com.entity.tzt.Capital"  resultType="map">
+<mapper namespace="com.dao.tzt.PromoneyDaotzt">
+	<select id="queryPromoney" parameterType="com.entity.tzt.Promoney"  resultType="map">
 		select 
 			a.capitalid,
 			a.accountsid,
@@ -40,7 +40,7 @@
 	 	</where>
 	</select>
 	
-	<insert id="addCapital" parameterType="com.entity.tzt.Capital" >
+	<insert id="addPromoney" parameterType="com.entity.tzt.Capital" >
 		insert into capital values(list_capital.nextval,#{accountsid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
 		#{projectsid,jdbcType=NUMERIC},#{cap	italflow,jdbcType=NUMERIC},
 		#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 

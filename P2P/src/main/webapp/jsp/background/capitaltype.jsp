@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>资金流向类型</title>
 <script type="text/javascript"
 	src="../../bootstrap/jquery/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
