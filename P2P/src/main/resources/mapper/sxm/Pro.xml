@@ -4,10 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.sxm.ProDao">
 	<select id="selectProject" resultType="Map">
-		select * from projects_describe
+		select * from pro_money pm,projects_describe pd
+		
 		<where>
+			<if test="true">
+				pm.projectsid=pd.projectsid
+			</if>
 	 		<if test="projectsid>0">
-	 			projectsid= #{projectsid}
+	 			and pd.projectsid= #{projectsid}
 	 		</if>
 	 		
 	 	</where>
