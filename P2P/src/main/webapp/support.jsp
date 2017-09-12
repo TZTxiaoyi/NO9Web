@@ -88,6 +88,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	margin-right:50px;
         	margin-top:-50px;
         }
+        #supportinput{
+        	float:right;
+        	margin-right:50px;
+        }
+        #selfless{
+        	border:2px solid  gray;
+        	padding-left:10px;
+        	margin-right:10px;
+        	padding-top:20px;
+        	padding-bottom:20px;
+        }
+        #selfless:hover{
+        	border:2px solid  #3ED0EA;
+        }
  	</style>
  	
   </head>
@@ -226,6 +240,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="container" id="center">
 				<div id="sup">
 					<p>请选择支持项</p>
+					<div id="selfless">
+
+	                    <p>感谢您的无私奉献，这份支持将助我们的梦想飞的更高更远。</p>
+	                    <div class="wszcWrap siteIlB_box" id="wszcWrap">
+	                        <a href="javascript:;" class="cur btn_ALink">¥1</a>
+	                        <a href="javascript:;" class="btn_ALink">¥5</a>
+	                        <a href="javascript:;" class="btn_ALink">¥10</a>
+	                    </div>
+	                    <div>
+	                        <span>其他<b>¥</b></span>
+	                        <input type="text" maxlength="8"/>
+	                        <input id="supportinput" type="button" class="btn btn-info" value="立即支持">
+	                    </div>
+	          						
+		  			</div>
 					<div id="return"></div>
 				</div>
 				

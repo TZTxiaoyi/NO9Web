@@ -26,6 +26,7 @@ public class ProWeb {
 	@ResponseBody
 	public List selectPro(@RequestBody Pro p){
 		List<Object> pList =pService.selectProject(p);
+		System.out.println("ppp"+pList);
 		//response.setCharacterEncoding("utf-8");
 		return pList;
 

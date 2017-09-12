@@ -140,17 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			
  		}
  		
- 		#right-support>div{
- 			border:4px solid #CFCFCF;
- 			padding-left:20px;
- 		}
- 		
- 		#right-support>div{
- 			marign-left:10px;
- 		}
- 		#right-support>div:hover{
- 			border:4px solid #FF66FF;
- 		}
+ 	
  		#right-bottom p{
  			color:#797979;
  			padding-left:20px;
@@ -212,7 +202,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			border:0px;
 			margin-top:15px;
 		}
-		a{ text-decoration:none} 
+		a{ 
+			text-decoration:none
+		} 
 		#plcenter{
 			margin-left:45px;
 		}
@@ -227,7 +219,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			margin-left:50px;
 			margin-right:50px;
 		}
-		
+		 #retcontent{
+        	color:gray;
+        }
+        #return>div:hover{
+ 			border:2px solid  #3ED0EA;
+ 		}
+        #ret{
+        	border:2px solid  gray;
+        	padding-left:10px;
+        	margin-right:10px;
+        }
+        #retsup{
+        	float:right;
+        	margin-right:50px;
+        	margin-top:-40px;
+        }
+       
+        #selfless{
+        	border:2px solid  gray;
+        	padding-left:10px;
+        	margin-right:10px;
+        	padding-top:20px;
+        	padding-bottom:20px;
+        }
+        #selfless:hover{
+        	border:2px solid  #3ED0EA;
+        }
+        #sup_money{
+        	font-size:25px;
+        }
  	</style>
  	
   </head>
@@ -381,8 +402,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img src="images/<%=img%>" alt="" width="100%" height="400px"> --%>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-12" id="sup">
-					<div><span>26</span>支持数</div>
-					<div><span id="raise"></span>已筹款</div>
+					<div>限制人数<span id="limitsup"></span></div>
+					<div>已筹款<span id="raise"></span></div>
 					<div id="progress">
 				
 					</div>
@@ -430,57 +451,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>  
                 </div>  
                 <div class="col-md-4 col-sm-4 col-xs-12" id="center-support">
-                	<div id="right-support">
-		  				<div>
-	                         <h4>无私支持<b>4 人</b></h4>
-	                         <p>感谢您的无私奉献，这份支持将助我们的梦想飞的更高更远。</p>
-	                         <div class="wszcWrap siteIlB_box" id="wszcWrap">
-	                              <a href="javascript:;" class="cur btn_ALink">¥1</a>
-	                         	  <a href="javascript:;" class="btn_ALink">¥5</a>
-	                              <a href="javascript:;" class="btn_ALink">¥10</a>
-	                         </div>
-	                         <div>
-	                               <label>其他<b>¥</b></label>
-	                               <input type="text" maxlength="8"/>
-	                         </div>
-	                         
-	                         <input id="supportinput" type="button" class="btn btn-info" value="立即支持">			
-		  				</div>
-	  					
-		  					<div class="money">
-		                         <h4><span>¥88</span>11 人／限500人</h4>
-		                         <p>初次见面！牛奶玉米</p>
-		                         <p>牛奶水果玉米12根</p>
-		                         <hr/>
-		             			 <p>预计回报发送时间：<b>项目成功结束后15天内 </b></p>
-		               		</div>
-		               		<div class="money">
-		                         <h4><span>¥88</span>11 人／限500人</h4>
-		                         <p>初次见面！牛奶玉米</p>
-		                         <p>牛奶水果玉米12根</p>
-		                         <hr/>
-		             			 <p>预计回报发送时间：<b>项目成功结束后15天内 </b></p>
-		               		</div>
-		               		<div class="money">
-		                         <h4><span>¥88</span>11 人／限500人</h4>
-		                         <p>初次见面！牛奶玉米</p>
-		                         <p>牛奶水果玉米12根</p>
-		                         <hr/>
-		             			 <p>预计回报发送时间：<b>项目成功结束后15天内 </b></p>
-		               		</div>
-	            	</div>  
+                	
+                	
+		  			<div id="selfless">
+
+	                    <p>感谢您的无私奉献，这份支持将助我们的梦想飞的更高更远。</p>
+	                    <div class="wszcWrap siteIlB_box" id="wszcWrap">
+	                        <a href="javascript:;" class="cur btn_ALink">¥1</a>
+	                        <a href="javascript:;" class="btn_ALink">¥5</a>
+	                        <a href="javascript:;" class="btn_ALink">¥10</a>
+	                    </div>
+	                    <div>
+	                        <span>其他<b>¥</b></span>
+	                        <input type="text" maxlength="8"/>
+	                        
+	                    </div>
+	          			<input id="supportinput" type="button" class="btn btn-info" value="立即支持">			
+		  			</div>
+	  				<div id="return"></div>
+		  					
+	            	  
 	            	<!-- <input id="supinput" type="button" class="btn btn-info" value="支持此项目"> -->
 	            	<a href="support.jsp" id="supinput" type="button" class="btn btn-info">支持此项目</a>
 	            	<div id="right-bottom">
 	            		<div id="tel">联系我们</div>
 	            		<p><span class="glyphicon glyphicon-user"></span>发起人</p>
-	            		<div>风格</div>
+	            		<div id="originatorname"></div>
 	            		<hr/>
 	            		<p><span class="glyphicon glyphicon-map-marker"></span>联系地址</p>
-	            		<div>受到广泛的好</div>
+	            		<div id="address">受到广泛的好</div>
 	            		<hr/>
 	            		<p><span class="glyphicon glyphicon-earphone"></span>联系电话</p>
-	            		<div>124578</div>
+	            		<div id="telphon"></div>
 	            	</div>
             	</div> 
                
@@ -670,12 +672,81 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#title").append(data[0].TITLE);
 				$("#progress").append(bar);
 				$("#raise").append(raiseMoney);
+				
 			},
 			error:function(){
 				alret("error");
 			}
 		});
 	});
+	/*
+		查询发起人类型（个人/机构）
+	*/
+	$(function(){
+		var pid=$.cookie('pid');
+		var data={};
+		data["projectsid"]=parseInt(pid);
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:"project/selectProject.do",
+			contentType:"application/json;charset=utf-8",
+			data:JSON.stringify(data),
+			success:function(data){
+				 var originatortype=data[0].ORIGINATORTYPE;
+				if(originatortype==9){
+					//个人
+					originator(pid);
+				}else if(originatortype==10){
+					//机构
+					Organizations(pid);
+				} 
+			},
+			error:function(){
+				alret("error");
+			}
+		});
+	})
+	//个人originator
+	function originator(pid){
+		var data={};
+		data["projectsid"]=pid;
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:"InitiatorWeb/selectOriginator.do",
+			contentType:"application/json;charset=utf-8",
+			data:JSON.stringify(data),
+			success:function(data){
+				$("#originatorname").append(data[0].ORIGINATORNAME);
+				$("#address").append(data[0].ADDRESS);
+				$("#telphon").append(data[0].TELEPHONE);
+			},
+			error:function(){
+				alret("error");
+			}
+		});
+	}
+	//机构Organizations
+	function Organizations(pid){
+		var data={};
+		data["projectsid"]=pid;
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:"InitiatorWeb/selectOrganizations.do",
+			contentType:"application/json;charset=utf-8",
+			data:JSON.stringify(data),
+			success:function(data){
+				$("#originatorname").append(data[0].LINKMAN);
+				$("#address").append(data[0].BUSINESS_ADDRESS);
+				$("#telphon").append(data[0].LINKPHONE);
+			},
+			error:function(){
+				alret("error");
+			}
+		});
+	}
 	/*
 		页面加载时自动加载项目详情
 	*/
@@ -694,9 +765,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					var detail="<div class=\"h3\"><h3>"+value.TITLE+"</h3></div>"+
 							"<div><p>"+value.BODY+"</p></div>"+
-							"<div><img src='images/"+value.URL+"' width=\"650px\" height=\"400px;\"/></div>";
-					/* alert(detail);
-					alert(aa); */
+							"<div><img src='images/"+value.URL+
+							"' width=\"650px\" height=\"400px;\"/></div>";
 					$("#detailUpdate").append(detail);
 				})
 			},
@@ -705,7 +775,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		});
 	})
-	
+	/*
+		页面加载显示右侧support项
+	*/
+	$(function(){
+		var pid=$.cookie('pid');
+		var data={};
+		data["projectsid"]=parseInt(pid);
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "return/selectProReturn.do",
+			contentType : "application/json;charset=utf-8",
+			data :JSON.stringify(data),
+			success : function(data) {//data为返回的数据，在这里做数据绑定  
+				var limitsup=0;
+				$.each(data,function(index,value){
+					var cont="<div id=\"ret\"><div><p id=\"sup_money\">￥"
+					+value.OFFER_MONEY+"</p><input id=\"retsup\" class=\"btn btn-info\" type=\"button\" value=\"支持￥"+
+					value.OFFER_MONEY+"\"/></div><h4>"+value.RETURN_TITLE+
+					"</h4><p id=\"retcontent\">"+value.RETURN_CONTENT+"</p></div>";
+					$("#return").append(cont);
+					var limit=parseInt(value.LIMIT_PEOPLE);//限制人数转换int类型
+					limitsup=limitsup+limit;//限制人数相加
+					
+				});	
+				$("#limitsup").append(limitsup);//限制人数添加到指定位置
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	})
 	/*
 		退出按钮点击事件
 	*/

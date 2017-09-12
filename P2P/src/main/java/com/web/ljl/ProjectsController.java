@@ -51,11 +51,13 @@ public class ProjectsController {
 	@RequestMapping("/AllProjects")
 	public String AllProjects(@RequestBody UserLjl user,HttpServletRequest request,HttpServletResponse response){
 		response.setHeader("Content-type", "text/html;charset=UTF-8");  
-		//System.out.println(user.getEmpid());
+		System.out.println("getEmpid"+user.getEmpid());
 		/*HttpSession session = request.getSession(); 
 		
 		System.out.println(session.getAttribute("accounts"));*/
+		
 		String str= projectsServiceLjl.AllProjects(user);
+		System.out.println("str"+str);
 		try {
 			response.getWriter().write(str);
 		} catch (IOException e) {
