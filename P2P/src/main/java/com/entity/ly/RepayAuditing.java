@@ -1,6 +1,7 @@
 package com.entity.ly;
 
 public class RepayAuditing {
+	int id ;
 	int projectsid;//项目id
 	int return_type;//回报类型
 	int offer_money;//回报金额
@@ -9,6 +10,13 @@ public class RepayAuditing {
 	int limit_people;//限制人数
 	int return_time;//回报时间
 	int image;//回报实物图
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getProjectsid() {
 		return projectsid;
 	}

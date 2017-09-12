@@ -16,32 +16,66 @@
 		where r1.title=w1.key and r1.goal=a1.key and r1.projects_place=b1.key 
 		and r1.financing=c1.key and r1.financing_day=d1.key and r1.cover=e1.key and projectsid=#{projectsid}
 	</select>
-	<!-- 修改项目状态 -->
+	<!-- 修改项目状态 --> 
 	<update id="upSinProSt"  parameterType="int">
 		update projects set projectsstate=14 where projectsid=#{projectsid}
 	</update>
-	<!-- //插入个人信息记录之前先将个人信息记录审核表中的删除 -->
-	<delete id="deSinProAuRe" parameterType="int">
-		delete from resumes_auditings where projectsid=#{projectsid}
-	</delete>
-	<!-- 插入个人信息审核记录 -->
-	<insert id="inSinProAuRe" parameterType="int">
-		insert into resumes_auditings values(resumes_auditing.nextval,#{projectsid},#{idcard},#{originatorname},#{address},#{telephone},#{cardimage1},#{cardimage2})
+	
+	
+	<!-- 修改个人信息审核记录 -->
+	<update id="inSinProAuRe" parameterType="int">
+		update resumes_auditings set idcard=#{idcard},originatorname=#{originatorname},address=#{address},telephone=#{telephone},cardimage1=#{cardimage1},cardimage2=#{cardimage2}
+		where projectsid=#{projectsid}
+	</update>
+
+	<!-- 修改机构信息审核记录 -->
+	<update id="inOraProAuRe" parameterType="int">
+		update organiza_auditing set oname=#{oname},ocode=#{ocode},corporation=#{corporation},register_address=#{register_address},
+		linkman=#{linkman},linkphone=#{linkphone},abbreviation=#{abbreviation},business_address=#{business_address} where projectsid=#{projectsid}
+	</update>
+	<!-- 修改项目信息审核记录 -->
+	<update id="inProAuRecord" parameterType="int">
+		update proindetail_auditing set title=#{title},goal=#{goal},projects_place=#{projects_place},financing=#{financing},financing_day=#{financing_day},cover=#{cover}
+		where projectsid=#{projectsid}
+	</update>
+	
+	
+	<!-- 修改项目回报审核记录 -->
+	<update id="inProReturnRe" parameterType="map">
+		update retur_auditing_record set return_type=#{return_type},offer_money=#{offer_money},return_title=#{return_title},return_content=#{return_content},limit_people=#{limit_people},return_time=#{return_time},image=#{image}
+		where projectsid=#{projectsid}
+	</update>
+	
+	<!-- 根据项目序号，查询该项目属于个人还是机构 -->
+	<select id="selProType" resultType="map" parameterType="int">
+		select * from originator where projectsid=#{projectsid}
+	</select>
+	<!-- 在所有项目里点击审核，给个人信息审核表一个默认未审核的初始值（1） -->
+	<insert id="inSinProState" parameterType="int">
+		insert into resumes_auditings values(resumes_auditing.nextval,#{projectsid},42,42,42,42,42,42)
 	</insert>
-	<!-- 审核项目信息，点击保存先删除表中该项目之前有的数据 -->
-	<delete id="deProAuRe" parameterType="int">
-		delete from proindetail_auditing where projectsid=#{projectsid}
-	</delete>
-	<!-- 出入个人信息审核记录 -->
-	<insert id="inProAuRecord" parameterType="int">
-		insert into proindetail_auditing values(list_pro_indetail.nextval,#{projectsid},#{title},#{goal},#{projects_place},#{financing},#{financing_day},#{cover})
+	<!--  在所有项目里点击审核，给机构信息审核表一个默认未审核的初始值（1）-->
+	<insert id="inOrProState" parameterType="int">
+		insert into organiza_auditing values(orga_auditing.nextval,#{projectsid},42,42,42,42,42,42,42,42)
 	</insert>
-	<!-- 审核项目信息，点击保存先删除表中该项目之前有的数据 -->
-	<delete id="deProAuReturn" parameterType="int">
-		delete from retur_auditing_record where projectsid=#{projectsid}
-	</delete>
-	<!-- 出入个人信息审核记录 -->
-	<insert id="inProReturnRe" parameterType="map">
-		insert into retur_auditing_record(id,projectsid,return_type,offer_money,return_title,return_content,limit_people,return_time,image) values(retur_auditing_record_list.nextval,#{projectsid},#{return_type},#{offer_money},#{return_title},40,#{limit_people},#{return_time},#{image})
+	<!--  在所有项目里点击审核，给项目信息审核表一个默认未审核的初始值（2）-->
+	<insert id="inProIndetailState" parameterType="int">
+		insert into proindetail_auditing values(list_pro_indetail.nextval,#{projectsid},42,42,42,42,42,42)
 	</insert>
+	
+	<!--  在所有项目里点击审核，给项目描述审核表一个默认未审核的初始值（3）-->
+	<insert id="inProDescribeState" parameterType="int">
+		insert into pro_describe_auditing values(describe_auditing_record_list.nextval,#{projectsid},42,42)
+	</insert>
+	
+	<!--  在所有项目里点击审核，给项目回报审核表一个默认未审核的初始值（4）-->
+	<insert id="inProReturnState" parameterType="int">
+		insert into retur_auditing_record values(retur_auditing_record_list.nextval,#{projectsid},42,42,42,42,42,42,42)
+	</insert>
+	
+	<!-- 查询项目描述中的文本 -->
+	<select id="selProCont" parameterType="com.entity.ljl.ProjectsLjl" resultType="map">
+		select * from (select pi.indetailid,pi.projectsid,pi.textid,pi.photoid,pi.places,it.title,it.body,ip.url from projects_indetail pi left join projects_indetail_text it on pi.textid=it.textid
+		left join projects_indetail_photo ip on pi.photoid=ip.photoid ) where PROJECTSID=#{projectsid} order by PLACES
+	</select>
 </mapper>

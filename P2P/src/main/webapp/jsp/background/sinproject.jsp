@@ -27,7 +27,7 @@
 		<div class="pageTop">
 			<div class="page">
 				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
-					href="#">公共管理</a>&nbsp;-</span>&nbsp;意见管理
+					href="#">公共管理</a>&nbsp;-</span>&nbsp;个人项目（未审核）
 			</div>
 		</div>
 
@@ -238,9 +238,9 @@
         	field: 'STATE',
             title: '项目状态',
         }]]
-    });
+    });http://localhost:9088/P2P/images/
 	function mark(row,index,value){
-		return ["<img src='"+index.CARDIMAGE1+"'>"];
+		return ["<img src=\"http://localhost:9088/P2P/images/"+index.CARDIMAGE1+"\">"];
 	}
   $("input.mh_date").manhuaDate({
     Event : "click",//可选               

@@ -12,6 +12,25 @@
 <script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
+<style>
+	#save_one,#save_two,#save_three,#save_four{
+		display:block;
+		position:absolute;
+		margin-left:1000px;
+	}
+	#save_all{
+		display:block;
+		position:absolute;
+		margin-left:1000px;
+		margin-top:80px;		
+	}
+	#give_up{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:80px
+	}
+</style>
 </head>
 <body>
 	<div id="pageAll">
@@ -31,11 +50,11 @@
 					<ul id="myTab" class="nav nav-tabs">
 						<li class="active">
 							<a href="#home" data-toggle="tab">
-								个人信息审核
+								机构信息审核
 							</a>
 						</li>
 					<li><a href="#ios" data-toggle="tab">项目信息审核</a></li>
-					<li><a href="#describe_pro" data-toggle="tab">项目描述审核</a></li>					
+					<li><a href="#pro_title" data-toggle="tab">项目描述审核</a></li>					
 					<li><a href="#pro_return" data-toggle="tab">项目回报审核</a></li>
 					</ul>
 					项目序号：<span id="projectsid"></span>
@@ -131,7 +150,12 @@
 										<label><input type="radio" name="busadress" value="VALUE16"/>&nbsp;否</label>
 									</td>
 								</tr>
-							</table>							
+							</table>
+							
+							
+								
+									<button type="button" class="btn btn-info" id="save_one">保存</button>
+														
 						</div>
 						<div class="tab-pane fade" id="ios">
 							<table class="table table-hover">
@@ -203,8 +227,11 @@
 									</td>
 								</tr>								
 							</table>
-						</div>
-						<div class="tab-pane fade" id="describe_pro">
+							
+									<button type="button" class="btn btn-info" id="save_two">保存</button>
+							
+						</div>						
+						<div class="tab-pane fade" id="pro_title">
 							<table class="table table-hover">
 								<tr>
 									<td>审核选项</td>
@@ -217,33 +244,29 @@
 									<td>项目详细地址</td>
 									<td id="describe_one"></td>
 									<td>
-										<label><input type="radio" name="places" />&nbsp;是</label>
+										<label><input type="radio" name="places" value="center1"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="places" />&nbsp;否</label>
+										<label><input type="radio" name="places" value="center2"/>&nbsp;否</label>
 									</td>
-								</tr>
-								<tr>
-									<td>标题</td>
-									<td id="describe_two"></td>
-									<td>
-										<label><input type="radio" name="titles" />&nbsp;是</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="titles" />&nbsp;否</label>
-									</td>
-								</tr>	
+								</tr>								
 								<tr>
 									<td>文本</td>
-									<td id="describe_three"></td>
+									<td id="describe_three">
+										<a type="button" id="detail" class="btn btn-info" data-toggle="modal" data-target="#myModal">查看</a>
+									</td>
 									<td>
-										<label><input type="radio" name="content" />&nbsp;是</label>
+										<label><input type="radio" name="content" value="center3"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="content" />&nbsp;否</label>
+										<label><input type="radio" name="content" value="center4"/>&nbsp;否</label>
 									</td>
 								</tr>														
 							</table>
+						
+								
+									<button type="button" class="btn btn-info" id="save_three">保存</button>
+							
 						</div>
 						<div class="tab-pane fade" id="pro_return">
 							<table class="table table-hover">
@@ -325,23 +348,15 @@
 									</td>
 								</tr>										
 							</table>
+								
+									<button type="button" class="btn btn-info" id="save_four">保存</button>
+							
 						</div>
-					</div>
-					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核状态：<label><input
-							type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input
-							type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-							type="radio" name="styleshoice1" />&nbsp;不通过</label>
-					</div>
-					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否推荐：<label><input
-							type="radio" checked="checked" name="styleshoice2" />&nbsp;是</label><label><input
-							type="radio" name="styleshoice2" />&nbsp;否</label>
-					</div>
+					</div>					
 					<div class="bbD">
 						<p class="bbDP">
-							<button class="btn_ok btn_yes" href="#">提交</button>
-							<a class="btn_ok btn_no" href="#">取消</a>
+							<button class="btn_ok btn_yes" href="#" id="save_all">提交</button>
+							<a class="btn_ok btn_no" href="#" id="give_up">取消</a>
 						</p>
 					</div>
 				</div>
@@ -350,8 +365,65 @@
 			<!-- 上传广告页面样式end -->
 		</div>
 	</div>
+	
+<!--  /*文本详情模态框*/-->	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						文本详情
+					</h4>
+				</div>
+				<div class="modal-body">
+				
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
 	<script type="text/javascript">
 		var auditing = parseInt($.cookie("orga_auditing"));
+		$("#detail").click(function(){
+			var data={};
+			data["projectsid"]=auditing;
+			$.ajax({
+				url:"/P2P/project/proContent.do",
+				type:"post",
+				dataType:"json",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					$("#myModalLabel").text("");
+					$.each(data,function(index,value){
+						var title="<span  class=\"form-control\" id=\"name\" >标题："+value.TITLE+"</span>"+
+						"<p  id=\"body_span\">文本："+value.BODY+"</p>"+
+						"<span  >图片："+value.URL+"</span><hr>";						
+						$("#myModalLabel").append(title);
+					})
+				}
+			});
+		});
+		$(function(){
+			var dd={};
+			dd["projectsid"]=auditing;			
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/upSinProState.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data);
+				}
+			});
+		});
 		// 机构信息项目审核  
 		$(function(){
 			$("#begin_auditing").append((new Date()).toLocaleString());
@@ -422,9 +494,7 @@
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){
 					$.each(data,function(index,value){					
-						$("#describe_one").append(value.places);
-						$("#describe_two").append(value.title);
-						$("#describe_three").append(value.body);
+						$("#describe_one").append(value.places);					
 					})
 				}
 			})
@@ -455,7 +525,7 @@
 		});
 		//机构信息审核记录
 		$(function(){			
-			alert("ssdd:"+auditing);
+			//alert("ssdd:"+auditing);
 			var dd={};
 			dd["projectsid"]=auditing;			
 			$.ajax({
@@ -465,7 +535,7 @@
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					alert(data[0].VALUE1);
+					//alert(data[0].VALUE1);
 					if(data[0].VALUE1=="yes"){
 						$("input:radio[value='VALUE1']").attr('checked','true');
 					}else if(data[0].VALUE1=="no"){
@@ -518,7 +588,7 @@
 		});
 		//机构项目审核记录
 		$(function(){			
-			alert("ssdd:"+auditing);
+			//alert("ssdd:"+auditing);
 			var dd={};
 			dd["projectsid"]=auditing;			
 			$.ajax({
@@ -528,7 +598,7 @@
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					alert(data[0].VALUE1);
+					//alert(data[0].VALUE1);
 					if(data[0].VALUE1=="yes"){
 						$("input:radio[value='right1']").attr('checked','true');
 					}else if(data[0].VALUE1=="no"){
@@ -567,9 +637,37 @@
 				}
 			});
 		});
-		//项目回报审核记录
+		//项目描述审核查询
 		$(function(){			
-			alert("ssdd:"+auditing);
+			//alert("ssdd:"+auditing);
+			var dd={};
+			dd["projectsid"]=auditing;			
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/proIndeAuditing.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data[0].VALUE1);
+					if(data[0].VALUE1=="yes"){
+						$("input:radio[value='center1']").attr('checked','true');
+					}else if(data[0].VALUE1=="no"){
+						$("input:radio[value='center2']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE2=="yes"){
+						$("input:radio[value='center3']").attr('checked','true');
+					}else if(data[0].VALUE2=="no"){
+						$("input:radio[value='center4']").attr('checked','true');
+					}
+																			
+				}
+			});
+		});
+		//项目回报审核记录打印
+		$(function(){			
+			//alert("ssdd:"+auditing);
 			var dd={};
 			dd["projectsid"]=auditing;			
 			$.ajax({
@@ -579,7 +677,7 @@
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					alert(data[0].VALUE1);
+					//alert(data[0].VALUE1);
 					if(data[0].VALUE1=="yes"){
 						$("input:radio[value='left1']").attr('checked','true');
 					}else if(data[0].VALUE1=="no"){
@@ -621,6 +719,262 @@
 					}else if(data[0].VALUE7=="no"){
 						$("input:radio[value='left14']").attr('checked','true');
 					}
+				}
+			});
+		});
+		//保存机构信息审核记录
+		$("#save_one").click(function(){
+			var data={};
+			/* if($("input:radio[value='VALUE1']").is(':checked')){
+				alert("aaaa");
+			} */
+			
+			data["projectsid"]=auditing;
+			if($("input:radio[value='VALUE1']").is(':checked')){
+				data["oname"]=40;
+			}else if($("input:radio[value='VALUE2']").is(':checked')){
+				data["oname"]=41;
+			}else{
+				data["oname"]=42;
+			}
+			//alert("sss:"+data.idcard);
+			if($("input:radio[value='VALUE3']").is(':checked')){
+				data["ocode"]=40;
+			}else if($("input:radio[value='VALUE4']").is(':checked')){
+				data["ocode"]=41;
+			}else{
+				data["ocode"]=42;
+			}
+			
+			if($("input:radio[value='VALUE5']").is(':checked')){
+				data["corporation"]=40;
+			}else if($("input:radio[value='VALUE6']").is(':checked')){
+				data["corporation"]=41;
+			}else{
+				data["corporation"]=42;
+			}
+
+			if($("input:radio[value='VALUE7']").is(':checked')){
+				data["register_address"]=40;
+			}else if($("input:radio[value='VALUE8']").is(':checked')){
+				data["register_address"]=41;
+			}else{
+				data["register_address"]=42;
+			}
+
+			if($("input:radio[value='VALUE9']").is(':checked')){
+				data["linkman"]=40;
+			}else if($("input:radio[value='VALUE10']").is(':checked')){
+				data["linkman"]=41;
+			}else{
+				data["linkman"]=42;
+			}
+
+			if($("input:radio[value='VALUE11']").is(':checked')){
+				data["linkphone"]=40;
+			}else if($("input:radio[value='VALUE12']").is(':checked')){
+				data["linkphone"]=41;
+			}else{
+				data["linkphone"]=42;
+			}
+			
+			if($("input:radio[value='VALUE13']").is(':checked')){
+				data["abbreviation"]=40;
+			}else if($("input:radio[value='VALUE14']").is(':checked')){
+				data["abbreviation"]=41;
+			}else{
+				data["abbreviation"]=42;
+			}
+			
+			if($("input:radio[value='VALUE15']").is(':checked')){
+				data["business_address"]=40;
+			}else if($("input:radio[value='VALUE16']").is(':checked')){
+				data["business_address"]=41;
+			}else{
+				data["business_address"]=42;
+			}
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/inseOraAuRecord.do",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data);
+				}
+			});
+		});
+		//项目信息审核记录保存
+		$("#save_two").click(function(){
+			var data={};
+			/* if($("input:radio[value='VALUE1']").is(':checked')){
+				alert("aaaa");
+			} */
+			
+			data["projectsid"]=auditing;
+			if($("input:radio[value='right1']").is(':checked')){
+				data["title"]=40;
+			}else if($("input:radio[value='right2']").is(':checked')){
+				data["title"]=41;
+			}else{
+				data["title"]=42;
+			}
+			//alert("sss:"+data.idcard);
+			if($("input:radio[value='right3']").is(':checked')){
+				data["goal"]=40;
+			}else if($("input:radio[value='right4']").is(':checked')){
+				data["goal"]=41;
+			}else{
+				data["goal"]=42;
+			}
+			
+			if($("input:radio[value='right5']").is(':checked')){
+				data["projects_place"]=40;
+			}else if($("input:radio[value='right6']").is(':checked')){
+				data["projects_place"]=41;
+			}else{
+				data["projects_place"]=42;
+			}
+
+			if($("input:radio[value='right7']").is(':checked')){
+				data["financing"]=40;
+			}else if($("input:radio[value='right8']").is(':checked')){
+				data["financing"]=41;
+			}else{
+				data["financing"]=42;
+			}
+
+			if($("input:radio[value='right9']").is(':checked')){
+				data["financing_day"]=40;
+			}else if($("input:radio[value='right10']").is(':checked')){
+				data["financing_day"]=41;
+			}else{
+				data["financing_day"]=42;
+			}
+
+			if($("input:radio[value='right11']").is(':checked')){
+				data["cover"]=40;
+			}else if($("input:radio[value='right12']").is(':checked')){
+				data["cover"]=41;
+			}else{
+				data["cover"]=42;
+			}
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/inProAuRecord.do",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data);
+				}
+			});
+		});
+		//项目描述审核记录
+		$("#save_three").click(function(){
+			var data={};
+			/* if($("input:radio[value='VALUE1']").is(':checked')){
+				alert("aaaa");
+			} */
+			
+			data["projectsid"]=auditing;
+			if($("input:radio[value='center1']").is(':checked')){
+				data["place"]=40;
+			}else if($("input:radio[value='center2']").is(':checked')){
+				data["place"]=41;
+			}else{
+				data["place"]=42;
+			}
+			//alert("sss:"+data.idcard);
+			if($("input:radio[value='center3']").is(':checked')){
+				data["body"]=40;
+			}else if($("input:radio[value='center4']").is(':checked')){
+				data["body"]=41;
+			}else{
+				data["body"]=42;
+			}
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/inProDescribeAudi.do",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data);
+				}
+			});
+		});
+		//回报审核记录保存
+		$("#save_four").click(function(){
+			var data={};
+			/* if($("input:radio[value='VALUE1']").is(':checked')){
+				alert("aaaa");
+			} */
+			
+			data["projectsid"]=auditing;
+			if($("input:radio[value='left1']").is(':checked')){
+				data["return_type"]=40;
+			}else if($("input:radio[value='left2']").is(':checked')){
+				data["return_type"]=41;
+			}else{
+				data["return_type"]=42;
+			}
+			//alert("sss:"+data.idcard);
+			if($("input:radio[value='left3']").is(':checked')){
+				data["offer_money"]=40;
+			}else if($("input:radio[value='left4']").is(':checked')){
+				data["offer_money"]=41;
+			}else{
+				data["offer_money"]=42;
+			}
+			
+			if($("input:radio[value='left5']").is(':checked')){
+				data["return_title"]=40;
+			}else if($("input:radio[value='left6']").is(':checked')){
+				data["return_title"]=41;
+			}else{
+				data["return_title"]=42;
+			}
+
+			if($("input:radio[value='left7']").is(':checked')){
+				data["return_content"]=40;
+			}else if($("input:radio[value='left8']").is(':checked')){
+				data["return_content"]=41;
+			}else{
+				data["return_content"]=42;
+			}
+
+			if($("input:radio[value='left9']").is(':checked')){
+				data["limit_people"]=40;
+			}else if($("input:radio[value='left10']").is(':checked')){
+				data["limit_people"]=41;
+			}else{
+				data["limit_people"]=42;
+			}
+
+			if($("input:radio[value='left11']").is(':checked')){
+				data["return_time"]=40;
+			}else if($("input:radio[value='left12']").is(':checked')){
+				data["return_time"]=41;
+			}else{
+				data["return_time"]=42;
+			}
+			
+			if($("input:radio[value='left13']").is(':checked')){
+				data["image"]=40;
+			}else if($("input:radio[value='left14']").is(':checked')){
+				data["image"]=41;
+			}else{
+				data["image"]=42;
+			}
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/inProReturn.do",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data);
 				}
 			});
 		});

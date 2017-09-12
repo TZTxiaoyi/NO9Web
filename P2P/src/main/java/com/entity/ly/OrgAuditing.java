@@ -2,66 +2,66 @@ package com.entity.ly;
 
 public class OrgAuditing {
 	int projectsid;//
-	String oname;//
-	String ocode;//
-	String corporation;//
-	String register_address;//ַ
-	String linkman;//
-	String linkphone;//
-	String abbreviation;//
-	String business_address;
+	int oname;//
+	int ocode;//
+	int corporation;//
+	int register_address;//ַ
+	int linkman;//
+	int linkphone;//
+	int abbreviation;//
+	int business_address;
 	public int getProjectsid() {
 		return projectsid;
 	}
 	public void setProjectsid(int projectsid) {
 		this.projectsid = projectsid;
 	}
-	public String getOname() {
+	public int getOname() {
 		return oname;
 	}
-	public void setOname(String oname) {
+	public void setOname(int oname) {
 		this.oname = oname;
 	}
-	public String getOcode() {
+	public int getOcode() {
 		return ocode;
 	}
-	public void setOcode(String ocode) {
+	public void setOcode(int ocode) {
 		this.ocode = ocode;
 	}
-	public String getCorporation() {
+	public int getCorporation() {
 		return corporation;
 	}
-	public void setCorporation(String corporation) {
+	public void setCorporation(int corporation) {
 		this.corporation = corporation;
 	}
-	public String getRegister_address() {
+	public int getRegister_address() {
 		return register_address;
 	}
-	public void setRegister_address(String register_address) {
+	public void setRegister_address(int register_address) {
 		this.register_address = register_address;
 	}
-	public String getLinkman() {
+	public int getLinkman() {
 		return linkman;
 	}
-	public void setLinkman(String linkman) {
+	public void setLinkman(int linkman) {
 		this.linkman = linkman;
 	}
-	public String getLinkphone() {
+	public int getLinkphone() {
 		return linkphone;
 	}
-	public void setLinkphone(String linkphone) {
+	public void setLinkphone(int linkphone) {
 		this.linkphone = linkphone;
 	}
-	public String getAbbreviation() {
+	public int getAbbreviation() {
 		return abbreviation;
 	}
-	public void setAbbreviation(String abbreviation) {
+	public void setAbbreviation(int abbreviation) {
 		this.abbreviation = abbreviation;
 	}
-	public String getBusiness_address() {
+	public int getBusiness_address() {
 		return business_address;
 	}
-	public void setBusiness_address(String business_address) {
+	public void setBusiness_address(int business_address) {
 		this.business_address = business_address;
 	}
 	
