@@ -12,6 +12,28 @@
 <script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
+<style>
+	#body_span{
+		border:2px;
+	}
+	#save_sinpro,#save_two,#save_three,#save_four{
+		display:block;
+		position:relative;
+		margin-left:900px;
+	}
+	#save_all{
+		display:block;
+		position:absolute;
+		margin-left:1000px;
+		margin-top:40px;		
+	}
+	#give_up{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:40px
+	}
+</style>
 </head>
 <body>
 	<div id="pageAll">
@@ -116,16 +138,11 @@
 								</tr>
 							</table>
 							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核状态：<label><input
-									type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input
-									type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-									type="radio" name="styleshoice1" />&nbsp;不通过</label>
+								
 							</div>
 							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否推荐：<label><input
-									type="radio" checked="checked" name="styleshoice2" />&nbsp;是</label><label><input
-									type="radio" name="styleshoice2" />&nbsp;否</label><br>
-									<a type="button" class="btn btn-info" id="save_sinpro">保存</a>
+								
+									<button type="button" class="btn btn-info" id="save_sinpro">保存</button>
 							</div>							
 						</div>
 						<div class="tab-pane fade" id="ios">
@@ -199,15 +216,10 @@
 								</tr>								
 							</table>
 							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核状态：<label><input
-									type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input
-									type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-									type="radio" name="styleshoice1" />&nbsp;不通过</label>
+							
 							</div>
 							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否推荐：<label><input
-									type="radio" checked="checked" name="styleshoice2" />&nbsp;是</label><label><input
-									type="radio" name="styleshoice2" />&nbsp;否</label><br>
+								
 									<button type="button" class="btn btn-info" id="save_two">保存</button>
 							</div>
 						</div>						
@@ -224,44 +236,32 @@
 									<td>项目详细地址</td>
 									<td id="describe_one"></td>
 									<td>
-										<label><input type="radio" name="places" />&nbsp;是</label>
+										<label><input type="radio" name="places" value="center1" />&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="places" />&nbsp;否</label>
+										<label><input type="radio" name="places" value="center2"/>&nbsp;否</label>
 									</td>
 								</tr>
-								<tr>
-									<td>标题</td>
-									<td id="describe_two"></td>
-									<td>
-										<label><input type="radio" name="titles" />&nbsp;是</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="titles" />&nbsp;否</label>
-									</td>
-								</tr>	
+								
 								<tr>
 									<td>文本</td>
-									<td id="describe_three"></td>
+									<td id="describe_three">
+										<a type="button" id="detail" class="btn btn-info" data-toggle="modal" data-target="#myModal">查看</a>
+									</td>
 									<td>
-										<label><input type="radio" name="content" />&nbsp;是</label>
+										<label><input type="radio" name="content" value="center3"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="content" />&nbsp;否</label>
+										<label><input type="radio" name="content" value="center4"/>&nbsp;否</label>
 									</td>
 								</tr>														
 							</table>
 							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核状态：<label><input
-									type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input
-									type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-									type="radio" name="styleshoice1" />&nbsp;不通过</label>
+								
 							</div>
 							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否推荐：<label><input
-									type="radio" checked="checked" name="styleshoice2" />&nbsp;是</label><label><input
-									type="radio" name="styleshoice2" />&nbsp;否</label><br>
-									<button type="button" class="btn btn-info">保存</button>
+						
+									<button type="button" class="btn btn-info" id="save_three">保存</button>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="pro_return">
@@ -345,15 +345,9 @@
 								</tr>										
 							</table>
 							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核状态：<label><input
-									type="radio" checked="checked" name="styleshoice1" />&nbsp;未审核</label> <label><input
-									type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-									type="radio" name="styleshoice1" />&nbsp;不通过</label>
+								
 							</div>
-							<div class="bbD">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否推荐：<label><input
-									type="radio" checked="checked" name="styleshoice2" />&nbsp;是</label><label><input
-									type="radio" name="styleshoice2" />&nbsp;否</label><br>
+							<div class="bbD">								
 									<button type="button" class="btn btn-info" id="save_four">保存</button>
 							</div>
 						</div>
@@ -361,18 +355,60 @@
 					
 					<div class="bbD">
 						<p class="bbDP">
-							<button class="btn_ok btn_yes" href="#">提交</button>
-							<a class="btn_ok btn_no" href="#">取消</a>
+							<button class="btn_ok btn_yes" href="#" id="save_all">提交</button>
+							<a class="btn_ok btn_no" href="index.jsp" id="give_up">取消</a>
 						</p>
 					</div>
 				</div>
 			</div>
-
 			<!-- 上传广告页面样式end -->
 		</div>
 	</div>
+	
+	//文本详情模态框
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						文本详情
+					</h4>
+				</div>
+				<div class="modal-body">
+				
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
 	<script type="text/javascript">
 		var auditing=$.cookie("project_auditing");
+		$("#detail").click(function(){
+			var data={};
+			data["projectsid"]=auditing;
+			$.ajax({
+				url:"/P2P/project/proContent.do",
+				type:"post",
+				dataType:"json",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					$("#myModalLabel").text("");
+					$.each(data,function(index,value){
+						var title="<span  class=\"form-control\" id=\"name\" >标题："+value.TITLE+"</span>"+
+						"<p  id=\"body_span\">文本："+value.BODY+"</p>"+
+						"<span  >图片："+value.URL+"</span><hr>";						
+						$("#myModalLabel").append(title);
+					})
+				}
+			});
+		});
 		$(function(){
 			$("#begin_auditing").append((new Date()).toLocaleString());
 			$("#projectsid").append(auditing);
@@ -440,9 +476,7 @@
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){
 					$.each(data,function(index,value){					
-						$("#describe_one").append(value.places);
-						$("#describe_two").append(value.title);
-						$("#describe_three").append(value.body);
+						$("#describe_one").append(value.places);						
 					})
 				}
 			})
@@ -471,6 +505,7 @@
 				}
 			});
 		});
+		//个人信息审核记录查询
 		$(function(){
 			var auditing=parseInt($.cookie("project_auditing"));
 			//alert("ssdd:"+auditing);
@@ -523,6 +558,7 @@
 				}
 			});
 		});
+		<!--项目详情 -->
 		$(function(){
 			var auditing=parseInt($.cookie("project_auditing"));
 			//alert("ssdd:"+auditing);
@@ -572,6 +608,34 @@
 					}else if(data[0].VALUE6=="no"){
 						$("input:radio[value='right12']").attr('checked','true');
 					}
+				}
+			});
+		});
+		//项目描述审核查询
+		$(function(){			
+			//alert("ssdd:"+auditing);
+			var dd={};
+			dd["projectsid"]=auditing;			
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/proIndeAuditing.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data[0].VALUE1);
+					if(data[0].VALUE1=="yes"){
+						$("input:radio[value='center1']").attr('checked','true');
+					}else if(data[0].VALUE1=="no"){
+						$("input:radio[value='center2']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE2=="yes"){
+						$("input:radio[value='center3']").attr('checked','true');
+					}else if(data[0].VALUE2=="no"){
+						$("input:radio[value='center4']").attr('checked','true');
+					}
+																			
 				}
 			});
 		});
@@ -643,7 +707,7 @@
 			data:JSON.stringify(dd),
 			contentType:"application/json;charset=UTF-8",
 			success:function(data){					
-				alert(data);
+				//alert(data);
 			}
 		});
 	});
@@ -710,7 +774,7 @@
 				data:JSON.stringify(data),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					alert(data);
+					//alert(data);
 				}
 			});
 		});
@@ -776,7 +840,41 @@
 				data:JSON.stringify(data),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					alert(data);
+					//alert(data);
+				}
+			});
+		});
+		//保存项目描述审核记录
+		$("#save_three").click(function(){
+			var data={};
+			/* if($("input:radio[value='VALUE1']").is(':checked')){
+				alert("aaaa");
+			} */
+			
+			data["projectsid"]=auditing;
+			if($("input:radio[value='center1']").is(':checked')){
+				data["place"]=40;
+			}else if($("input:radio[value='center2']").is(':checked')){
+				data["place"]=41;
+			}else{
+				data["place"]=42;
+			}
+			//alert("sss:"+data.idcard);
+			if($("input:radio[value='center3']").is(':checked')){
+				data["body"]=40;
+			}else if($("input:radio[value='center4']").is(':checked')){
+				data["body"]=41;
+			}else{
+				data["body"]=42;
+			}
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/inProDescribeAudi.do",
+				data:JSON.stringify(data),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data);
 				}
 			});
 		});
@@ -850,9 +948,21 @@
 				data:JSON.stringify(data),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					alert(data);
+					//alert(data);
 				}
 			});
+		});
+		$("#save_all").click(function(){
+			var flag=0;
+			$("input:radio").each(function(i){
+				if($(this).is(":checked")){
+					flag++;
+				}
+			});
+			if(flag==21){
+				alert("审核成功")
+				 window.location.replace("index.jsp");
+			}
 		});
 	</script>
 </body>
