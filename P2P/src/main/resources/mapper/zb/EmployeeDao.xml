@@ -5,10 +5,13 @@
 <mapper namespace="com.dao.zb.EmployeeDao">	
 	 <select id="queryEmployee" resultType="Employeezb">
 		select e.empid,e.username,e.empname,e.idcard,e.sex,e.age,e.address,e.telephone,e.balance,e.empstate from employee e, word w
-		 where e.empstate = w.key
-		 
+		 where e.empstate = w.key		 
 	</select> 
+	<insert id = "addEmployee" parameterType="com.entity.zb.Employeezb">
+		insert into employee(empid,username,EmpName,IdCard,sex,age,address,telephone,Balance,EmpState)
+ values(list_employee.nextval,#{UserName},#{EmpName},#{IdCard},#{Sex},#{Age},#{Address},#{TelePhone},0.00,4)
+	</insert>
 	<update id="updateEmployee"  parameterType="com.entity.zb.Employeezb">    	 
-     	update employee set username=#{UserName},age=#{Age},address=#{Address},telePhone=#{TelePhone} where EmpId=#{empId}
+     	update employee set EmpName=#{EmpName},IdCard=#{IdCard} where EmpId=#{empId}
   	</update>
 </mapper>

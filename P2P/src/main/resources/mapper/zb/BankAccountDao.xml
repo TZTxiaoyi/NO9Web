@@ -7,6 +7,6 @@
 		where e.empid = b.empid
 	</select> 
 	<insert id="addBankAccount" parameterType="com.entity.zb.BankAccount">
-		insert into bank_account values(#{bankAccountId},#{empId},#{bankAccounts},#{bankName})
+		insert into bank_account values(list_account.nextval,#{empId},#{bankAccounts},#{bankName})
 	</insert>
 </mapper>
