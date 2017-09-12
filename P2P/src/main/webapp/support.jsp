@@ -356,16 +356,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$.ajax({
 				type : "post",
 				dataType : "json",
-				url : "return/selectProReturn.do",
+				url : "OrdersWeb/insertOrders.do",
 				contentType : "application/json;charset=utf-8",
 				data :JSON.stringify(data),
 				success : function(data) {//data为返回的数据，在这里做数据绑定  
-					
+					alert("suc");
 				},
 				error : function() {
 					alert("error");
 				}
 			});
 		}
+	})
+
+	/*
+	页面加载时查看cookie里的值
+	*/
+	$(function(){
+		$("#userid").append($.cookie("empid"));
+		var account1=$.cookie("account1");
+		var account=$.cookie("account");
+		var touxiang="<a><img src=\"images/touxiang.png\" width=\"40px\" height=\"40px\" class=\"img-circle\"/>"+
+		"&nbsp;&nbsp;<span>"+account+"</span></a>";
+		if(account!=null){
+			$("#user").append(account);
+			$("#log_reg").hide();
+			$("#log_img").show();
+			$("#plimg").append(touxiang);
+		}
+		if(account1!=null){
+			$("#user").append(account1);
+			$("#log_reg").hide();
+			$("#log_img").show();
+			$("#plimg").append(touxiang);
+		} 
+		
+	})
+	
+	/*
+	退出按钮点击事件
+	*/
+	$("#exit").click(function(){
+		window.location.href="pro_details.jsp"; 
+		$("#log_reg").show();
+		$("#log_img").hide();
+		$.cookie('account', '', { expires: -1 });
+		$.cookie('account1', '', { expires: -1 });
+		 
 	})
 </script>

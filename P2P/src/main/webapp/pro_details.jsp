@@ -839,5 +839,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
  		return fmt;
 	} 
-
+	$(function(){
+		var pid=$.cookie('pid');
+		//var empid=$.cookie('empid');
+		data={};
+		//data["empid"]=empid;
+		data["projectsid"]=pid;
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "OrdersWeb/selectOrders.do",
+			contentType : "application/json;charset=utf-8",
+			data :JSON.stringify(data),
+			success : function(data) {//data为返回的数据，在这里做数据绑定
+				var th="<tr><td>订单序号</td><td>支持者</td><td>支持项</td><td>数量</td><td>支持时间</td><td></td></tr>";
+				$.each(data,function(index,value){
+					var tr="<tr><td>"+value.ORD_ID+"</td><td>"+value.USERNAME+
+					"</td><td>"+value.PAYMONEY+"</td><td>"+value.FRACTION+
+					"</td><td>"+value.ORDER_TIME+"</td><td><a class=\"button border-info deskbtn\">"+ 
+					"<span class=\"icon-trash-o\"></span>回报</a></td></tr>";
+					$("#tab").append(tr);
+				});
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	})
 	</script>
