@@ -1,5 +1,7 @@
 package com.web.sxm;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,11 @@ public class CommWeb {
 	@RequestMapping(value="/savecomm.do")
 	public int savecomm(@RequestBody Commentary c,HttpServletResponse response){
 		return cService.saveComm(c);
+	}
+	@ResponseBody
+	@RequestMapping(value="/selectcomm.do")
+	public List selectcomm(){
+		List list=cService.selectComm();
+		return list;
 	}
 }

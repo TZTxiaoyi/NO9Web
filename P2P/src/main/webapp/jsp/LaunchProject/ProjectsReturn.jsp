@@ -52,6 +52,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	
   			<div  id="colpadding">
+  				<b>设置你的回报信息</b>
+  				<hr>
+  				
   				<form class="form-horizontal">
 				<div>
 					<div id="Relevantdata">

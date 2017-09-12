@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.tzt.AccountsDaotzt">
+<mapper namespace="com.dao.tzt.CapitalDaotzt">
 	<select id="queryCapital" parameterType="com.entity.tzt.Capital"  resultType="map">
 		select 
 			a.capitalid,
@@ -10,24 +10,24 @@
 			a.ordid,
 			a.projectsid,
 			r.value,
-			a.balance,
-			a.time	
+			a.capital,
+			a.time
 	 	from capital a,capitaltype r 
 	 	<where>
-	 		 a.capitalflow=r.value 	
+	 		 a.capitalflow=r.key 	
 	 		<if test ="capitalid !=null">
 	 			and a.capitalid= #{capitalid}
 	 		</if>
-	 		<if test ="roleid !=null">
+	 		<if test ="accountsid !=null">
 	 			and a.accountsid= #{accountsid}
 	 		</if>
-	 		<if test ="roleid !=null">
+	 		<if test ="ordid !=null">
 	 			and a.ordid= #{ordid}
 	 		</if>
-	 		<if test ="roleid !=null">
+	 		<if test ="projectsid !=null">
 	 			and a.projectsid= #{projectsid}
 	 		</if>
-	 		<if test ="roleid !=null">
+	 		<if test ="capitalflow !=null">
 	 			and a.capitalflow= #{capitalflow}
 	 		</if>
 	 		<if test ="starttime !=null ">
@@ -42,7 +42,7 @@
 	
 	<insert id="addCapital" parameterType="com.entity.tzt.Capital" >
 		insert into capital values(list_capital.nextval,#{accountsid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
-		#{projectsid,jdbcType=NUMERIC},#{capitalflow,jdbcType=NUMERIC},#{balance,jdbcType=REAL},
+		#{projectsid,jdbcType=NUMERIC},#{cap	italflow,jdbcType=NUMERIC},
 		#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
 	</insert>
 </mapper>
