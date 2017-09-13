@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ljl.ProjectsDaoLjl" >
 	<select id="AllProjects" parameterType="com.entity.ljl.UserLjl" resultType="map">
-		select pr.projectsid,pr.empid,w1.value as ORIGINATORTYPE,w2.value as PROJECTSSTATE,pr.addtime from projects pr,word w1,word w2 where pr.originatortype=w1.key and pr.projectsstate=w2.key and empid=#{empid}
+		select pr.projectsid,pr.empid,pd.cover,pd.title,w1.value as ORIGINATORTYPE,w2.value as PROJECTSSTATE,pr.addtime from projects pr,word w1,word w2,projects_describe pd where pr.originatortype=w1.key and pr.projectsstate=w2.key and pd.projectsid=pr.projectsid and empid=#{empid} order by projectsid desc
 	</select>
 	
 	<select id="AllProjectsType" resultType="HashMap">
@@ -15,7 +15,7 @@
 		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="projectsid">  
             select list_projects.nextval  as projectsid from dual 
         </selectKey>
-		insert into projects values(#{projectsid},#{empid},#{originatortype},#{addtime},#{projectsstate})	
+		insert into projects(projectsid,empid,originatortype,addtime,projectsstate) values(#{projectsid},#{empid},#{originatortype},#{addtime},#{projectsstate})	
 	</insert>
 	<!-- //个人项目基础信息 -->
 	<insert id="SavePersonalProjects" parameterType="map">
@@ -41,4 +41,19 @@
 	<insert id="SaveReturnProjects" parameterType="map">
 		insert into pro_return(pro_returnid,projectsid) values(list_pro_return.nextval,#{projectsid})	
 	</insert>
+	<delete id="DelProjects" parameterType="com.entity.ljl.ProjectsLjl" >
+		delete from projects where projectsid=#{projectsid}
+	</delete>
+	<delete id="DelDescribe" parameterType="com.entity.ljl.ProjectsLjl" >
+		delete from projects_describe where projectsid=#{projectsid}
+	</delete>
+	<delete id="DelIndetail" parameterType="com.entity.ljl.ProjectsLjl" >
+		delete from projects_indetail where projectsid=#{projectsid}
+	</delete>
+	<delete id="DelPersonal" parameterType="com.entity.ljl.ProjectsLjl" >
+		delete from originator where projectsid=#{projectsid}
+	</delete>
+	<delete id="DelReturn" parameterType="com.entity.ljl.ProjectsLjl" >
+		delete from pro_return where projectsid=#{projectsid}
+	</delete>
 </mapper>

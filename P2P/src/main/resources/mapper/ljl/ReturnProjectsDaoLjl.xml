@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ljl.ReturnProjectsDaoLjl" >
+	<!-- sql片段对应字段名,id属性值任意 -->
+    <sql id="key">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="projectsid!=0">
+                projectsid,
+            </if>
+            <if test="return_type!=0">
+            	return_type,
+            </if>
+            <if test="offer_money!=0">
+                offer_money,
+            </if>
+            <if test="return_title!=null">
+                return_title,
+            </if>
+            <if test="return_content!=null">
+                return_content,
+            </if>
+     
+            <if test="return_time!=null">
+                return_time,
+            </if>
+            <if test="formindex!=0">
+                formindex,
+            </if>
+        </trim>
+    </sql>
+    <!-- sql片段对应?,id属性值任意 -->
+    <sql id="value">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+           <if test="projectsid!=0">
+                #{projectsid},
+            </if>
+            <if test="return_type!=0">
+            	#{return_type},
+            </if>
+            <if test="offer_money!=0">
+                #{offer_money},
+            </if>
+            <if test="return_title!=null">
+                #{return_title},
+            </if>
+            <if test="return_content!=null">
+                #{return_content},
+            </if>
+            
+            <if test="return_time!=0">
+                #{return_time},
+            </if>
+            <if test="formindex!=0">
+                #{formindex},
+            </if>
+        </trim>
+    </sql>
+    <!--  <include refid="key"/>和<include refid="value"/>表示引用上面定义的sql片段 -->
+    <!-- <insert id="dynaInsert" parameterType="cn.itcast.javaee.mybatis.app14.Student">
+        insert into students(<include refid="key"/>) values(<include refid="value"/>)
+    </insert> -->
+	<insert id="SaveReturnProjects" parameterType="map">
+		insert into pro_return(pro_returnid,<include refid="key"/>) values(list_pro_return.nextval,<include refid="value"/>)
+	</insert>
+	<select id="AllReturnProjects" parameterType="com.entity.ljl.ReturnLjl" resultType="map">
+		select * from pro_return where projectsid=#{projectsid} order by formindex	
+	</select>
+	<update id="UpdateReturnProjects" parameterType="map">
+		update pro_return set return_type=#{return_type},offer_money=#{offer_money},return_title=#{return_title},return_content=#{return_content},return_time=#{return_time}
+		where formindex=#{formindex} and projectsid=#{projectsid}
+	</update>
+	<update id="SExamine" parameterType="com.entity.ljl.ProjectsLjl">
+		update projects set projectsstate=15 where empid=#{empid} and projectsid=#{projectsid}
+	</update>
+	<delete id="DeleteReturnProjects" parameterType="com.entity.ljl.ReturnLjl">
+		delete from pro_return where formindex=#{formindex} and projectsid=#{projectsid}
+	</delete>
+	
+</mapper>

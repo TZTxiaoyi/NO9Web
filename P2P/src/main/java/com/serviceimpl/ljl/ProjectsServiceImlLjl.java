@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dao.ljl.IndetailProjectsDaoLjl;
 import com.dao.ljl.ProjectsDaoLjl;
+import com.dao.ljl.ReturnProjectsDaoLjl;
 import com.entity.ljl.ProjectsLjl;
 import com.entity.ljl.UserLjl;
 import com.service.ljl.ProjectsServiceLjl;
@@ -19,6 +21,8 @@ import com.service.ljl.ProjectsServiceLjl;
 public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 	@Autowired
 	ProjectsDaoLjl projectsdaoljl;
+	@Autowired
+	IndetailProjectsDaoLjl IndetailDao;
 	@Override
 	public String AllProjects(UserLjl user) {
 		// TODO Auto-generated method stub
@@ -38,10 +42,10 @@ public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 		int perflag=projectsdaoljl.SavePersonalProjects(map);//个人
 		//int orgflag=projectsdaoljl.SaveOrganizationsProjects(map);//机构
 		int desflag=projectsdaoljl.SaveDescribeProjects(map);//信息
-		int indflag=projectsdaoljl.SaveIndetailProjects(map);//详情
-		int retflag=projectsdaoljl.SaveReturnProjects(map);//回报
+		//int indflag=projectsdaoljl.SaveIndetailProjects(map);//详情
+		//int retflag=projectsdaoljl.SaveReturnProjects(map);//回报
 		System.out.println(proflag);
-		if(proflag==1&perflag==1&desflag==1&indflag==1&retflag==1){
+		if(proflag==1&perflag==1&desflag==1){
 			System.out.println("success");
 			return"success";
 			
@@ -54,6 +58,19 @@ public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 		List list=projectsdaoljl.AllProjectsType();
 		JSON json=new JSONArray(list);
 		return json.toString();
+	}
+	@Override
+	public String DelProjects(ProjectsLjl proLjl) {
+		// TODO Auto-generated method stub
+		int flag=projectsdaoljl.DelProjects(proLjl);
+		projectsdaoljl.DelPersonal(proLjl);
+		projectsdaoljl.DelDescribe(proLjl);
+		projectsdaoljl.DelIndetail(proLjl);
+		projectsdaoljl.DelReturn(proLjl);
+		if(flag==1){
+			return "success";
+		}
+		return "err";
 	}
 	
 }

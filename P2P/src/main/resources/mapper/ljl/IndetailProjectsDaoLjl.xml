@@ -76,7 +76,7 @@
 		left join projects_indetail_photo ip on pi.photoid=ip.photoid ) where PROJECTSID=#{projectsid} order by PLACES
 	</select>
 	
-	<delete id="DelectIndetail" parameterType="com.entity.ljl.IndetailLjl">
+	<delete id="DeleteIndetail" parameterType="com.entity.ljl.IndetailLjl">
 		delete from projects_indetail
 		<where>
 			<if test="places!=0">
@@ -94,8 +94,8 @@
 		</where>
 		
 	</delete>
-	<delete id="DelectText" parameterType="com.entity.ljl.IndetailLjl">
-		delect from projects_indetail_text
+	<delete id="DeleteText" parameterType="com.entity.ljl.IndetailLjl">
+		delete from projects_indetail_text
 		<where>
 			<if test="places!=0">
 				and places=#{places}
@@ -106,8 +106,8 @@
 		</where>
 		
 	</delete>
-	<delete id="DelectPhoto" parameterType="com.entity.ljl.IndetailLjl">
-		delect from projects_indetail_photo
+	<delete id="DeletePhoto" parameterType="com.entity.ljl.IndetailLjl">
+		delete from projects_indetail_photo
 		<where>
 			<if test="places!=0">
 				and places=#{places}

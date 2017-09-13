@@ -8,7 +8,6 @@ public class Orders {
 	private Integer projectsid;
 	private float paymoney;
 	private Integer fraction;
-	private Integer address;
 	private Integer ordstatus;
 	private Integer proreturnid;
 	private String ordertime;
@@ -41,12 +40,6 @@ public class Orders {
 	}
 	public void setFraction(Integer fraction) {
 		this.fraction = fraction;
-	}
-	public Integer getAddress() {
-		return address;
-	}
-	public void setAddress(Integer address) {
-		this.address = address;
 	}
 	public Integer getOrdstatus() {
 		return ordstatus;

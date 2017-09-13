@@ -5,35 +5,36 @@
 <mapper namespace="com.dao.tzt.PromoneyDaotzt">
 	<select id="queryPromoney" parameterType="com.entity.tzt.Promoney"  resultType="map">
 		select 
-			a.mon_id,
-			a.pro_id,
-			a.targe_money,
-			a.raise_money,
-	 	from capital a
-	 		<if test ="capitalid !=null">
-	 			 a.mon_id= #{capitalid}
-	 		</if>
-	 		<if test ="accountsid !=null">
-	 			and a.pro_id= #{accountsid}
-	 		</if>
-	 		<if test ="ordid !=null">
-	 			and a.targe_money= #{ordid}
-	 		</if>
-	 		<if test ="projectsid !=null">
-	 			and a.raise_money= #{projectsid}
-	 		</if>
+			money_id,
+			projectsid,
+			targe_money,
+			raise_money
+	 		from pro_money 
+	 		<where>
+		 		<if test ="moenyid !=null">
+		 			 money_id= #{moenyid}
+		 		</if>
+		 		<if test ="projectsid !=null">
+		 			and projectsid= #{projectsid}
+		 		</if>
+		 		<if test ="targemoney !=0">
+		 			and targe_money= #{targemoney}
+		 		</if>
+		 		<if test ="raisemoney !=0">
+		 			and raise_money= #{raisemoney}
+		 		</if>
+	 		</where>
 	</select>
 	
 	<insert id="addPromoney" parameterType="com.entity.tzt.Promoney" >
-		insert into pro_money values(list_capital.nextval,#{accountsid,jdbcType=NUMERIC},#{proid,jdbcType=NUMERIC},
+		insert into pro_money values(list_capital.nextval,#{projectsid,jdbcType=NUMERIC},
 		#{targemoney,jdbcType=REAL},#{raisemoney,jdbcType=REAL}
 	</insert>
 	
-		<update id="updatePromoney" parameterType="com.entity.tzt.Promoney" >
-		update  pro_money set
-		targe_money=#{targemoney,jdbcType=REAL}
+	<update id="updatePromoney" parameterType="com.entity.tzt.Promoney" >
+		update  pro_money set raise_money=#{raisemoney,jdbcType=REAL}
 			<where>
-	 		money_id=#{moneyid}
+	 		projectsid=#{projectsid}
 	 		</where>
 	</update>
 </mapper>

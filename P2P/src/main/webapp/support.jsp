@@ -387,6 +387,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$.ajax({
 				type : "post",
 				dataType : "json",
+<<<<<<< HEAD
 				url : "zhubin/queryAddress.do",
 				contentType : "application/json;charset=utf-8",
 				data :JSON.stringify(data),
@@ -409,6 +410,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				        $("#tab").show(); 
 				        
 					}
+=======
+<<<<<<< HEAD
+				url : "OrdersWeb/insertOrders.do",
+=======
+				url : "capital/payService.do",
+>>>>>>> c23752153b0809d1d17b8690371df9d7b40dd374
+				contentType : "application/json;charset=utf-8",
+				data :JSON.stringify(data),
+				success : function(data) {//data为返回的数据，在这里做数据绑定  
+					alert("suc");
+>>>>>>> 0ddb47f4d6f58cbe9458fa043e65aeab3cabc5e9
 				},
 				error : function() {
 					alert("error");
@@ -416,6 +428,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		}
 	})
+<<<<<<< HEAD
 	$("#tab").on('click',"#getaddress",function(){
 		var getradio = $('#table input[name="seladd"]:checked ').val();
 		if(getradio>=1){
@@ -454,4 +467,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	}
 
+=======
+
+	/*
+	页面加载时查看cookie里的值
+	*/
+	$(function(){
+		$("#userid").append($.cookie("empid"));
+		var account1=$.cookie("account1");
+		var account=$.cookie("account");
+		var touxiang="<a><img src=\"images/touxiang.png\" width=\"40px\" height=\"40px\" class=\"img-circle\"/>"+
+		"&nbsp;&nbsp;<span>"+account+"</span></a>";
+		if(account!=null){
+			$("#user").append(account);
+			$("#log_reg").hide();
+			$("#log_img").show();
+			$("#plimg").append(touxiang);
+		}
+		if(account1!=null){
+			$("#user").append(account1);
+			$("#log_reg").hide();
+			$("#log_img").show();
+			$("#plimg").append(touxiang);
+		} 
+		
+	})
+	
+	/*
+	退出按钮点击事件
+	*/
+	$("#exit").click(function(){
+		window.location.href="pro_details.jsp"; 
+		$("#log_reg").show();
+		$("#log_img").hide();
+		$.cookie('account', '', { expires: -1 });
+		$.cookie('account1', '', { expires: -1 });
+		 
+	})
+>>>>>>> 0ddb47f4d6f58cbe9458fa043e65aeab3cabc5e9
 </script>

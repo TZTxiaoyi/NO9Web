@@ -19,6 +19,7 @@ import com.entity.ljl.DescribeLjl;
 import com.entity.ljl.IndetailLjl;
 import com.entity.ljl.IndetailPhotoLjl;
 import com.entity.ljl.ProjectsLjl;
+import com.entity.ljl.ReturnLjl;
 import com.service.Tool.FileUploadService;
 import com.service.ljl.IndetailServiceLjl;
 
@@ -31,13 +32,18 @@ public class IndetailContrller {
 	FileUploadService SaveCover;
 	@RequestMapping("/SvaeText")
 	//保存项目详细文本
-	public void SvaeText(@RequestBody String str){
+	@ResponseBody
+	public String SvaeText(@RequestBody String str){
+		System.out.println(str);
 		JSON json=JSONObject.parseObject(str);
 		Map map =(Map)json;
-		IndetailService.SvaeText(map);
+		int flag =IndetailService.SvaeText(map);
 		//System.out.println(map);
-		
-		
+		if(flag==1){
+			return "success";
+			
+		}
+		return "err";
 	}
 	//保存项目详细图片
 	@RequestMapping(value="/SvaePhoto",produces = "application/json;charset=utf-8")
@@ -64,13 +70,13 @@ public class IndetailContrller {
 		
 	}
 	//删除项目详情文本和图片
-	@RequestMapping(value="/DelectIndetail",produces = "application/json;charset=utf-8")
+	@RequestMapping(value="/DeleteIndetail",produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public int DelectIndetail(@RequestBody IndetailLjl indetail){
+	public int DeleteIndetail(@RequestBody IndetailLjl indetail){
 		System.out.println(indetail.getProjectsid());
 		System.out.println(indetail.getPlaces());
 		System.out.println(indetail.getChoice());
-		int flag =IndetailService.DelectIndetail(indetail);
+		int flag =IndetailService.DeleteIndetail(indetail);
 		return flag;
 		
 		

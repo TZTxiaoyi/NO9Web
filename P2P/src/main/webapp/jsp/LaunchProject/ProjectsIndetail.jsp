@@ -12,32 +12,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-  <script type="text/javascript" src="../jq/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="../jq/jquery.cookie1.4.1.js"></script>
-  <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css"></link>
-  <script type="text/javascript" src="../bootstrap/dist/bootstrap-table.js"></script>
-  <link rel="stylesheet" href="../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
-  <script type="text/javascript" src="../bootstrap/fileinput/js/fileinput.js"></script>
-  <script type="text/javascript" src="../bootstrap/fileinput/css/fileinput.css"></script>
-  <script type="text/javascript" src="../bootstrap/fileinput/js/locales/zh.js"></script>
+  <script type="text/javascript" src="../../jq/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../../jq/jquery.cookie1.4.1.js"></script>
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css"></link>
+  <script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
+  <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
+  <script type="text/javascript" src="../../bootstrap/fileinput/js/fileinput.js"></script>
+  <script type="text/javascript" src="../../bootstrap/fileinput/css/fileinput.css"></script>
+  <script type="text/javascript" src="../../bootstrap/fileinput/js/locales/zh.js"></script>
   <style>
-  	body
+  /* 	body
   {
   background-color:#F0F0F0;
   
-  }
+  }*/
   #colpadding{
-  	margin:100px auto;
-  	padding:100px;
+  	
+  	padding:0 50px;
   	background-color:#FFFFFF;
   	width:900px;
-  }
-  #inputpadding{
+  } 
+ /*  #inputpadding{
   	margin:0 auto;
   	width:80%;
   	
-  }
+  } */
   #filediv{
   	width:300px;
   }
@@ -48,11 +48,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   .formgroupdiv{
   	margin:50px;
   	padding:20px;
-  	width:550px;
+  	width:600px;
   	border:2px solid #e0e0e0;
   }
   .photodiv{
-  	border:1px solid #e0e0e0;
+  	/* //border:1px solid #e0e0e0; */
+  }
+  .input-group{
+  	width:560px;
   }
   textarea{ resize:none;}
   </style>
@@ -68,16 +71,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					</div>
 					
 				</div>
-				<input id="upda"  class="btn btn-info" type="button" value="下一步" style="position:relative;top:150;left:45%;width:100px">
+				
 			</form>
 			 <input id="addpicture" type="button" value="添加图片模块" class="btn btn-info"  >
-  				<input id="addtext" type="button" value="添加文本模块" class="btn btn-info" id="addtext" > 
+  				<input id="addtext" type="button" value="添加文本模块" class="btn btn-info" id="addtext" > <br>
+  				<input id="upda"  class="btn btn-info" type="button" value="保存" style="position:relative;top:20;width:100px">
 			</div>
 			
 	</body>
 </html>
 <script>
-	function delectindetail(btnindex,choicebtn){
+	function deleteindetail(btnindex,choicebtn){
 		alert(btnindex);
 		var projectsid=parseInt($.cookie('projectsid'));
 		var data={};
@@ -86,11 +90,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		data["choice"]=choicebtn;
 		$.ajax({
 			type:"post",
-			url:"http://localhost:9088/P2P/IndetailContrller/DelectIndetail.do",
+			url:"http://localhost:9088/P2P/IndetailContrller/DeleteIndetail.do",
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data),
 			success:function(data){
 				alert(data);
+				
 				if(data==1){
 					alert("删除成功");
 					
@@ -114,26 +119,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data),
 			success:function(data){
-				$.each(data,function(index,value){
-					alert();
-					if (value.TEXTID!=undefined){
-						alert(value.TITLE);
-						var text="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+value.PLACES+"\" name=\"title\" class=\"form-control\" value=\""+value.TITLE+"\" placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+value.PLACES+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\">"+value.BODY +"</textarea> </div></div>";
-						$("#Relevantdata").append(text);
-					}else if(value.PHOTOID!=undefined){
-						alert(value.URL);
-						var photo="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label  class=\"col-sm-10 font-normal\">添加图片</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"photo\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-3 input-group\"> <div id=\"Cover"+value.PLACES+"\" class=\"input-group photodiv\" style=\"border:1px solid #e0e0e0\"><img src=\"http://localhost:9088/P2P/images/"+value.URL+"\" style=\"width:350px;height:250px\"></div><input type=\"file\" class=\"myFile\" index=\""+value.PLACES+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
-						$("#Relevantdata").append(photo);
-					}
-					if(value.PLACES!=undefined){
-						initialindex=value.PLACES;
-						indexq=value.PLACES;
+				alert(data);
+				if (data==""){
+					indexq=indexq+1;
+					//alert(indexq);
+					var addtext="<div index=\""+indexq+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+indexq+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+indexq+"\" name=\"title\" class=\"form-control\"  placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+indexq+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\"></textarea> </div></div>";
+					$("#Relevantdata").append(addtext);
+					
+				}else{
+					$.each(data,function(index,value){
 						
-					}
+						if (value.TEXTID!=undefined){
+							alert(value.TITLE);
+							var text="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+value.PLACES+"\" name=\"title\" class=\"form-control\" value=\""+value.TITLE+"\" placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+value.PLACES+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\">"+value.BODY +"</textarea> </div></div>";
+							$("#Relevantdata").append(text);
+						}else if(value.PHOTOID!=undefined){
+							alert(value.URL);
+							var photo="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label  class=\"col-sm-10 font-normal\">添加图片</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"photo\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-3 input-group\"> <div id=\"Cover"+value.PLACES+"\" class=\"input-group photodiv\" style=\"border:1px solid #e0e0e0\"><img src=\"http://localhost:9088/P2P/images/"+value.URL+"\" style=\"width:350px;height:250px\"></div><input type=\"file\" class=\"myFile\" index=\""+value.PLACES+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
+							$("#Relevantdata").append(photo);
+						}
+						if(value.PLACES!=undefined){
+							initialindex=value.PLACES;
+							indexq=value.PLACES;
+							
+						}
+						
+						//alert("index:"+index);
+						
+					})
 					
-					//alert("index:"+index);
-					
-				})
+				}
+				
 				initphoto();
 				
 			}
@@ -176,14 +192,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		updateIndetail(data);
 	})
 	function updateIndetail(data){
-		alert("8787");
+		//alert("8787");
 		$.ajax({
 			type:"post",
 			url:"http://localhost:9088/P2P/IndetailContrller/SvaeText.do",
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data),
 			success:function(data){
-				
+				window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/ProjectsReturn.jsp';
+
 				
 			}
 			
@@ -191,22 +208,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	}
 	$("#addtext").click(function(){
-		alert("initialindex:"+initialindex);
-		alert("indexq:"+indexq);
+		//alert("initialindex:"+initialindex);
+		//alert("indexq:"+indexq);
 		indexq=indexq+1;
-		alert(indexq);
+		//alert(indexq);
 		var addtext="<div index=\""+indexq+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+indexq+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+indexq+"\" name=\"title\" class=\"form-control\"  placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+indexq+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\"></textarea> </div></div>";
 		$("#Relevantdata").append(addtext);
-		alert("7487");
+		//alert("7487");
 		initphoto();
 		
 	}) 
 	$("#addpicture").click(function(){
-		alert("initialindex:"+initialindex);
-		alert("indexq:"+indexq);
-		alert("7ere");
+		//alert("initialindex:"+initialindex);
+		//alert("indexq:"+indexq);
+		//alert("7ere");
 		indexq=indexq+1;
-		alert(indexq);
+		//alert(indexq);
 		var addphoto="<div index=\""+indexq+"\" class=\"form-group formgroupdiv deldiv\"><label  class=\"col-sm-10 font-normal\">添加图片</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"photo\" value=\"删除\" index=\""+indexq+"\" type=\"button\"></label><div class=\"col-sm-3 input-group\"> <div id=\"Cover"+indexq+"\" class=\"input-group photodiv\" style=\"border:1px solid #e0e0e0\"></div><input type=\"file\" class=\"myFile\" index=\""+indexq+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
 		$("#Relevantdata").append(addphoto);
 		initphoto();
@@ -214,7 +231,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//图片上传
 	
 	function initphoto(){
-		alert("qwe");
+		//alert("qwe");
 		$(this).remove();
 		$(".delectbtn").click(function(){
 			var btnindex=parseInt($(this).attr("index"));
@@ -222,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			alert(btnindex);
 			$(".deldiv[index=\""+btnindex+"\"]").remove();
 			if(btnindex<=initialindex||choicebtn=="photo"){
-				delectindetail(btnindex,choicebtn);
+				deleteindetail(btnindex,choicebtn);
 				
 			}
 		})
