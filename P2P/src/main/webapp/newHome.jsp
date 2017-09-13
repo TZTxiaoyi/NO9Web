@@ -65,7 +65,7 @@
 				  <tr class="success"><td><button class = "btn btn-link btn-info" id = "Myfollow"><span class=" glyphicon glyphicon-plus-sign"></span> 我的发起</button></td></tr>
 
 				  <tr class="success"><td><button class = "btn btn-link btn-info" ><span class="glyphicon glyphicon-asterisk"></span> 项目管理</button></td></tr>
-				  <tr class="success"><td><button class = "btn btn-link btn-info" ><span class="glyphicon glyphicon-shopping-cart"></span> 我的订单</button></td></tr>
+				  <tr class="success"><td><button class = "btn btn-link btn-info" id="MyOrders" ><span class="glyphicon glyphicon-shopping-cart"></span> 我的订单</button></td></tr>
 				  <!-- <tr class="success"><td><a href = "#"><span class="glyphicon glyphicon-leaf"></span> 我的理财卷</a></td></tr> -->
 				  <tr class="active"><td><b>我的</b></td></tr>
 				  <tr class="warning"><td><button class = "btn btn-link btn-info"><span class="glyphicon glyphicon-heart"></span> 我的关注</button></td></tr>
@@ -95,6 +95,11 @@
 		$("#Myfollow").click(function(){
 			$("iframe").show();
 			$("#urlIframe").attr("src","jsp/LaunchProject/MyProjects.jsp");
+		});
+//---------------------------------点击我的发起按钮-----------------------------------------
+		$("#MyOrders").click(function(){
+			$("iframe").show();
+			$("#urlIframe").attr("src","MyOrders.jsp");
 		});
 //---------------------------------点击收货地址按钮----------------------------------------
 		$("#DeliveryAddress").click(function(){

@@ -34,6 +34,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 		            String newFileName = UUID.randomUUID() + oldFileName.substring(oldFileName.lastIndexOf("."));
 		            // 新图片
 		            File newFile = new File(saveFilePath + "\\" + newFileName);
+		            //File newFile1 = new File("D:\\NO9Web\\P2P\\src\\main\\webapp\\images\\" + newFileName);
 		            // 将内存中的数据写入磁盘
 		            myfile.transferTo(newFile);
 		           // 将新图片名称返回到前端

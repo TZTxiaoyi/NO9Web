@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ljl.MyOrdersDaoLjl" >
+	<select id="AllOrders" resultType="map" parameterType="com.entity.tzt.Orders">
+		select o.ord_id,pd.title,pd.cover,to_char(order_time,'yyyy-mm-dd hh24:mi:ss') as order_time,w2.value as projectsstate,o.paymoney,o.fraction,w1.value as ord_status from orders o,projects p,projects_describe pd,word w1,word w2 where o.ord_status=w1.key and p.projectsstate=w2.key and p.projectsid=pd.projectsid and o.projectsid=p.projectsid and o.empid=#{empid} order by ord_id desc
+	</select>
+	<update id="UpdateOrders" parameterType="com.entity.tzt.Orders">
+		update orders set ord_status=#{ordstatus} where ord_id=#{ordid}
+	</update>
+
+</mapper>

@@ -117,7 +117,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				success:function(data){
 					if(data="success"){
 						window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/ProjectsDescribe.jsp';
-						
 					}
 					
 				}
