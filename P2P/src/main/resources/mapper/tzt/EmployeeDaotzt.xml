@@ -22,6 +22,7 @@
 	 			empid= #{empid}
 	 		</if>
 	 	</where>
+	 	order by empid desc
 	</select>
 	<!--  账户余额为0 状态为可使用4 -->
 	<insert id="addEmployee" parameterType="com.entity.tzt.Employee" keyProperty="empid">

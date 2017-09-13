@@ -103,11 +103,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 	$(function() {
 //------------------------------查询地址----------------------------------------	
+		var data ={}
+			data["empid"] = $.cookie("empid");
+			alert(data["empid"]);
+		
 		$.ajax({
 			type : "post",
 			dataType : "json",
 			url : "/P2P/zhubin/queryAddress.do",
 			contentType : "application/json;charset=utf-8",
+			data:JSON.stringify(data),
 			success : function(data) {
 				var th = "<tr id='trsize'><td>地址编号</td><td>收货人姓名</td><td>联系方式</td><td>邮编</td><td>详细地址</td><td>操作</td></tr>";
 				$("#table").append(th);

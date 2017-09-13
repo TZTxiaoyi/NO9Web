@@ -96,6 +96,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .returnid,#userid{
         	display:none;
         }
+         .tab {       
+             background: #000;
+		    filter: alpha(opacity=80); /* IE的透明度 */
+		    opacity: 0.8;  /* 透明度 */
+		    display: none;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    width: 100%;
+		    height: 100%;
+		    z-index: 100; /* 此处的图层要大于页面 */
+		    display:none;  
+        }  
+        #table{
+        	width:auto;
+        	height:auto;
+        	background: #FFFFFF;
+        	margin-left:400px;
+        	margin-top:150px;
+        } 
+        .tab td{
+        	color:#000000;
+        	
+        } 
+      	.tabname{
+      		margin-left:-50px;
+      		width:30px;
+      		white-space:nowrap;
+      	}
+      	#getaddress{
+      		float:right;
+      		margin-bottom:20px;
+      	}
  	</style>
  	
   </head>
@@ -242,6 +275,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
+	
+	<div class="tab" id="tab" >
+		<table class="table table-hover table-striped" id="table">
+		  
+		</table>
+	</div>	
   </body>
 </html>
 <script>
@@ -339,6 +378,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		支持按钮点击事件
 	*/
 	$("#return").on('click',".support",function(){
+		var userid=$("#userid").html();//账号id
+		data={};
+		data["empid"]=userid;
+		if(userid==""){
+			alert("请先登录！");
+		}else{
+			$.ajax({
+				type : "post",
+				dataType : "json",
+<<<<<<< HEAD
+				url : "zhubin/queryAddress.do",
+				contentType : "application/json;charset=utf-8",
+				data :JSON.stringify(data),
+				success : function(data) {//data为返回的数据，在这里做数据绑定  
+					if(data.length<1){//判断地址为空
+						window.location.href="addAddress.jsp";
+					}else{
+					    var th="<thead><tr><th><h3>请选择地址</h3></th></tr><tr><th></th><th class=\"tabname\">姓名</th><th>电话</th><th>邮编</th><th>地址</th></tr></thead>";
+						$("#table").append(th);
+					    $.each(data,function(index,value){
+							var tr=" <tbody><tr><td><input name=\"seladd\" type=\"radio\" value=\""+
+							value.addressId+"\"/></td><td class=\"tabname\">"+value.name+"</td><td>"+
+							value.phone+"</td><td>"+value.postCodes+"</td><td>"+value.addressInfo+
+							"</td></tr><tr><td></td><td></td><td></td><td></td><td><a id=\"getaddress\" type=\"button\">确定</a></td></tr></tbody>";
+							$("#table").append(tr);
+							
+						});
+					    $("#tab").css("height",$(document).height());     
+				        $("#tab").css("width",$(document).width());     
+				        $("#tab").show(); 
+				        
+					}
+=======
+<<<<<<< HEAD
+				url : "OrdersWeb/insertOrders.do",
+=======
+				url : "capital/payService.do",
+>>>>>>> c23752153b0809d1d17b8690371df9d7b40dd374
+				contentType : "application/json;charset=utf-8",
+				data :JSON.stringify(data),
+				success : function(data) {//data为返回的数据，在这里做数据绑定  
+					alert("suc");
+>>>>>>> 0ddb47f4d6f58cbe9458fa043e65aeab3cabc5e9
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		}
+	})
+<<<<<<< HEAD
+	$("#tab").on('click',"#getaddress",function(){
+		var getradio = $('#table input[name="seladd"]:checked ').val();
+		if(getradio>=1){
+			payService(getradio);
+			$("#tab").hide();  
+		}else{
+			alert("请选择地址");
+		}
+	})
+	function payService(addressId){
+		alert("a"+addressId);
 		var supid=$(this).attr("id");//动态获取id
 		var returnid=$("#return"+supid).html();//获取回报id
 		var money=$("#money"+supid).html();//获取回报钱数
@@ -348,24 +449,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				empid:userid,
 				projectsid:pid,
 				paymoney:money,
-				proreturnid:returnid
+				proreturnid:returnid,
+				address:addressId
 		};
-		if(userid==""){
-			alert("请先登录！");
-		}else{
-			$.ajax({
-				type : "post",
-				dataType : "json",
-				url : "capital/payService.do",
-				contentType : "application/json;charset=utf-8",
-				data :JSON.stringify(data),
-				success : function(data) {//data为返回的数据，在这里做数据绑定  
-					
-				},
-				error : function() {
-					alert("error");
-				}
-			});
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "capital/payService.do",
+			contentType : "application/json;charset=utf-8",
+			data :JSON.stringify(data),
+			success : function(data) {//data为返回的数据，在这里做数据绑定  
+				alert("支持成功");
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	}
+
+=======
+
+	/*
+	页面加载时查看cookie里的值
+	*/
+	$(function(){
+		$("#userid").append($.cookie("empid"));
+		var account1=$.cookie("account1");
+		var account=$.cookie("account");
+		var touxiang="<a><img src=\"images/touxiang.png\" width=\"40px\" height=\"40px\" class=\"img-circle\"/>"+
+		"&nbsp;&nbsp;<span>"+account+"</span></a>";
+		if(account!=null){
+			$("#user").append(account);
+			$("#log_reg").hide();
+			$("#log_img").show();
+			$("#plimg").append(touxiang);
 		}
+		if(account1!=null){
+			$("#user").append(account1);
+			$("#log_reg").hide();
+			$("#log_img").show();
+			$("#plimg").append(touxiang);
+		} 
+		
 	})
+	
+	/*
+	退出按钮点击事件
+	*/
+	$("#exit").click(function(){
+		window.location.href="pro_details.jsp"; 
+		$("#log_reg").show();
+		$("#log_img").hide();
+		$.cookie('account', '', { expires: -1 });
+		$.cookie('account1', '', { expires: -1 });
+		 
+	})
+>>>>>>> 0ddb47f4d6f58cbe9458fa043e65aeab3cabc5e9
 </script>

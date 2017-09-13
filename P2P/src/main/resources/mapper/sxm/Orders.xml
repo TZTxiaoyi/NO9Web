@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.sxm.OrdersDao">
+	<select id="selectOrders" resultType="Map">
+		select * from orders o,employee e
+		
+		<where>
+			<if test="true">
+				o.empid=e.empid
+			</if>
+	 		<if test="projectsid>0">
+	 			and o.projectsid= #{projectsid}
+	 		</if>
+	 		<!-- <if test="empid>0">
+	 			and o.empid=#{empid}
+	 		</if> -->
+	 	</where>
+	</select>
+	<insert id="insertOrders" parameterType="com.entity.tzt.Orders">
+		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
+		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS'),
+		76,#{proreturnid,jdbcType=NUMERIC}) 
+
+	</insert>
+</mapper>

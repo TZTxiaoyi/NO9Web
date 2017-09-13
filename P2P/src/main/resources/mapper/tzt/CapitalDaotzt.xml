@@ -38,6 +38,7 @@
 	 		</if>
 	 		
 	 	</where>
+	 	order by capitalid desc
 	</select>
 	
 	<insert id="addCapital" parameterType="com.entity.tzt.Capital" >

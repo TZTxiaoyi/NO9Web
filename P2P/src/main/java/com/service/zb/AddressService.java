@@ -16,9 +16,10 @@ import com.entity.zb.Address;
  *
  */
 public interface AddressService {
-	public List<Object> queryAddress();
+	public List<Object> queryAddress(int empid);
 	public int addAddress(Address address);
 	public int updateAddress(Map map);
 	public void deleteAddress(Integer addressId);
+	
 
 }
