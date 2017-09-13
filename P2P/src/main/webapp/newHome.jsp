@@ -33,12 +33,12 @@
 		}
 		
 		#leftMenu{
-			/* border:1px solid green; */
-			
+			/* border:1px solid green;  */
+			height:540px;
 		}
 		#right{
 			/* border:1px solid blue; */
-			height:660px; 
+			height:540px; 
 			margin-left:-10px;
 			
 		}
@@ -60,7 +60,7 @@
 <!-- 内容 -->
 		<div class = "row" id = "middle">
 			<div class = "col-lg-2" id ="leftMenu">
-				<table class="table table-bordered  table-hover ">
+				<table class="table table-bordered  table-hover table-condensed">
 				 <!--  <tr class="active"><td></td></tr> -->
 				  <tr class="success"><td><button class = "btn btn-link btn-info" id = "Myfollow"><span class=" glyphicon glyphicon-plus-sign"></span> 我的发起</button></td></tr>
 
@@ -69,7 +69,7 @@
 				  <!-- <tr class="success"><td><a href = "#"><span class="glyphicon glyphicon-leaf"></span> 我的理财卷</a></td></tr> -->
 				  <tr class="active"><td><b>我的</b></td></tr>
 				  <tr class="warning"><td><button class = "btn btn-link btn-info"><span class="glyphicon glyphicon-heart"></span> 我的关注</button></td></tr>
-				  <tr class="warning"><td><button class = "btn btn-link btn-info"><span class="glyphicon glyphicon-tint"></span> 账户余额</button></td></tr>
+				  <tr class="warning"><td><button class = "btn btn-link btn-info" id = "myBanlance"><span class="glyphicon glyphicon-tint"></span> 账户余额</button></td></tr>
 				  <!--<tr class="warning"><td>我的红包</td></tr>-->
 				  <!-- <tr class="warning"><td><button class = "btn btn-link btn-info"><span class="glyphicon glyphicon-list-alt"></span> 抵用券</button></td></tr> -->
 				  <tr class="active"><td><b>消息</b></td></tr>
@@ -91,6 +91,11 @@
 </body>
 </html>
 	<script>
+//------------------------------------点击账户余额-------------------------------------
+		$("#myBanlance").click(function(){
+			$("iframe").show();
+			$("#urlIframe").attr("src","zbjsp/myBalance.jsp");
+		});
 //---------------------------------点击我的发起按钮-----------------------------------------
 		$("#Myfollow").click(function(){
 			$("iframe").show();

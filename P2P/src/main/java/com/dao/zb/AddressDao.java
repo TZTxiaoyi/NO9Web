@@ -16,7 +16,7 @@ import com.entity.zb.Address;
  *
  */
 public interface AddressDao {
-	public List<Object>queryAddress();
+	public List<Object>queryAddress(int empid);
 	public int addAddress(Address address);
 	public int updateAddress(Map map);
 	public boolean deleteAddress(int id);

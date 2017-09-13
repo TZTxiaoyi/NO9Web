@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				data["Phone"] = $("#Phone").val();
 				data["postCodes"] = $("#postCodes").val();
 				data["AddressInfo"] = $("#AddressInfo").val();
-				data["AccountId"] = $.cookie("accountid");
+				data["Account"] = $.cookie("account");
 	
 				//alert($("#postCodes").val()+"==========="+data["postCodes"]);
 				$.ajax({

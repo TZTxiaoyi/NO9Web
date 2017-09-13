@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.entity.tzt.Employee;
 import com.entity.zb.Address;
 import com.service.zb.AddressService;
 
@@ -67,11 +69,16 @@ public class AddressController {
 	* @throws
 	 */
 	@RequestMapping("/queryAddress.do")
-	public void queryAddress(HttpServletResponse resp){
+	public void queryAddress(@RequestBody Employee employee,HttpServletResponse resp,HttpServletRequest req){
 		resp.setCharacterEncoding("utf-8");
-		List<Object> lob = asv.queryAddress();
+		System.out.println("----------------------------"+employee.getEmpid());
+		//System.out.println(empid);
+		List<Object> lob = asv.queryAddress(employee.getEmpid());
 		JSON json = new JSONArray(lob);
 		System.out.println(json.toString());
+		
+		//req.getAttribute("empid");
+		//String empid = req.getParameter("empid");
 		try {
 			resp.getWriter().write(json.toString());
 		} catch (IOException e) {

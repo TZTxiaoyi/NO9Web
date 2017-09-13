@@ -12,6 +12,6 @@
  values(list_employee.nextval,#{UserName},#{EmpName},#{IdCard},#{Sex},#{Age},#{Address},#{TelePhone},0.00,4)
 	</insert>
 	<update id="updateEmployee"  parameterType="com.entity.zb.Employeezb">    	 
-     	update employee set EmpName=#{EmpName},IdCard=#{IdCard} where EmpId=#{empId}
+     	update employee set EmpName=#{EmpName},IdCard=#{IdCard},Balance=#{Balance} where EmpId=#{empId}
   	</update>
 </mapper>

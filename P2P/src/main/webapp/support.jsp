@@ -96,6 +96,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .returnid,#userid{
         	display:none;
         }
+         .tab {       
+             background: #000;
+		    filter: alpha(opacity=80); /* IE的透明度 */
+		    opacity: 0.8;  /* 透明度 */
+		    display: none;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    width: 100%;
+		    height: 100%;
+		    z-index: 100; /* 此处的图层要大于页面 */
+		    display:none;  
+        }  
+        #table{
+        	width:auto;
+        	height:auto;
+        	background: #FFFFFF;
+        	margin-left:400px;
+        	margin-top:150px;
+        } 
+        .tab td{
+        	color:#000000;
+        	
+        } 
+      	.tabname{
+      		margin-left:-50px;
+      		width:30px;
+      		white-space:nowrap;
+      	}
+      	#getaddress{
+      		float:right;
+      		margin-bottom:20px;
+      	}
  	</style>
  	
   </head>
@@ -242,6 +275,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
+	
+	<div class="tab" id="tab" >
+		<table class="table table-hover table-striped" id="table">
+		  
+		</table>
+	</div>	
   </body>
 </html>
 <script>
@@ -339,6 +378,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		支持按钮点击事件
 	*/
 	$("#return").on('click',".support",function(){
+		var userid=$("#userid").html();//账号id
+		data={};
+		data["empid"]=userid;
+		if(userid==""){
+			alert("请先登录！");
+		}else{
+			$.ajax({
+				type : "post",
+				dataType : "json",
+				url : "zhubin/queryAddress.do",
+				contentType : "application/json;charset=utf-8",
+				data :JSON.stringify(data),
+				success : function(data) {//data为返回的数据，在这里做数据绑定  
+					if(data.length<1){//判断地址为空
+						window.location.href="addAddress.jsp";
+					}else{
+					    var th="<thead><tr><th><h3>请选择地址</h3></th></tr><tr><th></th><th class=\"tabname\">姓名</th><th>电话</th><th>邮编</th><th>地址</th></tr></thead>";
+						$("#table").append(th);
+					    $.each(data,function(index,value){
+							var tr=" <tbody><tr><td><input name=\"seladd\" type=\"radio\" value=\""+
+							value.addressId+"\"/></td><td class=\"tabname\">"+value.name+"</td><td>"+
+							value.phone+"</td><td>"+value.postCodes+"</td><td>"+value.addressInfo+
+							"</td></tr><tr><td></td><td></td><td></td><td></td><td><a id=\"getaddress\" type=\"button\">确定</a></td></tr></tbody>";
+							$("#table").append(tr);
+							
+						});
+					    $("#tab").css("height",$(document).height());     
+				        $("#tab").css("width",$(document).width());     
+				        $("#tab").show(); 
+				        
+					}
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		}
+	})
+	$("#tab").on('click',"#getaddress",function(){
+		var getradio = $('#table input[name="seladd"]:checked ').val();
+		if(getradio>=1){
+			payService(getradio);
+			$("#tab").hide();  
+		}else{
+			alert("请选择地址");
+		}
+	})
+	function payService(addressId){
+		alert("a"+addressId);
 		var supid=$(this).attr("id");//动态获取id
 		var returnid=$("#return"+supid).html();//获取回报id
 		var money=$("#money"+supid).html();//获取回报钱数
@@ -348,24 +436,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				empid:userid,
 				projectsid:pid,
 				paymoney:money,
-				proreturnid:returnid
+				proreturnid:returnid,
+				address:addressId
 		};
-		if(userid==""){
-			alert("请先登录！");
-		}else{
-			$.ajax({
-				type : "post",
-				dataType : "json",
-				url : "return/selectProReturn.do",
-				contentType : "application/json;charset=utf-8",
-				data :JSON.stringify(data),
-				success : function(data) {//data为返回的数据，在这里做数据绑定  
-					
-				},
-				error : function() {
-					alert("error");
-				}
-			});
-		}
-	})
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "capital/payService.do",
+			contentType : "application/json;charset=utf-8",
+			data :JSON.stringify(data),
+			success : function(data) {//data为返回的数据，在这里做数据绑定  
+				alert("支持成功");
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	}
+
 </script>

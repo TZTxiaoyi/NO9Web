@@ -27,9 +27,9 @@ public class AddressServiceImpl implements AddressService {
 	 * 查询
 	 */
 	@Override
-	public List<Object> queryAddress() {
+	public List<Object> queryAddress(int empid) {
 		// TODO Auto-generated method stub
-		return ad.queryAddress();
+		return ad.queryAddress(empid);
 	}
 	/**
 	 * 添加
