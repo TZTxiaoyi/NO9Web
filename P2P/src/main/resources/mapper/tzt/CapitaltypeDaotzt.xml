@@ -13,6 +13,7 @@
 		<where>
 			state=20
 		</where>
+		order by key desc
 	</select>
 
 	<!-- 账号状态默认为4可用 -->

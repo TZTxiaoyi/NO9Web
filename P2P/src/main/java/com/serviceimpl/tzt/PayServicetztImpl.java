@@ -52,7 +52,6 @@ public class PayServicetztImpl implements PayServicetzt {
 		orders.setOrdertime(hehe);
 		
 		System.out.println(list);
-		capital.setOrdid(orders.getOrdid());
 		capital.setCapital(orders.getPaymoney());
 		capital.setCapitalflow(2);
 		capital.setEmpid(orders.getEmpid());
@@ -61,6 +60,7 @@ public class PayServicetztImpl implements PayServicetzt {
 		capital.setStarttime(hehe);
 		
 		Integer a =ordersDaotzt.addOrders(orders);
+		capital.setOrdid(orders.getOrdid());
 		Integer b= capitalDaotzt.addCapital(capital);
 		Integer c =promoneyDaotzt.updatePromoney(promoney);
 		if (a!=0&&b!=0&&c!=0) {
