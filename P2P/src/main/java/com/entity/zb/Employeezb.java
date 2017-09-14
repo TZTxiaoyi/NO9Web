@@ -17,7 +17,7 @@ public class Employeezb {
 	private String Sex;//性别
 	private int Age;//年龄
 	private String Address;//地址ַ
-	private int TelePhone;//电话
+	private String TelePhone;//电话
 	private float Balance;//余额
 	private int EmpState;//状态״̬
 	
@@ -65,10 +65,10 @@ public class Employeezb {
 		Address = address;
 	}
 	
-	public int getTelePhone() {
+	public String getTelePhone() {
 		return TelePhone;
 	}
-	public void setTelePhone(int telePhone) {
+	public void setTelePhone(String telePhone) {
 		TelePhone = telePhone;
 	}
 	public float getBalance() {

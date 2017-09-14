@@ -73,12 +73,13 @@ public class PayServicetztImpl implements PayServicetzt {
 		int balance=Integer.parseInt(map.get("BALANCE").toString());
 		//对比余额是否足够
 		if(Paymoney1>balance){
-			//System.out.println("456");
+			System.out.println("456");
 			return "false";
 		}else if(Paymoney1<balance){
 			//更新余额
-			int ibalance=balance-Paymoney1;
-			employee.put("balance", ibalance);
+			/*int ibalance=balance-Paymoney1;*/
+			/*employee.put("balance", ibalance);*/
+			employee.put("balance", Paymoney1);
 			employeeDaoLjl.UpdateEmployee(employee);
 		}
 		Integer a =ordersDaotzt.addOrders(orders);

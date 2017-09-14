@@ -24,12 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-<<<<<<< HEAD
-  	<table class="table table-hover">
-=======
-  	<table id="tab" class="table table-hover table-striped">
->>>>>>> 0ddb47f4d6f58cbe9458fa043e65aeab3cabc5e9
-		  
+
+  	<table id="tab" class="table table-hover table-striped">  
+
 	</table>			
   </body>
 </html>

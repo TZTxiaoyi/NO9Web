@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.entity.tzt.Employee;
 import com.entity.zb.Employeezb;
 import com.service.zb.EmployeeService;
 
@@ -67,21 +69,20 @@ public class EmployeeController {
 	* @return void    返回类型
 	* @throws
 	 */
+	@ResponseBody
 	@RequestMapping("/updateEmployee.do")
-	public void updateEmployee(@RequestBody String emp,HttpServletResponse resp){
+	public String updateEmployee(@RequestBody String emp){
 		System.out.println("+++++++"+emp);
 		JSON json=new JSONArray();		
-		Map map=(Map) json.parse(emp);
-		int flag = eService.updateEmployee(map);
+		Map map=(Map) json.parseObject(emp);
 		System.out.println("_____map++++"+map);
-		System.out.println(flag);
-		try {
-			resp.getWriter().flush();
-			resp.getWriter().close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		int flag = eService.updateEmployee(map);
+		if(flag>0){
+			return "true";
+		}else{
+			return "false";
 		}
+		
 	}
 	/**
 	 * 
@@ -92,10 +93,10 @@ public class EmployeeController {
 	* @throws
 	 */
 	@RequestMapping("/queryEmployee.do")
-	public void queryEmployee(HttpServletResponse resp){
-		System.out.println("--------------------------");
+	public void queryEmployee(@RequestBody Employee employee ,HttpServletResponse resp){
+		System.out.println("--------------------------"+employee.getEmpid());
 		resp.setCharacterEncoding("utf-8");
-		List<Object> listemp = eService.queryEmployee();
+		List<Object> listemp = eService.queryEmployee(employee.getEmpid());
 		JSON json = new JSONArray(listemp);
 		System.out.println(json.toString());
 		try {

@@ -281,14 +281,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     							 <span class="caret"></span>
   							</button>
 	                 		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    <li><a href="#">用户<span id="user"></span><span id="userid"></span></a></li>
-							    <li><a href="#">我的理财</a></li>
-							    <li><a href="#">我的订单</a></li>
-							    <li><a href="#">我的关注</a></li>
-							    <li><a href="#">我的发起</a></li>
-							    <li><a href="#">我的红包</a></li>
-							    <li><a href="#">消息</a></li>
-							    <li><a href="#">设置</a></li>
+							    <li><a href="newHome.jsp">用户<span id="user"></span><span id="userid"></span></a></li>
+							    <li><a href="newHome.jsp">我的理财</a></li>
+							    <li><a href="newHome.jsp">我的订单</a></li>
+							    <li><a href="newHome.jsp">我的关注</a></li>
+							    <li><a href="newHome.jsp">我的发起</a></li>
+							    <!-- <li><a href="newHome.jsp">我的红包</a></li> -->
+							    <li><a href="newHome.jsp">消息</a></li>
+							    <li><a href="newHome.jsp">设置</a></li>
 							    <li><a id="exit">退出</a></li>
 							  </ul>
 	                		

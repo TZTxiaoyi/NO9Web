@@ -214,15 +214,14 @@
 			show_acount_msg("#Address", "success", "");
 		}
 		//校验手机号（11位数字）
-		/* var TelePhone = $("#TelePhone").val();
-		//var regTelePhone = /^1[34578]\d{9}$/;
+		 var TelePhone = $("#TelePhone").val();
 		var regTelePhone = /^1[34578]\d{9}$/
 		if(!regTelePhone.test(TelePhone)){
 			show_acount_msg("#TelePhone", "error", "手机号格式不正确！");
 			return false;
 		}else{
 			show_acount_msg("#TelePhone", "success", "");
-		} */
+		} 
 		return true;
 	}
 //--------------------显示校验效果的提示信息的函数-------------------------------
