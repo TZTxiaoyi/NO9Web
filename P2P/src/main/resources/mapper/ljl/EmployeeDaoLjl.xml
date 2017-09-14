@@ -7,6 +7,6 @@
 		select * from employee where empid=#{empid}
 	</select>
 	<update id="UpdateEmployee" parameterType="map">
-		update employee set balance=#{balance} where empid=#{empid}
+		update employee set balance=balance+#{balance} where empid=#{empid}
 	</update>
 </mapper>

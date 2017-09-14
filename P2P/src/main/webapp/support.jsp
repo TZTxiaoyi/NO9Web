@@ -427,7 +427,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	})
 	function payService(addressId){
 		alert("a"+addressId);
-		var supid=$(this).attr("id");//动态获取id
+		var supid=$(".support").attr("id");//动态获取id
+		alert(supid);
 		var returnid=$("#return"+supid).html();//获取回报id
 		var money=$("#money"+supid).html();//获取回报钱数
 		var userid=$("#userid").html();//账号id
@@ -439,6 +440,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				proreturnid:returnid,
 				address:addressId
 		};
+		alert(data.empid);
+		alert(data.paymoney);
+		alert(data.proreturnid);
+		alert(data.address);
+		alert(data.projectsid);
 		$.ajax({
 			type : "post",
 			dataType : "json",
