@@ -5,44 +5,67 @@
 <mapper namespace="com.dao.tzt.PromoneyDaotzt">
 	<select id="queryPromoney" parameterType="com.entity.tzt.Promoney"  resultType="map">
 		select 
-			a.capitalid,
-			a.accountsid,
-			a.ordid,
-			a.projectsid,
-			r.value,
-			a.capital,
-			a.time
-	 	from capital a,capitaltype r 
-	 	<where>
-	 		 a.capitalflow=r.key 	
-	 		<if test ="capitalid !=null">
-	 			and a.capitalid= #{capitalid}
-	 		</if>
-	 		<if test ="accountsid !=null">
-	 			and a.accountsid= #{accountsid}
-	 		</if>
-	 		<if test ="ordid !=null">
-	 			and a.ordid= #{ordid}
-	 		</if>
-	 		<if test ="projectsid !=null">
-	 			and a.projectsid= #{projectsid}
-	 		</if>
-	 		<if test ="capitalflow !=null">
-	 			and a.capitalflow= #{capitalflow}
-	 		</if>
-	 		<if test ="starttime !=null ">
-	 			and a.time &gt;= to_date(#{starttime},'yyyy-MM-dd HH24:MI:SS')
-	 		</if>
-	 		<if test ="endtime !=null">
-	 			and a.time &lt; = to_date(#{endtime},'yyyy-MM-dd HH24:MI:SS')
-	 		</if>
-	 		
-	 	</where>
+			money_id,
+			projectsid,
+			targe_money,
+			raise_money
+	 		from pro_money 
+	 		<where>
+		 		<if test ="moenyid !=null">
+		 			 money_id= #{moenyid}
+		 		</if>
+		 		<if test ="projectsid !=null">
+		 			and projectsid= #{projectsid}
+		 		</if>
+		 		<if test ="targemoney !=0">
+		 			and targe_money= #{targemoney}
+		 		</if>
+		 		<if test ="raisemoney !=0">
+		 			and raise_money= #{raisemoney}
+		 		</if>
+	 		</where>
 	</select>
 	
-	<insert id="addPromoney" parameterType="com.entity.tzt.Capital" >
-		insert into capital values(list_capital.nextval,#{accountsid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
-		#{projectsid,jdbcType=NUMERIC},#{cap	italflow,jdbcType=NUMERIC},
-		#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
+	<insert id="addPromoney" parameterType="com.entity.tzt.Promoney" >
+		insert into pro_money values(list_capital.nextval,#{projectsid,jdbcType=NUMERIC},
+		#{targemoney,jdbcType=REAL},#{raisemoney,jdbcType=REAL}
 	</insert>
+	
+	<update id="updatePromoney" parameterType="com.entity.tzt.Promoney" >
+		update  pro_money set raise_money=#{raisemoney,jdbcType=REAL}
+			<where>
+	 		projectsid=#{projectsid}
+	 		</where>
+	</update>
+	
+	<select id="queyrProjectMoney" parameterType="com.entity.ljl.ProjectsLjl"  resultType="map">
+		select 
+			a.projectsid,
+			a.empid,
+			w1.value as ORIGINATORTYPE,
+			a.addtime,
+	 		w2.value as PROJECTSSTATE,
+	 		b.targe_money,
+	 		b.raise_money
+	 		from projects a,pro_money b ,word w1,word w2 
+	 		<where>
+	 			a.projectsid = b.projectsid and w1.key=a.ORIGINATORTYPE and a.PROJECTSSTATE=w2.key
+		 		<if test ="projectsid !=0">
+		 			and projectsid= #{projectsid}
+		 		</if>
+		 		<if test ="empid !=0">
+		 			and empid= #{empid}
+		 		</if>
+		 		<if test ="originatortype !=0">
+		 			and originatortype= #{originatortype}
+		 		</if>
+		 		<if test ="addtime !=null">
+		 			and addtime= #{addtime}
+		 		</if>
+		 		<if test ="projectsstate !=0">
+		 			and projectsstate= #{projectsstate}
+		 		</if>
+	 		</where>
+	 		order by projectsid desc
+	</select>
 </mapper>

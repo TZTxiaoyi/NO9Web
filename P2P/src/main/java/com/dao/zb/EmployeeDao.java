@@ -1,6 +1,7 @@
 package com.dao.zb;
 
 import java.util.List;
+import java.util.Map;
 
 import com.entity.zb.Employeezb;
 
@@ -17,5 +18,5 @@ import com.entity.zb.Employeezb;
 public interface EmployeeDao {
 	public List<Object> queryEmployee();
 	public int addEmployee(Employeezb employee);
-	public int updateEmployee(Employeezb employee);
+	public int updateEmployee(Map map);
 }

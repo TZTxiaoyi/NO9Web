@@ -62,7 +62,6 @@
 	<insert id="inProIndetailState" parameterType="int">
 		insert into proindetail_auditing values(list_pro_indetail.nextval,#{projectsid},42,42,42,42,42,42)
 	</insert>
-	
 	<!--  在所有项目里点击审核，给项目描述审核表一个默认未审核的初始值（3）-->
 	<insert id="inProDescribeState" parameterType="int">
 		insert into pro_describe_auditing values(describe_auditing_record_list.nextval,#{projectsid},42,42)

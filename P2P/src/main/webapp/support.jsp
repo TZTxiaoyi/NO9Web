@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	padding-left:10px;
         	margin-right:10px;
         }
-        #retsup{
+        .support{
         	float:right;
         	margin-right:50px;
         	margin-top:-50px;
@@ -92,16 +92,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	float:right;
         	margin-right:50px;
         }
-        #selfless{
-        	border:2px solid  gray;
-        	padding-left:10px;
-        	margin-right:10px;
-        	padding-top:20px;
-        	padding-bottom:20px;
+        
+        .returnid,#userid{
+        	display:none;
         }
-        #selfless:hover{
-        	border:2px solid  #3ED0EA;
-        }
+         .tab {       
+             background: #000;
+		    filter: alpha(opacity=80); /* IE的透明度 */
+		    opacity: 0.8;  /* 透明度 */
+		    display: none;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    width: 100%;
+		    height: 100%;
+		    z-index: 100; /* 此处的图层要大于页面 */
+		    display:none;  
+        }  
+        #table{
+        	width:auto;
+        	height:auto;
+        	background: #FFFFFF;
+        	margin-left:400px;
+        	margin-top:150px;
+        } 
+        .tab td{
+        	color:#000000;
+        	
+        } 
+      	.tabname{
+      		margin-left:-50px;
+      		width:30px;
+      		white-space:nowrap;
+      	}
+      	#getaddress{
+      		float:right;
+      		margin-bottom:20px;
+      	}
  	</style>
  	
   </head>
@@ -137,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     							 <span class="caret"></span>
   							</button>
 	                 		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    <li><a href="#">用户<span id="user"></span></a></li>
+							    <li><a href="#">用户<span id="user"></span><span id="userid"></span></a></li>
 							    <li><a href="#">我的理财</a></li>
 							    <li><a href="#">我的订单</a></li>
 							    <li><a href="#">我的关注</a></li>
@@ -240,21 +267,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="container" id="center">
 				<div id="sup">
 					<p>请选择支持项</p>
-					<div id="selfless">
-
-	                    <p>感谢您的无私奉献，这份支持将助我们的梦想飞的更高更远。</p>
-	                    <div class="wszcWrap siteIlB_box" id="wszcWrap">
-	                        <a href="javascript:;" class="cur btn_ALink">¥1</a>
-	                        <a href="javascript:;" class="btn_ALink">¥5</a>
-	                        <a href="javascript:;" class="btn_ALink">¥10</a>
-	                    </div>
-	                    <div>
-	                        <span>其他<b>¥</b></span>
-	                        <input type="text" maxlength="8"/>
-	                        <input id="supportinput" type="button" class="btn btn-info" value="立即支持">
-	                    </div>
-	          						
-		  			</div>
+					
 					<div id="return"></div>
 				</div>
 				
@@ -262,6 +275,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
+	
+	<div class="tab" id="tab" >
+		<table class="table table-hover table-striped" id="table">
+		  
+		</table>
+	</div>	
   </body>
 </html>
 <script>
@@ -283,11 +302,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:JSON.stringify(data),
 			success : function(data1) {//data为返回的数据，在这里做数据绑定  
 				login(data);
-				/* $("#user").append(data1.resultEmployee[0].USERNAME);
-				$("#log_reg").hide();
-				$("#log_img").show();
-				$('#myModal1').modal('hide');
-				$.cookie('account1', act1) //存入值 */
 			}
 		});
 	});
@@ -333,7 +347,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	}
 	/*
-		页面加载
+		页面加载显示回报选项
 	*/
 	$(function(){
 		var pid=$.cookie('pid');
@@ -347,8 +361,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data :JSON.stringify(data),
 			success : function(data) {//data为返回的数据，在这里做数据绑定  
 				$.each(data,function(index,value){
-					var cont="<div id=\"ret\"><div><h2>￥"+value.OFFER_MONEY+"</h2><input id=\"retsup\" class=\"btn btn-info\" type=\"button\" value=\"支持￥"+
-					value.OFFER_MONEY+"\"/></div><h4>"+value.RETURN_TITLE+"</h4><p id=\"retcontent\">"+value.RETURN_CONTENT+"</p></div>";
+					var cont="<div id=\"ret\"><div><span class=\"returnid\" id=\"returnretsup"+value.PRO_RETURNID+"\">"+
+					value.PRO_RETURNID+"</span><h2>￥<span id=\"moneyretsup"+value.PRO_RETURNID+"\">"+value.OFFER_MONEY+"</span></h2>"+
+					"<input id=\"retsup"+value.PRO_RETURNID+"\" class=\"btn btn-info support\" type=\"button\" value=\"支持￥"+
+					value.OFFER_MONEY+"\"/></div><h4>"+value.RETURN_TITLE+"</h4><p id=\"retcontent\">"+
+					value.RETURN_CONTENT+"</p></div>";
 					$("#return").append(cont);
 				});	
 			},
@@ -357,4 +374,84 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		});
 	})
+	/*
+		支持按钮点击事件
+	*/
+	$("#return").on('click',".support",function(){
+		var userid=$("#userid").html();//账号id
+		data={};
+		data["empid"]=userid;
+		if(userid==""){
+			alert("请先登录！");
+		}else{
+			$.ajax({
+				type : "post",
+				dataType : "json",
+				url : "zhubin/queryAddress.do",
+				contentType : "application/json;charset=utf-8",
+				data :JSON.stringify(data),
+				success : function(data) {//data为返回的数据，在这里做数据绑定  
+					if(data.length<1){//判断地址为空
+						window.location.href="addAddress.jsp";
+					}else{
+					    var th="<thead><tr><th><h3>请选择地址</h3></th></tr><tr><th></th><th class=\"tabname\">姓名</th><th>电话</th><th>邮编</th><th>地址</th></tr></thead>";
+						$("#table").append(th);
+					    $.each(data,function(index,value){
+							var tr=" <tbody><tr><td><input name=\"seladd\" type=\"radio\" value=\""+
+							value.addressId+"\"/></td><td class=\"tabname\">"+value.name+"</td><td>"+
+							value.phone+"</td><td>"+value.postCodes+"</td><td>"+value.addressInfo+
+							"</td></tr><tr><td></td><td></td><td></td><td></td><td><a id=\"getaddress\" type=\"button\">确定</a></td></tr></tbody>";
+							$("#table").append(tr);
+							
+						});
+					    $("#tab").css("height",$(document).height());     
+				        $("#tab").css("width",$(document).width());     
+				        $("#tab").show(); 
+				        
+					}
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		}
+	})
+	$("#tab").on('click',"#getaddress",function(){
+		var getradio = $('#table input[name="seladd"]:checked ').val();
+		if(getradio>=1){
+			payService(getradio);
+			$("#tab").hide();  
+		}else{
+			alert("请选择地址");
+		}
+	})
+	function payService(addressId){
+		alert("a"+addressId);
+		var supid=$(this).attr("id");//动态获取id
+		var returnid=$("#return"+supid).html();//获取回报id
+		var money=$("#money"+supid).html();//获取回报钱数
+		var userid=$("#userid").html();//账号id
+		var pid=$.cookie('pid');//项目id
+		var data={
+				empid:userid,
+				projectsid:pid,
+				paymoney:money,
+				proreturnid:returnid,
+				address:addressId
+		};
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "capital/payService.do",
+			contentType : "application/json;charset=utf-8",
+			data :JSON.stringify(data),
+			success : function(data) {//data为返回的数据，在这里做数据绑定  
+				alert("支持成功");
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	}
+
 </script>

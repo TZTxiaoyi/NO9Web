@@ -22,17 +22,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript" src="../../bootstrap/fileinput/css/fileinput.css"></script>
   <script type="text/javascript" src="../../bootstrap/fileinput/js/locales/zh.js"></script>
   <style>
-  	body
+ /*  	body
   {
   background-color:#F0F0F0;
   
-  }
-  #colpadding{
+  } */
+  /* #colpadding{
   	margin:100px auto;
   	padding:100px;
   	background-color:#FFFFFF;
   	width:900px;
-  }
+  } */
   #inputpadding{
   	margin:0 auto;
   	width:80%;
@@ -41,14 +41,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   #filediv{
   	width:300px;
   }
- 
+ #Relevantdata{
+ 	width:150px;
+ }
   </style>
   </head>
   <body>
   	 
   			<div  id="colpadding">
-  				<form class="form-horizontal" method="post"
-                    action="<%=basePath%>PerProController/UpataPerPro.do">
+  				<form class="form-horizontal" >
 				<div>
 					
 					<h3>个人众筹资料</h3><br>
@@ -83,17 +84,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					</div>
 					
 					<h3>选择平台渠道费</h3><br>
-					<div id="Relevantdata">
+					<div id="Relevantdata1">
 						<input type="radio" name="Cost" value="1.5" checked>渠道费 1.5% (用于支付给第三方支付机构，如众筹项目不成功，则不收取该笔费用。)
 					</div>
 				</div>
-				<input  class="btn btn-info" type="submit" value="下一步" style="position:relative;top:150;left:45%;width:100px">
+				<input id="wewr"  class="btn btn-info"  value="保存" style="position:relative;top:20;width:100px">
 			</form>
 			</div>
 			
 	</body>
 </html>
 <script>
+	$("#wewr").click(function(){
+		alert("555");
+			var projectsid=$.cookie('projectsid');
+			var originatorname=$("#originatorname").val();
+			var idcard=$("#idcard").val();
+			var telephone=$("#telephone").val();
+			var protypeid=$("input[type='radio']:checked").val();
+			var data ={};
+			data["projectsid"]=parseInt(projectsid);
+			data["originatorname"]=originatorname;
+			data["idcard"]=parseInt(idcard);
+			data["telephone"]=parseInt(telephone);
+			data["protypeid"]=parseInt(protypeid);
+			alert("456");
+			$.ajax({
+				type:"post",
+				url:"http://localhost:9088/P2P/PerProController/UpataPerPro.do",
+				contentType:"application/json;charset=utf-8",
+				data:JSON.stringify(data),
+				success:function(data){
+					if(data="success"){
+						window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/ProjectsDescribe.jsp';
+					}
+					
+				}
+			})
+	})
 	
 	$(function(){
 		$.ajax({

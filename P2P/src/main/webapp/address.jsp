@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<script type="text/javascript" src="jq/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="jq/jquery.cookie1.4.1.js"/></script>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css"></link>
 
    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -52,16 +53,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <a href = "addAddress.jsp">
-    	<button class = "btn btn-danger btn-block active">
+    	<button class = "btn btn-danger btn-block active" id= "addadd">
     		<span class = "glyphicon glyphicon-plus"></span>  添加地址 
     	</button>
     </a>
-
-   	
 	<table id ="table"  class="table table-bordered">
 	
-	</table>
-	
+	</table>	
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
@@ -87,9 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<div>
 								<span>&nbsp;&nbsp;&nbsp;&nbsp;地&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;</span><input type="text" id="aaddress" class="tableName" />
-							</div>
-	
-	
+							</div>	
 						</div>
 					</div>
 					<div class="modal-footer" id="alter">
@@ -105,19 +101,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 </html>
 <script>
-	//
 	$(function() {
-	//------------------------------查询地址----------------------------------------	
+//------------------------------查询地址----------------------------------------	
+		var data ={}
+			data["empid"] = $.cookie("empid");
+			alert(data["empid"]);
+		
 		$.ajax({
 			type : "post",
 			dataType : "json",
 			url : "/P2P/zhubin/queryAddress.do",
 			contentType : "application/json;charset=utf-8",
+			data:JSON.stringify(data),
 			success : function(data) {
 				var th = "<tr id='trsize'><td>地址编号</td><td>收货人姓名</td><td>联系方式</td><td>邮编</td><td>详细地址</td><td>操作</td></tr>";
 				$("#table").append(th);
 				$.each(data,function(index, value) {
-					//alert(value.addressId);
 					var dd = "<tr class='table table-bordered table-striped  table-hover' height='50'><td>"
 					+ value.addressId
 					+ "</td><td id=\"namealter"+value.addressId+"\">"
@@ -141,8 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 
 	});
-	//-------------------修改地址-------------------------------
-	
+//-------------------修改地址-------------------------------	
 	$("#table").on('click', ".alterbtn", function() {
 		var addressId=$(this).attr("addressId");
 		var addalter = $(this).attr("id");
@@ -156,7 +154,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$("#aphone").val(goodphone);
 		$("#acodes").val(goodcodes);
 		$("#aaddress").val(goodinfo);
-
 	});
 	$("#alter").click(function() {
 		var data = {};
@@ -174,17 +171,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data : JSON.stringify(data),
 			success : function(data) {								
 				window.location.reload();
-				alert("ok");
-				
-				
+				alert("ok");				
 			},
 			error : function() {
 				alret("error");
 			}
 		});
 	})
-	
-	//------------------------------删除地址--------------------------------------
+
+//------------------------------删除地址--------------------------------------
 	$("#table").on("click",".deletebtn",function(){
 		var name = $(this).parents("tr").find("td:eq(1)").text();
 		var id = $(this).attr("addressId");
@@ -203,9 +198,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				},
 				error : function(){
 					alert("error");					
-				}
-				
-				
+				}								
 			});
 		}
 	});

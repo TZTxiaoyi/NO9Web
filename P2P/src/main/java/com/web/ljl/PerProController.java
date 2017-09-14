@@ -20,23 +20,20 @@ import com.service.ljl.PerProServiceLjl;
 @Controller
 @RequestMapping("/PerProController")
 public class PerProController {
-	
 	@Autowired
 	FileUploadService savefile;
 	@Autowired
 	PerProServiceLjl PerService;
 	@RequestMapping("/UpataPerPro")
-	public String UpataPerPro( PerProLjl perpro){
+	@ResponseBody
+	public String UpataPerPro(@RequestBody PerProLjl perpro){
 		System.out.println(perpro.getIdcard());
-		
 		int flag=PerService.UpdataPerPro(perpro);
-		
 		if(flag==1){
-			return "jsp/LaunchProject/ProjectsDescribe";
+			return "success";
 			
 		}
-		return "jsp/LaunchProject/err";
-		
+		return "err";
 	}
 	@RequestMapping(value="/AllPerPro",produces = "application/json;charset=utf-8")
 	@ResponseBody

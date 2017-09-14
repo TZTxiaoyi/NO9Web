@@ -19,11 +19,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+	<script type="text/javascript" src="jq/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="jq/jquery.cookie1.4.1.js"/></script>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css"></link>
 
    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="jq/jquery-3.2.1.min.js"></script>
+  
   <style type="text/css">
   	table{
   		margin-top:40px;
@@ -49,10 +51,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<a href="address.jsp"><span class = "glyphicon glyphicon-arrow-left"> </span></a>
   	<table class = "has-feedback">
-  		<tr>
-  			<td id = "tdone"> 地址id:</td>
-  			<td><input type="text" id="AddressId" placeholder="地址id"/></td>
-  		</tr>
   		<tr>
   			<td id = "tdone">收货人姓名:</td>
   			<td>
@@ -124,6 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$(ele).next("span").text(msg);
 			}
 		}
+		
 		//点击保存地址---------------------------------------------
 		$("#addAddress").click(function(){
 			if(!checkTable()){
@@ -135,6 +134,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				data["Phone"] = $("#Phone").val();
 				data["postCodes"] = $("#postCodes").val();
 				data["AddressInfo"] = $("#AddressInfo").val();
+				data["Account"] = $.cookie("account");
+	
 				//alert($("#postCodes").val()+"==========="+data["postCodes"]);
 				$.ajax({
 					type : "post",//使用post方法访问后台  

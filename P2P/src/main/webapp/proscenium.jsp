@@ -427,6 +427,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				passwords : $("#passwords").val(),
 			};
 		$.cookie("oldpassword",$("#passwords").val(),{path:"/"});//密码
+		$.cookie("accountid",$("#accounts").val(),{path:"/"});
 		login(data);
 	});
 	/*

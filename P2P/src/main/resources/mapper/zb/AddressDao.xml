@@ -4,10 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.zb.AddressDao">	
 	 <select id="queryAddress" resultType="Address">
-		select * from address
+		 select a.addressid,a.name,a.phone,a.postcodes,a.addressinfo  from address a ,accounts ac
+		 where a.accountid = ac.accounts and ac.empid = #{empid}
+		 order by addressid desc
 	</select> 
 	<insert id="addAddress" parameterType="com.entity.zb.Address">
-		insert into address values(#{AddressId},#{Name},#{Phone},#{postCodes},#{AddressInfo})
+		insert into address (addressid,accountid,name,phone,postcodes,addressinfo) values(list_address.nextval,#{Account},#{Name},#{Phone},#{postCodes},#{AddressInfo})
 	</insert>
 	<update id = "updateAddress" parameterType = "map">
 		update address set name=#{Name},phone=#{Phone},postCodes=#{postCodes},addressInfo=#{AddressInfo} where AddressId=#{AddressId}

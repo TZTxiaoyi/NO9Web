@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,14 +24,14 @@ public class DescribeContrller {
 	@Autowired
 	DescribeServiecLjl DescribeService;
 	@RequestMapping("UpdateDescribe")
-	public String UpdateDescribe(DescribeLjl describe){
+	@ResponseBody
+	public String UpdateDescribe(@RequestBody DescribeLjl describe){
 		
 		int flag=DescribeService.UpdataDescribe(describe);
 		if(flag==1){
-			return "jsp/LaunchProject/ProjectsIndetail";
-			
+			return "success";
 		}
-		return "jsp/LaunchProject/err";
+		return "err";
 	}
 	@RequestMapping(value="/AllDescribe",produces = "application/json;charset=utf-8")
 	@ResponseBody
