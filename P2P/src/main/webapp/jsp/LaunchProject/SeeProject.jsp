@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </html>
 <script>
 
-
+var topWindow=window.top;
 /* var ifm= document.getElementById("MyIframe");
 
 ifm.height=document.documentElement.clientHeight; */

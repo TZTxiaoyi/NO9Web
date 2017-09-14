@@ -37,4 +37,35 @@
 	 		projectsid=#{projectsid}
 	 		</where>
 	</update>
+	
+	<select id="queyrProjectMoney" parameterType="com.entity.ljl.ProjectsLjl"  resultType="map">
+		select 
+			a.projectsid,
+			a.empid,
+			w1.value as ORIGINATORTYPE,
+			a.addtime,
+	 		w2.value as PROJECTSSTATE,
+	 		b.targe_money,
+	 		b.raise_money
+	 		from projects a,pro_money b ,word w1,word w2 
+	 		<where>
+	 			a.projectsid = b.projectsid and w1.key=a.ORIGINATORTYPE and a.PROJECTSSTATE=w2.key
+		 		<if test ="projectsid !=0">
+		 			and projectsid= #{projectsid}
+		 		</if>
+		 		<if test ="empid !=0">
+		 			and empid= #{empid}
+		 		</if>
+		 		<if test ="originatortype !=0">
+		 			and originatortype= #{originatortype}
+		 		</if>
+		 		<if test ="addtime !=null">
+		 			and addtime= #{addtime}
+		 		</if>
+		 		<if test ="projectsstate !=0">
+		 			and projectsstate= #{projectsstate}
+		 		</if>
+	 		</where>
+	 		order by projectsid desc
+	</select>
 </mapper>

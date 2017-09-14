@@ -74,12 +74,15 @@ public class LoginController {
 		//System.out.println(accounts.getAccounts());
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("contentType", "text/JSON;charset=UTF-8");
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
+		
 		session.setAttribute("accounts", accounts.getAccounts());
+		System.out.println("------------:::"+session.getAttribute("accounts"));
 		 JSONObject resultinfo= JSON.parseObject(loginServicetzt.login(accounts));
 		System.out.println(loginServicetzt.login(accounts));
 		if (resultinfo.get("resultType").equals("true")){
 			session.setAttribute("accountsinfo", resultinfo);
+			
 		}
 			return JSON.toJSONString(resultinfo);
 	}
@@ -113,6 +116,7 @@ public class LoginController {
 		//System.out.println(accounts.getAccounts());
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("contentType", "text/JSON;charset=UTF-8");
+		//System.out.println("--------------aaaa:"+accounts.getAccounts());
 		HttpSession session = request.getSession(); 
 		JSONObject resultinfo= JSON.parseObject(loginServicetzt.login(accounts));
 		System.out.println(loginServicetzt.login(accounts));

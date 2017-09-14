@@ -10,15 +10,11 @@
 			a.fraction,
 			a.projectsid,
 			a.paymoney,
-			r.name,
-			r.phone,
-			r.addressinfo,
 			a.pro_returnid,
 			a.order_time,
-			w.value
-	 	from orders a,address r ,word w 
+	 	from orders a
 	 	<where>
-	 		 a.address=r.addressid 	and w.key=a.ord_status and e.empid=a.empid
+	 		 a.address=r.addressid 	
 	 		<if test ="ord_id !=null">
 	 			and a.ord_id= #{ord_id}
 	 		</if>
@@ -41,12 +37,17 @@
 	 			and a.pro_returnid= #{proreturnid}
 	 		</if>
 	 	</where>
+	 		 	order by ord_id desc
+	 	
 	</select>
 	
 	<insert id="addOrders" parameterType="com.entity.tzt.Orders" >
+		 <selectKey keyProperty="ordid" resultType="int" order="AFTER">  
+	         SELECT list_orders.currval  as id from DUAL 
+	    </selectKey> 
 		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
 		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')
-		,76,#{proreturnid,jdbcType=NUMERIC}) 
+		,76,#{proreturnid,jdbcType=NUMERIC},#{address,jdbcType=NUMERIC}) 
 	</insert>
 	
 	<update id="updateOrders" parameterType="com.entity.tzt.Orders">

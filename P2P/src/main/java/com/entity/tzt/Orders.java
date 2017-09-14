@@ -11,6 +11,7 @@ public class Orders {
 	private Integer ordstatus;
 	private Integer proreturnid;
 	private String ordertime;
+	private Integer address;
 	public Integer getOrdid() {
 		return ordid;
 	}
@@ -59,5 +60,12 @@ public class Orders {
 	public void setOrdertime(String ordertime) {
 		this.ordertime = ordertime;
 	}
+	public Integer getAddress() {
+		return address;
+	}
+	public void setAddress(Integer address) {
+		this.address = address;
+	}
+	
 	
 }

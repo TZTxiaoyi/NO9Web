@@ -33,9 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
   <body>
 	<div class="panel-body" style="padding-bottom:0px;">
-        <div id="borderdiv"><b>我的发起 <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/></b>
+        <div id="borderdiv"><b>资金发放 <!-- <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/> --></b>
         	
-        <input type="button" class="btn btn-info saveprojects" value="机构发起众筹"/> 
+        <!-- <input type="button" class="btn btn-info saveprojects" value="机构发起众筹"/> --> 
         </div>      
 		
 		
@@ -53,31 +53,7 @@ var topWindow=window.top;
 
 //location.href = "http://g.cn/";
 
-var empid1=$.cookie('empid');
-
-	$(".saveprojects").click(function(){
-		var launchtype=1;
-		if(this.value=="个人发起众筹"){
-			launchtype=2;	
-		}
-		var empid=$.cookie('empid');
-		var time = new Date().Format("yyyy-MM-dd hh:mm:ss");  
-		$.ajax({
-			type:"post",
-			url:"http://localhost:9088/P2P/ProjectsController/SaveProjects.do",
-			data:{"empid":empid,"originatortype":9,"addtime":time,"projectsstate":57,"launchtype":launchtype},
-			success:function(data){
-				alert(data);
-				if(data!="success"){
-					$.cookie('projectsid', parseInt(data),{path:"/"});
-					topWindow.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
-					//window.location.replace("http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp");
-					//window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp';
-				}				
-			}
-		})
-		
-	})
+/* var empid1=$.cookie('empid'); */
 	
 	$(function () {
 		alert("1");
@@ -96,8 +72,9 @@ var TableInit = function () {
     var oTableInit = new Object();
     //初始化Table
     oTableInit.Init = function () {
+    	alert("456");
         $('#tb_departments').bootstrapTable({
-            url: 'http://localhost:9088/P2P/ProjectsController/AllProjects.do',         //请求后台的URL（*）
+            url: 'http://localhost:9088/P2P/TwoLoanController/AllReturn.do',         //请求后台的URL（*）
             method: 'post',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -117,32 +94,41 @@ var TableInit = function () {
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: false,                //是否启用点击选中行
             height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-            uniqueId: "PROJECTSID",                     //每一行的唯一标识，一般为主键列
+            uniqueId: "PROID",                     //每一行的唯一标识，一般为主键列
             showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
             columns: [{
-                field: 'PROJECTSID',
-                title: '项目编号'
+                field: 'PROID',
+                title: '订单编号'
             },{
                 title: '项目信息',
                 formatter: function(row,value,index){
                     return ["<img src=\"../../images/"+value.COVER+"\" alt=\"\" width=\"100\" height=\"50\" />"+value.TITLE+""];
                 }
             },{
-                field: 'ADDTIME',
-                title: '创建时间'
+                field: 'TARGE_MONEY',
+                title: '筹资目标'
             },{
                 field: 'PROJECTSSTATE',
-                title: '项目状态'
+                title: '剩余金额'
             },{
-                field: 'ORIGINATORTYPE',
-                title: '发起类别'
+                field: 'ZRETURN',
+                title: '回报中订单'
+            },{
+                field: 'COMPLETERATE',
+                title: '回报完成率'
+            },{
+                field: 'ORD_STATUS',
+                title: '订单状态'
+            },{
+                field: 'ORD_STATUS',
+                title: '物流单号'
             },{
             	title: '操作',
             	events:operateEvents,
             	formatter: function(row,value,index){
-                	return ["<input class=\"editbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"编辑\" /><input class=\"delectbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"删除\" />"];
+                	return ["<input class=\"editbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"发放资金\" />"];
                 }
             }]
         });
@@ -150,24 +136,43 @@ var TableInit = function () {
     
     window.operateEvents={
     		"click .editbtn":function(e,value,row,index){
-					alert(row.PROJECTSID);
-					var projectsid=row.PROJECTSID;
-					$.cookie('projectsid', projectsid,{path:"/"});
-					alert(row.PROJECTSSTATE);
-					if(row.PROJECTSSTATE=="草稿箱"){
-						topWindow.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
+    			/* $.ajax({
+					type:"post",
+					url:"http://localhost:9088/P2P/MyOrdersContrller/UpdateOrders.do",
+					data:{"ordid":row.PROID},
+					success:function(data){
+						alert(data);
+						if(data=="success"){
+							
+							
+						}
+					}
+				})
+					if(row.PROJECTSSTATE=="回报中"){
+						$.ajax({
+							type:"post",
+							url:"http://localhost:9088/P2P/MyOrdersContrller/UpdateOrders.do",
+							data:{"ordid":row.ORD_ID},
+							success:function(data){
+								alert(data);
+								if(data=="success"){
+									
+									
+								}
+							}
+						})
 						
 					}else{
-						alert("项目已提交无法编辑");
+						alert("尚未回报不能确认收货");
 						
 					}
 					
 	
 					//window.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
-					
+					 */
 					
     		},"click .delectbtn":function(e,value,row,index){
-				var projectsid=row.PROJECTSID;
+				/* //var projectsid=row.PROJECTSID;
 				if(row.PROJECTSSTATE=="草稿箱"){
 					alert("123");
 					
@@ -186,20 +191,16 @@ var TableInit = function () {
 					
 					alert("项目已提交无法删除");
 				}
-				
+				 */
     			
     		}
     		
     		
     }
-    $(".editbtn").click(function(){
-    	//var projects=$(this).name();
-    	alert(projects);
-    })
     //得到查询的参数
     oTableInit.queryParams = function (params) {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-            empid:empid1
+           /*  empid:empid1 */
         };
         return temp;
     };
