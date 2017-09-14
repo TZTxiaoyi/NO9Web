@@ -48,7 +48,7 @@ public class AddressController {
 	public void addAddress(@RequestBody String str,HttpServletResponse resp){
 		System.out.println("str="+str);
 		Address address = JSON.parseObject(str,Address.class);
-		System.out.println(address.getName());
+		System.out.println(address.getName()+"-------"+address.getPhone());
 		int flag = -1;
 		flag = asv.addAddress(address);
 		System.out.println("flag="+flag);

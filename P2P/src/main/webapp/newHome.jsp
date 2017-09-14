@@ -82,7 +82,9 @@
 				</table>
 			</div><!-- 左菜单 -->
 			<div class = "col-lg-10" id = "right">	
-					<iframe id = "urlIframe" src = "" width=100% height=100% > </iframe>	
+					<iframe id = "urlIframe" src = "" width=100% height=100% >
+						
+					 </iframe>	
 			</div>
 		</div>
 

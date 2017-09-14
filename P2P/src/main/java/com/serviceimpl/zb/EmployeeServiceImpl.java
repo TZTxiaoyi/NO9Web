@@ -24,11 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	EmployeeDao edao;
 	
-	@Override
-	public List<Object> queryEmployee() {
-		// TODO Auto-generated method stub
-		return edao.queryEmployee();
-	}
+	
 
 	@Override
 	public int addEmployee(Employeezb employee) {
@@ -44,7 +40,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public int updateEmployee(Map map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return edao.updateEmployee(map);
+	}
+
+	@Override
+	public List<Object> queryEmployee(int empid) {
+		// TODO Auto-generated method stub
+		return edao.queryEmployee(empid);
 	}
 
 }
