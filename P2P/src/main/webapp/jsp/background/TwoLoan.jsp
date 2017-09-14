@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
   <body>
 	<div class="panel-body" style="padding-bottom:0px;">
-        <div id="borderdiv"><b>我的订单 <!-- <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/> --></b>
+        <div id="borderdiv"><b>资金发放 <!-- <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/> --></b>
         	
         <!-- <input type="button" class="btn btn-info saveprojects" value="机构发起众筹"/> --> 
         </div>      
@@ -128,7 +128,7 @@ var TableInit = function () {
             	title: '操作',
             	events:operateEvents,
             	formatter: function(row,value,index){
-                	return ["<input class=\"editbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"确认收货\" />"];
+                	return ["<input class=\"editbtn btn btn-default\" type=\"button\" name=\""+value.PROJECTSID+"\" value=\"发放资金\" />"];
                 }
             }]
         });
