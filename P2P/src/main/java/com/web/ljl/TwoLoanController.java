@@ -22,4 +22,12 @@ public class TwoLoanController {
 		System.out.println(list);
 		return list;
 	}
+	@RequestMapping("/Loan")
+	@ResponseBody
+	public void Loan(@RequestBody String str){
+		System.out.println("454");
+		System.err.println(str);
+		twoloanservice.Loan(str);
+		
+	}
 }
