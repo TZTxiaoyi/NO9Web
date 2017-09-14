@@ -250,10 +250,10 @@ public class ControllerLy {
 	@ResponseBody
 	@RequestMapping(value="/upSinProState")
 	public int upSinProSta(@RequestBody Project projectsid,HttpServletResponse response){
-		//System.out.println("------------6666:"+projectsid.getProjectsid());
+		System.out.println("------------6666:"+projectsid.getProjectsid());
 		response.setHeader("content-type","text/html;charset=UTF-8");
 		int dList = SinAuditingService.upSinProSt(projectsid);
-		//System.out.println("rrrrrrrrr:"+dList);
+		System.out.println("rrrrrrrrr:"+dList);
 		return dList;
 	}
 	/**

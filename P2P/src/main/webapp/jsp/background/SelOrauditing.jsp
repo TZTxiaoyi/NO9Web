@@ -13,30 +13,24 @@
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
 <style>
-	#body_span{
-		border:2px;
-	}
-	#save_sinpro,#save_two,#save_three,#save_four{
+	#save_one,#save_two,#save_three,#save_four{
 		display:block;
-		position:relative;
-		margin-left:900px;
+		position:absolute;
+		margin-left:1000px;
 	}
 	#save_all{
 		display:block;
 		position:absolute;
 		margin-left:1000px;
-		margin-top:40px;		
+		margin-top:80px;		
 	}
 	#give_up{
 		display:block;
 		position:absolute;
 		margin-left:800px;
-		margin-top:40px
+		margin-top:80px
 	}
 </style>
-<script>
-	
-</script>
 </head>
 <body>
 	<div id="pageAll">
@@ -56,16 +50,14 @@
 					<ul id="myTab" class="nav nav-tabs">
 						<li class="active">
 							<a href="#home" data-toggle="tab">
-								个人信息审核
+								机构信息审核
 							</a>
 						</li>
 					<li><a href="#ios" data-toggle="tab">项目信息审核</a></li>
 					<li><a href="#pro_title" data-toggle="tab">项目描述审核</a></li>					
 					<li><a href="#pro_return" data-toggle="tab">项目回报审核</a></li>
 					</ul>
-					项目序号：<span id="projectsid"></span>
-					开始审批：<span id="begin_auditing"></span>
-					上次审批结束：<span id="last_auditing"></span>
+					项目序号：<span id="projectsid"></span>			
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade in active" id="home">
 							<table class="table table-hover">
@@ -77,76 +69,91 @@
 									</td>
 								</tr>
 								<tr>
-									<td>身份证号</td>
+									<td>机构名称</td>
 									<td id="info_one"></td>
 									<td>
-										<label><input type="radio" name="idcard" value="VALUE1"  flag="40"  id="oneRadio" />&nbsp;是</label>
+										<label><input type="radio" name="idcard" value="VALUE1"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="idcard" value="VALUE2"  flag="41"/>&nbsp;否</label>							
+										<label><input type="radio" name="idcard" value="VALUE2"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
-									<td>发起人姓名</td>
+									<td>机构代码</td>
 									<td id="info_two"></td>
 									<td>
-										<label><input type="radio"  name="originatorname" value="VALUE3"  id="oneRadio" />&nbsp;是</label>
+										<label><input type="radio" name="username" value="VALUE3"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="originatorname" value="VALUE4" />&nbsp;否</label>						
+										<label><input type="radio" name="username" value="VALUE4"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
-									<td>地址</td>
+									<td>法定代表人</td>
 									<td id="info_three"></td>
 									<td>
-										<label><input type="radio" name="adress" value="VALUE5"  id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="adress" value="VALUE5"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="adress" value="VALUE6" flag="41" />&nbsp;否</label>
-										
+										<label><input type="radio" name="adress" value="VALUE6"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
-									<td>电话</td>
+									<td>机构注册地址</td>
 									<td id="info_four"></td>
 									<td>
-										<label><input type="radio" name="telephone" value="VALUE7"  id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="phone" value="VALUE7"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="telephone" value="VALUE8"  flag="41" />&nbsp;否</label>
-										
-										
+										<label><input type="radio" name="phone" value="VALUE8"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
-									<td>身份证正面</td>
+									<td>联系人姓名</td>
 									<td id="info_five"></td>
 									<td>
-										<label><input type="radio" name="cardimage1" value="VALUE9"  id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="idcard2" value="VALUE9"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="cardimage1" value="VALUE10"  flag="41"/>&nbsp;否</label>										
+										<label><input type="radio" name="idcard2" value="VALUE10"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
-									<td>身份证反面</td>
+									<td>联系人手机号</td>
 									<td id="info_six"></td>
 									<td>
-										<label><input type="radio" name="cardimage2" value="VALUE11"  id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="telephone" value="VALUE11"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="cardimage2" value="VALUE12"  flag="41"/>&nbsp;否</label>
+										<label><input type="radio" name="telephone" value="VALUE12"/>&nbsp;否</label>
+									</td>
+								</tr>
+								<tr>
+									<td>机构简称</td>
+									<td id="info_seven"></td>
+									<td>
+										<label><input type="radio" name="abbreviation" value="VALUE13"/>&nbsp;是</label>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<label><input type="radio" name="abbreviation" value="VALUE14"/>&nbsp;否</label>
+									</td>
+								</tr>
+								<tr>
+									<td>机构经营地址</td>
+									<td id="info_eight"></td>
+									<td>
+										<label><input type="radio" name="busadress" value="VALUE15"/>&nbsp;是</label>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<label><input type="radio" name="busadress" value="VALUE16"/>&nbsp;否</label>
 									</td>
 								</tr>
 							</table>
-							<div class="bbD">
+							
+							
 								
-							</div>
-							<div class="bbD">
-								
-									<button type="button" class="btn btn-info" id="save_sinpro">保存</button>
-							</div>							
+									
+														
 						</div>
 						<div class="tab-pane fade" id="ios">
 							<table class="table table-hover">
@@ -161,7 +168,7 @@
 									<td>项目标题</td>
 									<td id="detail_one"></td>
 									<td>
-										<label><input type="radio" name="title" value="right1" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="title" value="right1"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="title" value="right2"/>&nbsp;否</label>
@@ -171,7 +178,7 @@
 									<td>筹金目的</td>
 									<td id="detail_two"></td>
 									<td>
-										<label><input type="radio" name="goal" value="right3" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="goal" value="right3"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="goal" value="right4"/>&nbsp;否</label>
@@ -181,7 +188,7 @@
 									<td>项目地点</td>
 									<td id="detail_three"></td>
 									<td>
-										<label><input type="radio" name="location" value="right5" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="location" value="right5"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="location" value="right6"/>&nbsp;否</label>
@@ -191,7 +198,7 @@
 									<td>筹金金额（元）</td>
 									<td id="detail_four"></td>
 									<td>
-										<label><input type="radio" name="money" value="right7" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="money" value="right7"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="money" value="right8"/>&nbsp;否</label>
@@ -201,30 +208,26 @@
 									<td>筹金天数</td>
 									<td id="detail_five"></td>
 									<td>
-										<label><input type="radio" name="days" value="right9" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="days" value="right9"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="days" value="right10" />&nbsp;否</label>
+										<label><input type="radio" name="days" value="right10"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>项目封面</td>
 									<td id="detail_six"></td>
 									<td>
-										<label><input type="radio" name="cover" value="right11" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="cover" value="right11"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="cover" value="right12"/>&nbsp;否</label>
 									</td>
 								</tr>								
 							</table>
-							<div class="bbD">
 							
-							</div>
-							<div class="bbD">
 								
-									<button type="button" class="btn btn-info" id="save_two">保存</button>
-							</div>
+							
 						</div>						
 						<div class="tab-pane fade" id="pro_title">
 							<table class="table table-hover">
@@ -239,33 +242,28 @@
 									<td>项目详细地址</td>
 									<td id="describe_one"></td>
 									<td>
-										<label><input type="radio" name="places" value="center1" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="places" value="center1"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="places" value="center2"/>&nbsp;否</label>
 									</td>
-								</tr>
-								
+								</tr>								
 								<tr>
 									<td>文本</td>
 									<td id="describe_three">
 										<a type="button" id="detail" class="btn btn-info" data-toggle="modal" data-target="#myModal">查看</a>
 									</td>
 									<td>
-										<label><input type="radio" name="content" value="center3" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="content" value="center3"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="content" value="center4"/>&nbsp;否</label>
 									</td>
 								</tr>														
 							</table>
-							<div class="bbD">
-								
-							</div>
-							<div class="bbD">
 						
-									<button type="button" class="btn btn-info" id="save_three">保存</button>
-							</div>
+								
+							
 						</div>
 						<div class="tab-pane fade" id="pro_return">
 							<table class="table table-hover">
@@ -280,7 +278,7 @@
 									<td>回报类型</td>
 									<td id="return_one"></td>
 									<td>
-										<label><input type="radio" name="reType" value="left1" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reType" value="left1"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reType" value="left2"/>&nbsp;否</label>
@@ -290,7 +288,7 @@
 									<td>回报金额（元）</td>
 									<td id="return_two"></td>
 									<td>
-										<label><input type="radio" name="reMoney" value="left3" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reMoney" value="left3"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reMoney" value="left4"/>&nbsp;否</label>
@@ -300,7 +298,7 @@
 									<td>回报标题</td>
 									<td id="return_three"></td>
 									<td>
-										<label><input type="radio" name="reTitle" value="left5" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reTitle" value="left5"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reTitle" value="left6"/>&nbsp;否</label>
@@ -310,7 +308,7 @@
 									<td>回报内容</td>
 									<td id="return_four"></td>
 									<td>
-										<label><input type="radio" name="reContent" value="left7" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reContent" value="left7"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reContent" value="left8"/>&nbsp;否</label>
@@ -320,7 +318,7 @@
 									<td>限制人数</td>
 									<td id="return_five"></td>
 									<td>
-										<label><input type="radio" name="reLimit" value="left9" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reLimit" value="left9"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reLimit" value="left10"/>&nbsp;否</label>
@@ -330,46 +328,33 @@
 									<td>回报时间</td>
 									<td id="return_six"></td>
 									<td>
-										<label><input type="radio" name="reTime" value="left11" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reTime" value="left11"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="reTime" value="left12" />&nbsp;否</label>
+										<label><input type="radio" name="reTime" value="left12"/>&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>实物图</td>
 									<td id="return_seven"></td>
 									<td>
-										<label><input type="radio" name="reImage" value="left13" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reImage" value="left13"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="reImage" value="left14" />&nbsp;否</label>
+										<label><input type="radio" name="reImage" value="left14"/>&nbsp;否</label>
 									</td>
 								</tr>										
-							</table>
-							<div class="bbD">
-								
-							</div>
-							<div class="bbD">								
-									<button type="button" class="btn btn-info" id="save_four">保存</button>
-							</div>
+							</table>																								
 						</div>
-					</div>
-					
-					<div class="bbD">
-						<div id="reasons"></div>
-						<p class="bbDP">
-							<button class="btn_ok btn_yes" href="#" id="save_all">提交</button>
-							<a class="btn_ok btn_no" href="index.jsp" id="give_up">取消</a>
-						</p>
-					</div>
+					</div>									
 				</div>
 			</div>
+
 			<!-- 上传广告页面样式end -->
 		</div>
 	</div>
 	
-	//文本详情模态框
+<!--  /*文本详情模态框*/-->	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -392,9 +377,7 @@
 		</div><!-- /.modal -->
 	</div>
 	<script type="text/javascript">
-		var auditing=$.cookie("project_auditing");
-		var topWindow=window.top;
-		
+		var auditing = parseInt($.cookie("orga_auditing"));
 		$("#detail").click(function(){
 			var data={};
 			data["projectsid"]=auditing;
@@ -416,34 +399,47 @@
 			});
 		});
 		$(function(){
-			$("#begin_auditing").append((new Date()).toLocaleString());
-			$("#projectsid").append(auditing);
-			 
+			var dd={};
+			dd["projectsid"]=auditing;			
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"/P2P/project/upSinProState.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){					
+					//alert(data);
+				}
+			});
+		});
+		// 机构信息项目审核  
+		$(function(){						 
 			//alert(auditing);
 			var data1={};
 			data1["projectsid"]=auditing;
 			$.ajax({
-				url: '/P2P/project/sinAuditing.do',
+				url: '/P2P/project/OraAuditing.do',
 				type:"post",
 				dataType:"json",
 				data:JSON.stringify(data1),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){
 					$.each(data,function(index,value){
-						var img1="<img src='"+value.CARDIMAGE1+"'>";
-						var img2="<img src='"+value.CARDIMAGE2+"'>";
-						$("#info_one").append(value.IDCARD);
-						$("#info_two").append(value.ORIGINATORNAME);
-						$("#info_three").append(value.ADDRESS);
-						$("#info_four").append(value.TELEPHONE);
-						$("#info_five").append(img1);
-						$("#info_six").append(img2);
+						$("#info_one").append(value.ONAME);
+						$("#info_two").append(value.OCODE);
+						$("#info_three").append(value.CORPORATION);
+						$("#info_four").append(value.REGISTER_ADDRESS);
+						$("#info_five").append(value.LINKMAN);
+						$("#info_six").append(value.LINKPHONE);
+						$("#info_seven").append(value.ABBREVIATION);
+						$("#info_eight").append(value.BUSINESS_ADDRESS);
 					})
 				}
 			});			
-		})
+		});
+		//机构项目信息审核
 		$(function(){
-			var auditing=parseInt($.cookie("project_auditing"));
+			
 					
 			var dd={};
 			dd["projectsid"]=auditing;
@@ -467,8 +463,9 @@
 				}
 			})
 		});
+		//机构项目描述审核
 		$(function(){			
-			var auditing=parseInt($.cookie("project_auditing"));
+			
 			//alert("ssdd:"+auditing);
 			var dd={};
 			dd["projectsid"]=auditing;
@@ -482,13 +479,13 @@
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){
 					$.each(data,function(index,value){					
-						$("#describe_one").append(value.places);						
+						$("#describe_one").append(value.places);					
 					})
 				}
 			})
 		});
-		$(function(){
-			var auditing=parseInt($.cookie("project_auditing"));
+		//机构项目回报审核
+		$(function(){			
 			//alert("ssdd:"+auditing);
 			var dd={};
 			dd["projectsid"]=auditing;
@@ -511,17 +508,15 @@
 				}
 			});
 		});
-		//个人信息审核记录查询
-		$(function(){
-			var auditing=parseInt($.cookie("project_auditing"));
+		//机构信息审核记录
+		$(function(){			
 			//alert("ssdd:"+auditing);
 			var dd={};
-			dd["projectsid"]=auditing;
-			
+			dd["projectsid"]=auditing;			
 			$.ajax({
 				type:"post",
 				dataType:"json",
-				url:"/P2P/project/singleAu.do",
+				url:"/P2P/project/orAuditingRecord.do",
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
@@ -561,16 +556,26 @@
 					}else if(data[0].VALUE6=="no"){
 						$("input:radio[value='VALUE12']").attr('checked','true');
 					}
+					
+					if(data[0].VALUE7=="yes"){
+						$("input:radio[value='VALUE13']").attr('checked','true');
+					}else if(data[0].VALUE7=="no"){
+						$("input:radio[value='VALUE14']").attr('checked','true');
+					}
+					
+					if(data[0].VALUE8=="yes"){
+						$("input:radio[value='VALUE15']").attr('checked','true');
+					}else if(data[0].VALUE8=="no"){
+						$("input:radio[value='VALUE16']").attr('checked','true');
+					}
 				}
 			});
 		});
-		<!--项目详情 -->
-		$(function(){
-			var auditing=parseInt($.cookie("project_auditing"));
+		//机构项目审核记录
+		$(function(){			
 			//alert("ssdd:"+auditing);
 			var dd={};
-			dd["projectsid"]=auditing;
-			
+			dd["projectsid"]=auditing;			
 			$.ajax({
 				type:"post",
 				dataType:"json",
@@ -645,7 +650,7 @@
 				}
 			});
 		});
-		//项目回报审核记录
+		//项目回报审核记录打印
 		$(function(){			
 			//alert("ssdd:"+auditing);
 			var dd={};
@@ -702,327 +707,7 @@
 				}
 			});
 		});
-		//修改项目状态
-	$(function(){
-		var dd={};
-		dd["projectsid"]=auditing;
-		dd["projectsstate"]=14;
-		$.ajax({
-			type:"post",
-			dataType:"json",
-			url:"/P2P/project/upSinProState.do",
-			data:JSON.stringify(dd),
-			contentType:"application/json;charset=UTF-8",
-			success:function(data){					
-				//alert(data);
-			}
-		});
-	});
-		//个人信息审核记录，先删除原有数据记录，再进行插入记录
-		$("#save_sinpro").click(function(){
-			//alert(8888);
-			var data={};
-			/* if($("input:radio[value='VALUE1']").is(':checked')){
-				alert("aaaa");
-			} */
-			
-			data["projectsid"]=auditing;
-			if($("input:radio[value='VALUE1']").is(':checked')){
-				data["idcard"]=40;
-			}else if($("input:radio[value='VALUE2']").is(':checked')){
-				data["idcard"]=41;
-			}else{
-				data["idcard"]=42;
-			}
-			//alert("sss:"+data.idcard);
-			if($("input:radio[value='VALUE3']").is(':checked')){
-				data["originatorname"]=40;
-			}else if($("input:radio[value='VALUE4']").is(':checked')){
-				data["originatorname"]=41;
-			}else{
-				data["originatorname"]=42;
-			}
-			
-			if($("input:radio[value='VALUE5']").is(':checked')){
-				data["address"]=40;
-			}else if($("input:radio[value='VALUE6']").is(':checked')){
-				data["address"]=41;
-			}else{
-				data["address"]=42;
-			}
-
-			if($("input:radio[value='VALUE7']").is(':checked')){
-				data["telephone"]=40;
-			}else if($("input:radio[value='VALUE8']").is(':checked')){
-				data["telephone"]=41;
-			}else{
-				data["telephone"]=42;
-			}
-
-			if($("input:radio[value='VALUE9']").is(':checked')){
-				data["cardimage1"]=40;
-			}else if($("input:radio[value='VALUE10']").is(':checked')){
-				data["cardimage1"]=41;
-			}else{
-				data["cardimage1"]=42;
-			}
-
-			if($("input:radio[value='VALUE11']").is(':checked')){
-				data["cardimage2"]=40;
-			}else if($("input:radio[value='VALUE12']").is(':checked')){
-				data["cardimage2"]=41;
-			}else{
-				data["cardimage2"]=42;
-			}
-			$.ajax({
-				type:"post",
-				dataType:"json",
-				url:"/P2P/project/inseSinAudi.do",
-				data:JSON.stringify(data),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){					
-					//alert(data);
-				}
-			});
-		});
-		//项目信息审核记录，先删除原有记录，再进行插入数据记录
-		$("#save_two").click(function(){
-			var data={};
-			/* if($("input:radio[value='VALUE1']").is(':checked')){
-				alert("aaaa");
-			} */
-			
-			data["projectsid"]=auditing;
-			if($("input:radio[value='right1']").is(':checked')){
-				data["title"]=40;
-			}else if($("input:radio[value='right2']").is(':checked')){
-				data["title"]=41;
-			}else{
-				data["title"]=42;
-			}
-			//alert("sss:"+data.idcard);
-			if($("input:radio[value='right3']").is(':checked')){
-				data["goal"]=40;
-			}else if($("input:radio[value='right4']").is(':checked')){
-				data["goal"]=41;
-			}else{
-				data["goal"]=42;
-			}
-			
-			if($("input:radio[value='right5']").is(':checked')){
-				data["projects_place"]=40;
-			}else if($("input:radio[value='right6']").is(':checked')){
-				data["projects_place"]=41;
-			}else{
-				data["projects_place"]=42;
-			}
-
-			if($("input:radio[value='right7']").is(':checked')){
-				data["financing"]=40;
-			}else if($("input:radio[value='right8']").is(':checked')){
-				data["financing"]=41;
-			}else{
-				data["financing"]=42;
-			}
-
-			if($("input:radio[value='right9']").is(':checked')){
-				data["financing_day"]=40;
-			}else if($("input:radio[value='right10']").is(':checked')){
-				data["financing_day"]=41;
-			}else{
-				data["financing_day"]=42;
-			}
-
-			if($("input:radio[value='right11']").is(':checked')){
-				data["cover"]=40;
-			}else if($("input:radio[value='right12']").is(':checked')){
-				data["cover"]=41;
-			}else{
-				data["cover"]=42;
-			}
-			$.ajax({
-				type:"post",
-				dataType:"json",
-				url:"/P2P/project/inProAuRecord.do",
-				data:JSON.stringify(data),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){					
-					//alert(data);
-				}
-			});
-		});
-		//保存项目描述审核记录
-		$("#save_three").click(function(){
-			var data={};
-			/* if($("input:radio[value='VALUE1']").is(':checked')){
-				alert("aaaa");
-			} */
-			
-			data["projectsid"]=auditing;
-			if($("input:radio[value='center1']").is(':checked')){
-				data["place"]=40;
-			}else if($("input:radio[value='center2']").is(':checked')){
-				data["place"]=41;
-			}else{
-				data["place"]=42;
-			}
-			//alert("sss:"+data.idcard);
-			if($("input:radio[value='center3']").is(':checked')){
-				data["body"]=40;
-			}else if($("input:radio[value='center4']").is(':checked')){
-				data["body"]=41;
-			}else{
-				data["body"]=42;
-			}
-			$.ajax({
-				type:"post",
-				dataType:"json",
-				url:"/P2P/project/inProDescribeAudi.do",
-				data:JSON.stringify(data),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){					
-					//alert(data);
-				}
-			});
-		});
-		//回报审核记录，先删除原有数据，再进行插入
-		$("#save_four").click(function(){
-			var data={};
-			/* if($("input:radio[value='VALUE1']").is(':checked')){
-				alert("aaaa");
-			} */
-			
-			data["projectsid"]=auditing;
-			if($("input:radio[value='left1']").is(':checked')){
-				data["return_type"]=40;
-			}else if($("input:radio[value='left2']").is(':checked')){
-				data["return_type"]=41;
-			}else{
-				data["return_type"]=42;
-			}
-			//alert("sss:"+data.idcard);
-			if($("input:radio[value='left3']").is(':checked')){
-				data["offer_money"]=40;
-			}else if($("input:radio[value='left4']").is(':checked')){
-				data["offer_money"]=41;
-			}else{
-				data["offer_money"]=42;
-			}
-			
-			if($("input:radio[value='left5']").is(':checked')){
-				data["return_title"]=40;
-			}else if($("input:radio[value='left6']").is(':checked')){
-				data["return_title"]=41;
-			}else{
-				data["return_title"]=42;
-			}
-
-			if($("input:radio[value='left7']").is(':checked')){
-				data["return_content"]=40;
-			}else if($("input:radio[value='left8']").is(':checked')){
-				data["return_content"]=41;
-			}else{
-				data["return_content"]=42;
-			}
-
-			if($("input:radio[value='left9']").is(':checked')){
-				data["limit_people"]=40;
-			}else if($("input:radio[value='left10']").is(':checked')){
-				data["limit_people"]=41;
-			}else{
-				data["limit_people"]=42;
-			}
-
-			if($("input:radio[value='left11']").is(':checked')){
-				data["return_time"]=40;
-			}else if($("input:radio[value='left12']").is(':checked')){
-				data["return_time"]=41;
-			}else{
-				data["return_time"]=42;
-			}
-			
-			if($("input:radio[value='left13']").is(':checked')){
-				data["image"]=40;
-			}else if($("input:radio[value='left14']").is(':checked')){
-				data["image"]=41;
-			}else{
-				data["image"]=42;
-			}
-			$.ajax({
-				type:"post",
-				dataType:"json",
-				url:"/P2P/project/inProReturn.do",
-				data:JSON.stringify(data),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){					
-					//alert(data);
-				}
-			});
-		});
-		$("#save_all").click(function(){
-			var dd={};
-			dd["projectsid"]=auditing;
-			
-			var flag=0;
-			$("input[id='oneRadio']").each(function(i){ 			
-				if($(this).is(":checked")){
-					flag++;
-				}
-			});
-			alert(flag);
-			if(flag==21){
-				dd["projectsstate"]=11;
-				$.ajax({					
-					type:"post",
-					dataType:"json",
-					url:"/P2P/project/upSinProState.do",
-					data:JSON.stringify(dd),
-					contentType:"application/json;charset=UTF-8",
-					success:function(data){	
-						mark();
-						//alert(data);
-						alert("审核成功");
-						topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
-					}					
-				});
-								
-			}else{
-				alert(flag);
-				dd["projectsstate"]=88;
-				$.ajax({					
-					type:"post",
-					dataType:"json",
-					url:"/P2P/project/upSinProState.do",
-					data:JSON.stringify(dd),
-					contentType:"application/json;charset=UTF-8",
-					success:function(data){					
-					}					
-				});
-				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");
-				
-			}
-		 function mark(){
-			var dd={};
-			dd["projectsid"]=auditing;
-			//dd["recordtable_endtime"]=new Date().toLocaleString();
-			dd["reason"]=$("#text").val();
-			alert(JSON.stringify(dd));
-			
-			$.ajax({					
-				type:"post",
-				dataType:"json",
-				url:"/P2P/AddState/upRecordTab.do",
-				data:JSON.stringify(dd),
-				contentType:"application/json;charset=UTF-8",
-				success:function(datas){
-										
-					alert("提交成功");
-					topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
-				},				
-			});
-		}	
-		 
-		});
+		
 	</script>
 </body>
 </html>

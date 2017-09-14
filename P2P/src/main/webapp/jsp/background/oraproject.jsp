@@ -255,6 +255,9 @@
 				field : 'PROTYPENAME',
 				title : '项目类型',
 			}, {
+				field : 'APPROVER',
+				title : '审批人',
+			}, {
 				field : 'VALUE',
 				title : '状态',
 			} ] ]

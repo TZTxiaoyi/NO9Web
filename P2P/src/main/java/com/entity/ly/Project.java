@@ -5,6 +5,13 @@ public class Project {
 	int empid;//项目发起人
 	int originatortype;
 	int projectsstate;
+	int approver;
+	public int getApprover() {
+		return approver;
+	}
+	public void setApprover(int approver) {
+		this.approver = approver;
+	}
 	public int getProjectsid() {
 		return projectsid;
 	}

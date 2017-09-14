@@ -235,10 +235,13 @@
         	field: 'CARDIMAGE2',
             title: '身份证反面',
         },{
+        	field: 'APPROVER',
+            title: '审批人',
+        },{
         	field: 'STATE',
             title: '项目状态',
         }]]
-    });http://localhost:9088/P2P/images/
+    })
 	function mark(row,index,value){
 		return ["<img src=\"http://localhost:9088/P2P/images/"+index.CARDIMAGE1+"\">"];
 	}

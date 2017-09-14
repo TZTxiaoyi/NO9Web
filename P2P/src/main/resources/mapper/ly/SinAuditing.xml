@@ -18,7 +18,7 @@
 	</select>
 	<!-- 修改项目状态 --> 
 	<update id="upSinProSt"  parameterType="int">
-		update projects set projectsstate=14 where projectsid=#{projectsid}
+		update projects set projectsstate=#{projectsstate} where projectsid=#{projectsid}
 	</update>
 	
 	
