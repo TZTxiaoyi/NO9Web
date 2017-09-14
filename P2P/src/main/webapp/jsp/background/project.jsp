@@ -65,9 +65,9 @@
 <script type="text/javascript">
 	window.operateEvents = {
 		'click #pro_auditing': function (e, value, row, index) {			 
-			alert(55);
+			//alert(55);
 			projectsid=parseInt(row.PROJECTSID);
-			alert(projectsid);
+			//alert(projectsid);
 			var data={};
 			data["projectsid"]=projectsid;
 			$.ajax({
@@ -77,7 +77,7 @@
 				data:JSON.stringify(data),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){
-					alert(data);
+					
 				}
 			});
 		},
@@ -129,8 +129,11 @@
         	field: 'ADDTIME',
             title: '发起时间',
         } , {
-        	field: 'value',
+        	field: 'STATE',
             title: '项目状态',
+        }, {
+        	field: 'APPROVER',
+            title: '审批人',
         }, {
         	formatter:marks,
         	events:operateEvents,
