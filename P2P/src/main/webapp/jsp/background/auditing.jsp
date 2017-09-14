@@ -959,6 +959,7 @@
 				}
 			});
 		});
+		//点击提交后，如果 “是”的单选框被标记的数量为21，项目通过
 		$("#save_all").click(function(){
 			var dd={};
 			dd["projectsid"]=auditing;
@@ -984,11 +985,35 @@
 						alert("审核成功");
 						topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
 					}					
-				});
-								
+				});								
 			}else{
-				alert(flag);
-				dd["projectsstate"]=88;
+				alert(flag);				
+				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");					
+			}
+			//修改审核记录，添加最后时间 如果为通过审核，添加未通过原因
+		 function mark(){
+			var dd={};
+			dd["projectsid"]=auditing;
+			//dd["recordtable_endtime"]=new Date().toLocaleString();
+			dd["reason"]=$("#text").val();
+			alert(JSON.stringify(dd));			
+			$.ajax({					
+				type:"post",
+				dataType:"json",
+				url:"/P2P/AddState/upRecordTab.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(datas){										
+					alert("提交成功");
+					upProState();	//修改 状态
+					topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
+					
+				},				
+			});
+		}		
+		//修改 状态
+		 function upProState(){
+			 dd["projectsstate"]=88;
 				$.ajax({					
 					type:"post",
 					dataType:"json",
@@ -998,31 +1023,8 @@
 					success:function(data){					
 					}					
 				});
-				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");
-				
-			}
-		 function mark(){
-			var dd={};
-			dd["projectsid"]=auditing;
-			//dd["recordtable_endtime"]=new Date().toLocaleString();
-			dd["reason"]=$("#text").val();
-			alert(JSON.stringify(dd));
-			
-			$.ajax({					
-				type:"post",
-				dataType:"json",
-				url:"/P2P/AddState/upRecordTab.do",
-				data:JSON.stringify(dd),
-				contentType:"application/json;charset=UTF-8",
-				success:function(datas){
-										
-					alert("提交成功");
-					topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
-				},				
-			});
-		}	
-		 
-		});
+		 }
+	});
 	</script>
 </body>
 </html>
