@@ -28,25 +28,25 @@
     <sql id="value">
     	<trim suffixOverrides=",">
             <if test="empid!=0 and empid!=null">
-                empid=#{empid},
+                #{empid},
             </if>
             <if test="ordid!=0 and ordid!=null">
-            	ordid=#{ordid},
+            	#{ordid},
             </if>
             <if test="projectsid!=0 and projectsid!=null">
-                projectsid=#{projectsid},
+                #{projectsid},
             </if>
             <if test="capitalflow!=null and capitalflow!=0">
-                capitalflow=#{capitalflow},
+                #{capitalflow},
             </if>
             <if test="capital!=null and capital!=0">
-                capital=#{capital},
+                #{capital},
             </if>
         </trim>
     </sql>
     
 	<insert id="InsertCapital" parameterType="map">		
-		insert into capital (capitalid,<include refid="key"/>,time)values(list_capital.nextval,<include refid="value"/>,time=to_char(sysdate, 'yyyy/mm/dd hh24:mi:ss'))
+		insert into capital (capitalid,<include refid="key"/>,time)values(list_capital.nextval,<include refid="value"/>,sysdate)
 	</insert>
 	
 	<update id="Updatefund" parameterType="map">

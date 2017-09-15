@@ -13,4 +13,7 @@
 		from orders group by projectsid)) orders,projects p,projects_describe pb,pro_money pm where orders.proid=p.projectsid 
 		and pb.projectsid=p.projectsid and pm.projectsid=p.projectsid
 	</select>
+	<update id="UpdateProState" parameterType="map">
+		update projects set projectsstate=#{projectsstate} where empid=#{empid} and projectsid=#{projectsid}
+	</update>
 </mapper>

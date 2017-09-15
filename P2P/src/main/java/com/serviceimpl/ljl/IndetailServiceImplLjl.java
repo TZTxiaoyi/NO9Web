@@ -32,7 +32,10 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	/**
+	 * 查询项目的详情
+	 * 项目文本图片
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public List AllIndetail(ProjectsLjl projects) {
@@ -43,7 +46,10 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 		}
 		return list;
 	}
-
+	/**
+	 * 更新项目的详情
+	 * 文本
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public int SvaeText(Map map) {
@@ -94,6 +100,10 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 		//IndetailDao.SvaeText(map);
 		return 1;
 	}
+	/**
+	 * 更新项目的详情
+	 * 详情图片
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Map SvaePhoto(Map map,IndetailPhotoLjl  IndetailPhoto) {
@@ -119,7 +129,10 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 			return map;
 		}
 	}
-
+	/**
+	 * 删除项目的详情
+	 * 文本 图片
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public int DeleteIndetail(IndetailLjl indetail) {

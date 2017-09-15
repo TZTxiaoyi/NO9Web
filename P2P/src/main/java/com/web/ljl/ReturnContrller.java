@@ -20,6 +20,9 @@ import com.service.ljl.ReturnService;
 public class ReturnContrller {
 	@Autowired
 	ReturnService returnservice;
+	/**
+	 * 保存更新项目回报
+	 */
 	@RequestMapping("/SaveReturn")
 	@ResponseBody
 	public String SaveReturn(@RequestBody String str){
@@ -31,12 +34,18 @@ public class ReturnContrller {
 		
 		
 	}
+	/**
+	 * 删除项目回报项
+	 */
 	@RequestMapping("/DelectReturn")
 	public String DeleteReturn(@RequestBody ReturnLjl returnljl){
 		returnservice.DeleteReturn(returnljl );
 		return "";
 		
 	}
+	/**
+	 * 查询项目回报
+	 */
 	@RequestMapping("/AllReturn")
 	@ResponseBody
 	public Map AllReturn(@RequestBody ReturnLjl returnljl){
@@ -46,6 +55,9 @@ public class ReturnContrller {
 		
 		
 	}
+	/**
+	 * 提交项目审核
+	 */
 	@RequestMapping("/SExamine")
 	@ResponseBody
 	public String SExamine(@RequestBody ProjectsLjl projectsljl){

@@ -16,6 +16,9 @@ import com.service.ljl.OrdersServiceLjl;
 public class MyOrdersContrller {
 	@Autowired
 	OrdersServiceLjl ordersservice;
+	/**
+	 * 查询用户订单
+	 */
 	@RequestMapping("/AllOrders")
 	@ResponseBody
 	public List AllOrders(@RequestBody Orders orders){
@@ -23,13 +26,14 @@ public class MyOrdersContrller {
 		System.out.println(list);
 		return list;
 	}
+	/**
+	 * 用户收货更新用户的订单
+	 */
 	@RequestMapping("/UpdateOrders")
 	@ResponseBody
 	public String UpdateOrders(Orders orders){
 		orders.setOrdstatus(81);
 		String str=ordersservice.UpdateOrders(orders);
 		return str;
-		
-		
 	}
 }

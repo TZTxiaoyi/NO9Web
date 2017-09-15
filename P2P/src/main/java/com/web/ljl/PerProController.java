@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.entity.ljl.PerProLjl;
 import com.service.Tool.FileUploadService;
 import com.service.ljl.PerProServiceLjl;
-
+/**
+ * 项目个人资料
+ */
 @Controller
 @RequestMapping("/PerProController")
 public class PerProController {
@@ -24,6 +26,9 @@ public class PerProController {
 	FileUploadService savefile;
 	@Autowired
 	PerProServiceLjl PerService;
+	/**
+	 * 更新项目个人资料
+	 */
 	@RequestMapping("/UpataPerPro")
 	@ResponseBody
 	public String UpataPerPro(@RequestBody PerProLjl perpro){
@@ -35,6 +40,9 @@ public class PerProController {
 		}
 		return "err";
 	}
+	/**
+	 * 查询项目个人资料
+	 */
 	@RequestMapping(value="/AllPerPro",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String AllPerPro( PerProLjl perpro){
@@ -46,6 +54,9 @@ public class PerProController {
 		return str;
 		
 	}
+	/**
+	 * 保存身份证图片
+	 */
 	@RequestMapping(value="/SaveFile",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public Map SaveFile(@RequestParam("file_data") MultipartFile myfile,PerProLjl perpro) throws IllegalStateException, IOException{

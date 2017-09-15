@@ -9,15 +9,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dao.ljl.ProjectsDaoLjl;
 import com.dao.ljl.ReturnProjectsDaoLjl;
 import com.entity.ljl.ProjectsLjl;
 import com.entity.ljl.ReturnLjl;
 import com.service.ljl.ReturnService;
 
+import oracle.net.aso.h;
+
 @Service
 public class ReturnServiceImplLjl implements ReturnService{
 	@Autowired
 	ReturnProjectsDaoLjl ReturnDao;
+	@Autowired
+	ProjectsDaoLjl proDao;
+	/**
+	 * 更新保存项目回报项
+	 */
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String SaveReturn(Map map){
 		System.out.println("wsdasd");
@@ -49,6 +57,9 @@ public class ReturnServiceImplLjl implements ReturnService{
 		
 		
 	}
+	/**
+	 * 删除项目的回报项
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String DeleteReturn(ReturnLjl returnljl) {
@@ -56,6 +67,9 @@ public class ReturnServiceImplLjl implements ReturnService{
 		ReturnDao.DeleteReturnProjects(returnljl);
 		return null;
 	}
+	/**
+	 * 查询项目回报项
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Map AllReturn(ReturnLjl returnljl) {
@@ -70,11 +84,19 @@ public class ReturnServiceImplLjl implements ReturnService{
 		};
 		return map;
 	}
+	/**
+	 * 提交审核项目
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String SExamine(ProjectsLjl projectsljl) {
 		// TODO Auto-generated method stub
-		int flag=ReturnDao.SExamine(projectsljl);
+		//int flag=ReturnDao.SExamine(projectsljl);
+		Map projects=new HashMap();
+		projects.put("projectsid",projectsljl.getProjectsid());
+		projects.put("projectsstate",15);
+		
+		int flag=proDao.UpdateProuu(projects);
 		if(flag==1){
 			return "success";
 			

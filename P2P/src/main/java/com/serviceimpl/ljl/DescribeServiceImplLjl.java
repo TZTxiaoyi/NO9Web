@@ -18,19 +18,24 @@ public class DescribeServiceImplLjl implements DescribeServiecLjl{
 	@Autowired
 	DescribeProjectsDaoLjl DescribeDao;
 	@Override
+	/**
+	 * 更新项目的描述
+	 * 项目主题，内容，目标资金，筹集时间
+	 */
 	@Transactional(propagation=Propagation.REQUIRED)
-	public int UpdataDescribe(DescribeLjl describe) {
+	public String UpdataDescribe(DescribeLjl describe) {
 		int flag =0;
-		try {
-			flag =DescribeDao.UpdateDescribeProjects(describe);
-			
-		} catch (Exception e) {
-			throw new RuntimeException("数据更新错误");
+		flag =DescribeDao.UpdateDescribeProjects(describe);
+		if(flag==1){
+			return "success";
 		}
+		return "err";
 		
-		return flag;
 	}
-
+	/**
+	 * 查询项目的描述
+	 * 项目主题，内容，目标资金，筹集时间
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String AllDescribe(DescribeLjl describe) {
@@ -43,7 +48,10 @@ public class DescribeServiceImplLjl implements DescribeServiecLjl{
 		}
 		return "数据异常";
 	}
-
+	/**
+	 * 保存更新项目封面
+	 * 
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Map SaveCover(Map map, DescribeLjl describe) {
