@@ -280,7 +280,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		alert(data.extra.places);
         		$("#Cover"+data.extra.places+"").html("");
         		alert("上传成功");
-        		url="<img src=\"http://localhost:9088/P2P/images/"+photourl+"\" style=\"width:350px;height:250px\">";
+        		url="<img src=\"http://localhost:9088/P2P/images/"+photourl+"\" class=\"img-responsive\" style=\"width:350px;height:250px\">";
         		$("#Cover"+data.extra.places+"").append(url);
         	}
      });}

@@ -145,15 +145,12 @@ var TableInit = function () {
     			alert(mm);
     			 $.ajax({
 					type:"post",
+					dataType:"text",
 					url:"http://localhost:9088/P2P/TwoLoanController/Loan.do",
 					contentType:"application/json;charset=utf-8",
 					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm.toFixed(2)}),
 					success:function(data){
 						alert(data);
-						if(data=="success"){
-							
-							
-						}
 					}
 				})
 				/* 	if(row.PROJECTSSTATE=="回报中"){

@@ -95,6 +95,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 </html>
 <script>
+//表单验证
+	$("#originatorname").blur(function(){
+		if(!/^[\u4e00-\u9fa5]+$/gi.test($("#originatorname").val())){
+			alert("只能输中文");
+		}
+    	
+  	});
+  	$("#idcard").blur(function(){
+  		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+  		if(!reg.test($("#idcard").val())){ 
+  			alert("身份证输入不合法"); 
+  		}
+  	})
+  	$("#telephone").blur(function(){
+  		var phone=$("#telephone").val();
+  		if(!(/^1[34578]\d{9}$/.test(phone))){ 
+  	        alert("手机号码有误，请重填");
+  	    } 
+  		
+  	})
 	$("#wewr").click(function(){
 		alert("555");
 			var projectsid=$.cookie('projectsid');
@@ -152,8 +172,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:data,
 			success:function(data){
 				//var json=JSON.parse(data);
-				var cardimage1="<img src=\"http://localhost:9088/P2P/images/"+data[0].CARDIMAGE1+"\" style=\"width:150px;height:150px\">";
-				var cardimage2="<img src=\"http://localhost:9088/P2P/images/"+data[0].CARDIMAGE2+"\" style=\"width:150px;height:150px\">";
+				var cardimage1="<img src=\"http://localhost:9088/P2P/images/"+data[0].CARDIMAGE1+"\" style=\"width:150px;height:150px\" class=\"img-responsive\">";
+				var cardimage2="<img src=\"http://localhost:9088/P2P/images/"+data[0].CARDIMAGE2+"\" style=\"width:150px;height:150px\" class=\"img-responsive\">";
 				$("#originatorname").val(data[0].ORIGINATORNAME);
 				$("#idcard").val(data[0].IDCARD);
 				$("#telephone").val(data[0].TELEPHONE);
@@ -206,7 +226,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		
         		if(value.flag==0){
         			alert("上传成功");
-        			url="<img src=\"http://localhost:9088/P2P/images/"+value.url+"\" style=\"width:150px;height:150px\">";
+        			url="<img src=\"http://localhost:9088/P2P/images/"+value.url+"\" style=\"width:150px;height:150px\" class=\"img-responsive\">";
         		}
         		if(value.cardimage1=="cardimage1"){
         			$("#cardimage1").html("");

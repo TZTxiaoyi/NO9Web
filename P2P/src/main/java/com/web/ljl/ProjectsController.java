@@ -26,14 +26,18 @@ import com.entity.ljl.PerProLjl;
 import com.entity.ljl.ProjectsLjl;
 import com.entity.ljl.UserLjl;
 import com.service.ljl.ProjectsServiceLjl;
-
+/**
+ * 发起项目
+ */
 @Controller
 @RequestMapping("/ProjectsController")
 public class ProjectsController {
 	
 	@Autowired
 	ProjectsServiceLjl projectsServiceLjl;
-	
+	/**
+	 * 查询项目类型
+	 */
 	@RequestMapping("/AllProjectsType")
 	public void AllProjectsType(HttpServletResponse response){
 		String str=projectsServiceLjl.AllProjectsType();
@@ -47,7 +51,9 @@ public class ProjectsController {
 		}
 	}
 	
-	
+	/**
+	 * 查询用户项目
+	 */
 	@RequestMapping("/AllProjects")
 	public String AllProjects(@RequestBody UserLjl user,HttpServletRequest request,HttpServletResponse response){
 		response.setHeader("Content-type", "text/html;charset=UTF-8");  
@@ -68,6 +74,9 @@ public class ProjectsController {
 		
 		
 	}
+	/**
+	 * 保存更新项目
+	 */
 	@RequestMapping("/SaveProjects")
 	@ResponseBody
 	public String SaveProjects(ProjectsLjl proLjl,HttpServletRequest request,HttpServletResponse response){
@@ -82,6 +91,9 @@ public class ProjectsController {
 		return "err";
 		
 	}
+	/**
+	 * 删除项目
+	 */
 	@RequestMapping("/DelProjects")
 	@ResponseBody
 	public String DelProjects(ProjectsLjl proLjl){

@@ -37,4 +37,5 @@ public class PlatformFundsLjl {
 		this.profitmoney = profitmoney;
 	}
 	
+	
 }	

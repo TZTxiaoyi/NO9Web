@@ -198,7 +198,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		if(value.flag==0){
         			$("#Cover").html("");
         			alert("上传成功");
-        			url="<img src=\"http://localhost:9088/P2P/images/"+value.url+"\" style=\"width:350px;height:250px\">";
+        			url="<img src=\"http://localhost:9088/P2P/images/"+value.url+"\" class=\"img-responsive\" style=\"width:350px;height:250px\">";
         			$("#Cover").append(url);
         		}
         	})

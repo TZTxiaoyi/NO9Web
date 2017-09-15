@@ -7,6 +7,6 @@ import com.entity.tzt.Orders;
 
 public interface TwoLoanServiceLjl {
 	public List AllReturn();
-	public void Loan(String str);
+	public String Loan(String str);
 	
 }
