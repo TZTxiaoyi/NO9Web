@@ -49,7 +49,7 @@
 	 		b.raise_money
 	 		from projects a,pro_money b ,word w1,word w2 
 	 		<where>
-	 			a.projectsid = b.projectsid and w1.key=a.ORIGINATORTYPE and a.PROJECTSSTATE=w2.key
+	 			a.projectsid = b.projectsid and w1.key=a.ORIGINATORTYPE and a.PROJECTSSTATE=w2.key and a.PROJECTSSTATE=84 
 		 		<if test ="projectsid !=0">
 		 			and projectsid= #{projectsid}
 		 		</if>

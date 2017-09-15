@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.tzt.ProfitDaotzt">
+	<select id="queryProfit" parameterType="com.entity.tzt.Profit"  resultType="map">
+		select 
+			a.profitid,
+			a.projectsid,
+			a.capitalflow,
+			c.value,
+			a.capital,
+			a.time
+	 	from profit a ,capitaltype c,
+	 	<where>
+	 		c.key=a.capitalflow
+	 		<if test ="profitid !=null">
+	 			 a.profitid= #{profitid}
+	 		</if>
+	 		<if test ="ordid !=null">
+	 			and a.projectsid= #{ordid}
+	 		</if>
+	 		<if test ="projectsid !=null">
+	 			and a.capitalflow= #{projectsid}
+	 		</if>
+	 		<if test ="paymoney !=0">
+	 			and a.capital= #{paymoney}
+	 		</if>
+	 		<if test ="starttime !=null ">
+	 			and a.time &gt;= to_date(#{starttime},'yyyy-MM-dd HH24:MI:SS')
+	 		</if>
+	 		<if test ="endtime !=null">
+	 			and a.time &lt; = to_date(#{endtime},'yyyy-MM-dd HH24:MI:SS')
+	 		</if>
+	 	</where>
+	 		 	order by profitid desc
+	 	
+	</select>
+	
+	<insert id="addProfit" parameterType="com.entity.tzt.Profit" >
+		insert into profit values(list_profit.nextval,#{projectsid,jdbcType=NUMERIC},
+		#{capitalflow,jdbcType=NUMERIC},#{capital,jdbcType=REAL},to_date(#{strattime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
+	</insert>
+	
+</mapper>

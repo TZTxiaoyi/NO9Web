@@ -5,8 +5,8 @@ public class Profit {
 	private Integer projectsid;
 	private Integer capitalflow;
 	private float capital;
-	private float balance;
-	private String time;
+	private String strattime;
+	private String endtime;
 	public Integer getProfitid() {
 		return profitid;
 	}
@@ -31,17 +31,17 @@ public class Profit {
 	public void setCapital(float capital) {
 		this.capital = capital;
 	}
-	public float getBalance() {
-		return balance;
+	public String getStrattime() {
+		return strattime;
 	}
-	public void setBalance(float balance) {
-		this.balance = balance;
+	public void setStrattime(String strattime) {
+		this.strattime = strattime;
 	}
-	public String getTime() {
-		return time;
+	public String getEndttime() {
+		return endtime;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setEndttime(String endttime) {
+		this.endtime = endtime;
 	}
 	
 }

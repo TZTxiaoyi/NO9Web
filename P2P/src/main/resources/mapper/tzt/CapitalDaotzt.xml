@@ -6,20 +6,20 @@
 	<select id="queryCapital" parameterType="com.entity.tzt.Capital"  resultType="map">
 		select 
 			a.capitalid,
-			a.accountsid,
+			a.empid,
 			a.ordid,
 			a.projectsid,
 			r.value,
 			a.capital,
 			a.time
-	 	from capital a,capitaltype r 
+		from capital a,capitaltype r 
 	 	<where>
-	 		 a.capitalflow=r.key 	
+	 		 a.capitalflow=r.key 
 	 		<if test ="capitalid !=null">
 	 			and a.capitalid= #{capitalid}
 	 		</if>
-	 		<if test ="accountsid !=null">
-	 			and a.accountsid= #{accountsid}
+	 		<if test ="empid !=null">
+	 			and a.empid= #{empid}
 	 		</if>
 	 		<if test ="ordid !=null">
 	 			and a.ordid= #{ordid}
@@ -42,8 +42,34 @@
 	</select>
 	
 	<insert id="addCapital" parameterType="com.entity.tzt.Capital" >
-		insert into capital values(list_capital.nextval,#{accountsid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
+		insert into capital values(list_capital.nextval,#{empid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
 		#{projectsid,jdbcType=NUMERIC},#{capitalflow,jdbcType=NUMERIC},
 		#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
 	</insert>
+	
+	
+	<insert id="addCapitalRemoveProjectList" parameterType="java.util.List" useGeneratedKeys="false">
+      INSERT INTO capital
+	  (capitalid,empid, ordid, projectsid, capitalflow, capital,time)
+	SELECT list_capital.NEXTVAL capitalid, A.*
+	FROM(
+	<foreach collection="list" item="item" index="index" separator="UNION ALL">
+	 SELECT 
+       #{item.EMPID,jdbcType=NUMERIC},
+       #{item.ORD_ID,jdbcType=NUMERIC},
+       #{item.PROJECTSID,jdbcType=NUMERIC},
+       3,
+       #{item.PAYMONEY,jdbcType=VARCHAR},
+      	sysdate
+     FROM dual
+   </foreach>
+   )A
+  </insert>  
+<!--  <insert id="addCapitalRemoveProjectList"  parameterType="java.util.List" useGeneratedKeys="false">  
+    insert into capital  values  (
+    <foreach collection="list" item="item" index="index"  separator="union all" >  
+        (list_capital.nextval,#{item.EMPID},#{item.ORD_ID},#{item.PROJECTSID},3,#{item.PAYMONEY},to_date(sysdate,'yyyy-MM-dd HH24:mi:ss'))  
+    </foreach>  
+    )
+</insert>   -->
 </mapper>

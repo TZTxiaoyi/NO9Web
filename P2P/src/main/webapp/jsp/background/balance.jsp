@@ -84,8 +84,7 @@
 			</div>
 			<div class="modal-body" >
 				<table class="table table-striped table-hover table-condensed" id="infotbale">
-					<th>流水单号</th><th>操作人账号序列</th><th>订单号序列</th>
-					<th>项目号序列</th><th>操作类型</th><th>操作金额</th><th>时间</th>
+					
 				</table>
 			</div>
 			<div class="modal-footer">
@@ -108,28 +107,25 @@
 var data={};
 $("#removebutton").click(function() {
 	alert(JSON.stringify(data));
-	/* $.ajax({
+	 $.ajax({
 		type : "post",
 		dataType : "json",
 		data:data,
-		url : "/P2P/back/addRoleTable.do",//要访问的后台地址  
+		url : "/P2P/projectmoney/removeProject.do",//要访问的后台地址  
 		contentType :"application/json;charset=utf-8",
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
-			if(result.resultType=="true"){
-				alert("添加成功");
-				$('#addRoleTable').modal('hide');
-			}else{
-				alert("添加失败");
-			}
+			
+			alert("成功")
+		 $('#tb_departments').bootstrapTable("refresh");
 		},error : function() {
 			alert("error");
 		}
-	}); */
+	}); 
 })
 $("#finshbutton").click(function() {
 	alert(JSON.stringify(data));
-	/* $.ajax({
+	 $.ajax({
 		type : "post",
 		dataType : "json",
 		data:data,
@@ -138,15 +134,15 @@ $("#finshbutton").click(function() {
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
 			if(result.resultType=="true"){
-				alert("添加成功");
-				$('#addRoleTable').modal('hide');
+				alert("成功");
+			 	$('#tb_departments').bootstrapTable("refresh");;
 			}else{
 				alert("添加失败");
 			}
 		},error : function() {
 			alert("error");
 		}
-	}); */
+	}); 
 })
 
  
@@ -232,7 +228,7 @@ $("#finshbutton").click(function() {
 				 'click .selectinfo': function (e, value, row, index) {
 					 $("#selectinfoModal").modal();
 					 $("#infotbale").empty();
-					 var data={ projectsid:row.PROJECTSID};
+					 data={ projectsid:row.PROJECTSID};
 					 $.ajax({
 							type : "post",
 							dataType : "json",
@@ -240,9 +236,12 @@ $("#finshbutton").click(function() {
 							url : "/P2P/projectmoney/queryProjectMoneyinfo.do",//要访问的后台地址  
 							contentType :"application/json;charset=utf-8",
 							success : function(data1) {//data为返回的数据，在这里做数据绑定  
+								var th = "<th>流水单号</th><th>操作人账号序列</th><th>订单号序列</th>"+
+								"<th>项目号序列</th><th>操作类型</th><th>操作金额</th><th>时间</th>"
+									$("#infotbale").append(th);
 								$.each(data1,function(index,value){
-									var a = "<tr><td>"+value.CAPITALID+"</td><td>"+ value.ACCOUNTSID+"</td><td>"+ value.ORDID+"</td>"+
-									"<td>"+value.PROJECTSID+"</td><td>"+value.VALUE+"</td><td>"+value.TIME+"</td></tr>"
+									var a = "<tr><td>"+value.CAPITALID+"</td><td>"+ value.EMPID+"</td><td>"+ value.ORDID+"</td>"+
+									"<td>"+value.PROJECTSID+"</td><td>"+value.VALUE+"</td><td>"+value.CAPITAL+"</td><td>"+value.TIME+"</td></tr>"
 									$("#infotbale").append(a);
 								});
 							},error : function() {
@@ -253,16 +252,24 @@ $("#finshbutton").click(function() {
 					
 				} ,
 	 'click .finsh': function (e, value, row, index) {
-			data={
-				 roleid:row.PROJECTSID, 
-		 }
+		
 		 if(row.RAISE_MONEY>=row.TARGE_MONEY){
 			 //筹资成功
+			 data={
+				projectsid:row.PROJECTSID, 
+				empid:row.EMPID,
+				blacne:RAISE_MONEY
+			 }		
 			  $("#finshproject").modal();
 			 alert(JSON.stringify(data));
 			 
 		 }else{
 			 //筹资失败
+			  data={
+				projectsid:row.PROJECTSID, 
+				empid:row.EMPID,
+				blacne:RAISE_MONEY
+			 }		
 			  $("#removeproject").modal();
 			 alert(JSON.stringify(data));
 		 }

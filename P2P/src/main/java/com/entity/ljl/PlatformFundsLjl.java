@@ -2,38 +2,38 @@ package com.entity.ljl;
 
 public class PlatformFundsLjl {
 	private int plfid;//
-	private int total;//平台总金额
-	private int usermoney;//用户总金额
-	private int promoney;//项目总金额
-	private int profitmoney;//平台盈利金额
+	private float total;//平台总金额
+	private float usermoney;//用户总金额
+	private float promoney;//项目总金额
+	private float profitmoney;//平台盈利金额
 	public int getPlfid() {
 		return plfid;
 	}
 	public void setPlfid(int plfid) {
 		this.plfid = plfid;
 	}
-	public int getTotal() {
+	public float getTotal() {
 		return total;
 	}
-	public void setTotal(int total) {
+	public void setTotal(float total) {
 		this.total = total;
 	}
-	public int getUsermoney() {
+	public float getUsermoney() {
 		return usermoney;
 	}
-	public void setUsermoney(int usermoney) {
+	public void setUsermoney(float usermoney) {
 		this.usermoney = usermoney;
 	}
-	public int getPromoney() {
+	public float getPromoney() {
 		return promoney;
 	}
-	public void setPromoney(int promoney) {
+	public void setPromoney(float promoney) {
 		this.promoney = promoney;
 	}
-	public int getProfitmoney() {
+	public float getProfitmoney() {
 		return profitmoney;
 	}
-	public void setProfitmoney(int profitmoney) {
+	public void setProfitmoney(float profitmoney) {
 		this.profitmoney = profitmoney;
 	}
 	

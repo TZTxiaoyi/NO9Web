@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.tzt.ProjectsDaotzt">
+	<update id="updataProject" parameterType="com.entity.tzt.ProjectsMoneyinfotzt" >
+		update projects  
+		<set>  
+            projectsstate=116
+        </set> 
+         where projectsid = ${projectsid}  
+	
+	</update>
+</mapper>
