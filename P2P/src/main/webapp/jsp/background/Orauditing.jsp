@@ -74,17 +74,17 @@
 									<td>机构名称</td>
 									<td id="info_one"></td>
 									<td>
-										<label><input type="radio" name="idcard" value="VALUE1"/>&nbsp;是</label>
+										<label><input type="radio" name="idcard" value="VALUE1" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="idcard" value="VALUE2"/>&nbsp;否</label>
+										<label><input type="radio" name="idcard" value="VALUE2" />&nbsp;否</label>
 									</td>
 								</tr>
 								<tr>
 									<td>机构代码</td>
 									<td id="info_two"></td>
 									<td>
-										<label><input type="radio" name="username" value="VALUE3"/>&nbsp;是</label>
+										<label><input type="radio" name="username" value="VALUE3" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="username" value="VALUE4"/>&nbsp;否</label>
@@ -94,7 +94,7 @@
 									<td>法定代表人</td>
 									<td id="info_three"></td>
 									<td>
-										<label><input type="radio" name="adress" value="VALUE5"/>&nbsp;是</label>
+										<label><input type="radio" name="adress" value="VALUE5" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="adress" value="VALUE6"/>&nbsp;否</label>
@@ -104,7 +104,7 @@
 									<td>机构注册地址</td>
 									<td id="info_four"></td>
 									<td>
-										<label><input type="radio" name="phone" value="VALUE7"/>&nbsp;是</label>
+										<label><input type="radio" name="phone" value="VALUE7" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="phone" value="VALUE8"/>&nbsp;否</label>
@@ -114,7 +114,7 @@
 									<td>联系人姓名</td>
 									<td id="info_five"></td>
 									<td>
-										<label><input type="radio" name="idcard2" value="VALUE9"/>&nbsp;是</label>
+										<label><input type="radio" name="idcard2" value="VALUE9" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="idcard2" value="VALUE10"/>&nbsp;否</label>
@@ -124,7 +124,7 @@
 									<td>联系人手机号</td>
 									<td id="info_six"></td>
 									<td>
-										<label><input type="radio" name="telephone" value="VALUE11"/>&nbsp;是</label>
+										<label><input type="radio" name="telephone" value="VALUE11" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="telephone" value="VALUE12"/>&nbsp;否</label>
@@ -134,7 +134,7 @@
 									<td>机构简称</td>
 									<td id="info_seven"></td>
 									<td>
-										<label><input type="radio" name="abbreviation" value="VALUE13"/>&nbsp;是</label>
+										<label><input type="radio" name="abbreviation" value="VALUE13" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="abbreviation" value="VALUE14"/>&nbsp;否</label>
@@ -144,7 +144,7 @@
 									<td>机构经营地址</td>
 									<td id="info_eight"></td>
 									<td>
-										<label><input type="radio" name="busadress" value="VALUE15"/>&nbsp;是</label>
+										<label><input type="radio" name="busadress" value="VALUE15" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="busadress" value="VALUE16"/>&nbsp;否</label>
@@ -170,7 +170,7 @@
 									<td>项目标题</td>
 									<td id="detail_one"></td>
 									<td>
-										<label><input type="radio" name="title" value="right1"/>&nbsp;是</label>
+										<label><input type="radio" name="title" value="right1" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="title" value="right2"/>&nbsp;否</label>
@@ -180,7 +180,7 @@
 									<td>筹金目的</td>
 									<td id="detail_two"></td>
 									<td>
-										<label><input type="radio" name="goal" value="right3"/>&nbsp;是</label>
+										<label><input type="radio" name="goal" value="right3" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="goal" value="right4"/>&nbsp;否</label>
@@ -190,7 +190,7 @@
 									<td>项目地点</td>
 									<td id="detail_three"></td>
 									<td>
-										<label><input type="radio" name="location" value="right5"/>&nbsp;是</label>
+										<label><input type="radio" name="location" value="right5" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="location" value="right6"/>&nbsp;否</label>
@@ -200,7 +200,7 @@
 									<td>筹金金额（元）</td>
 									<td id="detail_four"></td>
 									<td>
-										<label><input type="radio" name="money" value="right7"/>&nbsp;是</label>
+										<label><input type="radio" name="money" value="right7" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="money" value="right8"/>&nbsp;否</label>
@@ -210,7 +210,7 @@
 									<td>筹金天数</td>
 									<td id="detail_five"></td>
 									<td>
-										<label><input type="radio" name="days" value="right9"/>&nbsp;是</label>
+										<label><input type="radio" name="days" value="right9" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="days" value="right10"/>&nbsp;否</label>
@@ -220,7 +220,7 @@
 									<td>项目封面</td>
 									<td id="detail_six"></td>
 									<td>
-										<label><input type="radio" name="cover" value="right11"/>&nbsp;是</label>
+										<label><input type="radio" name="cover" value="right11" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="cover" value="right12"/>&nbsp;否</label>
@@ -244,7 +244,7 @@
 									<td>项目详细地址</td>
 									<td id="describe_one"></td>
 									<td>
-										<label><input type="radio" name="places" value="center1"/>&nbsp;是</label>
+										<label><input type="radio" name="places" value="center1" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="places" value="center2"/>&nbsp;否</label>
@@ -256,7 +256,7 @@
 										<a type="button" id="detail" class="btn btn-info" data-toggle="modal" data-target="#myModal">查看</a>
 									</td>
 									<td>
-										<label><input type="radio" name="content" value="center3"/>&nbsp;是</label>
+										<label><input type="radio" name="content" value="center3" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="content" value="center4"/>&nbsp;否</label>
@@ -281,7 +281,7 @@
 									<td>回报类型</td>
 									<td id="return_one"></td>
 									<td>
-										<label><input type="radio" name="reType" value="left1"/>&nbsp;是</label>
+										<label><input type="radio" name="reType" value="left1" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reType" value="left2"/>&nbsp;否</label>
@@ -291,7 +291,7 @@
 									<td>回报金额（元）</td>
 									<td id="return_two"></td>
 									<td>
-										<label><input type="radio" name="reMoney" value="left3"/>&nbsp;是</label>
+										<label><input type="radio" name="reMoney" value="left3" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reMoney" value="left4"/>&nbsp;否</label>
@@ -301,7 +301,7 @@
 									<td>回报标题</td>
 									<td id="return_three"></td>
 									<td>
-										<label><input type="radio" name="reTitle" value="left5"/>&nbsp;是</label>
+										<label><input type="radio" name="reTitle" value="left5" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reTitle" value="left6"/>&nbsp;否</label>
@@ -311,7 +311,7 @@
 									<td>回报内容</td>
 									<td id="return_four"></td>
 									<td>
-										<label><input type="radio" name="reContent" value="left7"/>&nbsp;是</label>
+										<label><input type="radio" name="reContent" value="left7" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reContent" value="left8"/>&nbsp;否</label>
@@ -321,7 +321,7 @@
 									<td>限制人数</td>
 									<td id="return_five"></td>
 									<td>
-										<label><input type="radio" name="reLimit" value="left9"/>&nbsp;是</label>
+										<label><input type="radio" name="reLimit" value="left9" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reLimit" value="left10"/>&nbsp;否</label>
@@ -331,7 +331,7 @@
 									<td>回报时间</td>
 									<td id="return_six"></td>
 									<td>
-										<label><input type="radio" name="reTime" value="left11"/>&nbsp;是</label>
+										<label><input type="radio" name="reTime" value="left11" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reTime" value="left12"/>&nbsp;否</label>
@@ -341,7 +341,7 @@
 									<td>实物图</td>
 									<td id="return_seven"></td>
 									<td>
-										<label><input type="radio" name="reImage" value="left13"/>&nbsp;是</label>
+										<label><input type="radio" name="reImage" value="left13" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reImage" value="left14"/>&nbsp;否</label>
@@ -354,6 +354,7 @@
 						</div>
 					</div>					
 					<div class="bbD">
+						<div id="reasons"></div>
 						<p class="bbDP">
 							<button class="btn_ok btn_yes" href="#" id="save_all">提交</button>
 							<a class="btn_ok btn_no" href="#" id="give_up">取消</a>
@@ -390,6 +391,7 @@
 	</div>
 	<script type="text/javascript">
 		var auditing = parseInt($.cookie("orga_auditing"));
+		var topWindow=window.top;
 		$("#detail").click(function(){
 			var data={};
 			data["projectsid"]=auditing;
@@ -410,9 +412,11 @@
 				}
 			});
 		});
+		//修改项目状态为审核中
 		$(function(){
 			var dd={};
-			dd["projectsid"]=auditing;			
+			dd["projectsid"]=auditing;
+			dd["projectsstate"]=14;
 			$.ajax({
 				type:"post",
 				dataType:"json",
@@ -978,6 +982,70 @@
 				}
 			});
 		});
+		
+		$("#save_all").click(function(){
+			var flag=0;
+			var dd={};
+			dd["projectsid"]=auditing;
+			$("input[id='oneRadio']").each(function(i){
+				if($(this).is(":checked")){
+					flag++;
+				}
+			});
+			alert(flag);
+			if(flag==23){	
+				dd["projectsstate"]=11;
+				$.ajax({					
+					type:"post",
+					dataType:"json",
+					url:"/P2P/project/upSinProState.do",
+					data:JSON.stringify(dd),
+					contentType:"application/json;charset=UTF-8",
+					success:function(data){	
+						mark();
+						//alert(data);
+						alert("审核成功");
+						topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
+					}
+				});
+			}else{
+				
+				dd["projectsstate"]=88;
+				alert(99999);
+				$.ajax({					
+					type:"post",
+					dataType:"json",
+					url:"/P2P/project/upSinProState.do",
+					data:JSON.stringify(dd),
+					contentType:"application/json;charset=UTF-8",
+					success:function(data){					
+					}					
+				});
+				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");
+			}
+		});
+
+		 function mark(){
+			 alert(666666);
+			var dd={};
+			dd["projectsid"]=auditing;
+			//dd["recordtable_endtime"]=new Date().toLocaleString();
+			dd["reason"]=$("#text").val();
+			alert(JSON.stringify(dd));
+			
+			$.ajax({					
+				type:"post",
+				dataType:"json",
+				url:"/P2P/AddState/upRecordTab.do",
+				data:JSON.stringify(dd),
+				contentType:"application/json;charset=UTF-8",
+				success:function(datas){
+										
+					alert("提交成功");
+					topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
+				},				
+			});
+		}					
 	</script>
 </body>
 </html>

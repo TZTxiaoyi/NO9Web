@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.ljl.ReturnProjectsDaoLjl;
 import com.entity.ljl.ProjectsLjl;
@@ -16,6 +18,7 @@ import com.service.ljl.ReturnService;
 public class ReturnServiceImplLjl implements ReturnService{
 	@Autowired
 	ReturnProjectsDaoLjl ReturnDao;
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String SaveReturn(Map map){
 		System.out.println("wsdasd");
 		Map<String,String> indexarr=(Map<String,String>)map.get("indexarr");
@@ -47,12 +50,14 @@ public class ReturnServiceImplLjl implements ReturnService{
 		
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String DeleteReturn(ReturnLjl returnljl) {
 		// TODO Auto-generated method stub
 		ReturnDao.DeleteReturnProjects(returnljl);
 		return null;
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public Map AllReturn(ReturnLjl returnljl) {
 		List list=ReturnDao.AllReturnProjects(returnljl);
 		Map map=new HashMap();
@@ -66,6 +71,7 @@ public class ReturnServiceImplLjl implements ReturnService{
 		return map;
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String SExamine(ProjectsLjl projectsljl) {
 		// TODO Auto-generated method stub
 		int flag=ReturnDao.SExamine(projectsljl);

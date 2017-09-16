@@ -5,9 +5,10 @@
 <mapper namespace="com.dao.ly.OrganizationsDaoLy">
 	<select id="selectOrgas" resultType="map">
 		select o1.organizationsrid,p1.projectsid,o1.oname,o1.ocode,o1.corporation,
-		o1.register_address,o1.linkman,o1.linkphone,o1.abbreviation,o1.business_address,pt.protypename,w1.value
+		o1.register_address,o1.linkman,o1.linkphone,o1.abbreviation,o1.business_address,pt.protypename,w1.value,p1.approver
 		from organizations o1,projects p1,protype pt,word w1
-		where o1.projectsid=p1.projectsid and pt.protypeid=o1.protypeid and w1.key=p1.projectsstate 
+		where o1.projectsid=p1.projectsid and pt.protypeid=o1.protypeid and
+		w1.key=p1.projectsstate  and p1.approver is not null and w1.value !='已审核' 
 	</select>
 	<!-- 机构审核 -->
 	<select id="selOrgAuditing" resultType="map" parameterType="int">

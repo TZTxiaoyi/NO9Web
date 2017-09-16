@@ -1,6 +1,5 @@
 package com.entity.tzt;
 
-import com.entity.zb.Address;
 
 public class Orders {
 	private Integer ordid;

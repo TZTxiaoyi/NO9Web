@@ -16,7 +16,7 @@ import com.entity.zb.Employeezb;
  *
  */
 public interface EmployeeDao {
-	public List<Object> queryEmployee();
+	public List<Object> queryEmployee(int empid);
 	public int addEmployee(Employeezb employee);
 	public int updateEmployee(Map map);
 }

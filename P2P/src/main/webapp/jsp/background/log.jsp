@@ -32,7 +32,7 @@
 				id="accounts"	placeholder="输入用户名" />
 			</div>
 			<div class="lgD">
-				<img class="img1" src="img/logPwd.png" /><input type="text"
+				<img class="img1" src="img/logPwd.png" /><input type="password"
 				id="passwords"placeholder="输入用户密码" />
 			</div>
 			<div class="logC">

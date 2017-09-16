@@ -13,17 +13,17 @@ public class Address {
 
 	private int AddressId;//地址id
 	private String Name;//收货人姓名
-	private int Phone;//联系电话
+	private String Phone;//联系电话
 	private int postCodes;//邮政编码
 	private String AddressInfo;//详细地址
-	private String Account;//账号id
+	private int empid;//员工id
 	
 	
-	public String getAccount() {
-		return Account;
+	public int getEmpid() {
+		return empid;
 	}
-	public void setAccount(String account) {
-		Account = account;
+	public void setEmpid(int empid) {
+		this.empid = empid;
 	}
 	public int getPostCodes() {
 		return postCodes;
@@ -44,14 +44,14 @@ public class Address {
 	public void setName(String name) {
 		Name = name;
 	}
-	public int getPhone() {
+	
+
+	public String getPhone() {
 		return Phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		Phone = phone;
 	}
-	
-	
 	public String getAddressInfo() {
 		return AddressInfo;
 	}

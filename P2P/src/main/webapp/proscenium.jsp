@@ -42,10 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		#head form{
  			margin-top:20px;
  		}
- 		#img{
- 			margin:10px;
- 		}
- 		#moddel>div{
+ 		
+ 		
+        #agriculture,#welfare{
         	margin:30px;
         }
         h4{
@@ -111,7 +110,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#myModal1 h4{
 			text-align:left;
 		}
-		
+		h2{
+			text-align:center;
+			margin-botton:20px;
+			margin-top:20px;
+		}
+		.look{
+			width:100%;
+			text_decoration:none;
+			text-align:center;
+			font-size:15;
+			color:gray;
+			background: #EAE8EA;
+			margin-bottom:20px;
+		}
+		.progress{
+			margin-left:15px;
+		}
+		.allimg{
+			border:1px solid;
+			
+		}
+		.allimg img{
+			margin-left:-15px;
+		}
  	</style>
  	
   </head>
@@ -178,8 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    <li><a href="newHome.jsp">消息</a></li>
 							    <li><a href="newHome.jsp">设置</a></li>
 							    <li><a id="exit">退出</a></li>
-							  </ul>
-	                		
+							  </ul>	                		
                  		</div>
                  	</li>
                  </ul>
@@ -312,9 +333,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<!-- 中间底部——动态添加数据库项目 -->
 		<div id="moddel" class="container">
-           <div class="row">
-           	
-        </div>
+           	<h2>公益项目</h2>
+           	<div id="welfare" class="row"></div>
+           	<div width="100%"><a width="100%"  href="promore.jsp?protypeid=5" role="button" class="btn look">浏览更多项目</a></div>
+           	<h2>农业项目</h2>
+           	<div id="agriculture" class="row"></div>
+           	<div width="100%"><a width="100%"  href="promore.jsp?protypeid=6" role="button" class="btn look">浏览更多项目</a></div>
+        	
+  		</div>
+  		
   	</div>
   	<!-- 尾部-->
   	<div id="footer">
@@ -351,23 +378,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:JSON.stringify(data),
 			success:function(data){	 
 				$.each(data,function(index,value){
-					/* var moddel="<div class=\"col-md-3 col-sm-3 col-xs-12\"><a href='pro_details.jsp?title="+value.TITLE+"&&img="+value.COVER+"&&pid="+value.PROJECTSID+"'><img src=\"images/"
-					+value.COVER+"\" alt=\"\" width=\"300\" height=\"260\"><h4>"+value.TITLE+"</h4><hr/><h5>"+value.GOAL+"</h5></a>"
-					+"<div class=\"progress\">"
-					+"<div class=\"progress-bar progress-bar-success\" style=\"width: 90%;\">"
-					+"<span>已完成90%</span></div></div></div>";
-					$("#moddel").append(moddel); */
-					var targeMoney=value.TARGE_MONEY;
-					var raiseMoney=value.RAISE_MONEY;
+					
+					var targeMoney=value.TARGE_MONEY;//目标金额
+					var raiseMoney=value.RAISE;//筹资金额
 					var pid=value.PROJECTSID;
-					var bar=(raiseMoney/targeMoney)*100;
-					var aa=decimal(bar,2)
-					var moddel="<div class=\"col-md-3 col-sm-3 col-xs-12\"><a href='pro_details.jsp' class=\"img\" pid="+value.PROJECTSID+"><img src=\"images/"
-					+value.COVER+"\" alt=\"\" width=\"300\" height=\"260\"><h4>"+value.TITLE+"</h4><hr/><h5>"+value.GOAL+"</h5></a>"
-					+"<div class=\"progress\">"
-					+"<div class=\"progress-bar progress-bar-success\" style=\"width:"+aa+"%;\">"
-					+"</div><span id=\"bar\">已完成"+aa+"%</span></div></div>";
-					$("#moddel").append(moddel);
+					var bar=(raiseMoney/targeMoney)*100;//筹资进度百分比
+					var aa=decimal(bar,2)//小数保留两位
+					var moddel="<div class=\"col-md-4 col-sm-4 col-xs-12 allimg\"><a href='pro_details.jsp' class=\"img\" pid="+
+					value.PROJECTSID+"><img src=\"images/"+value.COVER+ 
+					"\" alt=\"\" width=\"358\" height=\"300\" class=\"img-rounded\"><h4>"+value.TITLE+
+					"</h4><h5>"+value.GOAL+"</h5></a>"+"<div width=\"100%\" class=\"progress\">"
+					+"<div class=\"progress-bar-success\" aria-valuenow=\"60\" "+
+			        "aria-valuemin=\"0\" aria-valuemax=\"100\"style=\"width:"+
+					aa+"%;\"><span>已完成"+aa+"%</span></div></div><div>已筹款：￥"+raiseMoney+"</div></div>";
+					if(value.PROTYPEID==5){//公益
+						$("#welfare").append(moddel);
+					}else if(value.PROTYPEID==6){//农业
+						$("#agriculture").append(moddel);
+					}
+					
+					
+					//$("#moddel").append(moddel);
 					
 				})
 			},

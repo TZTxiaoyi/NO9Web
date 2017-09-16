@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,11 +22,13 @@ public class PerProServiceImplLjl implements PerProServiceLjl{
 	@Autowired
 	PersonalProjectsDaoLjl PerDao;
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public int UpdataPerPro(PerProLjl perpro) {
 		int flag=PerDao.UpdatePersonalProjects(perpro);
 		return flag;
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String AllPerPro(PerProLjl perpro) {
 		List list=PerDao.AllPersonalProjects(perpro);
 		JSON json=new JSONArray(list);
@@ -35,6 +39,7 @@ public class PerProServiceImplLjl implements PerProServiceLjl{
 		}
 		return "数据异常";
 	}
+	@Transactional(propagation=Propagation.REQUIRED)
 	public Map SaveIdentity(Map map,PerProLjl perpro){
 		System.out.println("cardimage:"+perpro.getCardimage1());
 		System.out.println("cardimage:"+perpro.getCardimage2());

@@ -60,7 +60,6 @@
 			var a = $("#password").val();
 
 			var b = $.cookie("oldpassword");//获取账号
-
 			if(a != b){
 				//$("#zhubins").append("<h5>*原始密码不正确</h5>").css("color","red");
 				alert("与原始密码不一致,请重新输入");

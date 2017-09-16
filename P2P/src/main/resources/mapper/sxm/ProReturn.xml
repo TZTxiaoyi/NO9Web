@@ -3,8 +3,15 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.sxm.ProReturnDao">
+	<!-- 查询回报项目 -->
 	<select id="selectProReturn" resultType="Map">
 		select * from pro_return  where projectsid=#{projectsid} order by formindex asc
 		
 	</select>
+	<!-- 点击汇报按钮插入回报记录表 -->
+	<insert id="insertProBack" parameterType="com.entity.sxm.ProBack">
+		insert into pro_back values(list_pro_back.nextval,#{sponsor_id},
+		#{support_id},38,#{ord_id},#{addressid},96,
+		#{logistics},sysdate)
+	</insert>
 </mapper>
