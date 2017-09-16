@@ -343,7 +343,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		页面加载时自动加载项目
 	*/
 	$(function(){
-		var data={};
+		var protypeid=${param.protypeid};
+		alert(protypeid);
+		var data={
+				protypeid:protypeid
+		};
 		$.ajax({
 			type:"post",
 			dataType:"json",

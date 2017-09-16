@@ -14,13 +14,20 @@ import com.service.ljl.OrdersServiceLjl;
 public class OrdersServiceImplLjl implements OrdersServiceLjl{
 	@Autowired
 	MyOrdersDaoLjl myorders;
+	/**
+	 * 查询我的订单
+	 * 
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public List AllOrders(Orders orders) {
 		List list=myorders.AllOrders(orders);
 		return list;
 	}
-
+	/**
+	 * 收货完成更新订单状态
+	 * 
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String UpdateOrders(Orders orders) {

@@ -412,8 +412,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url : "zhubin/queryAddress.do",
 				contentType : "application/json;charset=utf-8",
 				data :JSON.stringify(data),
-				success : function(data) {//data为返回的数据，在这里做数据绑定  
-					
+				success : function(data) {//data为返回的数据，在这里做数据绑定  					
 					if(data.length<1){//判断地址为空
 						alert("请先填写收货地址");
 						window.location.href="newHome.jsp";
@@ -422,7 +421,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					    var th="<thead><tr><th><h3>请选择地址</h3></th></tr><tr><th></th><th class=\"tabname\">姓名</th><th>电话</th><th>邮编</th><th>地址</th></tr></thead>";
 						$("#table").append(th);
-						
 					    $.each(data,function(index,value){
 							var tr=" <tbody><tr><td><input name=\"seladd\" type=\"radio\" value=\""+
 							value.addressId+"\"/></td><td class=\"tabname\">"+value.name+"</td><td>"+

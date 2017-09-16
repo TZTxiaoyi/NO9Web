@@ -2,13 +2,12 @@ package com.entity.tzt;
 
 public class Capital {
 	private Integer capitalid;
-	private Integer accountsid;
+	//private Integer accountsid;
 	private Integer empid;
 	private Integer ordid;
 	private Integer projectsid;
 	private Integer capitalflow;
 	private float capital;
-	private float balance;
 	private String starttime;
 	private String endtime;
 	public Integer getCapitalid() {
@@ -17,12 +16,12 @@ public class Capital {
 	public void setCapitalid(Integer capitalid) {
 		this.capitalid = capitalid;
 	}
-	public Integer getAccountsid() {
+	/*public Integer getAccountsid() {
 		return accountsid;
 	}
 	public void setAccountsid(Integer accountsid) {
 		this.accountsid = accountsid;
-	}
+	}*/
 	public Integer getEmpid() {
 		return empid;
 	}
@@ -52,12 +51,6 @@ public class Capital {
 	}
 	public void setCapital(float capital) {
 		this.capital = capital;
-	}
-	public float getBalance() {
-		return balance;
-	}
-	public void setBalance(float balance) {
-		this.balance = balance;
 	}
 	public String getStarttime() {
 		return starttime;

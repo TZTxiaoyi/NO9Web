@@ -15,7 +15,9 @@ import com.entity.ljl.DescribeLjl;
 import com.entity.ljl.PerProLjl;
 import com.service.Tool.FileUploadService;
 import com.service.ljl.DescribeServiecLjl;
-
+/**
+ * 项目的描述
+ */
 @Controller
 @RequestMapping("/DescribeContrller")
 public class DescribeContrller {
@@ -23,16 +25,21 @@ public class DescribeContrller {
 	FileUploadService SaveCover;
 	@Autowired
 	DescribeServiecLjl DescribeService;
+	/**
+	 * 更新项目的描述
+	 * 项目主题，内容，目标资金，筹集时间
+	 */
 	@RequestMapping("UpdateDescribe")
 	@ResponseBody
 	public String UpdateDescribe(@RequestBody DescribeLjl describe){
 		
-		int flag=DescribeService.UpdataDescribe(describe);
-		if(flag==1){
-			return "success";
-		}
-		return "err";
+		String str=DescribeService.UpdataDescribe(describe);
+		return str;
 	}
+	/**
+	 * 查询项目的描述
+	 * 项目主题，内容，目标资金，筹集时间
+	 */
 	@RequestMapping(value="/AllDescribe",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String AllDescribe(DescribeLjl describe){
@@ -43,6 +50,9 @@ public class DescribeContrller {
 		return str;
 		
 	}
+	/**
+	 * 更新项目的图片
+	 */
 	@RequestMapping(value="/SaveCover",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public Map SaveCover(@RequestParam("file_data") MultipartFile myfile,DescribeLjl describe) throws IllegalStateException, IOException{

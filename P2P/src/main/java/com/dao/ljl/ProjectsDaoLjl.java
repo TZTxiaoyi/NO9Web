@@ -3,6 +3,7 @@ package com.dao.ljl;
 import java.util.List;
 import java.util.Map;
 
+import com.entity.ljl.PerProLjl;
 import com.entity.ljl.ProjectsLjl;
 import com.entity.ljl.UserLjl;
 
@@ -15,6 +16,9 @@ public interface ProjectsDaoLjl {
 	public int DelIndetail(ProjectsLjl proLjl);
 	public int DelPersonal(ProjectsLjl proLjl);
 	public int DelReturn(ProjectsLjl proLjl);
+	
+	public int UpdateProType(PerProLjl perpro);
+	public int UpdateProuu(Map map);
 	//初始化项目创建多表
 	public int SaveDescribeProjects(Map map);//项目描述表
 	public int SaveIndetailProjects(Map map);//项目详情表

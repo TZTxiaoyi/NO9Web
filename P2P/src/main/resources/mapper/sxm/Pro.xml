@@ -20,18 +20,19 @@
  			<if test="true">
  				and pm.projectsid=p.projectsid
  			</if>
- 			<if test="true">
- 				and p.projectsstate=84
- 			</if>
- 			<if test="true">
- 				or p.projectsstate=85
- 			</if>
  			<if test="projectsid>0">
  				and p.projectsid= #{projectsid}
  			</if>
  			<if test="protypeid>0">
  				and p.protypeid= #{protypeid}
  			</if>
+ 			<if test="true">
+ 				and p.projectsstate=84
+ 			</if>
+ 			<if test="true">
+ 				or p.projectsstate=85
+ 			</if>
+ 			
  		</where>
  		
 	</select>

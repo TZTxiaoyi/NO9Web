@@ -107,23 +107,26 @@ var TableInit = function () {
                     return ["<img src=\"../../images/"+value.COVER+"\" alt=\"\" width=\"100\" height=\"50\" />"+value.TITLE+""];
                 }
             },{
-                field: 'TARGE_MONEY',
-                title: '筹资目标'
+                field: 'RAISE_MONEY',
+                title: '项目资金/元'
             },{
-                field: 'PROJECTSSTATE',
-                title: '剩余金额'
+                title: '剩余资金/元',
+                formatter: function(row,value,index){
+                	var Surplus=(value.RAISE_MONEY-value.RAISE_MONEY*0.15)*0.30;
+                	var ewr=Surplus.toFixed(2);
+                	
+                	
+                    return [ewr];
+                }
+            },{
+                field: 'DRETURN',
+                title: '待回报订单/个'
             },{
                 field: 'ZRETURN',
-                title: '回报中订单'
+                title: '回报中订单/个'
             },{
                 field: 'COMPLETERATE',
                 title: '回报完成率'
-            },{
-                field: 'ORD_STATUS',
-                title: '订单状态'
-            },{
-                field: 'ORD_STATUS',
-                title: '物流单号'
             },{
             	title: '操作',
             	events:operateEvents,
@@ -136,19 +139,21 @@ var TableInit = function () {
     
     window.operateEvents={
     		"click .editbtn":function(e,value,row,index){
-    			/* $.ajax({
+    			alert(row.EMPID);
+    			alert(row.PROID);
+    			var mm=(row.RAISE_MONEY-row.RAISE_MONEY*0.15)*0.30;
+    			alert(mm);
+    			 $.ajax({
 					type:"post",
-					url:"http://localhost:9088/P2P/MyOrdersContrller/UpdateOrders.do",
-					data:{"ordid":row.PROID},
+					dataType:"text",
+					url:"http://localhost:9088/P2P/TwoLoanController/Loan.do",
+					contentType:"application/json;charset=utf-8",
+					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm.toFixed(2)}),
 					success:function(data){
 						alert(data);
-						if(data=="success"){
-							
-							
-						}
 					}
 				})
-					if(row.PROJECTSSTATE=="回报中"){
+				/* 	if(row.PROJECTSSTATE=="回报中"){
 						$.ajax({
 							type:"post",
 							url:"http://localhost:9088/P2P/MyOrdersContrller/UpdateOrders.do",
@@ -166,12 +171,12 @@ var TableInit = function () {
 						alert("尚未回报不能确认收货");
 						
 					}
-					
+					 */
 	
 					//window.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
-					 */
+				
 					
-    		},"click .delectbtn":function(e,value,row,index){
+    		}/* ,"click .delectbtn":function(e,value,row,index){
 				/* //var projectsid=row.PROJECTSID;
 				if(row.PROJECTSSTATE=="草稿箱"){
 					alert("123");
@@ -191,9 +196,9 @@ var TableInit = function () {
 					
 					alert("项目已提交无法删除");
 				}
-				 */
+				 
     			
-    		}
+    		} */
     		
     		
     }
