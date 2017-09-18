@@ -3,7 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.sxm.ProjectDao">
+	<!-- 根据项目id查询发起人类型 -->
 	<select id="selectProject" resultType="Map">
-		select * from projects where projectsid=#{projectsid}
+		select originatortype from projects where projectsid=#{projectsid}
 	</select>
 </mapper>

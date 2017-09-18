@@ -74,7 +74,7 @@ oTableInit.Init = function () {
             field: 'CAPITALID',
             title: '流水序列'
         },{
-            field: 'ACCOUNTSID',
+            field: 'EMPID',
             title: '操作账号序列'
         },{
             field: 'ORDID',

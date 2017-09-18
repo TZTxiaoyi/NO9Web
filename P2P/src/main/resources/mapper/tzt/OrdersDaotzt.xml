@@ -11,23 +11,19 @@
 			a.projectsid,
 			a.paymoney,
 			a.pro_returnid,
-			a.order_time,
+			a.order_time
 	 	from orders a
 	 	<where>
-	 		 a.address=r.addressid 	
-	 		<if test ="ord_id !=null">
-	 			and a.ord_id= #{ord_id}
-	 		</if>
 	 		<if test ="empid !=null">
-	 			and a.empid= #{empid}
+	 			 a.empid= #{empid}
 	 		</if>
 	 		<if test ="ordid !=null">
-	 			and a.ordid= #{ordid}
+	 			and a.ord_id= #{ordid}
 	 		</if>
 	 		<if test ="projectsid !=null">
 	 			and a.projectsid= #{projectsid}
 	 		</if>
-	 		<if test ="paymoney !=null">
+	 		<if test ="paymoney !=0">
 	 			and a.paymoney= #{paymoney}
 	 		</if>
 	 		<if test ="ordertime !=null">
@@ -47,7 +43,7 @@
 	    </selectKey> 
 		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
 		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')
-		,76,#{proreturnid,jdbcType=NUMERIC},#{address,jdbcType=NUMERIC}) 
+		,76,#{proreturnid,jdbcType=NUMERIC}) 
 	</insert>
 	
 	<update id="updateOrders" parameterType="com.entity.tzt.Orders">
@@ -57,9 +53,15 @@
 			<if test="ordstatus !=null">
 				 ord_status=#{ordstatus,jdbcType=NUMERIC},
 			</if>
+			
 		</set>
 		<where>
-			ord_id=#{ordid}
+			<if test="ordid !=null">
+					ord_id=#{ordid}
+			</if>
+			<if test="projectsid !=null">
+				and projectsid=#{projectsid}
+			</if>
 		</where>
 	</update>
 </mapper>

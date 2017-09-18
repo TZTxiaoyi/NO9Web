@@ -43,10 +43,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			margin-top:20px;
  		}
  		
- 		
-        #agriculture,#welfare{
-        	margin:30px;
-        }
         h4{
         	text-align:center;
         	color:#000000;
@@ -60,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        display: block;  
 	        text-align: center;   
 	        margin: 0px auto;  
-	       
+	      
 	        bottom: 0px;  
 	        width: 100%;  
     	} 
@@ -115,24 +111,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			margin-botton:20px;
 			margin-top:20px;
 		}
-		.look{
-			width:100%;
-			text_decoration:none;
-			text-align:center;
-			font-size:15;
-			color:gray;
-			background: #EAE8EA;
-			margin-bottom:20px;
-		}
-		.progress{
-			margin-left:15px;
+		#center{
+			margin-top:50px;
 		}
 		.allimg{
 			border:1px solid;
-			
+			margin:10px;
 		}
 		.allimg img{
 			margin-left:-15px;
+		}
+		#fenye{
+			text-align:center;
 		}
  	</style>
  	
@@ -287,62 +277,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
-	
-  	
-  	<!-- 中间-->
-  	<div>
-  		<!-- 中间上部——轮播图片 -->	
-  		<div id="slidershow" class="carousel slide" data-ride="carousel">
- 			<!-- 设置图片轮播的顺序 -->
- 			<ol class="carousel-indicators">
-				<li class="active" data-target="#slidershow" data-slide-to="0"></li>
-				<li data-target="#slidershow" data-slide-to="1"></li>
-				<li data-target="#slidershow" data-slide-to="2"></li>
- 			</ol>
-			<!-- 设置轮播图片 -->
-			<div class="carousel-inner">
-				<div class="item active">
-			 		<a class="image" pid="100050" href='pro_details.jsp'><img src="images/tudou.png" alt="" style="height: 300px;width: 100%"></a>
-			 			<div class="carousel-caption">
-			 				<h3></h3>
-			 				<p></p>
-			 			</div>
-			 	</div>
- 				<div class="item">
- 					<a class="image" pid="1" href='pro_details.jsp'><img src="images/liangshi.png" alt="" style="height: 300px;width: 100%"></a>
- 					<div class="carousel-caption">
- 						<h3></h3>
- 						<p></p>
- 					</div>
- 				</div>
- 				<div class="item">
-					 <a class="image" pid="100052" href='pro_details.jsp'><img src="images/zishahu.png" alt="" style="height: 300px;width: 100%"></a>
-					 <div class="carousel-caption">
-					 	<h3></h3>
-					 	<p></p>
-					 </div>
+	<!-- 中间-->
+	<div id="center">
+		<div class="container">
+			<div class="row">
+			
+				<nav class="navbar navbar-default" role="navigation">
+				    <div class="container-fluid">
+					    <div class="navbar-header">
+					        <a class="navbar-brand" href="#">行业筛选</a>
+					    </div>
+					    <div>
+					        <a href="#welfare" class="btn btn-default navbar-btn" data-toggle="tab">
+					            	公益
+					        </a>
+					        <a href="#agriculture" class="btn btn-default navbar-btn" data-toggle="tab">
+					            	农业
+					        </a>
+					    </div>
+					   
+				    </div>
+				</nav>
+				<div id="tab" class="tab-content container">
+					<div id="welfare" class="table table-hover table-striped tab-pane fade in active"></div> 
+					<div id="agriculture" class="table table-hover table-striped tab-pane fade"></div>
+							 
 				</div>
- 			</div>
-			<!-- 设置轮播图片控制器 -->
-			<a class="left carousel-control" href="#slidershow" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-			</a>
-			<a class="right carousel-control" href="#slidershow" role="button" data-slide="next">
-			 	<span class="glyphicon glyphicon-chevron-right"></span>
-			</a>
+				<div id="fenye">
+					<ul class="pagination pagination-lg">
+					<li><a href="#">&laquo;</a></li>
+					    <li><a href="#">1</a></li>
+					    <li><a href="#">2</a></li>
+					    <li><a href="#">3</a></li>
+					    <li><a href="#">4</a></li>
+					    <li><a href="#">5</a></li>
+					    <li><a href="#">&raquo;</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<!-- 中间底部——动态添加数据库项目 -->
-		<div id="moddel" class="container">
-           	<h2>公益项目</h2>
-           	<div id="welfare" class="row"></div>
-           	<div width="100%"><a width="100%"  href="promore.jsp?protypeid=5" role="button" class="btn look">浏览更多项目</a></div>
-           	<h2>农业项目</h2>
-           	<div id="agriculture" class="row"></div>
-           	<div width="100%"><a width="100%"  href="promore.jsp?protypeid=6" role="button" class="btn look">浏览更多项目</a></div>
-        	
-  		</div>
-  		
-  	</div>
+	</div>
   	<!-- 尾部-->
   	<div id="footer">
 	  	<div class="container">
@@ -369,7 +343,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		页面加载时自动加载项目
 	*/
 	$(function(){
-		var data={};
+		var protypeid=${param.protypeid};
+		alert(protypeid);
+		var data={
+				protypeid:protypeid
+		};
 		$.ajax({
 			type:"post",
 			dataType:"json",
@@ -384,13 +362,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var pid=value.PROJECTSID;
 					var bar=(raiseMoney/targeMoney)*100;//筹资进度百分比
 					var aa=decimal(bar,2)//小数保留两位
-					var moddel="<div class=\"col-md-4 col-sm-4 col-xs-12 allimg\"><a href='pro_details.jsp' class=\"img\" pid="+
+					var moddel="<div class=\"col-md-3 col-sm-3 col-xs-12 allimg\"><a href='pro_details.jsp' class=\"img\" pid="+
 					value.PROJECTSID+"><img src=\"images/"+value.COVER+ 
-					"\" alt=\"\" width=\"358\" height=\"300\" class=\"img-rounded\"><h4>"+value.TITLE+
+					"\" alt=\"\" width=\"283\" height=\"260\" class=\"img-rounded\"><h4>"+value.TITLE+
 					"</h4><h5>"+value.GOAL+"</h5></a>"+"<div width=\"100%\" class=\"progress\">"
 					+"<div class=\"progress-bar-success\" aria-valuenow=\"60\" "+
 			        "aria-valuemin=\"0\" aria-valuemax=\"100\"style=\"width:"+
-					aa+"%;\"><span>已完成"+aa+"%</span></div></div><div>已筹款：￥"+raiseMoney+"</div></div>";
+					aa+"%;\"><span class=\"bar\">已完成"+aa+"%</span></div></div><div>已筹款：￥"+raiseMoney+"</div></div>";
 					if(value.PROTYPEID==5){//公益
 						$("#welfare").append(moddel);
 					}else if(value.PROTYPEID==6){//农业
@@ -413,16 +391,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var vv = Math.pow(10,v);
 		return Math.round(num*vv)/vv;
 	}
-	$(".image").click(function(){
-		
-		var pid=$(this).attr("pid");
-		alert(pid);
-		$.cookie('pid', pid);
-	})
-	$("#moddel").on('click',".img",function(){
-		var pid=$(this).attr("pid");
-		$.cookie('pid', pid);
-	})
 	/*
 		注册按钮点击事件
 	*/
@@ -441,11 +409,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:JSON.stringify(data),
 			success : function(data1) {//data为返回的数据，在这里做数据绑定  
 				login(data);
-				/* $("#user").append(data1.resultEmployee[0].USERNAME);
-				$("#log_reg").hide();
-				$("#log_img").show();
-				$('#myModal1').modal('hide');
-				$.cookie('account1', act1) //存入值 */
 			}
 		});
 	});

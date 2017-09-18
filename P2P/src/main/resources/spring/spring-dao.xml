@@ -19,6 +19,8 @@
 		<property name="checkoutTimeout" value="10000"/>
 		<!--连接失败重试次数  -->
 		<property name="acquireRetryAttempts" value="2"/>
+		<property name="acquireRetryDelay" value="100"/>
+  		<property name="breakAfterAcquireFailure"  value="false"/>
 	</bean>
 	<!--mybatis与spring整合  配置sqlsessionFactory对象  -->
 	
