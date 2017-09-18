@@ -8,9 +8,9 @@
 		select * from accounts where accounts=#{accounts}
 	</select>
 	<!-- 查询当前用户的所有权限 -->
-	<select id="queryAllFunction" resultType="map" parameterType="map">
+	<select id="queryAllFunction" resultType="map" parameterType="com.entity.tzt.Accounts">
 		select p1.keyword
 		from roletable r1,accounts a1,powers p1,role_powers rp
-		where r1.roleid=rp.roleid and p1.powersid=rp.powersid and a1.roleid=r1.roleid and a1.accounts=#{acconunts}
+		where r1.roleid=rp.roleid and p1.powersid=rp.powersid and a1.roleid=r1.roleid and a1.accounts=#{accounts}
 	</select>
 </mapper>
