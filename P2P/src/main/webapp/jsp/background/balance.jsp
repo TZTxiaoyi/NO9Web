@@ -279,9 +279,12 @@ $("#finshbutton").click(function() {
 					
 				} ,
 	 'click .finsh': function (e, value, row, index) {
+		 	alert("4554");
+	 
 			data={
 				 roleid:row.PROJECTSID, 
 		 }
+			alert("65685");
 		 if(row.RAISE_MONEY>=row.TARGE_MONEY){
 			 //筹资成功
 			 data={

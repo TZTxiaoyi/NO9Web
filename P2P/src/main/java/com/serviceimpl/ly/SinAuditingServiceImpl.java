@@ -1,11 +1,13 @@
 package com.serviceimpl.ly;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.ljl.DescribeProjectsDaoLjl;
 import com.dao.ly.SinAuditingDao;
 import com.entity.ly.DetailAuditing;
 import com.entity.ly.OrgAuditing;
@@ -18,7 +20,8 @@ import com.service.ly.SinAuditingService;
 public class SinAuditingServiceImpl implements SinAuditingService{
 	@Autowired
 	SinAuditingDao sinAuditingDao;
-
+	@Autowired
+	DescribeProjectsDaoLjl describepro;
 	/**
 	 * 个人项目审核
 	 */
@@ -41,6 +44,15 @@ public class SinAuditingServiceImpl implements SinAuditingService{
 	
 	public int upSinProSt(Project projecstid) {
 		// TODO Auto-generated method stub
+		List<Map> list=describepro.AllDescribeProject(projecstid);
+		Map map=list.get(0);
+		Integer targemoney =Integer.parseInt(map.get("FINANCING").toString());
+		Map promoney=new HashMap();
+		promoney.put("projectsid", projecstid.getProjectsid());
+		promoney.put("targemoney", targemoney);
+		
+		System.out.println(promoney);
+		describepro.addPromoney(promoney);
 		return sinAuditingDao.upSinProSt(projecstid);
 	}
 	

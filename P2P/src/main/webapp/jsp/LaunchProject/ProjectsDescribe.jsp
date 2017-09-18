@@ -52,7 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
   </head>
   <body>
-  		<input type="text" maxlength="10"/>
   			<div  id="colpadding">
   				<b>创建您的项目信息</b>
   				<hr>
@@ -94,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<label for="" class="col-sm-2 control-label">筹资天数：</label>
 						   <div class="col-sm-6 ">
 						   
-						    	<input type="text" id="financing_day" min="10" max="50" name="financing_day" class="form-control" placeholder="输入你要筹资时间周期，10~50天" >
+						    	<input type="text" id="financing_day"  name="financing_day" class="form-control" placeholder="输入你要筹资时间周期，10~50天" >
 						   	
 						   </div><span id="formspan">天</span>	
   						</div>
@@ -108,6 +107,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 </html>
 <script>
+	$("#financing_day").blur(function(){
+		
+		
+	})
 	$("#wewr").click(function(){
 		alert("555");
 			var projectsid=$.cookie('projectsid');
