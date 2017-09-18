@@ -35,7 +35,7 @@ public class ProjectMoneyControllertzt {
 	@ResponseBody
 	public String queryProjectMoney(@RequestBody ProjectsLjl projectsLjl){
 		System.out.println(projectsLjl.getProjectsid());
-		String  result = JSON.toJSONString(projectMoneyServicetzt.queryProjectMoney(projectsLjl));
+		String  result = JSON.toJSONStringWithDateFormat(projectMoneyServicetzt.queryProjectMoney(projectsLjl),"yyyy-MM-dd HH:mm:ss");
 		System.out.println( result);
 		return result;
 	}

@@ -22,6 +22,7 @@ import com.dao.tzt.ProjectsDaotzt;
 import com.entity.ljl.PlatformFundsLjl;
 import com.entity.ljl.ProjectsLjl;
 import com.entity.tzt.Capital;
+import com.entity.tzt.Employee;
 import com.entity.tzt.Orders;
 import com.entity.tzt.Profit;
 import com.entity.tzt.ProjectsMoneyinfotzt;
@@ -85,11 +86,11 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		//更改订单状态
 		Orders orders = new Orders();
 		orders.setProjectsid(projectsMoneyinfotzt.getProjectsid());
-		orders.setOrdstatus(87);
+		orders.setOrdstatus(80);
 		ordersDaotzt.updateOrders(orders);
 		
 		
-		//盈利表存入    增加项目资金记录
+		//盈利表存入   
 		Profit  profit = new Profit();
 		Date myDate =new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -99,23 +100,41 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		float gain= (float) (projectsMoneyinfotzt.getBlacne()*0.03);//计算利润
 		profit.setCapital(gain);
 		profit.setCapitalflow(11);
+		System.out.println(JSON.toJSON(profit));
 		profitDaotzt.addProfit(profit);
+		System.out.println("盈利表存入");
 		
-			//增加项目资金记录
-		Capital capital = new Capital();
-		capital.setCapital (gain);//减去利润后的发放
-		capital.setProjectsid(projectsMoneyinfotzt.getProjectsid());//项目id
-		capital.setEmpid(projectsMoneyinfotzt.getEmpid()); //发起人的id
-		CapitalDaotzt.addCapital(capital);
 		
 		//放款至发起人
-		
+		Employee employee = new Employee();
+		employee.setEmpid(projectsMoneyinfotzt.getEmpid());
+		float blan= (float)(projectsMoneyinfotzt.getBlacne()*0.97*0.7);//放款金额
+		employee.setBalance(blan);
+		System.out.println(JSON.toJSONString(employee));
+		EmployeeDaotzt.updataEmployeeBalance(employee);
+		System.out.println("放款至发起人");
 		//增加项目资金记录
-		
-		//更改订单项目状态
-		
+		Capital capital = new Capital();
+		capital.setCapital ((float) (blan+gain));//项目一阶段总发放（放款+盈利收付费）
+		capital.setProjectsid(projectsMoneyinfotzt.getProjectsid());//项目id
+		capital.setEmpid(projectsMoneyinfotzt.getEmpid()); //发起人的id
+		capital.setCapitalflow(4);
+		System.out.println(JSON.toJSONString(capital));
+		CapitalDaotzt.addCapital(capital);
+		System.out.println("增加项目资金记录");
+		//更改项目状态
+		System.out.println(JSON.toJSONString(projectsMoneyinfotzt));
+		projestsdaotzt.updataProjectFinsh(projectsMoneyinfotzt);//更改项目状态
+		System.out.println("更改项目状态");
 		//更改总资金
-			
+		PlatformFundsLjl platformfunds=new PlatformFundsLjl();
+		platformfunds.setProfitmoney(gain);
+		platformfunds.setPromoney(-(float)(blan+gain));
+		platformfunds.setUsermoney(blan);
+		System.out.println(JSON.toJSONString(platformfunds));
+		platformFundsDaoLjl.Updatefunds(platformfunds);
+		System.out.println("更改总资金");
+		
 		return "true";
 	}
 

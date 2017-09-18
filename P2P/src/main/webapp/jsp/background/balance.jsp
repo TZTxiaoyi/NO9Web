@@ -129,16 +129,12 @@ $("#finshbutton").click(function() {
 		type : "post",
 		dataType : "json",
 		data:data,
-		url : "/P2P/back/addRoleTable.do",//要访问的后台地址  
+		url : "/P2P/projectmoney/finshProject.do",//要访问的后台地址  
 		contentType :"application/json;charset=utf-8",
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
-			if(result.resultType=="true"){
-				alert("成功");
-			 	$('#tb_departments').bootstrapTable("refresh");;
-			}else{
-				alert("添加失败");
-			}
+			alert("放款成功");
+			 $('#tb_departments').bootstrapTable("refresh");;
 		},error : function() {
 			alert("error");
 		}
@@ -252,24 +248,19 @@ $("#finshbutton").click(function() {
 					
 				} ,
 	 'click .finsh': function (e, value, row, index) {
-		
+		  data={
+					projectsid:row.PROJECTSID, 
+					empid:row.EMPID,
+					blacne:row.RAISE_MONEY
+				 };
+
 		 if(row.RAISE_MONEY>=row.TARGE_MONEY){
 			 //筹资成功
-			 data={
-				projectsid:row.PROJECTSID, 
-				empid:row.EMPID,
-				blacne:RAISE_MONEY
-			 }		
 			  $("#finshproject").modal();
 			 alert(JSON.stringify(data));
 			 
 		 }else{
 			 //筹资失败
-			  data={
-				projectsid:row.PROJECTSID, 
-				empid:row.EMPID,
-				blacne:RAISE_MONEY
-			 }		
 			  $("#removeproject").modal();
 			 alert(JSON.stringify(data));
 		 }
