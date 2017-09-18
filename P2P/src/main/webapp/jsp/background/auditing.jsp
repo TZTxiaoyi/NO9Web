@@ -80,7 +80,7 @@
 									<td>身份证号</td>
 									<td id="info_one"></td>
 									<td>
-										<label><input type="radio" name="idcard" value="VALUE1"  flag="40"  id="oneRadio" />&nbsp;是</label>
+										<label><input type="radio" name="idcard" value="VALUE1"  flag="information"  id="oneRadio" />&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="idcard" value="VALUE2"  flag="41"/>&nbsp;否</label>							
@@ -90,7 +90,7 @@
 									<td>发起人姓名</td>
 									<td id="info_two"></td>
 									<td>
-										<label><input type="radio"  name="originatorname" value="VALUE3"  id="oneRadio" />&nbsp;是</label>
+										<label><input type="radio"  name="originatorname" value="VALUE3"  flag="information" id="oneRadio" />&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="originatorname" value="VALUE4" />&nbsp;否</label>						
@@ -100,7 +100,7 @@
 									<td>地址</td>
 									<td id="info_three"></td>
 									<td>
-										<label><input type="radio" name="adress" value="VALUE5"  id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="adress" value="VALUE5"  flag="information" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="adress" value="VALUE6" flag="41" />&nbsp;否</label>
@@ -111,7 +111,7 @@
 									<td>电话</td>
 									<td id="info_four"></td>
 									<td>
-										<label><input type="radio" name="telephone" value="VALUE7"  id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="telephone" value="VALUE7"  flag="information" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="telephone" value="VALUE8"  flag="41" />&nbsp;否</label>
@@ -123,7 +123,7 @@
 									<td>身份证正面</td>
 									<td id="info_five"></td>
 									<td>
-										<label><input type="radio" name="cardimage1" value="VALUE9"  id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="cardimage1" value="VALUE9"  flag="information" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="cardimage1" value="VALUE10"  flag="41"/>&nbsp;否</label>										
@@ -141,10 +141,9 @@
 								</tr>
 							</table>
 							<div class="bbD">
-								
+								<input type="button" id="passAll1" class="btn btn-info btn-xs" value="一键通过">
 							</div>
-							<div class="bbD">
-								
+							<div class="bbD">			
 									<button type="button" class="btn btn-info" id="save_sinpro">保存</button>
 							</div>							
 						</div>
@@ -161,7 +160,7 @@
 									<td>项目标题</td>
 									<td id="detail_one"></td>
 									<td>
-										<label><input type="radio" name="title" value="right1" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="title" value="right1" flag="information2" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="title" value="right2"/>&nbsp;否</label>
@@ -171,7 +170,7 @@
 									<td>筹金目的</td>
 									<td id="detail_two"></td>
 									<td>
-										<label><input type="radio" name="goal" value="right3" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="goal" value="right3" flag="information2" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="goal" value="right4"/>&nbsp;否</label>
@@ -181,7 +180,7 @@
 									<td>项目地点</td>
 									<td id="detail_three"></td>
 									<td>
-										<label><input type="radio" name="location" value="right5" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="location" value="right5" flag="information2" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="location" value="right6"/>&nbsp;否</label>
@@ -191,7 +190,7 @@
 									<td>筹金金额（元）</td>
 									<td id="detail_four"></td>
 									<td>
-										<label><input type="radio" name="money" value="right7" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="money" value="right7" flag="information2" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="money" value="right8"/>&nbsp;否</label>
@@ -201,7 +200,7 @@
 									<td>筹金天数</td>
 									<td id="detail_five"></td>
 									<td>
-										<label><input type="radio" name="days" value="right9" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="days" value="right9" flag="information2" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="days" value="right10" />&nbsp;否</label>
@@ -211,7 +210,7 @@
 									<td>项目封面</td>
 									<td id="detail_six"></td>
 									<td>
-										<label><input type="radio" name="cover" value="right11" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="cover" value="right11" flag="information2" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="cover" value="right12"/>&nbsp;否</label>
@@ -219,7 +218,7 @@
 								</tr>								
 							</table>
 							<div class="bbD">
-							
+								<input type="button" id="passAll2" class="btn btn-info btn-xs" value="一键通过">
 							</div>
 							<div class="bbD">
 								
@@ -239,7 +238,7 @@
 									<td>项目详细地址</td>
 									<td id="describe_one"></td>
 									<td>
-										<label><input type="radio" name="places" value="center1" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="places" value="center1" flag="information3" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="places" value="center2"/>&nbsp;否</label>
@@ -252,7 +251,7 @@
 										<a type="button" id="detail" class="btn btn-info" data-toggle="modal" data-target="#myModal">查看</a>
 									</td>
 									<td>
-										<label><input type="radio" name="content" value="center3" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="content" value="center3" flag="information3" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="content" value="center4"/>&nbsp;否</label>
@@ -260,7 +259,7 @@
 								</tr>														
 							</table>
 							<div class="bbD">
-								
+								<input type="button" id="passAll3" class="btn btn-info btn-xs" value="一键通过">
 							</div>
 							<div class="bbD">
 						
@@ -280,7 +279,7 @@
 									<td>回报类型</td>
 									<td id="return_one"></td>
 									<td>
-										<label><input type="radio" name="reType" value="left1" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reType" value="left1" flag="information4" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reType" value="left2"/>&nbsp;否</label>
@@ -290,7 +289,7 @@
 									<td>回报金额（元）</td>
 									<td id="return_two"></td>
 									<td>
-										<label><input type="radio" name="reMoney" value="left3" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reMoney" value="left3" flag="information4" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reMoney" value="left4"/>&nbsp;否</label>
@@ -300,7 +299,7 @@
 									<td>回报标题</td>
 									<td id="return_three"></td>
 									<td>
-										<label><input type="radio" name="reTitle" value="left5" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reTitle" value="left5" flag="information4" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reTitle" value="left6"/>&nbsp;否</label>
@@ -310,7 +309,7 @@
 									<td>回报内容</td>
 									<td id="return_four"></td>
 									<td>
-										<label><input type="radio" name="reContent" value="left7" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reContent" value="left7" flag="information4" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reContent" value="left8"/>&nbsp;否</label>
@@ -320,7 +319,7 @@
 									<td>限制人数</td>
 									<td id="return_five"></td>
 									<td>
-										<label><input type="radio" name="reLimit" value="left9" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reLimit" value="left9" flag="information4" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reLimit" value="left10"/>&nbsp;否</label>
@@ -330,7 +329,7 @@
 									<td>回报时间</td>
 									<td id="return_six"></td>
 									<td>
-										<label><input type="radio" name="reTime" value="left11" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reTime" value="left11" flag="information4" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reTime" value="left12" />&nbsp;否</label>
@@ -340,7 +339,7 @@
 									<td>实物图</td>
 									<td id="return_seven"></td>
 									<td>
-										<label><input type="radio" name="reImage" value="left13" id="oneRadio"/>&nbsp;是</label>
+										<label><input type="radio" name="reImage" value="left13" flag="information4" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="reImage" value="left14" />&nbsp;否</label>
@@ -348,7 +347,7 @@
 								</tr>										
 							</table>
 							<div class="bbD">
-								
+								<input type="button" id="passAll4" class="btn btn-info btn-xs" value="一键通过">
 							</div>
 							<div class="bbD">								
 									<button type="button" class="btn btn-info" id="save_four">保存</button>
@@ -395,6 +394,18 @@
 		var auditing=$.cookie("project_auditing");
 		var topWindow=window.top;
 		
+		$("#passAll1").click(function(){
+			$("input:radio[flag='information']").prop('checked','true');
+		});
+		$("#passAll2").click(function(){
+			$("input:radio[flag='information2']").prop('checked','true');
+		});
+		$("#passAll3").click(function(){
+			$("input:radio[flag='information3']").prop('checked','true');
+		});
+		$("#passAll4").click(function(){
+			$("input:radio[flag='information4']").prop('checked','true');
+		});
 		$("#detail").click(function(){
 			var data={};
 			data["projectsid"]=auditing;
@@ -986,7 +997,7 @@
 						topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
 					}					
 				});								
-			}else{
+			}else{7
 				alert(flag);				
 				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");					
 			}

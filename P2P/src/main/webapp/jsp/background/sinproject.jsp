@@ -108,11 +108,26 @@
 	$("#auditing").click(function(){
 		var ss=$("#protab").bootstrapTable('getSelections');				
 		var dd1=parseInt(ss[0].PROJECTSID);
-		//alert(dd1);
-		$.cookie('project_auditing',dd1);
-		var auditing=$.cookie("project_auditing");
-		//alert(auditing);
-		 window.location.replace("auditing.jsp");
+		$.cookie('project_auditing',dd1);//将项目序号放入cookie		
+		var data={};
+		data["projectsid"]=dd1;
+		$.ajax({
+			url:"/P2P/AddState/selEmproject.do",
+			dataType:"json",
+			type:"post",
+			data:JSON.stringify(data),
+			contentType:"application/json;charset=UTF-8",
+			success:function(data){
+				//alert(data);
+				if(data==1){					
+					var auditing=$.cookie("project_auditing");
+					//alert(auditing);
+					 window.location.replace("auditing.jsp");
+				}else{
+					alert("该项目已经有人审核");
+				}
+			}
+		}); 
 	});
 	$("#detail").click(function(){
 		$("#pro_title").html("");

@@ -77,4 +77,24 @@
 		select * from (select pi.indetailid,pi.projectsid,pi.textid,pi.photoid,pi.places,it.title,it.body,ip.url from projects_indetail pi left join projects_indetail_text it on pi.textid=it.textid
 		left join projects_indetail_photo ip on pi.photoid=ip.photoid ) where PROJECTSID=#{projectsid} order by PLACES
 	</select>
+	<!-- (1) -->
+	<delete id="deSinProState" parameterType="int">
+		delete from resumes_auditings where projectsid=#{projectsid}
+	</delete>
+	<!-- (1) -->
+	<delete id="deOrProState">
+		delete from organiza_auditing where projectsid=#{projectsid}
+	</delete>
+	<!-- (2) -->
+	<delete id="deProIndetailState">
+		delete from proindetail_auditing where projectsid=#{projectsid}
+	</delete>
+	<!-- (3) -->
+	<delete id="deProDescribeState">
+		delete from pro_describe_auditing where projectsid=#{projectsid}
+	</delete>
+	<!-- (4) -->
+	<delete id="deProReturnState">
+		delete from retur_auditing_record where projectsid=#{projectsid}
+	</delete>
 </mapper>

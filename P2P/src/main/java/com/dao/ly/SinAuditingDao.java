@@ -21,6 +21,13 @@ public interface SinAuditingDao {
 	int inProReturnRe(Map auditing);//修改回报审核记录
 	
 	List<Object> selProType(Project projectsid);//根据项目序号，查询该项目属于个人还是机构
+	
+	int deSinProState(Project projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（1）
+	int deOrProState(Project projectsid);////在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（1）
+	int deProIndetailState(Project projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（2）
+	int deProDescribeState(Project projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（3）
+	int deProReturnState(Project projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（4）
+	
 	int inSinProState(Project projectsid);//在所有项目里点击审核，给个人信息审核表一个默认 未审核 的初始值（1）
 	int inOrProState(Project projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（1）
 	int inProIndetailState(Project projectsid);//在所有项目里点击审核，给 项目信息 审核表一个默认 未审核 的初始值（2）

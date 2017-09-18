@@ -18,54 +18,59 @@
 	<!-- 登录页面头部结束 -->
 
 	<!-- 登录body -->
-	<div class="logDiv">
-		<img class="logBanner" src="img/logBanner.png" />
-		<div class="logGet">
-			<!-- 头部提示信息 -->
-			<div class="logD logDtip">
-				<p class="p1">登录</p>
-				<p class="p2">有点人员登录</p>
-			</div>
-			<!-- 输入框 -->
-			<div class="lgD">
-				<img class="img1" src="img/logName.png" /><input type="text"
-				id="accounts"	placeholder="输入用户名" />
-			</div>
-			<div class="lgD">
-				<img class="img1" src="img/logPwd.png" /><input type="password"
-				id="passwords"placeholder="输入用户密码" />
-			</div>
-			<div class="logC">
-				<button id="submit">登 录</button>
+	<form action="/P2P/login/logCon.do" method="post">
+	
+	
+		<div class="logDiv">
+			<img class="logBanner" src="img/logBanner.png" />
+			<div class="logGet">
+				<!-- 头部提示信息 -->
+				<div class="logD logDtip">
+					<p class="p1">登录</p>
+					<p class="p2">有点人员登录</p>
+				</div>
+				<!-- 输入框 -->
+				<div class="lgD">
+					<img class="img1" src="img/logName.png" /><input type="text"
+					id="accounts"	placeholder="输入用户名" name="accounts" />
+				</div>
+				<div class="lgD">
+					<img class="img1" src="img/logPwd.png" /><input type="password"
+					id="passwords"placeholder="输入用户密码" name="passwords"/>
+				</div>
+				<div class="logC">
+					<button id="submit">登 录</button>
+				</div>
 			</div>
 		</div>
-	</div>
+		
+	</form>
 	<!-- 登录body  end -->
 
 	<!-- 登录页面底部 -->
 	<div class="logFoot">
-		<p class="p1">版权所有：南京设易网络科技有限公司</p>
-		<p class="p2">南京设易网络科技有限公司 登记序号：苏ICP备11003578号-2</p>
+		
 	</div>
 	<!-- 登录页面底部end -->
 </body>
 </html>
 <script>
-$("#submit").click(function() {
+
+/* $("#submit").click(function() {
 	var data = {
 			accounts:$("#accounts").val(),
 			passwords : $("#passwords").val(),
 	};
-	alert($("#accounts").val());
+	//alert($("#accounts").val());
 	$.ajax({
-		type : "post",
+		type : "post", 
 		dataType : "json",
 		data:data,
-		url : "/P2P/ProWeb/backlogin.do",//要访问的后台地址  
+		url : "/P2P/login/logCon.do",//要访问的后台地址  
 		contentType :"application/json;charset=utf-8",
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
-			if(result.resultType=="true"){
+			if(data=="true"){
 				window.location.href="http://localhost:9088/P2P/jsp/background/index.jsp"
 			}else{
 				alert("登录失败");
@@ -74,5 +79,5 @@ $("#submit").click(function() {
 			alert("error");
 		}
 	});
-})
+}) */
 </script>

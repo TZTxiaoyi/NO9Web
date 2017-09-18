@@ -63,27 +63,42 @@
 	</div>
 	<!-- 删除弹出框  end-->
 <script type="text/javascript">
+
+
+
+//一系列操作，到service层看吧
+function projectstate(data){
+	
+	$.ajax({
+		url:"/P2P/AddState/inseProState.do",
+		dataType:"json",
+		type:"post",
+		data:JSON.stringify(data),
+		contentType:"application/json;charset=UTF-8",
+		success:function(data){
+			alert(data);
+			if(data==1){
+				alert("已有在审核项目");
+			}
+		}
+	});
+}
 	window.operateEvents = {
-		'click #pro_auditing': function (e, value, row, index) {			 
+		'click #pro_auditing': function(e, value, row, index) {			 
 			//alert(55);
 			projectsid=parseInt(row.PROJECTSID);
 			//alert(projectsid);
 			var data={};
 			data["projectsid"]=projectsid;
-			$.ajax({
-				url:"/P2P/AddState/inseProState.do",
-				dataType:"json",
-				type:"post",
-				data:JSON.stringify(data),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){
-					
-				}
-			});
+			if (!confirm("确认要审核？")) { 				
+		        window.event.returnValue = false; 
+		    } else{
+		    	projectstate(data);
+			}
 		},
 	}
 	function marks(row,index,value){
-		return ["<a type=\"button\" id=\"pro_auditing\" class=\"btn btn-warning btn-xs\">审核</a>"]
+		return ["<a type=\"button\" id=\"pro_auditing\" class=\"btn btn-warning btn-xs\">审核</a>"];
 	}
 	
 	$('#protab').bootstrapTable({
