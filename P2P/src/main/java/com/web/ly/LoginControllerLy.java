@@ -57,7 +57,7 @@ public class LoginControllerLy {
 				e1.printStackTrace();
 				
 			}*/
-			return "redirect:jsp/background/log.jsp";
+			return "redirect:P2P/jsp/background/log.jsp";
 		}catch(Exception e2){
 			System.out.println("7777777****** ");
 			System.out.println(e2.getMessage());//用户密码错误

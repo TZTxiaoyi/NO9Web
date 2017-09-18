@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -19,6 +21,7 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 	@Autowired
 	IndetailProjectsDaoLjl IndetailDao;
 	@Override
+	
 	public int SaveIndetail() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -29,8 +32,12 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	/**
+	 * 查询项目的详情
+	 * 项目文本图片
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public List AllIndetail(ProjectsLjl projects) {
 		List list=IndetailDao.AllIndetailProjects(projects);
 		if (list.size()==0){
@@ -39,8 +46,12 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 		}
 		return list;
 	}
-
+	/**
+	 * 更新项目的详情
+	 * 文本
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public int SvaeText(Map map) {
 		int projectsid=(int)map.get("projectsid");
 		//String initial=(String)map.get("initialindex");
@@ -89,7 +100,12 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 		//IndetailDao.SvaeText(map);
 		return 1;
 	}
+	/**
+	 * 更新项目的详情
+	 * 详情图片
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public Map SvaePhoto(Map map,IndetailPhotoLjl  IndetailPhoto) {
 		System.out.println("fggf");
 		int flag=0;
@@ -113,8 +129,12 @@ public class IndetailServiceImplLjl implements IndetailServiceLjl{
 			return map;
 		}
 	}
-
+	/**
+	 * 删除项目的详情
+	 * 文本 图片
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public int DeleteIndetail(IndetailLjl indetail) {
 		int flag=IndetailDao.DeleteIndetail(indetail);
 		int flag1=0;

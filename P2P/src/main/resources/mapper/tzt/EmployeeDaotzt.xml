@@ -4,7 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.tzt.EmployeeDaotzt">
 	<select id="queryEmployee" parameterType="com.entity.tzt.Employee" resultType="map">
-		
 		select 
 			empid,
 			username,
@@ -29,6 +28,19 @@
 		 <selectKey keyProperty="empid" resultType="int" order="AFTER">  
 	         SELECT list_employee.currval  as id from DUAL 
 	    </selectKey> 
-		insert into employee values(list_employee.nextval,#{username,jdbcType=VARCHAR},#{empname,jdbcType=VARCHAR},#{idcard,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{age,jdbcType=NUMERIC},#{address,jdbcType=VARCHAR},#{telephone,jdbcType=NUMERIC},0.00,4) 
+		insert into employee values(list_employee.nextval,#{username,jdbcType=VARCHAR},#{empname,jdbcType=VARCHAR},#{idcard,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{age,jdbcType=NUMERIC},#{telephone,jdbcType=NUMERIC},0.00,4,#{address,jdbcType=VARCHAR}) 
 	</insert>
+	
+	<update id="updataEmployeelist"  parameterType="java.util.List">  
+          <foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+                update employee   
+                <set>  
+                  balance=balance + #{item.PAYMONEY}
+                </set>  
+               <where>
+            	   empid = #{item.EMPID}
+               </where>  
+         </foreach>  
+            
+    </update>  
 </mapper>

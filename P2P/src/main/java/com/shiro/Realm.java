@@ -1,3 +1,4 @@
+
 package com.shiro;
 
 import java.util.HashMap;
@@ -92,3 +93,4 @@ public class Realm extends AuthorizingRealm{
 	
 
 }
+

@@ -44,23 +44,24 @@ public class PayServicetztImpl implements PayServicetzt {
 		String hehe = dateFormat.format( myDate ); 
 		Capital capital = new Capital();
 		Promoney promoney =new Promoney();
-		
+		//更新项目筹资表
 		promoney.setProjectsid(orders.getProjectsid());
 		List<Map> pro = promoneyDaotzt.queryPromoney(promoney);
 		float money =  Float.parseFloat(String.valueOf(pro.get(0).get("RAISE_MONEY"))) + orders.getPaymoney();
 		System.out.println(money);
 		promoney.setRaisemoney(money);
 		System.out.println(promoney.getRaisemoney());
-		Accounts accounts =new Accounts();
-		accounts.setEmpid(orders.getEmpid());
-		List<Map> list=accountsDaotzt.queryAccounts(accounts);
+		//Accounts accounts =new Accounts();
+		//accounts.setEmpid(orders.getEmpid());
+		//List<Map> list=accountsDaotzt.queryAccounts(accounts);
 		orders.setOrdertime(hehe);
 		
-		System.out.println(list);
+		//System.out.println(list);
+		//
 		capital.setCapital(orders.getPaymoney());
 		capital.setCapitalflow(2);
 		capital.setEmpid(orders.getEmpid());
-		capital.setAccountsid( Integer.parseInt(String.valueOf(list.get(0).get("ACCOUNTSID"))));
+		//capital.setAccountsid( Integer.parseInt(String.valueOf(list.get(0).get("ACCOUNTSID"))));
 		capital.setProjectsid(orders.getProjectsid());
 		capital.setStarttime(hehe);
 		//查询余额
@@ -74,7 +75,8 @@ public class PayServicetztImpl implements PayServicetzt {
 		//对比余额是否足够
 		if(Paymoney1>balance){
 			System.out.println("456");
-			return "false";
+			return "余额不足";
+
 		}else if(Paymoney1<balance){
 			//更新余额
 			/*int ibalance=balance-Paymoney1;*/
@@ -87,9 +89,9 @@ public class PayServicetztImpl implements PayServicetzt {
 		Integer b= capitalDaotzt.addCapital(capital);
 		Integer c =promoneyDaotzt.updatePromoney(promoney);
 		if (a!=0&&b!=0&&c!=0) {
-			return "true";
+			return "支持成功";
 		}
-		return "false";
+		return "支持失败，请重试";
 	}
 
 }

@@ -9,4 +9,7 @@
 	<update id="UpdateEmployee" parameterType="map">
 		update employee set balance=balance+#{balance} where empid=#{empid}
 	</update>
+	<insert id="InsertTransaction" parameterType="map">
+		insert into transaction values(list_Transaction.nextval,#{empid},sysdate,#{money},#{details})
+	</insert>
 </mapper>

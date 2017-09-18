@@ -72,11 +72,16 @@ public class AddStateConller{
 		}else{
 			int org=SinAuditing.inserOrSt(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（1）
 		}
+
 		int pro2=SinAuditing.insertProInSt(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（2）
 		int pro3=SinAuditing.inserProDeSt(projectsid);//在所有项目里点击审核，给 项目描述 审核表一个默认 未审核 的初始值（3）
 		int pro4=SinAuditing.inserProReSt(projectsid);//在所有项目里点击审核，给 项目回报  审核表一个默认 未审核 的初始值（4）*/
 		return eList;
 	}
+
+			
+		
+
 	
 	
 	/**

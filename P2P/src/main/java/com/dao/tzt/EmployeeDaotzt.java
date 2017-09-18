@@ -8,4 +8,6 @@ import com.entity.tzt.Employee;
 public interface EmployeeDaotzt {
 	List<Map> queryEmployee(Employee employee);
 	int  addEmployee(Employee employee);
+	public int updataEmployeelist(List<Map> list);
+	
 }

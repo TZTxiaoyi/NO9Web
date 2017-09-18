@@ -15,6 +15,15 @@ import com.service.ljl.IndetailServiceLjl;
 public class ProDetalWeb {
 	@Autowired
 	IndetailServiceLjl IndeService;
+	/**
+	 * 
+	    * @Title: selectProDetal  
+	    * @Description: TODO(这里用一句话描述这个方法的作用) 查询订单详情 
+	    * @param @param projects
+	    * @param @return    参数  
+	    * @return List    返回类型  
+	    * @throws
+	 */
 	@ResponseBody
 	@RequestMapping(value="/selectProDetal.do")
 	public List selectProDetal(@RequestBody ProjectsLjl projects){

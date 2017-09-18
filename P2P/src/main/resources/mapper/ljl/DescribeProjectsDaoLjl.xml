@@ -31,4 +31,11 @@
 	<select id="AllDescribeProjects" parameterType="com.entity.ljl.DescribeLjl" resultType="map">
 		select * from projects_describe where projectsid=#{projectsid}
 	</select>
+	<select id="AllDescribeProject" parameterType="com.entity.ly.Project" resultType="map">
+		select * from projects_describe where projectsid=#{projectsid}
+	</select>
+	
+	<insert id="addPromoney" parameterType="map" >
+		insert into pro_money values(list_capital.nextval,#{projectsid},#{targemoney},0.00 )
+	</insert>
 </mapper>

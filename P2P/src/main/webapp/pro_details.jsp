@@ -249,6 +249,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         #sup_money{
         	font-size:25px;
         }
+        #detailSupport{
+        	border:1px solid gray;
+        }
+        #detailSupport th{
+        	background:#BEEDF3;
+        }
  	</style>
  	
   </head>
@@ -439,15 +445,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="text" class="textarea" value="说点什么吧。。。"/> 
 		                    <input type="button" class="btn btn-info fabu"  value="发布">
 	                    </div>  
-	                    <div >                  
+	                                
 	                    <div id="pinglun">
 	                    	
 	                    </div>
-	                 	</div> 
+	                 	
                     </div>
                     <div class="h3"><h3 id="support">支持记录</h3> </div> 
-                    <div class="detail" style="width:auto;" id="detailSupport">  
-                        
+                    <div class="detail" style="width:auto;" >  
+                        <table id="detailSupport" class="table table-striped"></table> 
                     </div>  
                 </div>  
                 <div class="col-md-4 col-sm-4 col-xs-12" id="center-support">
@@ -518,7 +524,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				contentType:"application/json;charset=utf-8",
 				data:JSON.stringify(data),
 				success:function(data){	 
-					alert("success");
+					comm();//发表成功后自动加载评论
 				},
 				error:function(){
 					alret("error");
@@ -527,28 +533,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
    })
    /*
+   		页面加载自动加载评论
+   */
+   $(function(){
+	   comm();
+   })
+   /*
 		评论查询
 	*/
-	$(function(){
+	function comm(){
 		var account=$.cookie("account");
+		var data={
+				projectsid:$.cookie('pid')
+		};
 		$.ajax({
 			type:"post",
 			dataType:"json",
 			url:"comm/selectcomm.do",
 			contentType:"application/json;charset=utf-8",
-			//data:JSON.stringify(data),
+			data:JSON.stringify(data),
 			success:function(data){	 
+				$.each(data,function(index,value){
+					var pl="<div id=\"plhead\"><a><img src=\"images/touxiang.png\" width=\"40px\" height=\"40px\" class=\"img-circle\"/>"+
+					"&nbsp;&nbsp;<span>"+value.USERNAME+"</span></a></div><div id=\"plcenter\">"+value.CONTENT+"</div><div id=\"pltime\">"+
+					value.TIME+"</div></div>";
+					$("#pinglun").append(pl);
+				})
 				
-				var pl="<div id=\"plhead\"><a><img src=\"images/touxiang.png\" width=\"40px\" height=\"40px\" class=\"img-circle\"/>"+
-					"&nbsp;&nbsp;<span>"+data[0].USERNAME+"</span></a></div><div id=\"plcenter\">"+data[0].CONTENT+"</div><div id=\"pltime\">"+
-					data[0].TIME+"</div></div>";
-				$("#pinglun").append(pl);
 			},
 			error:function(){
 				alret("error");
 			}
 		});
-	})
+	}
    /*
 		注册按钮点击事件
 	*/
@@ -661,7 +678,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			success:function(data){	
 				
 				var targeMoney=data[0].TARGE_MONEY;
-				var raiseMoney=data[0].RAISE_MONEY;
+				var raiseMoney=data[0].RAISE;
 				var bart=(raiseMoney/targeMoney)*100;
 				var aa=decimal(bart,2)
 				var bar="<div class=\"progress\">"
@@ -839,6 +856,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
  		return fmt;
 	} 
+	/*
+		支持记录 显示所有已支付过的订单
+	*/
 	$(function(){
 		var pid=$.cookie('pid');
 		//var empid=$.cookie('empid');
@@ -848,17 +868,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$.ajax({
 			type : "post",
 			dataType : "json",
-			url : "OrdersWeb/selectOrders.do",
+			url : "OrdersWeb/supportOrders.do",
 			contentType : "application/json;charset=utf-8",
 			data :JSON.stringify(data),
 			success : function(data) {//data为返回的数据，在这里做数据绑定
-				var th="<tr><td>订单序号</td><td>支持者</td><td>支持项</td><td>数量</td><td>支持时间</td><td></td></tr>";
+				var th="<thead><tr><th>订单序号</th><th>支持者</th><th>支持项</th><th>数量</th><th>支持时间</th></tr></thead>";
+				$("#detailSupport").append(th);
 				$.each(data,function(index,value){
-					var tr="<tr><td>"+value.ORD_ID+"</td><td>"+value.USERNAME+
+					var tr="<tbody><tr><td>"+value.ORD_ID+"</td><td>"+value.USERNAME+
 					"</td><td>"+value.PAYMONEY+"</td><td>"+value.FRACTION+
-					"</td><td>"+value.ORDER_TIME+"</td><td><a class=\"button border-info deskbtn\">"+ 
-					"<span class=\"icon-trash-o\"></span>回报</a></td></tr>";
-					$("#tab").append(tr);
+					"</td><td>"+value.TIME+"</td></tr></tbody>";
+					$("#detailSupport").append(tr);
 				});
 			},
 			error : function() {

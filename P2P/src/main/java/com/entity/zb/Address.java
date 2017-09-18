@@ -16,14 +16,14 @@ public class Address {
 	private String Phone;//联系电话
 	private int postCodes;//邮政编码
 	private String AddressInfo;//详细地址
-	private String Account;//账号id
+	private int empid;//员工id
 	
 	
-	public String getAccount() {
-		return Account;
+	public int getEmpid() {
+		return empid;
 	}
-	public void setAccount(String account) {
-		Account = account;
+	public void setEmpid(int empid) {
+		this.empid = empid;
 	}
 	public int getPostCodes() {
 		return postCodes;

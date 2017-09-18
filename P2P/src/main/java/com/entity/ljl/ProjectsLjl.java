@@ -9,6 +9,20 @@ public class ProjectsLjl {
 	int originatortype;//1个人2机构0未选
 	String addtime;
 	int projectsstate;//3草稿箱45
+	int approver;
+	int protypeid;
+	public int getApprover() {
+		return approver;
+	}
+	public void setApprover(int approver) {
+		this.approver = approver;
+	}
+	public int getProtypeid() {
+		return protypeid;
+	}
+	public void setProtypeid(int protypeid) {
+		this.protypeid = protypeid;
+	}
 	public int getProjectsid() {
 		return projectsid;
 	}

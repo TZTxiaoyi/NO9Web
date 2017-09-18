@@ -52,7 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
   </head>
   <body>
-  	
   			<div  id="colpadding">
   				<b>创建您的项目信息</b>
   				<hr>
@@ -74,27 +73,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">项目标题：</label>
 						   <div class="col-sm-6">
-						    	<input type="text" id="title" name="title" class="form-control" placeholder="给自己的项目取个响亮的名字吧！注意不要超过40个汉字哦" ><br>
+						    	<input type="text" id="title" maxlength="10" name="title" class="form-control" placeholder="给自己的项目取个响亮的名字吧！注意不要超过10个汉字" ><br>
 						   </div>
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">筹款目的：</label>
 						   <div class="col-sm-6">
-						    	<textarea class="form-control" rows="3" id="goal" name="goal" placeholder="一句话简单介绍下你的项目吧！"></textarea> 
+						    	<textarea class="form-control" maxlength="75" rows="3" id="goal" name="goal" placeholder="一句话简单介绍下你的项目吧！注意不要超过75个汉字"></textarea> 
 						   </div>
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">筹资金额：</label>
 						   <div class="col-sm-3">
 						   	
-						    	<input type="text" id="financing" name="financing" class="form-control" placeholder="输入你需要筹资的金额" >
+						    	<input type="text" id="financing" name="financing" class="form-control" placeholder="输入你需要筹资的金额，最低5000元最高不超过1亿元" >
 						   </div><span id="formspan">元</span>
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">筹资天数：</label>
 						   <div class="col-sm-6 ">
 						   
-						    	<input type="text" id="financing_day" name="financing_day" class="form-control" placeholder="输入你要筹资时间周期" >
+						    	<input type="text" id="financing_day"  name="financing_day" class="form-control" placeholder="输入你要筹资时间周期，10~50天" >
 						   	
 						   </div><span id="formspan">天</span>	
   						</div>
@@ -108,6 +107,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 </html>
 <script>
+	$("#financing_day").blur(function(){
+		
+		
+	})
 	$("#wewr").click(function(){
 		alert("555");
 			var projectsid=$.cookie('projectsid');
@@ -198,10 +201,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		if(value.flag==0){
         			$("#Cover").html("");
         			alert("上传成功");
-        			url="<img src=\"http://localhost:9088/P2P/images/"+value.url+"\" style=\"width:350px;height:250px\">";
+        			url="<img src=\"http://localhost:9088/P2P/images/"+value.url+"\" class=\"img-responsive\" style=\"width:350px;height:250px\">";
         			$("#Cover").append(url);
         		}
         	})
         	
      });
+	
 </script>

@@ -6,4 +6,6 @@ import java.util.Map;
 public interface EmployeeDaoLjl {
 	public List AllEmployee(Map map);
 	public int UpdateEmployee(Map map);
+	
+	public int InsertTransaction(Map map);
 }

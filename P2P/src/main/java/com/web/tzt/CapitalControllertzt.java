@@ -110,9 +110,15 @@ public class CapitalControllertzt {
 	@RequestMapping(value="/payService.do",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String payService(@RequestBody Orders orders){
-		
+		System.out.println("-------orders---------");
+		System.out.println("o"+orders.getAddress());
+		System.out.println("e"+orders.getEmpid());
+		System.out.println("p"+orders.getProjectsid());
+		System.out.println("r"+orders.getProreturnid());
+		System.out.println("m"+orders.getPaymoney());
 		Map result =  new HashMap();
 		result.put("result", payServicetzt.payService(orders));
+		System.out.println(JSON.toJSONString(result));
 		return 		JSON.toJSONString(result);
 	}
 	

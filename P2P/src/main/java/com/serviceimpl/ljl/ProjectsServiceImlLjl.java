@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -23,7 +25,12 @@ public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 	ProjectsDaoLjl projectsdaoljl;
 	@Autowired
 	IndetailProjectsDaoLjl IndetailDao;
+	/**
+	 * 查询用户发起的项目
+	 * 
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String AllProjects(UserLjl user) {
 		// TODO Auto-generated method stub
 		List list=projectsdaoljl.AllProjects(user);
@@ -31,7 +38,12 @@ public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 		System.out.println(json);
 		return json;
 	}
+	/**
+	 * 用户发起项目初始化项目所用表
+	 * 
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String SaveProjects(ProjectsLjl proLjl){
 		
 		int proflag=projectsdaoljl.SaveProjects(proLjl);
@@ -52,14 +64,23 @@ public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 		}
 		return"err";
 	}
+	/**
+	 * 查询项目的类型
+	 * 
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String AllProjectsType() {
 		// TODO Auto-generated method stub
 		List list=projectsdaoljl.AllProjectsType();
 		JSON json=new JSONArray(list);
 		return json.toString();
 	}
+	/**
+	 * 用户删除项目
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public String DelProjects(ProjectsLjl proLjl) {
 		// TODO Auto-generated method stub
 		int flag=projectsdaoljl.DelProjects(proLjl);

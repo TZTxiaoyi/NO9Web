@@ -7,7 +7,7 @@ public class Employee {
 	String idcard;
 	String sex;
 	Integer age;
-	String address;
+	Integer address;
 	Integer telephone;
 	Integer balance;
 	Integer empstate;
@@ -47,10 +47,11 @@ public class Employee {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public String getAddress() {
+
+	public Integer getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(Integer address) {
 		this.address = address;
 	}
 	public Integer getTelephone() {

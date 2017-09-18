@@ -32,10 +32,19 @@ public class CommWeb {
 	public int savecomm(@RequestBody Commentary c,HttpServletResponse response){
 		return cService.saveComm(c);
 	}
+	/**
+	 * 
+	    * @Title: selectcomm  
+	    * @Description: TODO(这里用一句话描述这个方法的作用)  查询评论
+	    * @param @return    参数  
+	    * @return List    返回类型  
+	    * @throws
+	 */
 	@ResponseBody
 	@RequestMapping(value="/selectcomm.do")
-	public List selectcomm(){
-		List list=cService.selectComm();
+	public List selectcomm(@RequestBody Commentary c){
+		List list=cService.selectComm(c);
+		System.out.println("评论"+list);
 		return list;
 	}
 }

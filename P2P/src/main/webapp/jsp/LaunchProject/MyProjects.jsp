@@ -127,7 +127,7 @@ var TableInit = function () {
             },{
                 title: '项目信息',
                 formatter: function(row,value,index){
-                    return ["<img src=\"../../images/"+value.COVER+"\" alt=\"\" width=\"100\" height=\"50\" />"+value.TITLE+""];
+                    return ["<img src=\"../../images/"+value.COVER+"\" alt=\"\" width=\"100\" height=\"50\"  />"+value.TITLE+""];
                 }
             },{
                 field: 'ADDTIME',
