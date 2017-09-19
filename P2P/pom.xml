@@ -41,6 +41,12 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.1.0.6.0</version>
 		</dependency>
+		
+        <dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-all</artifactId>
+			<version>1.2.2</version>
+		</dependency>
         
         <dependency>
             <groupId>c3p0</groupId>

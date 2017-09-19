@@ -41,12 +41,13 @@ public class AddStateConller{
 	 */
 	@ResponseBody
 	@RequestMapping(value="/inseProState")
-	public void inSinProSta(@RequestBody Project projectsid,AuditingRe aRe,HttpServletResponse response,HttpServletRequest request,Employee empid){
-		Map map =(Map) request.getSession().getAttribute("accountsinfo");		
+	public int inSinProSta(@RequestBody Project projectsid,AuditingRe aRe,HttpServletResponse response,HttpServletRequest request,Employee empid){
+		int eList=addEmployeeService.selEmployState(projectsid,aRe,request);//查询当前员工是否已经有在审批中的项目
+		/*Map map =(Map) request.getSession().getAttribute("accountsinfo");		
 			//System.out.println("ssssss"+map);
 		List list=(List)map.get("resultAccounts");
 		Map ss=(Map)list.get(0);
-		int ee= (int) ss.get("EMPID");//获取员工id
+		int ee= (int) ss.get("EMPID");//获取员工id(登录后台的)
 		//empid.setEmpid(ee);
 		projectsid.setApprover(ee);//将员工id放入项目对象中
 		
@@ -54,10 +55,13 @@ public class AddStateConller{
 		aRe.setProjectsid(projectsid.getProjectsid());//将项目序号放入审核记录对象中
 		aRe.setRecordtable_begintime(new Date());//将当前时间放入审核记录对象中
 		
-		addEmployeeService.insAudiRecord(aRe);
+		*/
+		
+		/*addEmployeeService.insAudiRecord(aRe);//点击审核时给审核记录一个初始数据，审批人、项目序号、开始审核时间
 			//System.out.println("ssssddd"+empid.getEmpid());
 		
-			
+		
+		
 		
 		int emp=addEmployeeService.upProEmplo(projectsid);//给项目添加一个审批人
 		
@@ -68,10 +72,16 @@ public class AddStateConller{
 		}else{
 			int org=SinAuditing.inserOrSt(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（1）
 		}
-			int pro2=SinAuditing.insertProInSt(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（2）
-			int pro3=SinAuditing.inserProDeSt(projectsid);//在所有项目里点击审核，给 项目描述 审核表一个默认 未审核 的初始值（3）
-			int pro4=SinAuditing.inserProReSt(projectsid);//在所有项目里点击审核，给 项目回报  审核表一个默认 未审核 的初始值（4）
-		}
+
+		int pro2=SinAuditing.insertProInSt(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（2）
+		int pro3=SinAuditing.inserProDeSt(projectsid);//在所有项目里点击审核，给 项目描述 审核表一个默认 未审核 的初始值（3）
+		int pro4=SinAuditing.inserProReSt(projectsid);//在所有项目里点击审核，给 项目回报  审核表一个默认 未审核 的初始值（4）*/
+		return eList;
+	}
+
+			
+		
+
 	
 	
 	/**
@@ -81,7 +91,9 @@ public class AddStateConller{
 	 */
 	@ResponseBody
 	@RequestMapping(value="/upRecordTab")
-	public int upRecordTable(@RequestBody String aRe,HttpServletResponse response){
+	public int upRecordTable(@RequestBody String aRe,HttpServletResponse response,HttpServletRequest request){
+		int empid=(int)request.getSession().getAttribute("accounts3");
+		System.out.println("empid--------:"+empid);
 		JSON json =new JSONArray();
 		Map mm=(Map)json.parseObject(aRe);
 		System.out.println("---------dddd:"+mm.get("projectsid"));
@@ -120,6 +132,12 @@ public class AddStateConller{
 		int flag=SinAuditing.selProTy(projectsid);
 		return flag;
 	}
+	/**
+	 * 不通过项目
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="selUnProject")
 	public List selUnprojectRe(@RequestBody Project projectsid,HttpServletResponse response){
@@ -128,5 +146,12 @@ public class AddStateConller{
 		List<Object> falg=addEmployeeService.selUnPassProj(projectsid);
 		System.out.println("ooooooooooooooo:"+falg);
 		return falg;
+	}
+	@ResponseBody
+	@RequestMapping(value="/selEmproject")
+	public int selEmployeePro(@RequestBody Project projectsid,HttpServletRequest request){
+		System.out.println("---------77777:"+projectsid.getApprover());
+		int eList=addEmployeeService.selApprover(projectsid, request);//查询当前员工是否已经有在审批中的项目
+		return eList;
 	}
 }

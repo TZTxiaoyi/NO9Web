@@ -3,9 +3,9 @@ package com.entity.ly;
 public class Project {
 	int projectsid;
 	int empid;//项目发起人
-	int originatortype;
-	int projectsstate;
-	int approver;
+	int originatortype;//项目类型（个人或机构）
+	int projectsstate;//项目状态
+	int approver;//审批人
 	public int getApprover() {
 		return approver;
 	}

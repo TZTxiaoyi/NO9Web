@@ -27,8 +27,7 @@
 		<property name="prefix" value="/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-	<context:component-scan base-package="com.web"/>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
 	
 	<!-- 配置一个工厂bean用于创建shiro用到的过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -37,44 +36,61 @@
 		<!-- 注入登录页面 -->
 		<property name="loginUrl" value="/jsp/background/log.jsp"></property>
 		<!-- 注入成功页面 -->
-		<property name="successUrl" value="/jsp/background/index.jsp"></property>
-		<!-- 注入错误页面 -->
-		<property name="unauthorizedUrl" value="/jsp/background/error.jsp"></property>
+		<property name="successUrl" value="/index.jsp"></property>
+		<!-- 注入错误页面
+		<property name="unauthorizedUrl" value="/error.jsp"></property> -->
 
-	
+
 		<!-- 注入url拦截规则 -->
+		
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- /page_base_stuff.aciton=perms[staff] staff为数据库中的关键字，即此路径必须具有此权限 -->
 				<!-- /css/** = anon /js/** = anon /login.jsp = anon -->
 				<!-- /js/** = anon /login.jsp* = anon /user/getUser.do = anon -->
-				<!-- /User/verification.do = anon			
-				/User/** = authc
-				/tbrole/**  = authc
-				/TbPower/** = authc -->
-				/** = anon
+				/bootstrap/** = anon
+				/jq/**=anon
+				/jsp/LaunchProject/**=anon
+				/css/** = anon	
+				/jsp/background/css/**=anon	
+				/jsp/background/img/**=anon
+				/jsp/background/inc/**=anon
+				/jsp/background/js/**=anon	
+				/images/** = anon	
+				/login/logCon.do=anon			
+				/jsp/background/log.jsp= anon
 				
+				/zbjsp/**=anon
+				/sxmjsp/**=anon	
+				
+				/addState/inseProState.do=anon
+				/addState/upRecordTab.do=anon			
+				/** = authc
 			</value>
 		</property>
 	</bean>
 	<!-- 注册自定义的realm -->
-	<!-- <bean id="Realm" class="com.shiro.Realm"></bean> -->
+ 	<bean id="Realm" class="com.shiro.Realm"></bean>
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
 	<!-- 配置安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- 注入自定义realm -->
-		<!-- <property name="realm" ref="Realm" /> -->
+		<property name="realm" ref="Realm" /> 
 	</bean>
 	<!--启用Shiro相关的注解 -->
 	<bean
 		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
 		depends-on="lifecycleBeanPostProcessor" />
+		
+		<!-- 切面类 --> 
 	<bean
 		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
 	</bean>
 	
 	
+	<context:component-scan base-package="com.web"/>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>

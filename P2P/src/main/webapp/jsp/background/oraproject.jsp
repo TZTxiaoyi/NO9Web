@@ -125,8 +125,27 @@
 		//alert(dd1);
 		$.cookie('orga_auditing', dd1);
 		var auditing = $.cookie("orga_auditing");
-		//alert(auditing);
+		//alert(auditing);		
 		window.location.replace("Orauditing.jsp");
+		var data={};
+		data["projectsid"]=dd1;
+		/* $.ajax({
+			url:"/P2P/AddState/selEmproject.do",	//
+			dataType:"json",
+			type:"post",
+			data:JSON.stringify(data),
+			contentType:"application/json;charset=UTF-8",
+			success:function(data){
+				//alert(data);
+				if(data==1){					
+					var auditing=$.cookie("project_auditing");
+					window.location.replace("Orauditing.jsp");
+					//alert(auditing);
+				}else{
+					alert("该项目已经有人审核");
+				}
+			}
+		});	 */
 	});
 	$("#detail").click(function() {
 		$("#pro_title").html("");

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.dao.ljl.DescribeProjectsDaoLjl;
+import com.dao.tzt.PromoneyDaotzt;
 import com.entity.ljl.DescribeLjl;
 import com.service.ljl.DescribeServiecLjl;
 @Service
@@ -26,6 +27,7 @@ public class DescribeServiceImplLjl implements DescribeServiecLjl{
 	public String UpdataDescribe(DescribeLjl describe) {
 		int flag =0;
 		flag =DescribeDao.UpdateDescribeProjects(describe);
+		
 		if(flag==1){
 			return "success";
 		}

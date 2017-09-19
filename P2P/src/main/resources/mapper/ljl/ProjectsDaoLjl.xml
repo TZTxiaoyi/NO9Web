@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ljl.ProjectsDaoLjl" >
 	<select id="AllProjects" parameterType="com.entity.ljl.UserLjl" resultType="map">
-		select pr.projectsid,pr.empid,pd.cover,pd.title,w1.value as ORIGINATORTYPE,w2.value as PROJECTSSTATE,to_char(pr.addtime,'yyyy-MM-dd HH24:mi:ss') from projects pr,word w1,word w2,projects_describe pd where pr.originatortype=w1.key and pr.projectsstate=w2.key and pd.projectsid=pr.projectsid and empid=#{empid} order by projectsid desc
+		select pr.projectsid,pr.empid,pd.cover,pd.title,w1.value as ORIGINATORTYPE,w2.value as PROJECTSSTATE,to_char(pr.addtime,'yyyy-MM-dd HH24:mi:ss') as addtime from projects pr,word w1,word w2,projects_describe pd where pr.originatortype=w1.key and pr.projectsstate=w2.key and pd.projectsid=pr.projectsid and empid=#{empid} order by projectsid desc
 	</select>
 	
 	<select id="AllProjectsType" resultType="HashMap">

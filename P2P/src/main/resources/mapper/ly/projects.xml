@@ -21,7 +21,7 @@
 		update recordtable set recordtable_endtime=#{recordtable_endtime,jdbcType=DATE},reason=#{reason,jdbcType=VARCHAR} where projectsid=#{projectsid,jdbcType=NUMERIC}
 	</update>
 	
-	<!-- //查看审核记录表 -->
+	<!-- //查看审核记录表  (通过) -->
 	<select id="selPassPro" resultType="map" parameterType="map">
 		select r1.empid,r1.projectsid,r1.recordtable_begintime,r1.recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
 		from recordtable r1,projects p1,employee e1
@@ -31,5 +31,13 @@
 		select r1.empid,r1.projectsid,r1.recordtable_begintime,r1.recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
 		from recordtable r1,projects p1,employee e1
 		where r1.empid=e1.empid and r1.projectsid=p1.projectsid  and projectsstate=88
+	</select>
+	<!-- 查询当前员工是否已经有在审批中的项目 -->
+	<select id="selEmProject" resultType="map" parameterType="map">
+		 select approver from projects where approver=#{approver}
+	</select>
+	<!-- //根据项目id,去查审批人 -->
+	<select id="selProjectEmp" resultType="map" parameterType="map">
+		select approver from projects where projectsid=#{projectsid}
 	</select>
 </mapper>

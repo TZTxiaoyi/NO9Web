@@ -15,7 +15,13 @@
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css"
 	type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
-<script type="text/javascript" src="js/echarts.min.js"></script>
+
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+ <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/js/modules/exporting.js"></script>
+<script src="http://cdn.hcharts.cn/libs/highcharts-export-csv/export-csv.js"></script>
+<script src="http://code.highcharts.com/modules/drilldown.js"></script>  
+ <script src="http://code.highcharts.com/modules/data.js"></script> 
 </head>
 <body>
 
@@ -25,33 +31,53 @@
 			<div class="panel-body">项目统计</div>
 		</div>
 
-		<div id="echart"  style="width: 600px;height:400px;"></div>
+		<div id=container  style="width: 600px;height:400px;"></div>
 </div>
 
 </body>
 </html>
 
 <script>
-var myChart = echarts.init(document.getElementById("echart"));
-var option={
-		title:{
-			text:'1111111'
-		},
-		tooltip:{
-			
-		},legend: {
-	        data:['销量']
-	    },
-		 xAxis: {
-             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-         },
-         yAxis: {},
-         series: [{
-             name: '销量',
-             type: 'bar',
-             data: [5, 20, 36, 10, 10, 20]
-         }]
-     };
-     
-myChart.setOption(option);
+$(function () {
+    $('#container').highcharts({
+        chart: {
+        },
+        title: {
+            text: '所有项目成功比率'
+        },
+        tooltip: {
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '浏览器访问量占比',
+            data: [
+                ['Firefox',   45.0],
+                ['IE',       26.8],
+                {
+                    name: 'Chrome',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Safari',    8.5],
+                ['Opera',     6.2],
+                ['其他',   0.7]
+            ]
+        }]
+    });
+});
+
 </script>
