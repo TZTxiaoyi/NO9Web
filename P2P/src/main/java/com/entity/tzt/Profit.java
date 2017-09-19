@@ -5,8 +5,9 @@ public class Profit {
 	private Integer projectsid;
 	private Integer capitalflow;
 	private float capital;
-	private String strattime;
+	private String starttime;
 	private String endtime;
+	private String operator;
 	public Integer getProfitid() {
 		return profitid;
 	}
@@ -31,17 +32,24 @@ public class Profit {
 	public void setCapital(float capital) {
 		this.capital = capital;
 	}
-	public String getStrattime() {
-		return strattime;
+	
+	public String getStarttime() {
+		return starttime;
 	}
-	public void setStrattime(String strattime) {
-		this.strattime = strattime;
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
 	}
-	public String getEndttime() {
+	public String getEndtime() {
 		return endtime;
 	}
-	public void setEndttime(String endttime) {
+	public void setEndtime(String endtime) {
 		this.endtime = endtime;
+	}
+	public String getOperator() {
+		return operator;
+	}
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 	
 }

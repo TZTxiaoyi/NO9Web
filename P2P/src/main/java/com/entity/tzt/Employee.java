@@ -9,7 +9,7 @@ public class Employee {
 	Integer age;
 	Integer address;
 	Integer telephone;
-	Integer balance;
+	Float balance;
 	Integer empstate;
 	public int getEmpid() {
 		return empid;
@@ -60,14 +60,15 @@ public class Employee {
 	public void setTelephone(Integer telephone) {
 		this.telephone = telephone;
 	}
-	public Integer getBalance() {
-		return balance;
-	}
-	public void setBalance(Integer balance) {
-		this.balance = balance;
-	}
+
 	public Integer getEmpstate() {
 		return empstate;
+	}
+	public Float getBalance() {
+		return balance;
+	}
+	public void setBalance(Float balance) {
+		this.balance = balance;
 	}
 	public void setEmpstate(Integer empstate) {
 		this.empstate = empstate;

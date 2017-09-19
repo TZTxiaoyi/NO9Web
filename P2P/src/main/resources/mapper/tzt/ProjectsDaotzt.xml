@@ -3,10 +3,20 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.tzt.ProjectsDaotzt">
+	<!--项目失败更改项目状态为项目失败  -->
 	<update id="updataProject" parameterType="com.entity.tzt.ProjectsMoneyinfotzt" >
 		update projects  
 		<set>  
             projectsstate=116
+        </set> 
+         where projectsid = ${projectsid}  
+	
+	</update>
+	<!-- 完成项目一阶段更改项目状态为筹资完成 -->
+	<update id="updataProjectFinsh" parameterType="com.entity.tzt.ProjectsMoneyinfotzt" >
+		update projects  
+		<set>  
+            projectsstate=85
         </set> 
          where projectsid = ${projectsid}  
 	

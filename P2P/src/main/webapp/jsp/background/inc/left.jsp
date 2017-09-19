@@ -130,14 +130,24 @@
 			<dl class="system_log">
 				<dt>
 					<img class="icon1" src="../img/coin11.png" /><img class="icon2"
-						src="../img/coin12.png" />回馈管理<img class="icon3"
+						src="../img/coin12.png" />统计查询<img class="icon3"
 						src="../img/coin19.png" /><img class="icon4"
 						src="../img/coin20.png" />
 				</dt>
 				<dd>
 					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../topic.jsp" target="main"
-						class="cks">投资回馈</a><img class="icon5" src="../img/coin21.png" />
+						src="../img/coin222.png" /><a href="../projectcount.jsp" target="main"
+						class="cks">项目统计</a><img class="icon5" src="../img/coin21.png" />
+				</dd>
+				<dd>
+					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+						src="../img/coin222.png" /><a href="../capitalcount.jsp" target="main"
+						class="cks">资金统计</a><img class="icon5" src="../img/coin21.png" />
+				</dd>
+				<dd>
+					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+						src="../img/coin222.png" /><a href="../profitcount.jsp" target="main"
+						class="cks">盈利统计</a><img class="icon5" src="../img/coin21.png" />
 				</dd>
 			</dl>
 			<dl class="system_log">
@@ -213,6 +223,12 @@
 						src="../img/coin21.png" />
 				</dd>
 				</shiro:hasPermission>
+				<dd>
+					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+						src="../img/coin222.png" /><a href="../profit.jsp"
+						target="main" class="cks">盈利资金</a><img class="icon5"
+						src="../img/coin21.png" />
+				</dd>
 				
 			</dl>
 			<dl class="system_log">
