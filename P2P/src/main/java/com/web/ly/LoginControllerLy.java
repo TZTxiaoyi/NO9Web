@@ -59,7 +59,7 @@ public class LoginControllerLy {
 			}*/
 			return "redirect:P2P/jsp/background/log.jsp";
 		}catch(Exception e2){
-			System.out.println("7777777****** ");
+			
 			System.out.println(e2.getMessage());//用户密码错误
 			
 			/*try {				
@@ -71,7 +71,7 @@ public class LoginControllerLy {
 				System.out.println("aaa"+e1.getMessage());				
 			}*/
 			System.out.println("ssss55");
-			return "redirect:jsp/background/log.jsp";
+			return "redirect:P2P/jsp/background/log.jsp";
 		}
 		try {
 			Accounts user =(Accounts) subject.getPrincipal();//获得授权时放入的用户
@@ -80,14 +80,14 @@ public class LoginControllerLy {
 			request.getSession().setAttribute("empid", accounts3.getEmpid());//将员工编号放到session中
 			
 			System.out.println("ssss22"); 
-			return "redirect:/jsp/background/index.jsp";
+			return "redirect:http://localhost:9088/P2P/jsp/background/index.jsp";
 			/*response.getWriter().write(JSON.toJSONString("登录成功!"));
 			response.getWriter().flush();
 			response.getWriter().close();*/
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			System.out.println("ssss"+e1.getMessage());
-			return "redirect:jsp/background/log.jsp";
+			return "redirect:P2P/jsp/background/log.jsp";
 		}
 		
 		
