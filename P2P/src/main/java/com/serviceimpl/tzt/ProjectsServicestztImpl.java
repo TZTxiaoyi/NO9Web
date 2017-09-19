@@ -156,12 +156,15 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		platformFundsDaoLjl.Updatefunds(platformfunds);
 		System.out.println("更改总资金");
 		
-		
+		//更改项目预计回报时间
+		System.out.println("更改项目预计回报时间");
 		 Map <String ,Object> datemap=new HashMap<String ,Object>();
 		 datemap.put("projectsid", projectsMoneyinfotzt.getProjectsid());
 		 List<Map<String ,Object>> datelist=returnprodao.TopReturn(datemap);
 		 System.out.println(datelist);
 		 Map <String ,Object> retdatemap=datelist.get(0);
+		 String return_time="\'"+retdatemap.get("RETURN_TIME").toString()+"\'";
+		 retdatemap.put("return_time",return_time);
 		 retdatemap.put("projectsid",projectsMoneyinfotzt.getProjectsid());
 		 System.out.println(retdatemap);
 		 returnprodao.updateprodate(retdatemap);	

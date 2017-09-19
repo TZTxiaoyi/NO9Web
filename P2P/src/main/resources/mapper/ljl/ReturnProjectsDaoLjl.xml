@@ -83,6 +83,6 @@
 		select max(return_time) return_time from pro_return where projectsid=#{projectsid}
 	</select>
 	<update id="updateprodate" parameterType="map">
-		update  projects set returnenddate= sysdate + interval #{return_time} day where projectsid=#{projectsid}
+		update  projects set returnenddate= sysdate + interval ${return_time} day where projectsid=${projectsid}
 	</update>
 </mapper>
