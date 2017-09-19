@@ -31,6 +31,18 @@
 		insert into employee values(list_employee.nextval,#{username,jdbcType=VARCHAR},#{empname,jdbcType=VARCHAR},#{idcard,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{age,jdbcType=NUMERIC},#{telephone,jdbcType=NUMERIC},0.00,4,#{address,jdbcType=VARCHAR}) 
 	</insert>
 	
+	<update id="updataEmployeeBalance"  parameterType="com.entity.tzt.Employee">  
+                update employee   
+                <set>  
+                  balance=balance + #{balance}
+                </set>  
+               <where>
+            	   empid = #{empid}
+               </where>  
+            
+    </update>  
+	
+	
 	<update id="updataEmployeelist"  parameterType="java.util.List">  
           <foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
                 update employee   

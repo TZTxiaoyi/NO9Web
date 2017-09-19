@@ -113,13 +113,13 @@ public class LoginController {
 	@RequestMapping("/backlogin.do")
 	@ResponseBody
 	public String  backlogin(@RequestBody Accounts accounts , HttpServletResponse response,HttpServletRequest request){
-		//System.out.println(accounts.getAccounts());
+			//System.out.println(accounts.getAccounts());
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("contentType", "text/JSON;charset=UTF-8");
-		//System.out.println("--------------aaaa:"+accounts.getAccounts());
+			//System.out.println("--------------aaaa:"+accounts.getAccounts());
 		HttpSession session = request.getSession(); 
 		JSONObject resultinfo= JSON.parseObject(loginServicetzt.login(accounts));
-		System.out.println(loginServicetzt.login(accounts));
+			//System.out.println(loginServicetzt.login(accounts));
 		if (resultinfo.get("resultType").equals("true")){
 			session.setAttribute("accountsinfo", resultinfo);
 		}

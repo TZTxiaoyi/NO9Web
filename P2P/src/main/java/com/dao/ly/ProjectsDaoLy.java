@@ -18,4 +18,7 @@ public interface ProjectsDaoLy {
 	List<Object> selPassPro(Project projectsid);//查看审核记录表
 	
 	List<Object> selUnpassPro(Project projectsid);
+	
+	List<Object> selEmProject(Project projectsid);//查询当前员工是否已经有在审批中的项目
+	List<Object> selProjectEmp(Project projectsid);//根据项目id,去查审批人
 }

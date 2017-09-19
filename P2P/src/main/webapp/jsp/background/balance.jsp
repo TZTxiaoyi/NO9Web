@@ -287,7 +287,4 @@ $("#finshbutton").click(function() {
 		};
 			return oInit;
 	};
-		
-
-	
 </script>

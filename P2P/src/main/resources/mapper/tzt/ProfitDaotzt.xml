@@ -10,21 +10,19 @@
 			a.capitalflow,
 			c.value,
 			a.capital,
-			a.time
-	 	from profit a ,capitaltype c,
+			a.time,
+			a.operator
+	 	from profit a ,capitaltype c
 	 	<where>
 	 		c.key=a.capitalflow
 	 		<if test ="profitid !=null">
 	 			 a.profitid= #{profitid}
 	 		</if>
-	 		<if test ="ordid !=null">
-	 			and a.projectsid= #{ordid}
-	 		</if>
 	 		<if test ="projectsid !=null">
-	 			and a.capitalflow= #{projectsid}
+	 			and a.projectsid= #{projectsid}
 	 		</if>
-	 		<if test ="paymoney !=0">
-	 			and a.capital= #{paymoney}
+	 		<if test ="capital !=0">
+	 			and a.capital= #{capital}
 	 		</if>
 	 		<if test ="starttime !=null ">
 	 			and a.time &gt;= to_date(#{starttime},'yyyy-MM-dd HH24:MI:SS')
@@ -32,6 +30,10 @@
 	 		<if test ="endtime !=null">
 	 			and a.time &lt; = to_date(#{endtime},'yyyy-MM-dd HH24:MI:SS')
 	 		</if>
+	 		<if test = "operator !=null">
+	 			and a.operator=#{operator}
+	 		</if>
+	 		
 	 	</where>
 	 		 	order by profitid desc
 	 	
@@ -39,7 +41,8 @@
 	
 	<insert id="addProfit" parameterType="com.entity.tzt.Profit" >
 		insert into profit values(list_profit.nextval,#{projectsid,jdbcType=NUMERIC},
-		#{capitalflow,jdbcType=NUMERIC},#{capital,jdbcType=REAL},to_date(#{strattime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
+		#{capitalflow,jdbcType=NUMERIC},#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS'),
+		 #{operator,jdbcType=VARCHAR})
 	</insert>
 	
 </mapper>
