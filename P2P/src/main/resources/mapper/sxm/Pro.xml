@@ -3,17 +3,37 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.sxm.ProDao">
+	<!-- 主页面查询项目 -->
 	<select id="selectProject" resultType="Map">
-		select * from pro_money pm,projects_describe pd
-		
-		<where>
-			<if test="true">
-				pm.projectsid=pd.projectsid
-			</if>
-	 		<if test="projectsid>0">
-	 			and pd.projectsid= #{projectsid}
-	 		</if>
-	 		
-	 	</where>
+		select p.projectsid,p.empid,p.originatortype,p.addtime,
+		p.projectsstate,p.protypeid,pm.targe_money,nvl(pm.raise_money,0) as raise,
+		pd.title,pd.goal,pd.financing,pd.financing_day,pd.cover,
+		pt.protypename from projects p,projects_describe pd,protype pt,
+		pro_money pm 
+ 		<where>
+ 			<if test="true">
+ 				p.projectsid=pd.projectsid
+ 			</if>
+ 			<if test="true">
+ 				and p.protypeid=pt.protypeid
+ 			</if>
+ 			<if test="true">
+ 				and pm.projectsid=p.projectsid
+ 			</if>
+ 			<if test="projectsid>0">
+ 				and p.projectsid= #{projectsid}
+ 			</if>
+ 			<if test="protypeid>0">
+ 				and p.protypeid= #{protypeid}
+ 			</if>
+ 			<if test="true">
+ 				and p.projectsstate=84
+ 			</if>
+ 			<if test="true">
+ 				or p.projectsstate=85
+ 			</if>
+ 			
+ 		</where>
+ 		
 	</select>
 </mapper>

@@ -6,7 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.entity.sxm.Pro;
+
+import com.entity.ljl.ProjectsLjl;
 
 import com.service.sxm.ProService;
 @Controller
@@ -16,7 +17,7 @@ public class ProWeb {
 	ProService pService;
 	/**
 	 * 
-	    * @Title: selectPro 页面加载自动运行  
+	    * @Title: selectPro 主页面加载自动运行  
 	    * @Description:   
 	    * @param @return    
 	    * @return List      
@@ -24,7 +25,7 @@ public class ProWeb {
 	 */
 	@RequestMapping(value="/selectPro.do")
 	@ResponseBody
-	public List selectPro(@RequestBody Pro p){
+	public List selectPro(@RequestBody ProjectsLjl p){
 		List<Object> pList =pService.selectProject(p);
 		System.out.println("ppp"+pList);
 		//response.setCharacterEncoding("utf-8");

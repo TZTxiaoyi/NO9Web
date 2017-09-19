@@ -75,7 +75,8 @@ public class PayServicetztImpl implements PayServicetzt {
 		//对比余额是否足够
 		if(Paymoney1>balance){
 			System.out.println("456");
-			return "false";
+			return "余额不足";
+
 		}else if(Paymoney1<balance){
 			//更新余额
 			/*int ibalance=balance-Paymoney1;*/
@@ -88,9 +89,9 @@ public class PayServicetztImpl implements PayServicetzt {
 		Integer b= capitalDaotzt.addCapital(capital);
 		Integer c =promoneyDaotzt.updatePromoney(promoney);
 		if (a!=0&&b!=0&&c!=0) {
-			return "true";
+			return "支持成功";
 		}
-		return "false";
+		return "支持失败，请重试";
 	}
 
 }

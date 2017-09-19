@@ -113,7 +113,6 @@ $("#submit").click(function() {
 		value : $("#value").val(),
 		remark:$("#remark").val()
 	};
-	alert($("#value").val());
 	$.ajax({
 		type : "post",
 		dataType : "json",
@@ -124,7 +123,8 @@ $("#submit").click(function() {
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
 			if(result.resultType=="true"){
 				alert("添加成功");
-				$('#updateCapitaltype').modal('hide');
+				$('#addCapitaltype').modal('hide');
+				 $('#tb_departments').bootstrapTable("refresh");
 			}else{
 				alert("添加失败");
 			}

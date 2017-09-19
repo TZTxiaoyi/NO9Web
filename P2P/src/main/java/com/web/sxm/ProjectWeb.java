@@ -15,6 +15,15 @@ import com.service.sxm.ProjectService;
 public class ProjectWeb {
 	@Autowired
 	ProjectService pService;
+	/**
+	 * 
+	    * @Title: selectProject  
+	    * @Description: TODO(这里用一句话描述这个方法的作用)  根据项目id查询发起人类型
+	    * @param @param p
+	    * @param @return    参数  
+	    * @return List    返回类型  
+	    * @throws
+	 */
 	@ResponseBody
 	@RequestMapping(value="selectProject")
 	public List selectProject(@RequestBody ProjectsLjl p){

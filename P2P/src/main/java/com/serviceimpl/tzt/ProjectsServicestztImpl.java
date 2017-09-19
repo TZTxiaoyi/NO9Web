@@ -48,7 +48,13 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 	ProfitDaotzt profitDaotzt;
 	
 	
-	
+	/**
+	 * Title: RemoveProjects  取消项目
+	 * Description:  
+	 * @param projectsMoneyinfotzt
+	 * @return   
+	 * @see com.service.tzt.ProjectsServerstzt#RemoveProjects(com.entity.tzt.ProjectsMoneyinfotzt)
+	 */
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String RemoveProjects(ProjectsMoneyinfotzt projectsMoneyinfotzt) {
 		//查询项目下所有订单
@@ -81,6 +87,13 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		return "true";
 	}
 
+	/**
+	 * Title: FinshProjects   
+	 * Description:  项目完成
+	 * @param projectsMoneyinfotzt
+	 * @return   
+	 * @see com.service.tzt.ProjectsServerstzt#FinshProjects(com.entity.tzt.ProjectsMoneyinfotzt)
+	 */
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String FinshProjects(ProjectsMoneyinfotzt projectsMoneyinfotzt) {
 		//更改订单状态
@@ -95,11 +108,12 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		Date myDate =new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String hehe = dateFormat.format( myDate ); 
-		profit.setStrattime(hehe);
-		profit.setCapital(projectsMoneyinfotzt.getProjectsid());
+		profit.setStarttime(hehe);
+		profit.setProjectsid(projectsMoneyinfotzt.getProjectsid());
 		float gain= (float) (projectsMoneyinfotzt.getBlacne()*0.03);//计算利润
 		profit.setCapital(gain);
 		profit.setCapitalflow(11);
+		profit.setOperator("系统自律");
 		System.out.println(JSON.toJSON(profit));
 		profitDaotzt.addProfit(profit);
 		System.out.println("盈利表存入");
@@ -113,6 +127,7 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		System.out.println(JSON.toJSONString(employee));
 		EmployeeDaotzt.updataEmployeeBalance(employee);
 		System.out.println("放款至发起人");
+		
 		//增加项目资金记录
 		Capital capital = new Capital();
 		capital.setCapital ((float) (blan+gain));//项目一阶段总发放（放款+盈利收付费）
@@ -122,6 +137,9 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		System.out.println(JSON.toJSONString(capital));
 		CapitalDaotzt.addCapital(capital);
 		System.out.println("增加项目资金记录");
+		
+		
+		
 		//更改项目状态
 		System.out.println(JSON.toJSONString(projectsMoneyinfotzt));
 		projestsdaotzt.updataProjectFinsh(projectsMoneyinfotzt);//更改项目状态

@@ -1,4 +1,3 @@
-
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -99,8 +98,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
          .tab {       
              background: #000;
-		    filter: alpha(opacity=80); /* IE的透明度 */
-		    opacity: 0.8;  /* 透明度 */
+		    filter: alpha(opacity=90); /* IE的透明度 */
+		    opacity: 0.9;  /* 透明度 */
 		    display: none;
 		    position: absolute;
 		    top: 0px;
@@ -111,11 +110,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    display:none;  
         }  
         #table{
-        	width:auto;
+        	width:600px;
         	height:auto;
         	background: #FFFFFF;
         	margin-left:400px;
         	margin-top:150px;
+        	border:3px solid gray;
         } 
         .tab td{
         	color:#000000;
@@ -130,6 +130,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		float:right;
       		margin-bottom:20px;
       	}
+      	#none{
+      		display:none;
+      	}
+      	
  	</style>
  	
   </head>
@@ -270,6 +274,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>请选择支持项</p>
 					
 					<div id="return"></div>
+					<div id="none">
+						<div id="money"></div>
+						<div id="returnid"></div>
+					</div>
 				</div>
 				
 				
@@ -351,6 +359,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		页面加载显示回报选项
 	*/
 	$(function(){
+		back();
+	})
+	/*
+		显示回报选项
+	*/
+	function back(){
 		var pid=$.cookie('pid');
 		var data={};
 		data["projectsid"]=parseInt(pid);
@@ -374,14 +388,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				alert("error");
 			}
 		});
-	})
+	}
 	/*
 		支持按钮点击事件
 	*/
 	$("#return").on('click',".support",function(){
+		var supid=$(this).attr("id");//动态获取id
+		var returnid=$("#return"+supid).html();//获取回报id
+		var money=$("#money"+supid).html();//获取回报钱数
 		var userid=$("#userid").html();//账号id
-		data={};
-		data["empid"]=userid;
+		//var account=$.cookie('account');
+		$("#money").html(money);
+		$("#returnid").html(returnid);
+		var data={
+				empid:userid
+		};
 		if(userid==""){
 			alert("请先登录！");
 		}else{
@@ -391,20 +412,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url : "zhubin/queryAddress.do",
 				contentType : "application/json;charset=utf-8",
 				data :JSON.stringify(data),
-				success : function(data) {//data为返回的数据，在这里做数据绑定  
+				success : function(data) {//data为返回的数据，在这里做数据绑定  					
 					if(data.length<1){//判断地址为空
-						window.location.href="addAddress.jsp";
+						alert("请先填写收货地址");
+						window.location.href="newHome.jsp";
 					}else{
+						$("#table").html("");
+						
 					    var th="<thead><tr><th><h3>请选择地址</h3></th></tr><tr><th></th><th class=\"tabname\">姓名</th><th>电话</th><th>邮编</th><th>地址</th></tr></thead>";
 						$("#table").append(th);
 					    $.each(data,function(index,value){
 							var tr=" <tbody><tr><td><input name=\"seladd\" type=\"radio\" value=\""+
 							value.addressId+"\"/></td><td class=\"tabname\">"+value.name+"</td><td>"+
 							value.phone+"</td><td>"+value.postCodes+"</td><td>"+value.addressInfo+
-							"</td></tr><tr><td></td><td></td><td></td><td></td><td><a id=\"getaddress\" type=\"button\">确定</a></td></tr></tbody>";
+							"</td></tr></tbody>";
 							$("#table").append(tr);
 							
 						});
+					    var qr="<tr><td></td><td></td><td></td><td><a id=\"close\" class=\"btn btn-info\" type=\"button\">关闭</a></td><td><a id=\"getaddress\" class=\"btn btn-success\" type=\"button\">确定</a></td></tr>";
+					    $("#table").append(qr);
 					    $("#tab").css("height",$(document).height());     
 				        $("#tab").css("width",$(document).width());     
 				        $("#tab").show(); 
@@ -417,6 +443,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		}
 	})
+	/*
+		取消按钮的点击事件
+	*/
+	$("#tab").on('click',"#close",function(){
+		$("#tab").hide();
+	})
+	/*
+		确认按钮的点击事件
+	*/
 	$("#tab").on('click',"#getaddress",function(){
 		var getradio = $('#table input[name="seladd"]:checked ').val();
 		if(getradio>=1){
@@ -426,26 +461,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			alert("请选择地址");
 		}
 	})
+	/*
+		支持插入
+	*/
 	function payService(addressId){
-		alert("a"+addressId);
-		var supid=$(".support").attr("id");//动态获取id
-		alert(supid);
-		var returnid=$("#return"+supid).html();//获取回报id
-		var money=$("#money"+supid).html();//获取回报钱数
-		var userid=$("#userid").html();//账号id
-		var pid=$.cookie('pid');//项目id
 		var data={
-				empid:userid,
-				projectsid:pid,
-				paymoney:money,
-				proreturnid:returnid,
+				empid:$("#userid").html(),//账号id
+				projectsid:$.cookie('pid'),//项目id
+				paymoney:$("#money").html(),//获取回报钱数
+				proreturnid:$("#returnid").html(),//获取回报id
 				address:addressId
 		};
-		alert(data.empid);
-		alert(data.paymoney);
-		alert(data.proreturnid);
-		alert(data.address);
-		alert(data.projectsid);
 		$.ajax({
 			type : "post",
 			dataType : "json",
@@ -453,13 +479,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			contentType : "application/json;charset=utf-8",
 			data :JSON.stringify(data),
 			success : function(data) {//data为返回的数据，在这里做数据绑定  
-				alert("支持成功");
+				alert(data.result);
 			},
 			error : function() {
 				alert("error");
 			}
 		});
 	}
-
+	/*
+	页面加载时查看cookie里的值
+	*/
+	$(function(){
+		$("#userid").append($.cookie("empid"));
+		var account=$.cookie("account");
+		var touxiang="<a><img src=\"images/touxiang.png\" width=\"40px\" height=\"40px\" class=\"img-circle\"/>"+
+		"&nbsp;&nbsp;<span>"+account+"</span></a>";
+		if(account!=null){
+			$("#user").append(account);
+			$("#log_reg").hide();
+			$("#log_img").show();
+			$("#plimg").append(touxiang);
+		}
+		
+	})
+	/*
+		退出按钮点击事件
+	*/
+	$("#exit").click(function(){
+		window.location.href="support.jsp"; 
+		$("#log_reg").show();
+		$("#log_img").hide();
+		$.cookie('account', '', { expires: -1 });
+		$.cookie('account1', '', { expires: -1 });
+		 
+	})
 </script>
-

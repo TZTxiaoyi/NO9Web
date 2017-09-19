@@ -84,7 +84,8 @@
 			</div>
 			<div class="modal-body" >
 				<table class="table table-striped table-hover table-condensed" id="infotbale">
-					
+					<th>流水单号</th><th>操作人账号序列</th><th>订单号序列</th>
+					<th>项目号序列</th><th>操作类型</th><th>操作金额</th><th>时间</th>
 				</table>
 			</div>
 			<div class="modal-footer">
@@ -139,6 +140,7 @@ $("#finshbutton").click(function() {
 			alert("error");
 		}
 	}); 
+
 })
 
  
@@ -224,6 +226,7 @@ $("#finshbutton").click(function() {
 				 'click .selectinfo': function (e, value, row, index) {
 					 $("#selectinfoModal").modal();
 					 $("#infotbale").empty();
+					 var data={ projectsid:row.PROJECTSID};
 					 data={ projectsid:row.PROJECTSID};
 					 $.ajax({
 							type : "post",

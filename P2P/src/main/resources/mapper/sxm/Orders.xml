@@ -3,25 +3,53 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.sxm.OrdersDao">
-	<select id="selectOrders" resultType="Map">
-		select * from orders o,employee e
+	<!-- 支持订单 -->
+	<select id="supportOrders" resultType="Map">
+		select o.ord_id,o.empid,e.username,o.paymoney,o.fraction,
+		to_char(o.order_time,'yyyy-mm-dd hh24:mi:ss') as time
+		 from orders o,employee e where o.empid=e.empid 
+		and o.projectsid= #{projectsid}
 		
-		<where>
-			<if test="true">
-				o.empid=e.empid
-			</if>
-	 		<if test="projectsid>0">
-	 			and o.projectsid= #{projectsid}
-	 		</if>
-	 		<!-- <if test="empid>0">
-	 			and o.empid=#{empid}
-	 		</if> -->
-	 	</where>
 	</select>
+	<!-- 等待回报 -->
+	<select id="selectOrders" resultType="Map">
+		select o.ord_id,o.empid,e.username,o.paymoney,p.offer_money,o.address,
+		p.return_title,o.fraction,to_char(o.order_time,'yyyy-mm-dd hh24:mi:ss') as time
+		from orders o,employee e,pro_return p where
+		o.empid=e.empid and p.pro_returnid=o.pro_returnid
+		and ord_status=80 and o.projectsid= #{projectsid}
+		
+	</select>
+	<!-- 回报中 -->
+	<select id="selectback" resultType="Map">
+		select o.ord_id,e.username,o.paymoney,p.offer_money,o.address,
+		p.return_title,o.fraction,to_char(o.order_time,'yyyy-mm-dd hh24:mi:ss') as time
+		from orders o,employee e,pro_return p,pro_back pb
+		where o.empid=e.empid and p.pro_returnid=o.pro_returnid
+		and pb.order_status=96 and o.projectsid= #{projectsid}
+		
+	</select>
+	<!-- 回报完成 -->
+	<select id="selectalreadyback" resultType="Map">
+		select o.ord_id,e.username,o.paymoney,p.offer_money,o.address,
+		p.return_title,o.fraction,to_char(o.order_time,'yyyy-mm-dd hh24:mi:ss') as time
+		from orders o,employee e,pro_return p,pro_back pb
+		where o.empid=e.empid and p.pro_returnid=o.pro_returnid
+		and pb.order_status=81 and o.projectsid= #{projectsid}
+		
+	</select>
+	<!-- 插入订单 -->
 	<insert id="insertOrders" parameterType="com.entity.tzt.Orders">
 		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
 		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS'),
 		76,#{proreturnid,jdbcType=NUMERIC}) 
 
 	</insert>
+	<!-- 根据订单id查看地址 -->
+	 <select id="selectAdress" resultType="Map">
+		select * from address a,orders o where a.addressid=o.address and o.address=#{address} and o.ord_id=#{ordid}
+	</select>
+	<!-- <update id="updateOrders" parameterType="Integer" >
+		update orders set ord_status=96 where ord_id=#{ord_id}
+	</update>  -->
 </mapper>
