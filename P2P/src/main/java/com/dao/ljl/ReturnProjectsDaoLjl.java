@@ -12,4 +12,7 @@ public interface ReturnProjectsDaoLjl {
 	public List AllReturnProjects(ReturnLjl returnljl);
 	public int DeleteReturnProjects(ReturnLjl returnljl);
 	public int SExamine(ProjectsLjl projectsljl);
+	
+	public List TopReturn(Map map);
+	public int updateprodate(Map map);
 }

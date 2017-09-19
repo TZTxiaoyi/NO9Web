@@ -108,8 +108,6 @@
 var data={};
 $("#removebutton").click(function() {
 	alert(JSON.stringify(data));
-	/* $.ajax({
-=======
 	 $.ajax({
 		type : "post",
 		dataType : "json",
@@ -129,47 +127,21 @@ $("#removebutton").click(function() {
 $("#finshbutton").click(function() {
 	alert(JSON.stringify(data));
 	 $.ajax({
->>>>>>> 4ebd09afec83dfe6c8458d3a2ab5c01722d75f3a
 		type : "post",
 		dataType : "json",
 		data:data,
-		url : "/P2P/back/addRoleTable.do",//要访问的后台地址  
+		url : "/P2P/projectmoney/finshProject.do",//要访问的后台地址  
 		contentType :"application/json;charset=utf-8",
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
-			if(result.resultType=="true"){
-				alert("成功");
-			 	$('#tb_departments').bootstrapTable("refresh");;
-			}else{
-				alert("添加失败");
-			}
+			alert("放款成功");
+			 $('#tb_departments').bootstrapTable("refresh");;
 		},error : function() {
 			alert("error");
 		}
-<<<<<<< HEAD
-	}); */
-})
-$("#finshbutton").click(function() {
-	alert(JSON.stringify(data));
-	/* $.ajax({
-		type : "post",
-		dataType : "json",
-		data:data,
-		url : "/P2P/back/addRoleTable.do",//要访问的后台地址  
-		contentType :"application/json;charset=utf-8",
-		data:JSON.stringify(data),
-		success : function(result) {//data为返回的数据，在这里做数据绑定  
-			if(result.resultType=="true"){
-				alert("添加成功");
-				$('#addRoleTable').modal('hide');
-			}else{
-				alert("添加失败");
-			}
-		},error : function() {
-			alert("error");
-		}
-	}); */
 	}); 
+
+})
 
  
 	$(function () {
@@ -279,29 +251,19 @@ $("#finshbutton").click(function() {
 					
 				} ,
 	 'click .finsh': function (e, value, row, index) {
-		 	alert("4554");
-	 
-			data={
-				 roleid:row.PROJECTSID, 
-		 }
-			alert("65685");
+		  data={
+					projectsid:row.PROJECTSID, 
+					empid:row.EMPID,
+					blacne:row.RAISE_MONEY
+				 };
+
 		 if(row.RAISE_MONEY>=row.TARGE_MONEY){
 			 //筹资成功
-			 data={
-				projectsid:row.PROJECTSID, 
-				empid:row.EMPID,
-				blacne:RAISE_MONEY
-			 }		
 			  $("#finshproject").modal();
 			 alert(JSON.stringify(data));
 			 
 		 }else{
 			 //筹资失败
-			  data={
-				projectsid:row.PROJECTSID, 
-				empid:row.EMPID,
-				blacne:RAISE_MONEY
-			 }		
 			  $("#removeproject").modal();
 			 alert(JSON.stringify(data));
 		 }

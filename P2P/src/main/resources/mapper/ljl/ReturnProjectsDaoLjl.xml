@@ -79,5 +79,10 @@
 	<delete id="DeleteReturnProjects" parameterType="com.entity.ljl.ReturnLjl">
 		delete from pro_return where formindex=#{formindex} and projectsid=#{projectsid}
 	</delete>
-	
+	<select id="TopReturn" resultType="map" parameterType="map">
+		select max(return_time) return_time from pro_return where projectsid=#{projectsid}
+	</select>
+	<update id="updateprodate" parameterType="map">
+		update  projects set returnenddate= sysdate + interval #{return_time} day where projectsid=#{projectsid}
+	</update>
 </mapper>

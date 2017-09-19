@@ -77,7 +77,6 @@ public class TwoLoanServiceImplLjl implements TwoLoanServiceLjl {
 			twoloan.UpdateProState(projects);//更改项目状态完成
 		}catch(Exception e){
 			return "放款失败";
-			
 		}
 		return "放款成功";
 	}

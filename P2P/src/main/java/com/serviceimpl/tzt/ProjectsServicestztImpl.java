@@ -3,6 +3,7 @@ package com.serviceimpl.tzt;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.dao.ljl.PlatformFundsDaoLjl;
+import com.dao.ljl.ReturnProjectsDaoLjl;
 import com.dao.sxm.OrdersDao;
 import com.dao.tzt.CapitalDaotzt;
 import com.dao.tzt.EmployeeDaotzt;
@@ -45,7 +47,8 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 	PlatformFundsDaoLjl platformFundsDaoLjl;
 	@Autowired
 	ProfitDaotzt profitDaotzt;
-	
+	@Autowired
+	ReturnProjectsDaoLjl returnprodao; 
 	
 	
 	@Transactional(propagation=Propagation.REQUIRED)
@@ -76,7 +79,7 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		//修改项目状态
 		 projestsdaotzt.updataProject(projectsMoneyinfotzt);
 		 System.out.println("状态");
-
+		
 		return "true";
 	}
 
@@ -115,7 +118,14 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		//更改订单项目状态
 		
 		//更改总资金
-			
+		 Map <String ,Object> datemap=new HashMap<String ,Object>();
+		 datemap.put("projectsid", projectsMoneyinfotzt.getProjectsid());
+		 List<Map<String ,Object>> datelist=returnprodao.TopReturn(datemap);
+		 System.out.println(datelist);
+		 Map <String ,Object> retdatemap=datelist.get(0);
+		 retdatemap.put("projectsid",projectsMoneyinfotzt.getProjectsid());
+		 System.out.println(retdatemap);
+		 returnprodao.updateprodate(retdatemap);	
 		return "true";
 	}
 
