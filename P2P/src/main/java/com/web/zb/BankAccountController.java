@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.entity.zb.BankAccount;
 import com.service.zb.BankAccountService;
 
@@ -40,20 +39,16 @@ public class BankAccountController {
 	* @return void    返回类型
 	* @throws
 	 */
-	@RequestMapping("/queryBankAccount.do")
-	public void queryBankAccount(HttpServletResponse resp){
-		resp.setCharacterEncoding("utf-8");
-		List<Object> lbank = bac.queryBankAccount();
-		JSON json = new JSONArray(lbank);
-		System.out.println("json:"+json.toString());
-		try {
-			resp.getWriter().write(json.toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@RequestMapping("/queryBankAccount")
+	@ResponseBody
+	public List queryBankAccount(Integer empid){
+		//System.out.println("----------------zhubin.empid-------------------"+empid);
+		List<Object> lbank = bac.queryBankAccount(empid);
+	//	System.out.println("_________empid____________+"+lbank.get(0).toString());
+		return lbank;
 		
 	}
+	
 	/**
 	 * 
 	* @Title: addBankAccount
@@ -65,10 +60,10 @@ public class BankAccountController {
 	 */
 	@RequestMapping("/addBankAccount.do")	
 	public void addBankAccount(@RequestBody String str,HttpServletResponse resp){
-		System.out.println("=====================");
-		System.out.println("str="+str);
+		//System.out.println("=====================");
+		//System.out.println("str="+str);
 		BankAccount bankaccount = JSON.parseObject(str, BankAccount.class);
-		System.out.println("bank"+bankaccount.getBankAccounts());
+		//System.out.println("bank"+bankaccount.getBankAccounts());
 		int flag = -1;
 		flag = bac.addBankAccount(bankaccount);
 		System.out.println("flag="+flag);
@@ -80,23 +75,26 @@ public class BankAccountController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 
-	* @Title: saveBankAccount
-	* @Description: TODO(保存)
-	* @param @param bankaccount
+	* @Title: updateBankAccount
+	* @Description: TODO(提现的方法)
+	* @param @param txbalance
+	* @param @param empid
 	* @param @return    设定文件
-	* @return String    返回类型
+	* @return int    返回类型
 	* @throws
 	 */
-	/*@RequestMapping("/saveBankAccount.do")
+	@RequestMapping("/updateBankAccount")
 	@ResponseBody
-	public List saveBankAccount(BankAccount bankaccount){
-		System.out.println("___+___"+bankaccount);
-
-		List <Object> listbank =  bac.addBankAccount(bankaccount);
-		System.out.println("zhubin"+listbank);
-		return listbank;
-	}*/
+	public int updateBankAccount(float txbalance,Integer empid){
+	//	System.out.println(txbalance+"  -----    "+empid);		
+		int flag = -1;
+		flag = bac.updateBankAccount(txbalance, empid);
+		if(flag > 0){
+			return 1;
+		}
+		return 0;
+	}
 }

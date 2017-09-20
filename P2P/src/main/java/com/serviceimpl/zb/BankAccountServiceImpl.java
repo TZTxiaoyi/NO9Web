@@ -23,9 +23,9 @@ public class BankAccountServiceImpl implements BankAccountService {
 	@Autowired
 	BankAccountDao bad;
 	@Override
-	public List<Object> queryBankAccount() {
+	public List<Object> queryBankAccount(Integer id) {
 		// TODO Auto-generated method stub
-		return bad.queryBankAccount();
+		return bad.queryBankAccount(id);
 	}
 	/**
 	 * ������п�
@@ -40,6 +40,14 @@ public class BankAccountServiceImpl implements BankAccountService {
 	public void addBankAccount(String string) {
 		// TODO Auto-generated method stub
 		
+	}
+	/**
+	 * 提现的方法！！
+	 */
+	@Override
+	public int updateBankAccount(float txbalance, Integer empid) {
+		// TODO Auto-generated method stub
+		return bad.updateBankAccount(txbalance, empid);
 	}
 
 }

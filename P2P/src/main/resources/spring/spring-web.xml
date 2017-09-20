@@ -65,7 +65,7 @@
 				
 				/addState/inseProState.do=anon
 				/addState/upRecordTab.do=anon			
-				/** = authc
+				/** = anon
 			</value>
 		</property>
 	</bean>

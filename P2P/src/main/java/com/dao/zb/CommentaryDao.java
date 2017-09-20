@@ -19,5 +19,5 @@ import com.entity.zb.Commentarys;
 public interface CommentaryDao {
 	public List<Object> queryCommentary();
 	public int addCommentary(Commentarys commentary);
-	public int deleteCommentary(int id);
+	public int deleteCommentary(int COMMENTARY_ID);
 }

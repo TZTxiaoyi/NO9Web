@@ -41,9 +41,9 @@ public class CommentaryServiceImpl implements CommentaryService {
 	}
 
 	@Override
-	public int deleteComment(int id) {
+	public int deleteComment(int COMMENTARY_ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return cdao.deleteCommentary(COMMENTARY_ID);
 	}
 
 }

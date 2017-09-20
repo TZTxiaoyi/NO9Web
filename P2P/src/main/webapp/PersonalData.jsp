@@ -323,8 +323,7 @@
 
 		
 //---------------------------------------------------------------	
-		$(function(){
-			
+		$(function(){			
 			var data = {};
 			data["UserName"] = $("#UserName").val();
 			data["EmpName"] = $("#EmpName").val();
@@ -335,27 +334,6 @@
 			data["TelePhone"] = $("#TelePhone").val();
 			data["Balance"] = $("#Balance").val();
 			data["EmpState"] = $("#EmpState").val(); 
-			
-			
-			
-			
-			//alert("-------"+data["userName"]);
-			
-			/* $.ajax({
-				type : "post",
-				dataType : "json",
-				url : "zhubin/queryEmployee.do",
-				contentType : "application/json;charset=utf-8",
-				data : JSON.stringify(data),
-				success : function(data){
-					//alert("ok");
-					//alert(data);
-				},
-				error : function(){
-					alert("error");
-					//alert(data);
-				}
-			}); */
 		}); 
 	//----------------切换按钮--------------------------------------------
 	function clickbtn(){

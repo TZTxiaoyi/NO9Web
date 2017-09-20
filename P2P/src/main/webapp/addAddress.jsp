@@ -93,13 +93,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//alert(regName.test(addName));
 			if(!regName.test(addName)){
 				show_address_msg("#Name", "error", "用户名必须是2-6位汉字");
-				//$("#Name").parent().addClass("has-error");
-				//$("#Name").next("span").text("用户名必须是2-6位汉字");
 				return false;
 			}else{
 				show_address_msg("#Name", "success", "");
-				//$("#Name").parent().addClass("has-success");
-				//$("#Name").next("span").text("");
 			};
 			
 			//验证手机号
@@ -153,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var data = {};
 				data["AddressId"] = $("#AddressId").val();
 				data["Name"] = $("#Name").val();
-				data["Phone"] = parseInt($("#Phone").val());
+				data["Phone"] = $("#Phone").val();
 				data["postCodes"] = parseInt($("#postCodes").val());
 				data["AddressInfo"] = $("#AddressInfo").val();
 				data["empid"] = $.cookie("empid");

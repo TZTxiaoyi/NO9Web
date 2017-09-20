@@ -15,7 +15,9 @@ import com.entity.zb.BankAccount;
  *
  */
 public interface BankAccountService {
-	public List<Object> queryBankAccount();
+	
 	public int addBankAccount(BankAccount bankaccount);
 	public void addBankAccount(String string);
+	public List<Object> queryBankAccount(Integer id);
+	public int updateBankAccount(float txbalance,Integer empid);
 }
