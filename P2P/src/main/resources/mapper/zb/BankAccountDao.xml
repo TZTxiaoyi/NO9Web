@@ -2,11 +2,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.zb.BankAccountDao">	
-	 <select id="queryBankAccount" resultType="map">
-		select b.bank_account_id,e.empname,b.bank_account,b.bank_name from bank_account b,employee e
-		where e.empid = b.empid
+	 <select id="queryBankAccount" resultType="BankAccount">
+		<!-- select b.bank_account_id,e.empname,b.bank_account,b.bank_name 
+		from bank_account b,employee e
+		where e.empid = b.empid -->
+		select b.empId,b.bank_account bankAccounts from bank_account b where b.empId = #{empId}
 	</select> 
 	<insert id="addBankAccount" parameterType="com.entity.zb.BankAccount">
 		insert into bank_account values(list_account.nextval,#{empId},#{bankAccounts},#{bankName})
 	</insert>
+	
+	<update id="updateBankAccount" parameterType="com.entity.zb.Employeezb" >
+		update employee set balance = balance-#{0} where empid=#{1}		
+	</update>
 </mapper>

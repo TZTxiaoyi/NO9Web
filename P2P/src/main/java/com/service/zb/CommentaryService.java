@@ -16,5 +16,5 @@ import com.entity.zb.Commentarys;
 public interface CommentaryService {
 	public List<Object>queryCommentary();
 	public int addCommentary(Commentarys commentary);
-	public int deleteComment(int id);
+	public int deleteComment(int COMMENTARY_ID);
 }

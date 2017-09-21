@@ -101,8 +101,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 </html>
 <script>
-	$(function() {
-//------------------------------查询地址----------------------------------------	
+
+//------------------------------查询地址----------------------------------------
+	 $(function() {
+	
 		var data ={}
 			data["empid"] = $.cookie("empid");
 			alert(data["empid"]);
@@ -139,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		});
 
-	});
+	}); 
 //-------------------修改地址-------------------------------	
 	$("#table").on('click', ".alterbtn", function() {
 		var addressId=$(this).attr("addressId");
