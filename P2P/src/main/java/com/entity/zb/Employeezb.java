@@ -20,8 +20,14 @@ public class Employeezb {
 	private String TelePhone;//电话
 	private float Balance;//余额
 	private int EmpState;//状态״̬
+	private float txBalance;//提现金额
 	
-	
+	public float getTxBalance() {
+		return txBalance;
+	}
+	public void setTxBalance(float txBalance) {
+		this.txBalance = txBalance;
+	}
 	public String getIdCard() {
 		return IdCard;
 	}

@@ -22,7 +22,7 @@
 			<dt><img class="icon1" src="../img/coin01.png" /><img class="icon2"src="../img/coin02.png" />
 				首页<img class="icon3" src="../img/coin19.png" /><img class="icon4" src="../img/coin20.png" /></dt>
 		</dl> -->
-			<dl class="system_log">
+			<!-- <dl class="system_log">
 				<dt>
 					<img class="icon1" src="../img/coin03.png" /><img class="icon2"
 						src="../img/coin04.png" /> 系统管理<img class="icon3"
@@ -39,7 +39,7 @@
 						src="../img/coin222.png" /><a class="cks" href="../user.jsp"
 						target="main">管理员管理</a><img class="icon5" src="../img/coin21.png" />
 				</dd>
-			</dl>
+			</dl> -->
 			<dl class="system_log">
 				<dt>
 					<img class="icon1" src="../img/coin05.png" /><img class="icon2"
@@ -47,11 +47,11 @@
 						src="../img/coin19.png" /><img class="icon4"
 						src="../img/coin20.png" />
 				</dt>
-				<dd>
+				<!-- <dd>
 					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
 						src="../img/coin222.png" /><a class="cks" href="../banner.jsp"
 						target="main">用户管理</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
+				</dd> -->
 				<dd>
 					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
 						src="../img/coin222.png" /><a class="cks" href="../opinion.jsp"
@@ -115,20 +115,6 @@
 			</dl>
 			<dl class="system_log">
 				<dt>
-					<img class="icon1" src="../img/coin10.png" /><img class="icon2"
-						src="../img/coin09.png" />投资管理<img class="icon3"
-						src="../img/coin19.png" /><img class="icon4"
-						src="../img/coin20.png" />
-				</dt>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../connoisseur.jsp"
-						target="main" class="cks">用户投资</a><img class="icon5"
-						src="../img/coin21.png" />
-				</dd>
-			</dl>
-			<dl class="system_log">
-				<dt>
 					<img class="icon1" src="../img/coin11.png" /><img class="icon2"
 						src="../img/coin12.png" />统计查询<img class="icon3"
 						src="../img/coin19.png" /><img class="icon4"
@@ -141,40 +127,8 @@
 				</dd>
 				<dd>
 					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../capitalcount.jsp" target="main"
-						class="cks">资金统计</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
 						src="../img/coin222.png" /><a href="../profitcount.jsp" target="main"
-						class="cks">盈利统计</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
-			</dl>
-			<dl class="system_log">
-				<dt>
-					<img class="icon1" src="../img/coin14.png" /><img class="icon2"
-						src="../img/coin13.png" />投资项目<img class="icon3"
-						src="../img/coin19.png" /><img class="icon4"
-						src="../img/coin20.png" />
-				</dt>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../wish.jsp" target="main"
-						class="cks">项目类型</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
-			</dl>
-			<dl class="system_log">
-				<dt>
-					<img class="icon1" src="../img/coin15.png" /><img class="icon2"
-						src="../img/coin16.png" /><img class="icon3"
-						src="../img/coin19.png" /><img class="icon4"
-						src="../img/coin20.png" />
-				</dt>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../appointment.jsp"
-						target="main" class="cks">约见管理</a><img class="icon5"
-						src="../img/coin21.png" />
+						class="cks">资金统计</a><img class="icon5" src="../img/coin21.png" />
 				</dd>
 			</dl>
 			<dl class="system_log">
@@ -231,26 +185,7 @@
 				</dd>
 				
 			</dl>
-			<dl class="system_log">
-				<dt>
-					<img class="icon1" src="../img/coinL1.png" /><img class="icon2"
-						src="../img/coinL2.png" /> 系统管理<img class="icon3"
-						src="../img/coin19.png" /><img class="icon4"
-						src="../img/coin20.png" />
-				</dt>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../changepwd.jsp"
-						target="main" class="cks">修改密码</a><img class="icon5"
-						src="../img/coin21.png" />
-				</dd>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a class="cks">退出</a><img
-						class="icon5" src="../img/coin21.png" />
-				</dd>
-			</dl>
-
+			
 		</div>
 
 	</div>

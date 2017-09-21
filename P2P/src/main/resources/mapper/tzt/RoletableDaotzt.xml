@@ -11,9 +11,8 @@
 	 	from roletable 
 	 	<where>
 	 		<if test="true">
-	 			rolestate=20
+	 			rolestate=20 and roleid not in (41)
 	 		</if>
-	 		
 	 	</where>
 	 	order by roleid desc
 	</select>

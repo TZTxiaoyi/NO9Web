@@ -9,5 +9,5 @@ public interface AccountsDaotzt {
 	public List<Map> queryAccounts(Accounts accounts);
 	public int addAccounts(Accounts accounts);
 	public int updateAccounts(Map map);
-	public int updateAccounts(Accounts accounts);
+	public int updateAccountsRole(Accounts accounts);
 }

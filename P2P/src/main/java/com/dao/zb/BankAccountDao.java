@@ -14,6 +14,17 @@ import com.entity.zb.BankAccount;
  *
  */
 public interface BankAccountDao {
-	public List<Object> queryBankAccount();
 	public int addBankAccount(BankAccount bankaccount);
+	public List<Object> queryBankAccount(Integer id);
+	/**
+	 * 
+	* @Title: updateBankAccount
+	* @Description: TODO(提现的方法)
+	* @param @param txbalance
+	* @param @param empid
+	* @param @return    设定文件
+	* @return int    返回类型
+	* @throws
+	 */
+	public int updateBankAccount(float txbalance,Integer empid);
 }

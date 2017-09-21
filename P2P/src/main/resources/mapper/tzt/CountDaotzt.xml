@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.tzt.CountDaotzt">
+	<select id="projectrate" 	resultType="map">
+		select count(case when projectsstate not in(57) then 1  else null end) as sum ，
+		count(case when projectsstate= 116 then 1  else null end )as fail,
+		count(case when projectsstate= 85 then 1  else null end )as sucess
+		from projects
+
+	</select>
+	<select id="projcettime"  resultType="map">
+	 	select count(*)  as sum , TO_CHAR(p.addtime,'YYYY-MM-dd') as time   
+	 	from originator o,projects p
+	 	where o.projectsid = p.projectsid and (to_number(sysdate-p.addtime)) &lt; 7  
+		group by   TO_CHAR(p.addtime,'YYYY-MM-dd') order by time
+	</select>
+	<select id="fit" resultType="map">
+		select sum(capital) as sum,  TO_CHAR(time,'YYYY-MM-dd') as time  from profit p where  (to_number(sysdate-time)) &lt;7  
+		group by   TO_CHAR(time,'YYYY-MM-dd') order by time
+		
+	</select>
+	<select id="repay" resultType="map">
+		select count(*) as y ,w.value as name from orders o, word w 
+		where o.ord_status=w.key group by w.value
+	</select>
+	
+	
+	<select id="typeFit" resultType="map">
+		select t.protypename as name , sum(capital) as y from projects p, protype t,profit f 
+		where f.projectsid=p.projectsid and p.protypeid=t.protypeid 
+		group by t.protypename
+	</select>
+
+</mapper>

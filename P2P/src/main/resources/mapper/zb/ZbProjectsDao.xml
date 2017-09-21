@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.zb.ZbProjectsDao">
+	<select id="queryZbProjects" resultType="map">
+		select p.projectsid,e.empname,wo.value,to_char(p.addtime,'YYYY/MM/DD HH:MI:SS') as addtime,w.value as state,p.approver
+		from projects p,word w,word wo ,employee e
+		where p.projectsstate = w.key and wo.key = p.originatortype and e.empid = p.empid
+		<if test="_parameter !=null">
+			and wo.value like '%'||#{_parameter} ||'%'
+		</if>
+		<if test="_parameter !=null">
+			or e.empname like '%' || #{_parameter} || '%'
+		</if>
+		<if test="_parameter !=null">
+			or p.projectsid like '%' || #{_parameter} || '%'
+		</if>
+		<if test="_parameter !=null">
+			or w.value like '%'||#{_parameter} ||'%'
+		</if>
+
+	</select>
+
+
+
+</mapper>
