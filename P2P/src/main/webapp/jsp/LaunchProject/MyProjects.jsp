@@ -134,8 +134,8 @@ var TableInit = function () {
                     return ["<img src=\"../../images/"+value.COVER+"\" alt=\"\" width=\"100\" height=\"50\"  />"+value.TITLE+""];
                 }
             },{
-                field: 'RETURNENDDATE',
-                title: '回报截止日期时间'
+                field: 'ADDTIME',
+                title: '项目创建日期'
             },{
                 field: 'PROJECTSSTATE',
                 title: '项目状态'

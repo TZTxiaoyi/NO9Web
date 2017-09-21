@@ -42,10 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		#head form{
  			margin-top:20px;
  		}
- 		#img{
- 			margin:10px;
- 		}
- 		#moddel>div{
+ 		
+ 		
+        #agriculture,#welfare{
         	margin:30px;
         }
         h4{
@@ -111,7 +110,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#myModal1 h4{
 			text-align:left;
 		}
-		
+		h2{
+			text-align:center;
+			margin-botton:20px;
+			margin-top:20px;
+		}
+		.look{
+			width:100%;
+			text_decoration:none;
+			text-align:center;
+			font-size:15;
+			color:gray;
+			background: #EAE8EA;
+			margin-bottom:20px;
+		}
+		.progress{
+			margin-left:15px;
+		}
+		.allimg{
+			border:1px solid;
+			
+		}
+		.allimg img{
+			margin-left:-15px;
+		}
  	</style>
  	
   </head>
@@ -248,15 +270,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="loginform">
 					<div>
 						<input placeholder="手机号/用户名/邮箱" type="text" id="accounts1" name ="userdata.account"/> 
-						<span class="help-block"></span>
+						<br/><span id="loginuser"></span>
 					</div>
 					<div>
 						<input placeholder="输入密码" type="password" id="passwords1"
-						name ="userdata.pwd"/><span class="help-block"></span>
+						name ="userdata.pwd"/><br/> <span id="aa2"></span>
 					</div>
 					<div>
 						<input placeholder="再次输入密码" type="password" id="pswords"/> 
-						<span class="help-block"></span>
+						<br/><span id="aa3"></span>
 					</div>
 					<div>
 						<button type="submit" id="register" class="btn btn-info btn-group-lg" >注册</button>
@@ -311,9 +333,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<!-- 中间底部——动态添加数据库项目 -->
 		<div id="moddel" class="container">
-           <div class="row">
-           	
-        </div>
+           	<h2>公益项目</h2>
+           	<div id="welfare" class="row"></div>
+           	<div width="100%"><a width="100%"  href="promore.jsp?protypeid=5" role="button" class="btn look">浏览更多项目</a></div>
+           	<h2>农业项目</h2>
+           	<div id="agriculture" class="row"></div>
+           	<div width="100%"><a width="100%"  href="promore.jsp?protypeid=6" role="button" class="btn look">浏览更多项目</a></div>
+        	
+  		</div>
+  		
   	</div>
   	<!-- 尾部-->
   	<div id="footer">
@@ -337,73 +365,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
 </html>
 <script>
-	$("#accounts1").blur(function(){
-		var data1 = $("#accounts1").val();
-		
-		$.ajax({
-			type:"post",
-			
-			//dataType:"json",
-			url:"zhubin/queryAccount.do?account="+data1,
-			contentType:"application/json;charset=utf-8",
-			//data:{"account" : data1},
-			success:function(data){
-				 if(data == "false"){
-					 show_register_msg("#accounts1", "error", "此用户已存在");
-				}else{
-					show_register_msg("#accounts1", "true", "");
-				} 
-				
-			}/* ,
-			error : function(){
-				alert("---errordata---"+data);
-			} */
-		});
-	});
-//---------------------------注册验证--------------------------------------------------
-	//校验数据函数
-	function CheckData(){
-			var accounts1 = $("#accounts1").val();			
-			var regAccount = /^[a-zA-Z0-9_-]{6,16}$/;
-			if(!regAccount.test(accounts1)){
-				show_register_msg("#accounts1", "error", "账号必须包含数字字母和字符6~16位")
-				return false;
-			}
-			else{
-				show_register_msg("#accounts1", "true", "");
-			};
-			//校验密码
-			var passwords1 = $("#passwords1").val(); 
-			var regPass = /^[a-zA-Z0-9_-]{6,16}$/;
-			if(!regPass.test(passwords1)){
-				show_register_msg("#passwords1", "error", "密码必须包含数字字母和字符6~16位");
-				return false;
-			}else{
-				show_register_msg("#passwords1", "true", "");
-			}
-			//校验二次密码
-			var pswords = $("#pswords").val();
-			if(pswords != passwords1){
-				show_register_msg("#pswords", "error", "输入的两次密码不一致");
-			}else{
-				show_register_msg("#pswords", "true", "");
-			}
-			return true;
-		}
-	//显示校验效果的提示信息的函数
-		function show_register_msg(ele,status,msg){
-			//清除当前元素的父类状态
-			$(ele).parent().removeClass("has-success has-error");
-			$(ele).next("span").text("");
-			if("success" == status){
-				$(ele).parent().addClass("has-success");
-				$(ele).next("span").text(msg);
-			}else{
-				$(ele).parent().addClass("has-error");
-				$(ele).next("span").text(msg);
-			}
-		}
-//-----------------------------------------------------------------------------------
 	/*
 		页面加载时自动加载项目
 	*/
@@ -417,23 +378,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:JSON.stringify(data),
 			success:function(data){	 
 				$.each(data,function(index,value){
-					/* var moddel="<div class=\"col-md-3 col-sm-3 col-xs-12\"><a href='pro_details.jsp?title="+value.TITLE+"&&img="+value.COVER+"&&pid="+value.PROJECTSID+"'><img src=\"images/"
-					+value.COVER+"\" alt=\"\" width=\"300\" height=\"260\"><h4>"+value.TITLE+"</h4><hr/><h5>"+value.GOAL+"</h5></a>"
-					+"<div class=\"progress\">"
-					+"<div class=\"progress-bar progress-bar-success\" style=\"width: 90%;\">"
-					+"<span>已完成90%</span></div></div></div>";
-					$("#moddel").append(moddel); */
-					var targeMoney=value.TARGE_MONEY;
-					var raiseMoney=value.RAISE_MONEY;
+					
+					var targeMoney=value.TARGE_MONEY;//目标金额
+					var raiseMoney=value.RAISE;//筹资金额
 					var pid=value.PROJECTSID;
-					var bar=(raiseMoney/targeMoney)*100;
-					var aa=decimal(bar,2)
-					var moddel="<div class=\"col-md-3 col-sm-3 col-xs-12\"><a href='pro_details.jsp' class=\"img\" pid="+value.PROJECTSID+"><img src=\"images/"
-					+value.COVER+"\" alt=\"\" width=\"300\" height=\"260\"><h4>"+value.TITLE+"</h4><hr/><h5>"+value.GOAL+"</h5></a>"
-					+"<div class=\"progress\">"
-					+"<div class=\"progress-bar progress-bar-success\" style=\"width:"+aa+"%;\">"
-					+"</div><span id=\"bar\">已完成"+aa+"%</span></div></div>";
-					$("#moddel").append(moddel);
+					var bar=(raiseMoney/targeMoney)*100;//筹资进度百分比
+					var aa=decimal(bar,2)//小数保留两位
+					var moddel="<div class=\"col-md-4 col-sm-4 col-xs-12 allimg\"><a href='pro_details.jsp' class=\"img\" pid="+
+					value.PROJECTSID+"><img src=\"images/"+value.COVER+ 
+					"\" alt=\"\" width=\"358\" height=\"300\" class=\"img-rounded\"><h4>"+value.TITLE+
+					"</h4><h5>"+value.GOAL+"</h5></a>"+"<div width=\"100%\" class=\"progress\">"
+					+"<div class=\"progress-bar-success\" aria-valuenow=\"60\" "+
+			        "aria-valuemin=\"0\" aria-valuemax=\"100\"style=\"width:"+
+					aa+"%;\"><span>已完成"+aa+"%</span></div></div><div>已筹款：￥"+raiseMoney+"</div></div>";
+					if(value.PROTYPEID==5){//公益
+						$("#welfare").append(moddel);
+					}else if(value.PROTYPEID==6){//农业
+						$("#agriculture").append(moddel);
+					}
+					
+					
+					//$("#moddel").append(moddel);
 					
 				})
 			},
@@ -462,14 +427,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		注册按钮点击事件
 	*/
 	$("#register").click(function() {
-		if(!CheckData()){
-			alert("不能注册");
-			return false;
-		}
+		
 		var data = {
 			accounts : $("#accounts1").val(),
 			passwords : $("#passwords1").val(),
-			empid : $.cookie("empid")
 		};
 		$.ajax({
 			type : "post",
