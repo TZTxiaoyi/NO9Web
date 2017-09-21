@@ -67,7 +67,7 @@ var topWindow=window.top;
 /* var empid1=$.cookie('empid'); */
 	
 	$(function () {
-		alert("1");
+		//alert("1");
 	    //1.初始化Table
 	    var oTable = new TableInit();
 	    oTable.Init();
@@ -83,7 +83,7 @@ var TableInit = function () {
     var oTableInit = new Object();
     //初始化Table
     oTableInit.Init = function () {
-    	alert("456");
+    	//alert("456");
         $('#tb_departments').bootstrapTable({
             url: 'http://localhost:9088/P2P/TwoLoanController/AllReturn.do',         //请求后台的URL（*）
             method: 'post',                      //请求方式（*）
@@ -150,10 +150,10 @@ var TableInit = function () {
     
     window.operateEvents={
     		"click .editbtn":function(e,value,row,index){
-    			alert(row.EMPID);
-    			alert(row.PROID);
+    			//alert(row.EMPID);
+    			//alert(row.PROID);
     			var mm=(row.RAISE_MONEY-row.RAISE_MONEY*0.15)*0.30;
-    			alert(mm);
+    			//alert(mm);
     			 $.ajax({
 					type:"post",
 					dataType:"text",
@@ -161,7 +161,7 @@ var TableInit = function () {
 					contentType:"application/json;charset=utf-8",
 					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm,"RAISE_MONEY":row.RAISE_MONEY}),
 					success:function(data){
-						alert(data);
+						//alert(data);
 					}
 				})
 				/* 	if(row.PROJECTSSTATE=="回报中"){

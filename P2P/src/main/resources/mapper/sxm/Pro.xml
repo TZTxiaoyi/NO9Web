@@ -13,10 +13,10 @@
  		<where>
  			<if test="true">
  				(p.projectsstate=84
- 			</if>
+ 			</if><!-- 
  			<if test="true">
  				or p.projectsstate=85)
- 			</if>
+ 			</if> -->
  			<if test="true">
  				and	p.projectsid=pd.projectsid
  			</if>

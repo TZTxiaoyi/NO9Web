@@ -1,10 +1,14 @@
 package com.serviceimpl.zb;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.ljl.EmployeeDaoLjl;
+import com.dao.ljl.PlatformFundsDaoLjl;
 import com.dao.zb.BankAccountDao;
 import com.entity.zb.BankAccount;
 import com.service.zb.BankAccountService;
@@ -22,6 +26,10 @@ import com.service.zb.BankAccountService;
 public class BankAccountServiceImpl implements BankAccountService {
 	@Autowired
 	BankAccountDao bad;
+	@Autowired
+	PlatformFundsDaoLjl platdao;
+	@Autowired
+	EmployeeDaoLjl empdao;
 	@Override
 	public List<Object> queryBankAccount(Integer id) {
 		// TODO Auto-generated method stub
@@ -47,6 +55,12 @@ public class BankAccountServiceImpl implements BankAccountService {
 	@Override
 	public int updateBankAccount(float txbalance, Integer empid) {
 		// TODO Auto-generated method stub
+		Map map=new HashMap();
+		map.put("money",-txbalance);
+		platdao.eUpdatefund(map);
+		map.put("empid", empid);
+		map.put("details", 177);
+		empdao.InsertTransaction(map);
 		return bad.updateBankAccount(txbalance, empid);
 	}
 

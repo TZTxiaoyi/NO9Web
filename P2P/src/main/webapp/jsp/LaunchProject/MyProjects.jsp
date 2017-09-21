@@ -66,7 +66,6 @@ var empid1=$.cookie('empid');
 			url:"http://localhost:9088/P2P/ProjectsController/SaveProjects.do",
 			data:{"empid":empid,"originatortype":9,"addtime":time,"projectsstate":57,"launchtype":launchtype},
 			success:function(data){
-				alert(data);
 				if(data=="err1"){
 					alert("您当前已存在一个正在运作的项目");
 				}else if(data=="err"){
@@ -84,7 +83,6 @@ var empid1=$.cookie('empid');
 	})
 	
 	$(function () {
-		alert("1");
 	    //1.初始化Table
 	    var oTable = new TableInit();
 	    oTable.Init();
@@ -154,10 +152,8 @@ var TableInit = function () {
     
     window.operateEvents={
     		"click .editbtn":function(e,value,row,index){
-					alert(row.PROJECTSID);
 					var projectsid=row.PROJECTSID;
 					$.cookie('projectsid', projectsid,{path:"/"});
-					alert(row.PROJECTSSTATE);
 					if(row.PROJECTSSTATE=="草稿箱"){
 						topWindow.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
 						
@@ -173,8 +169,6 @@ var TableInit = function () {
     		},"click .delectbtn":function(e,value,row,index){
 				var projectsid=row.PROJECTSID;
 				if(row.PROJECTSSTATE=="草稿箱"){
-					alert("123");
-					
 					$.ajax({
 						type:"post",
 						url:"http://localhost:9088/P2P/ProjectsController/DelProjects.do",
@@ -198,7 +192,6 @@ var TableInit = function () {
     }
     $(".editbtn").click(function(){
     	//var projects=$(this).name();
-    	alert(projects);
     })
     //得到查询的参数
     oTableInit.queryParams = function (params) {

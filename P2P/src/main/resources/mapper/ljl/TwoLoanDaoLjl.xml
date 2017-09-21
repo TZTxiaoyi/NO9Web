@@ -10,7 +10,7 @@
     sum(case when ord_status =80 then 1 else 0 end) as dreturn,
     sum(case when ord_status =96 then 1 else 0 end) as zreturn,
     sum(case when ord_status =81 then 1 else 0 end) as wreturn
-    from orders o,projects p where (o.projectsid=p.projectsid and p.projectsstate=85 and not p.returnenddate>sysdate) group by o.projectsid)) orders,projects p,projects_describe pb,pro_money pm where orders.proid=p.projectsid 
+    from orders o,projects p where (o.projectsid=p.projectsid and p.projectsstate=85 and  p.returnenddate>sysdate) group by o.projectsid)) orders,projects p,projects_describe pb,pro_money pm where orders.proid=p.projectsid 
     and pb.projectsid=p.projectsid and pm.projectsid=p.projectsid and p.projectsstate=85
 	</select>
 	<update id="UpdateProState" parameterType="map">
@@ -25,7 +25,7 @@
 	</select>
 	<select id="selectordid" resultType="map">
 		select pb.ord_id,81 ORDSTATUS from  pro_back pb,orders o where
-  		 not pb.deliverytime+10>sysdate and pb.ord_id=o.ord_id and o.ord_status=96
+  		  pb.deliverytime+10>sysdate and pb.ord_id=o.ord_id and o.ord_status=96
 	</select>
 	<update id="updateorders" parameterType="java.util.List">
 		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  

@@ -56,7 +56,7 @@ var topWindow=window.top;
 var empid1=$.cookie('empid');
 	
 	$(function () {
-		alert("1");
+		//alert("1");
 	    //1.初始化Table
 	    var oTable = new TableInit();
 	    oTable.Init();
@@ -140,7 +140,7 @@ var TableInit = function () {
 					url:"http://localhost:9088/P2P/MyOrdersContrller/UpdateOrders.do",
 					data:{"ordid":row.ORD_ID},
 					success:function(data){
-						alert(data);
+						//alert(data);
 						if(data=="success"){
 							
 							
@@ -153,7 +153,7 @@ var TableInit = function () {
 							url:"http://localhost:9088/P2P/MyOrdersContrller/UpdateOrders.do",
 							data:{"ordid":row.ORD_ID},
 							success:function(data){
-								alert(data);
+								//alert(data);
 								if(data=="success"){
 									
 									
@@ -173,7 +173,7 @@ var TableInit = function () {
     		},"click .delectbtn":function(e,value,row,index){
 				var projectsid=row.PROJECTSID;
 				if(row.PROJECTSSTATE=="草稿箱"){
-					alert("123");
+					//alert("123");
 					
 					$.ajax({
 						type:"post",
@@ -198,7 +198,7 @@ var TableInit = function () {
     }
     $(".editbtn").click(function(){
     	//var projects=$(this).name();
-    	alert(projects);
+    	//alert(projects);
     })
     //得到查询的参数
     oTableInit.queryParams = function (params) {
