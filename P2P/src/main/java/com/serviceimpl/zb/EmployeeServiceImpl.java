@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.ljl.EmployeeDaoLjl;
+import com.dao.ljl.PlatformFundsDaoLjl;
 import com.dao.zb.EmployeeDao;
 import com.entity.zb.Employeezb;
 import com.service.zb.EmployeeService;
@@ -23,7 +25,10 @@ import com.service.zb.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	EmployeeDao edao;
-	
+	@Autowired
+	EmployeeDaoLjl empdao;
+	@Autowired
+	PlatformFundsDaoLjl platdao;
 	
 
 	@Override
@@ -36,10 +41,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int updateEmployee(Employeezb employee) {
 		return edao.updateEmployee(employee);
 	}*/
-
+	//充值
 	@Override
 	public int updateEmployee(Map map) {
 		// TODO Auto-generated method stub
+		
+		Integer money=Integer.parseInt(map.get("balance").toString());
+		map.put("details", 176);
+		map.put("money", money);
+		platdao.eUpdatefund(map);
+		empdao.InsertTransaction(map);
 		return edao.updateEmployee(map);
 	}
 
@@ -47,6 +58,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Object> queryEmployee(int empid) {
 		// TODO Auto-generated method stub
 		return edao.queryEmployee(empid);
+	}
+
+	@Override
+	public List AllTransactionRecord(Map emp) {
+		// TODO Auto-generated method stub
+		
+		return empdao.AllTransactionRecord(emp);
 	}
 
 }

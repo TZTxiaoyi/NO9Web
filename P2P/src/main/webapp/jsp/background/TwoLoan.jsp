@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
   <body>
 	<div class="panel-body" style="padding-bottom:0px;">
+		<input type="button" id="updateorders" class="btn btn-info updateorders" value="确认收货"/>
         <div id="borderdiv"><b>资金发放 <!-- <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/> --></b>
         	
         <!-- <input type="button" class="btn btn-info saveprojects" value="机构发起众筹"/> --> 
@@ -47,7 +48,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
 </html>
 <script>
-
+$("#updateorders").click(function(){
+	$.ajax({
+		type:"post",
+		url:"http://localhost:9088/P2P/TwoLoanController/updateorders.do",
+		contentType:"application/json;charset=utf-8",
+		success:function(data){
+			alert(data);
+		}
+	})
+	
+})
 
 var topWindow=window.top;
 
@@ -148,7 +159,7 @@ var TableInit = function () {
 					dataType:"text",
 					url:"http://localhost:9088/P2P/TwoLoanController/Loan.do",
 					contentType:"application/json;charset=utf-8",
-					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm.toFixed(2)}),
+					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm,"RAISE_MONEY":row.RAISE_MONEY}),
 					success:function(data){
 						alert(data);
 					}

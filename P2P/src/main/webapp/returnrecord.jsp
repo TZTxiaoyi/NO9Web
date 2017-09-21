@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div id="mod">
 					<div>
-						<input id="ord" type="text" class="form-control" placeholder="请输入订单号"> 
+						<input id="ord" type="text" class="form-control" placeholder="请输物流单号"> 
 					</div>
 					<div>
 						姓名：<span id="name"></span>
@@ -140,6 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		等待回报ok
 	*/
 	function waitback(){
+		$("#tab1").html("");
 		var pid=$.cookie('pid');
 		//var empid=$.cookie('empid');
 		data={};
@@ -180,6 +181,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		已回报
 	*/
 	function alreadyback(){
+		$("#tab2").html("");
 		var pid=$.cookie('pid');
 		//var empid=$.cookie('empid');
 		data={};
@@ -215,6 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		回报中
 	*/
 	function backing(){
+		$("#tab3").html("");
 		var pid=$.cookie('pid');
 		//var empid=$.cookie('empid');
 		data={};
@@ -303,6 +306,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				alert("已回报");
 				$('#myModal').modal('hide');
+				waitback();
+				alreadyback();
+				backing();
 			},
 			error : function() {
 				alert("error");

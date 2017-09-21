@@ -45,7 +45,11 @@ public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String SaveProjects(ProjectsLjl proLjl){
-		
+		List lists=projectsdaoljl.countProjects(proLjl);
+		if(lists.size()>1){
+			return "err1";
+			
+		}
 		int proflag=projectsdaoljl.SaveProjects(proLjl);
 		int Projectsid =proLjl.getProjectsid();
 		Map map=new HashMap();

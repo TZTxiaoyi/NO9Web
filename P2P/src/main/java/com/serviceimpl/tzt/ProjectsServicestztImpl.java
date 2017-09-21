@@ -147,7 +147,7 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		System.out.println(JSON.toJSONString(projectsMoneyinfotzt));
 		projestsdaotzt.updataProjectFinsh(projectsMoneyinfotzt);//更改项目状态
 		System.out.println("更改项目状态");
-		//更改总资金
+		//更改平台资金
 		PlatformFundsLjl platformfunds=new PlatformFundsLjl();
 		platformfunds.setProfitmoney(gain);
 		platformfunds.setPromoney(-(float)(blan+gain));

@@ -6,7 +6,13 @@
 	<select id="AllProjects" parameterType="com.entity.ljl.UserLjl" resultType="map">
 		select pr.projectsid,pr.empid,pd.cover,pd.title,w1.value as ORIGINATORTYPE,w2.value as PROJECTSSTATE,to_char(pr.addtime,'yyyy-MM-dd HH24:mi:ss') as addtime from projects pr,word w1,word w2,projects_describe pd where pr.originatortype=w1.key and pr.projectsstate=w2.key and pd.projectsid=pr.projectsid and empid=#{empid} order by projectsid desc
 	</select>
+	<select id="countProjects" parameterType="com.entity.ljl.ProjectsLjl" resultType="map">
+		select * from projects where projectsstate!=116 and projectsstate!=156 and projectsstate!=86 and empid=#{empid}	
+	</select>
 	
+	<select id="retProjects" parameterType="com.entity.tzt.Orders" resultType="map">
+		select * from projects where projectsstate!=116 and projectsstate!=156 and projectsstate!=86 and empid=100348	order by projectsid desc
+	</select>
 	<select id="AllProjectsType" resultType="HashMap">
 		select * from protype
 	</select>

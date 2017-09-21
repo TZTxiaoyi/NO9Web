@@ -28,11 +28,17 @@ public class TwoLoanController {
 		return list;
 	}
 	/**
-	 * 项目放款
+	 * 项目放款根据剩余项目资金和未回报订单金额退还用户资金
 	 */
 	@RequestMapping(value="/Loan",produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String Loan(@RequestBody String str){
+	public String loands(@RequestBody String str){
+		System.out.println("4546");
+		System.err.println(str);
+		
+		return twoloanservice.loands(str);
+	}
+	/*public String Loan(@RequestBody String str){
 		System.out.println("454");
 		System.err.println(str);
 		
@@ -40,5 +46,14 @@ public class TwoLoanController {
 		
 		
 		
+	}*/
+	/**
+	 * 系统自动确认收货
+	 * @return
+	 */
+	@RequestMapping(value="/updateorders",produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String updateorders(){
+		return twoloanservice.updateorders();
 	}
 }

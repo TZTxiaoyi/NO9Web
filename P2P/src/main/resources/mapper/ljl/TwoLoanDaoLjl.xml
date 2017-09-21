@@ -5,15 +5,32 @@
 <mapper namespace="com.dao.ljl.TwoLoanDaoLjl" >
 	<!-- parameterType="com.entity.tzt.Orders" -->
 	<select id="AllReturn" resultType="map">
-		select * from (select proid,dreturn,zreturn,wreturn,dreturn+zreturn+wreturn as totalreturn,wreturn || '/' || (dreturn+zreturn+wreturn) || '（完成率' || (wreturn/(dreturn+zreturn+wreturn)*100) || '%）' as completerate
-    from (select o.projectsid as proid,
+		select * from (select proid,dreturn,zreturn,wreturn,dreturn+zreturn+wreturn as totalreturn,wreturn || '/' || (dreturn+zreturn+wreturn) || '（完成率' || trunc((wreturn/(dreturn+zreturn+wreturn)*100),2) || '%）' as completerate
+    from (select o.projectsid as proid,p.returnenddate,
     sum(case when ord_status =80 then 1 else 0 end) as dreturn,
     sum(case when ord_status =96 then 1 else 0 end) as zreturn,
     sum(case when ord_status =81 then 1 else 0 end) as wreturn
-    from orders o,projects p where o.projectsid=p.projectsid and p.projectsstate=85 group by o.projectsid)) orders,projects p,projects_describe pb,pro_money pm where orders.proid=p.projectsid 
+    from orders o,projects p where (o.projectsid=p.projectsid and p.projectsstate=85 and not p.returnenddate>sysdate) group by o.projectsid)) orders,projects p,projects_describe pb,pro_money pm where orders.proid=p.projectsid 
     and pb.projectsid=p.projectsid and pm.projectsid=p.projectsid and p.projectsstate=85
 	</select>
 	<update id="UpdateProState" parameterType="map">
 		update projects set projectsstate=#{projectsstate} where empid=#{empid} and projectsid=#{projectsid}
 	</update>
+	
+	<select id="selectemoney" resultType="map" parameterType="map">
+		select ord_id,empid,projectsid,paymoney,sum(paymoney) over() emoney ,round(paymoney/sum(paymoney) over() * #{money},2) proportion,87 ordstatus,158 DETAILS,31 capitalflow from orders where (ord_status=80 or ord_status=136) and projectsid=#{proid}
+	</select>
+	<select id="selectemoneysuc" resultType="map" parameterType="map">
+		select ord_id,empid,projectsid,paymoney proportion,sum(paymoney) over() emoney,87 ordstatus,158 DETAILS,31 capitalflow  from orders where (ord_status=80 or ord_status=136) and projectsid=#{proid}
+	</select>
+	<select id="selectordid" resultType="map">
+		select pb.ord_id,81 ORDSTATUS from  pro_back pb,orders o where
+  		 not pb.deliverytime+10>sysdate and pb.ord_id=o.ord_id and o.ord_status=96
+	</select>
+	<update id="updateorders" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+			update orders set ord_status=#{item.ORDSTATUS} where ord_id=#{item.ORD_ID}		
+		</foreach>
+	</update>
+	
 </mapper>

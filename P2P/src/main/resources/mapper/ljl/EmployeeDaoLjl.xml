@@ -6,10 +6,28 @@
 	<select id="AllEmployee" resultType="map" parameterType="map">
 		select * from employee where empid=#{empid}
 	</select>
+	<select id="AllTransactionRecord" resultType="map" parameterType="map">
+  		select t.traid,to_char(t.time,'yyyy-mm-dd hh24:mi:ss') as time,t.money,w.value from transaction t,word w where t.details=w.key and t.empid=#{EmpId} order by t.time desc	</select>
 	<update id="UpdateEmployee" parameterType="map">
 		update employee set balance=balance+#{balance} where empid=#{empid}
 	</update>
+	<update id="UpdateEmployees"  parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+                update employee   
+                <set>  
+                  balance=balance + #{item.PROPORTION}
+                </set>  
+               <where>
+            	   empid = #{item.EMPID}
+               </where>  
+         </foreach> 
+	</update>
 	<insert id="InsertTransaction" parameterType="map">
 		insert into transaction values(list_Transaction.nextval,#{empid},sysdate,#{money},#{details})
+	</insert>
+	<insert id="InsertTransactionList" parameterType="java.util.List" useGeneratedKeys="false">
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+			insert into transaction values(list_Transaction.nextval,#{item.EMPID},sysdate,#{item.PROPORTION},#{item.DETAILS})
+		</foreach>
 	</insert>
 </mapper>

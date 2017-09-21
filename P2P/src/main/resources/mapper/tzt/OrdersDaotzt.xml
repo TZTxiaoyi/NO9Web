@@ -43,7 +43,7 @@
 	    </selectKey> 
 		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
 		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')
-		,76,#{proreturnid,jdbcType=NUMERIC}) 
+		,76,#{proreturnid,jdbcType=NUMERIC},#{address}) 
 	</insert>
 	
 	<update id="updateOrders" parameterType="com.entity.tzt.Orders">

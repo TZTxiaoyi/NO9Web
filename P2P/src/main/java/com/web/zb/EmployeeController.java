@@ -106,4 +106,12 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 	}
+	@RequestMapping("/AllTransactionRecord")
+	@ResponseBody
+	public List AllTransactionRecord(@RequestBody Map map ){
+		
+		return eService.AllTransactionRecord(map);
+		
+		
+	}
 }

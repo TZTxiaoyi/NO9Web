@@ -35,7 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="panel-body" style="padding-bottom:0px;">
         <div id="borderdiv"><b>我的发起 <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/></b>
         	
-        <input type="button" class="btn btn-info saveprojects" value="机构发起众筹"/> 
         </div>      
 		
 		
@@ -68,12 +67,17 @@ var empid1=$.cookie('empid');
 			data:{"empid":empid,"originatortype":9,"addtime":time,"projectsstate":57,"launchtype":launchtype},
 			success:function(data){
 				alert(data);
-				if(data!="success"){
+				if(data=="err1"){
+					alert("您当前已存在一个正在运作的项目");
+				}else if(data=="err"){
+					alert("项目发起失败");
+				}else {
 					$.cookie('projectsid', parseInt(data),{path:"/"});
 					topWindow.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
 					//window.location.replace("http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp");
 					//window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp';
-				}				
+				
+				}
 			}
 		})
 		
@@ -130,8 +134,8 @@ var TableInit = function () {
                     return ["<img src=\"../../images/"+value.COVER+"\" alt=\"\" width=\"100\" height=\"50\"  />"+value.TITLE+""];
                 }
             },{
-                field: 'ADDTIME',
-                title: '创建时间'
+                field: 'RETURNENDDATE',
+                title: '回报截止日期时间'
             },{
                 field: 'PROJECTSSTATE',
                 title: '项目状态'

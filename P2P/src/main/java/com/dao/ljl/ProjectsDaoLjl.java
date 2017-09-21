@@ -6,6 +6,7 @@ import java.util.Map;
 import com.entity.ljl.PerProLjl;
 import com.entity.ljl.ProjectsLjl;
 import com.entity.ljl.UserLjl;
+import com.entity.tzt.Orders;
 
 public interface ProjectsDaoLjl {
 	public List AllProjects(UserLjl user);
@@ -26,5 +27,7 @@ public interface ProjectsDaoLjl {
 	public int SavePersonalProjects(Map map);//个人项目基础信息
 	public int SaveReturnProjects(Map map);//项目回报
 	
+	public List countProjects(ProjectsLjl proLjl);
+	public List retProjects(Orders o);
 	
 }
