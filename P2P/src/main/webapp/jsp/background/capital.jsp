@@ -91,15 +91,7 @@ oTableInit.Init = function () {
         },{
             field: 'TIME',
             title: '时间'
-        },{       
-        	title: '操作',
-            events:operateEvents,
-            formatter:function(value,row,index){ 
-            	return ['<button class=" remove btn btn-danger " > 删除  </button>',
-            	        '<button class=" updata btn btn-warning " > 编辑 </button>'
-          			  ].join('');
-            }
-            }
+        }
         
         ]
     });

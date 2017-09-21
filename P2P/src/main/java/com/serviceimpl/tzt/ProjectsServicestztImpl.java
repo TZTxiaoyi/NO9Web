@@ -71,6 +71,9 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		//退回至余额
 		 EmployeeDaotzt.updataEmployeelist(projectsorder);
 		System.out.println("jine");
+		//添加用户的退款记录
+		
+		
 		//添加平台资金表记录
 		 System.out.println(projectsorder.size());
 		 System.out.println(projectsorder.getClass());
@@ -136,6 +139,7 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		capital.setCapital ((float) (blan+gain));//项目一阶段总发放（放款+盈利收付费）
 		capital.setProjectsid(projectsMoneyinfotzt.getProjectsid());//项目id
 		capital.setEmpid(projectsMoneyinfotzt.getEmpid()); //发起人的id
+		capital.setStarttime(hehe);
 		capital.setCapitalflow(4);
 		System.out.println(JSON.toJSONString(capital));
 		CapitalDaotzt.addCapital(capital);

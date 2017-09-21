@@ -51,4 +51,26 @@
 	 		accountsid=#{accountsid}
 	 		</where> -->
 	</update>
+	
+	<update id="updateAccountsRole" parameterType="com.entity.tzt.Accounts" >
+		 update  accounts set
+		<if test="accounts!=null">
+		 accounts=#{accounts,jdbcType=VARCHAR}
+		</if>
+		<if test="passwords!=null">
+		,passwords=#{passwords,jdbcType=VARCHAR}
+		 </if>
+		 <if test="empid!=null">
+		 , empid=#{empid,jdbcType=NUMERIC}
+		 </if>
+		 <if test="roleid!=null">
+		,roleid=#{roleid,jdbcType=NUMERIC}
+		 </if>
+		 <if test="accountsstate!=null">
+		,accountsstate=#{accountsstate,jdbcType=NUMERIC} 
+		 </if>
+			<where>
+	 		accountsid=#{accountsid}
+	 		</where> 
+	</update>
 </mapper>
