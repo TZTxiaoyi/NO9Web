@@ -1,0 +1,43 @@
+﻿[
+	{
+		"rolename": "超级管理员",
+		"createTime": "2017-03-10 19:19:19.00",
+		"roleDescription": "负责超级管理员工作..."
+	},
+	{
+		"rolename": "普通管理员",
+		"createTime": "2017-03-13 19:19:19.00",
+		"roleDescription": "负责普通管理员工作..."
+	},
+	{
+		"rolename": "技术研发人员",
+		"createTime": "2017-03-14 19:19:19.00",
+		"roleDescription": "负责技术研发人员工作..."
+	},
+	{
+		"rolename": "项目维护人员",
+		"createTime": "2017-03-13 19:19:19.00",
+		"roleDescription": "负责项目维护人员工作..."
+	},
+	{
+		"rolename": "技术架构人员",
+		"createTime": "2017-03-16 19:19:19.00",
+		"roleDescription": "负责技术架构人员工作..."
+	},
+	{
+		"rolename": "产品设计人员",
+		"createTime": "2017-03-11 19:19:19.00",
+		"roleDescription": "负责产品设计人员工作..."
+	},
+	{
+		"rolename": "人力资源",
+		"createTime": "2017-03-16 19:19:19.00",
+		"roleDescription": "负责人力资源工作..."
+	},
+	{
+		"rolename": "行政管理",
+		"createTime": "2017-03-19 19:19:19.00",
+		"roleDescription": "负责行政管理工作..."
+	}
+		
+]

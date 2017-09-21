@@ -4,13 +4,33 @@
 		"http://mybatis.org.dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ly.UsersDao">
 	<!-- 查询登录信息是否正确 -->
-	<select id="queryAccounts" resultType="com.entity.tzt.Accounts" parameterType="map">
+	<select id="queryAccounts" resultType="com.entity.tzt.Accounts" parameterType="com.entity.tzt.Accounts">
 		select * from accounts where accounts=#{accounts} 
 	</select>
 	<!-- 查询当前用户的所有权限 -->
 	<select id="queryAllFunction" resultType="map" parameterType="com.entity.tzt.Accounts">
-		select p1.keyword
+		select p1.powersid, p1.keyword
 		from roletable r1,accounts a1,powers p1,role_powers rp
 		where r1.roleid=rp.roleid and p1.powersid=rp.powersid and a1.roleid=r1.roleid and a1.accounts=#{accounts}
 	</select>
+	
+	<select id="queryrolename" resultType="com.entity.tzt.Roletable" parameterType="com.entity.tzt.Roletable">
+		select roleid from roletable where rolename=#{rolename} 
+	</select>
+
+	<select id="queryAllPowers" resultType="map" parameterType="com.entity.tzt.Accounts">
+		select powersid from role_powers where roleid=#{roleid} 
+	</select>
+	
+	<delete id="deletePowers" parameterType="map">
+		delete from role_powers where roleid=#{roleid}
+	</delete>
+	<insert id="insertPower" parameterType="java.util.List" useGeneratedKeys="false">
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+			insert into role_powers values(list_role_powers.nextval,#{item.roleid},#{item.powersid})
+		</foreach>
+	</insert>
+	
+	
+	
 </mapper>

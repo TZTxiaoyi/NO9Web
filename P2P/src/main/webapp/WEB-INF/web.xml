@@ -6,6 +6,9 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/spring-*.xml</param-value>
 	</context-param>
+	<session-config> 
+		<session-timeout>-1</session-timeout> 
+	</session-config> 
   <!-- <filter>  
         <filter-name>encodingFilter</filter-name>  
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  

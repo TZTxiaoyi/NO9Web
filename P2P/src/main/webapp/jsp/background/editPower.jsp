@@ -100,30 +100,7 @@
 </html>
 
 <script>
-$("#submit").click(function() {
-	var data = {
-		rolename : $("#rolename").val(),
-	};
-	alert($("#rolename").val());
-	$.ajax({
-		type : "post",
-		dataType : "json",
-		data:data,
-		url : "/P2P/back/addRoleTable.do",//要访问的后台地址  
-		contentType :"application/json;charset=utf-8",
-		data:JSON.stringify(data),
-		success : function(result) {//data为返回的数据，在这里做数据绑定  
-			if(result.resultType=="true"){
-				alert("添加成功");
-				$('#addRoleTable').modal('hide');
-			}else{
-				alert("添加失败");
-			}
-		},error : function() {
-			alert("error");
-		}
-	});
-})
+
 
 // 保存角色修改提交
  $("#updateSubmit").click(function(){
@@ -203,7 +180,7 @@ $("#submit").click(function() {
                 events:operateEvents,
                 formatter:function(value,row,index){ 
                 	return ['<button class=" remove btn btn-danger " > 删除  </button>',
-                	        '<button class=" updata btn btn-warning " > 编辑 </button>'
+                	        '<button class=" updata btn btn-warning " >  </button>'
               			  ].join('');
                 	
                 }

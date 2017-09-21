@@ -28,6 +28,12 @@
     endY :2100//年份的结束默认为2049
 });
 </script>
+<style>
+		.table th, .table td { 
+			text-align: center;
+			vertical-align: middle!important;
+		}
+	</style>
 </head>
 
 <body>
@@ -57,31 +63,45 @@
 			<!-- vip页面样式end -->
 		</div>
 	</div>
-<script type="text/javascript">		
+<script type="text/javascript">	
+	$(function(){
+		passproject();
+	});
+	function projectstate(dd){
+		$.ajax({					
+			type:"post",
+			dataType:"json",
+			url:"/P2P/project/upSinProState.do",
+			data:JSON.stringify(dd),
+			contentType:"application/json;charset=UTF-8",
+			success:function(data){
+				
+				 $('#protab').bootstrapTable("refresh");
+
+				
+			}					
+		});
+	}
 	window.operateEvents = {
 			'click #see_record': function (e, value, row, index) {
 				var dd={};
-				alert(5500);
+				
 				projectsid=parseInt(row.PROJECTSID);
-				alert(projectsid);
+				
 				dd["projectsstate"]=84;
 				dd["projectsid"]=projectsid;
-				$.ajax({					
-					type:"post",
-					dataType:"json",
-					url:"/P2P/project/upSinProState.do",
-					data:JSON.stringify(dd),
-					contentType:"application/json;charset=UTF-8",
-					success:function(data){
-						alert(data);
-					}					
-				});
+				if (!confirm("确认要审核？")) { 				
+			        window.event.returnValue = false; 
+			    } else{
+			    	projectstate(dd);
+				}
+				
 			},
 		}
 	$("#orauditing").click(function() {
 		var ss = $("#protab").bootstrapTable('getSelections');
 		var dd1 = parseInt(ss[0].PROJECTSID);
-		alert(dd1);
+		
 		
 		$.cookie('orga_auditing', dd1);
 		//var auditing = $.cookie("orga_auditing");
@@ -95,6 +115,7 @@
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){				
+					
 					if(data==1){
 						window.location.replace("Selauditing.jsp");
 					}else{
@@ -114,7 +135,7 @@
 	 function buttons(row,index,value){
 		 return ["<a type=\"button\" id=\"see_record\" class=\"btn btn-warning btn-xs\">发布项目</a>"]
 	 }
-	$(function() {				
+	function passproject() {				
 		$('#protab').bootstrapTable({			
 			url : '/P2P/AddState/selPassProject.do', //请求后台的URL（*）			
 			method : 'post', //请求方式（*）
@@ -128,6 +149,7 @@
 			//sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, //初始化加载第一页，默认第一页
 			pageSize : 10, //每页的记录行数（*）
+			singleSelect  : true,           // 单选checkbox 
 			pageList : [ 10, 25, 50, 100 ], //可供选择的每页的行数（*）
 			// search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			// strictSearch: true,
@@ -167,7 +189,7 @@
 				title : '操作',
 			}]]
 		});
-	});
+	};
 </script>
 </body>
 </html>

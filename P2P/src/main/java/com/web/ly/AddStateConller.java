@@ -42,40 +42,8 @@ public class AddStateConller{
 	@ResponseBody
 	@RequestMapping(value="/inseProState")
 	public int inSinProSta(@RequestBody Project projectsid,AuditingRe aRe,HttpServletResponse response,HttpServletRequest request,Employee empid){
-		int eList=addEmployeeService.selEmployState(projectsid,aRe,request);//查询当前员工是否已经有在审批中的项目
-		/*Map map =(Map) request.getSession().getAttribute("accountsinfo");		
-			//System.out.println("ssssss"+map);
-		List list=(List)map.get("resultAccounts");
-		Map ss=(Map)list.get(0);
-		int ee= (int) ss.get("EMPID");//获取员工id(登录后台的)
-		//empid.setEmpid(ee);
-		projectsid.setApprover(ee);//将员工id放入项目对象中
 		
-		aRe.setEmpid(ee);//将员工id放入审核记录对象中
-		aRe.setProjectsid(projectsid.getProjectsid());//将项目序号放入审核记录对象中
-		aRe.setRecordtable_begintime(new Date());//将当前时间放入审核记录对象中
-		
-		*/
-		
-		/*addEmployeeService.insAudiRecord(aRe);//点击审核时给审核记录一个初始数据，审批人、项目序号、开始审核时间
-			//System.out.println("ssssddd"+empid.getEmpid());
-		
-		
-		
-		
-		int emp=addEmployeeService.upProEmplo(projectsid);//给项目添加一个审批人
-		
-		int flag=SinAuditing.selProTy(projectsid);//根据项目序号，查询该项目属于个人还是机构
-			//System.out.println("-----------aaa:"+flag);
-		if (flag==1) {
-			int sin=SinAuditing.inserSinSt(projectsid);//在所有项目里点击审核，给个人信息审核表一个默认 未审核 的初始值	（1）		
-		}else{
-			int org=SinAuditing.inserOrSt(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（1）
-		}
-
-		int pro2=SinAuditing.insertProInSt(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（2）
-		int pro3=SinAuditing.inserProDeSt(projectsid);//在所有项目里点击审核，给 项目描述 审核表一个默认 未审核 的初始值（3）
-		int pro4=SinAuditing.inserProReSt(projectsid);//在所有项目里点击审核，给 项目回报  审核表一个默认 未审核 的初始值（4）*/
+		int eList=addEmployeeService.selEmployState(projectsid,aRe,request);//查询当前员工是否已经有在审批中的项目				
 		return eList;
 	}
 
@@ -92,12 +60,12 @@ public class AddStateConller{
 	@ResponseBody
 	@RequestMapping(value="/upRecordTab")
 	public int upRecordTable(@RequestBody String aRe,HttpServletResponse response,HttpServletRequest request){
-		int empid=(int)request.getSession().getAttribute("accounts3");
-		System.out.println("empid--------:"+empid);
+		//int empid=(int)request.getSession().getAttribute("accounts3");
+		//System.out.println("empid---ad-----:"+empid);
 		JSON json =new JSONArray();
 		Map mm=(Map)json.parseObject(aRe);
-		System.out.println("---------dddd:"+mm.get("projectsid"));
-		mm.put("recordtable_endtime", (new Date()));
+		System.out.println("---ad------dddd:"+mm.get("projectsid"));
+		
 		System.out.println("--------ssd:"+mm);
 		response.setHeader("content-type","text/html;charset=UTF-8");
 		int upre=addEmployeeService.upRecTable(mm);
