@@ -40,7 +40,7 @@ public class RoletableController {
 		public void queryRoleTable(HttpServletResponse response){
 			response.setCharacterEncoding("UTF-8");
 			response.setHeader("contentType", "text/JSON;charset=UTF-8");
-			System.out.println(JSON.toJSONString(roleTableServicetzt.queryRoletable()));
+			System.out.println(JSON.toJSONString("role----------:"+roleTableServicetzt.queryRoletable()));
 				try {
 					response.getWriter().write(roleTableServicetzt.queryRoletable());
 					response.getWriter().flush();
