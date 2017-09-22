@@ -35,9 +35,9 @@
  	hr{
  		border:1px solid gray;
  	}
- 	#zhubins{
- 		margin-left:400px;
- 		margin-top:30px;
+ 	.help-block{
+ 		margin-left:390px;
+ 		margin-top:-32px;
  	}
  	</style>
 </head>
@@ -46,7 +46,7 @@
 	<div>
 		
 		<span>原始密码：</span><input type = "text" id ="password" placeholder="请输入原密码"/>
-			<a id = "zhubins"> </a><br>
+			<a id = "zhubins" class="help-block"> </a><br>
 		&nbsp;<span>新&nbsp;密&nbsp;码：</span>&nbsp;<input type = "text" name = "pass" id = "pass" placeholder="请输入6-16位字符或数字"/>
 			<a class="help-block"> </a><br>
 		<span>确认密码：</span><input type = "text" name = "newpass" id = "newpass" placeholder="请重新输入新密码"/>
@@ -61,11 +61,11 @@
 
 			var b = $.cookie("oldpassword");//获取账号
 			if(a != b){
-				//$("#zhubins").append("<h5>*原始密码不正确</h5>").css("color","red");
-				alert("与原始密码不一致,请重新输入");
+				show_acount_msg("#password", "error", "*与原始密码不一致,请重新输入");
 				$('input[name=pass]').attr("readonly","readonly");
 				$('input[name=newpass]').attr("readonly","readonly");
 			}else{
+				show_acount_msg("#password", "true", "");
 				$('input[name=pass]').removeAttr("readonly");
 				$('input[name=newpass]').removeAttr("readonly");			
 			}
@@ -80,15 +80,13 @@
 					"passwords":$("#pass").val(),
 					 "empid" :parseInt($.cookie("empid")) 					
 				}	
-					
 				$.ajax({
 					type : "post",
 					//dataType : "json",
-					url : "ProWeb/updateAccounts.do",
+					url : "zhubin/updateAccount.do",
 					contentType : "application/json;charset=utf-8",
 					data : JSON.stringify(data),
 					success : function(data) {								
-						
 						alert("更新成功"+data);						 
 						$.cookie('account', '', { expires: -1 });
 						$.cookie('account1', '', { expires: -1 });
@@ -108,13 +106,12 @@
 			var NewPass = $("#pass").val();
 			var b = $.cookie("oldpassword");
 			//必须同时包含数字字母和字符6~16位
-			//var regNewPass = /(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,16}/;
 			var regNewPass = /^[a-zA-Z0-9_-]{6,16}$/;
 			if(!regNewPass.test(NewPass)){
-				show_acount_msg("#pass", "error", "密码必须同时包含数字字母和字符6~16位");
+				show_acount_msg("#pass", "error", "*密码必须同时包含数字字母和字符6~16位");
 				return false;
 			}else if(NewPass == b){
-				show_acount_msg("#pass", "error", "新密码不能与原密码相同")
+				show_acount_msg("#pass", "error", "*新密码不能与原密码相同")
 				return false;
 			}
 			else{
@@ -123,7 +120,7 @@
 			//校验新密码
 			var againNewPass = $("#newpass").val(); 
 			if(againNewPass != NewPass){
-				show_acount_msg("#newpass", "error", "两次密码不一致");
+				show_acount_msg("#newpass", "error", "*两次密码不一致");
 				return false;
 			}else{
 				show_acount_msg("#newpass", "true", "");

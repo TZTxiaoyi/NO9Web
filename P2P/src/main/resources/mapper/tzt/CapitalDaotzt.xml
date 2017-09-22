@@ -47,7 +47,7 @@
 		#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
 	</insert>
 	
-	
+	<!-- 增加资金操作记录表的退款记录 -->
 	<insert id="addCapitalRemoveProjectList" parameterType="java.util.List" useGeneratedKeys="false">
       INSERT INTO capital
 	  (capitalid,empid, ordid, projectsid, capitalflow, capital,time)
@@ -59,7 +59,7 @@
        #{item.ORD_ID,jdbcType=NUMERIC},
        #{item.PROJECTSID,jdbcType=NUMERIC},
        3,
-       #{item.PAYMONEY,jdbcType=VARCHAR},
+       -#{item.PAYMONEY,jdbcType=VARCHAR},
       	sysdate
      FROM dual
    </foreach>

@@ -23,7 +23,14 @@ public class ProfitControllertzt {
 	ProfitServicetzt profitServicetzt;
 	
 	
-	
+	/**
+	 * 方法功能说明：  查询盈利资金流水记录
+	 * 创建：2017年9月21日 by TZT  
+	 * @参数： @param profit
+	 * @参数： @return      
+	 * @return String     
+	 * @throws
+	 */
 	@RequestMapping(value="/queryProfit.do",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String queryProfit(@RequestBody Profit profit){
@@ -32,12 +39,21 @@ public class ProfitControllertzt {
 		return result;
 	}
 	
-	
+	/**
+	 * 方法功能说明：  增加一笔收入或者支出
+	 * 创建：2017年9月21日 by TZT  
+	 * @参数： @param profit
+	 * @参数： @param request
+	 * @参数： @return      
+	 * @return String     
+	 * @throws
+	 */
 	@RequestMapping(value="/addProfit.do",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String addProfit(@RequestBody Profit profit,HttpServletRequest request){
 		Map result=new HashMap();
-		profit.setOperator((String) request.getSession().getAttribute("empid"));
+		System.out.println(request.getSession().getAttribute("empid").getClass());
+		profit.setOperator(String.valueOf(request.getSession().getAttribute("empid")));
 		System.out.println(JSON.toJSONString(profit));
 	    if(profitServicetzt.addProfit(profit)!=0){
 	    	result.put("result",true);

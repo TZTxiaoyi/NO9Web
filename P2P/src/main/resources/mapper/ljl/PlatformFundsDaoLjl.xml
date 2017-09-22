@@ -48,6 +48,11 @@
 	<insert id="InsertCapital" parameterType="map">		
 		insert into capital (capitalid,<include refid="key"/>,time)values(list_capital.nextval,<include refid="value"/>,sysdate)
 	</insert>
+	<insert id="InsertCapitalList" parameterType="java.util.List" useGeneratedKeys="false">		
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+			insert into capital values(list_capital.nextval,#{item.EMPID},#{item.ORD_ID},#{item.PROJECTSID},#{item.CAPITALFLOW},#{item.PROPORTION},sysdate)
+		</foreach>
+	</insert>
 	
 	<update id="Updatefund" parameterType="map">
 		update platform_funds 
@@ -67,6 +72,9 @@
 		</trim>
 		where plfid=1
 	</update>
+	<update id="eUpdatefund" parameterType="map">
+		update platform_funds set total=total+#{money}, usermoney=usermoney+#{money} where plfid=1
+	</update>
 	<update id="Updatefunds" parameterType="com.entity.ljl.PlatformFundsLjl">
 		update platform_funds 
 		<trim prefix="SET" suffixOverrides=",">
@@ -84,6 +92,11 @@
 			</if>
 		</trim>
 		where plfid=1
+	</update>
+	<update id="UpdatefundsList" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+			update platform_funds set usermoney=usermoney+#{item.PROPORTION},promoney=promoney-#{item.PROPORTION} where plfid=1
+		</foreach>
 	</update>
 	
 	

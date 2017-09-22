@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
   <body>
 	<div class="panel-body" style="padding-bottom:0px;">
+		<input type="button" id="updateorders" class="btn btn-info updateorders" value="确认收货"/>
         <div id="borderdiv"><b>资金发放 <!-- <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/> --></b>
         	
         <!-- <input type="button" class="btn btn-info saveprojects" value="机构发起众筹"/> --> 
@@ -47,7 +48,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
 </html>
 <script>
-
+$("#updateorders").click(function(){
+	$.ajax({
+		type:"post",
+		url:"http://localhost:9088/P2P/TwoLoanController/updateorders.do",
+		contentType:"application/json;charset=utf-8",
+		success:function(data){
+			alert(data);
+		}
+	})
+	
+})
 
 var topWindow=window.top;
 
@@ -56,7 +67,7 @@ var topWindow=window.top;
 /* var empid1=$.cookie('empid'); */
 	
 	$(function () {
-		alert("1");
+		//alert("1");
 	    //1.初始化Table
 	    var oTable = new TableInit();
 	    oTable.Init();
@@ -72,7 +83,7 @@ var TableInit = function () {
     var oTableInit = new Object();
     //初始化Table
     oTableInit.Init = function () {
-    	alert("456");
+    	//alert("456");
         $('#tb_departments').bootstrapTable({
             url: 'http://localhost:9088/P2P/TwoLoanController/AllReturn.do',         //请求后台的URL（*）
             method: 'post',                      //请求方式（*）
@@ -139,18 +150,18 @@ var TableInit = function () {
     
     window.operateEvents={
     		"click .editbtn":function(e,value,row,index){
-    			alert(row.EMPID);
-    			alert(row.PROID);
+    			//alert(row.EMPID);
+    			//alert(row.PROID);
     			var mm=(row.RAISE_MONEY-row.RAISE_MONEY*0.15)*0.30;
-    			alert(mm);
+    			//alert(mm);
     			 $.ajax({
 					type:"post",
 					dataType:"text",
 					url:"http://localhost:9088/P2P/TwoLoanController/Loan.do",
 					contentType:"application/json;charset=utf-8",
-					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm.toFixed(2)}),
+					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm,"RAISE_MONEY":row.RAISE_MONEY}),
 					success:function(data){
-						alert(data);
+						//alert(data);
 					}
 				})
 				/* 	if(row.PROJECTSSTATE=="回报中"){

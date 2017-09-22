@@ -71,7 +71,7 @@ public class PayServicetztImpl implements PayServicetzt {
 		List listemployee=employeeDaoLjl.AllEmployee(employee);
 		Map map=(Map)listemployee.get(0);
 		System.out.println(map);
-		int balance=Integer.parseInt(map.get("BALANCE").toString());
+		Float balance=Float.parseFloat(map.get("BALANCE").toString());
 		//对比余额是否足够
 		if(Paymoney1>balance){
 			System.out.println("456");

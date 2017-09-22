@@ -40,7 +40,7 @@ public class AccountsServicetztImpl implements AccountsServicetzt {
 
 	public String updateAccounts(Accounts accounts) {
 		Map result =new HashMap();
-		int flag = accountsDaotzt.updateAccounts(accounts);
+		int flag = accountsDaotzt.updateAccountsRole(accounts);
 		if(flag!=0){
 			result.put("resultType", true);
 		}else{

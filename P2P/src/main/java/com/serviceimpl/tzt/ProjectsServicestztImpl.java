@@ -3,6 +3,7 @@ package com.serviceimpl.tzt;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.dao.ljl.PlatformFundsDaoLjl;
+import com.dao.ljl.ReturnProjectsDaoLjl;
 import com.dao.sxm.OrdersDao;
 import com.dao.tzt.CapitalDaotzt;
 import com.dao.tzt.EmployeeDaotzt;
@@ -46,7 +48,8 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 	PlatformFundsDaoLjl platformFundsDaoLjl;
 	@Autowired
 	ProfitDaotzt profitDaotzt;
-	
+	@Autowired
+	ReturnProjectsDaoLjl returnprodao; 
 	
 	/**
 	 * Title: RemoveProjects  取消项目
@@ -68,6 +71,9 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		//退回至余额
 		 EmployeeDaotzt.updataEmployeelist(projectsorder);
 		System.out.println("jine");
+		//添加用户的退款记录
+		
+		
 		//添加平台资金表记录
 		 System.out.println(projectsorder.size());
 		 System.out.println(projectsorder.getClass());
@@ -83,7 +89,7 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		//修改项目状态
 		 projestsdaotzt.updataProject(projectsMoneyinfotzt);
 		 System.out.println("状态");
-
+		
 		return "true";
 	}
 
@@ -133,6 +139,7 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		capital.setCapital ((float) (blan+gain));//项目一阶段总发放（放款+盈利收付费）
 		capital.setProjectsid(projectsMoneyinfotzt.getProjectsid());//项目id
 		capital.setEmpid(projectsMoneyinfotzt.getEmpid()); //发起人的id
+		capital.setStarttime(hehe);
 		capital.setCapitalflow(4);
 		System.out.println(JSON.toJSONString(capital));
 		CapitalDaotzt.addCapital(capital);
@@ -144,7 +151,7 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		System.out.println(JSON.toJSONString(projectsMoneyinfotzt));
 		projestsdaotzt.updataProjectFinsh(projectsMoneyinfotzt);//更改项目状态
 		System.out.println("更改项目状态");
-		//更改总资金
+		//更改平台资金
 		PlatformFundsLjl platformfunds=new PlatformFundsLjl();
 		platformfunds.setProfitmoney(gain);
 		platformfunds.setPromoney(-(float)(blan+gain));
@@ -153,6 +160,18 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		platformFundsDaoLjl.Updatefunds(platformfunds);
 		System.out.println("更改总资金");
 		
+		//更改项目预计回报时间
+		System.out.println("更改项目预计回报时间");
+		 Map <String ,Object> datemap=new HashMap<String ,Object>();
+		 datemap.put("projectsid", projectsMoneyinfotzt.getProjectsid());
+		 List<Map<String ,Object>> datelist=returnprodao.TopReturn(datemap);
+		 System.out.println(datelist);
+		 Map <String ,Object> retdatemap=datelist.get(0);
+		 String return_time="\'"+retdatemap.get("RETURN_TIME").toString()+"\'";
+		 retdatemap.put("return_time",return_time);
+		 retdatemap.put("projectsid",projectsMoneyinfotzt.getProjectsid());
+		 System.out.println(retdatemap);
+		 returnprodao.updateprodate(retdatemap);	
 		return "true";
 	}
 

@@ -20,4 +20,6 @@ public interface EmployeeService {
 	public int addEmployee(Employeezb employee);
 	public int updateEmployee(Map map);
 	public List<Object> queryEmployee(int empid);
+	
+	public List AllTransactionRecord(Map employee);
 }

@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </html>
 <script>
 	function deleteindetail(btnindex,choicebtn){
-		alert(btnindex);
+		
 		var projectsid=parseInt($.cookie('projectsid'));
 		var data={};
 		data["projectsid"]=projectsid;
@@ -94,8 +94,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data),
 			success:function(data){
-				alert(data);
-				
 				if(data==1){
 					alert("删除成功");
 					
@@ -110,7 +108,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	$(function(){
 		var projectsid=parseInt($.cookie('projectsid'));
-		alert(projectsid);
 		var data={};
 		data["projectsid"]=projectsid;
 		$.ajax({
@@ -119,7 +116,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data),
 			success:function(data){
-				alert(data);
 				if (data==""){
 					indexq=indexq+1;
 					//alert(indexq);
@@ -130,11 +126,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$.each(data,function(index,value){
 						
 						if (value.TEXTID!=undefined){
-							alert(value.TITLE);
+			
 							var text="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label class=\"col-sm-10 font-normal\">添加文本</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"text\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-12 input-group\"><input type=\"text\"  index=\""+value.PLACES+"\" name=\"title\" class=\"form-control\" value=\""+value.TITLE+"\" placeholder=\"我需要更多的支持\"><textarea class=\"form-control\" index=\""+value.PLACES+"\" name=\"body\"  rows=\"3\"  placeholder=\"告诉支持者，你美妙的梦想或残酷的现实，为什么需要大家的支持\">"+value.BODY +"</textarea> </div></div>";
 							$("#Relevantdata").append(text);
 						}else if(value.PHOTOID!=undefined){
-							alert(value.URL);
+						
 							var photo="<div index=\""+value.PLACES+"\" class=\"form-group formgroupdiv deldiv\"><label  class=\"col-sm-10 font-normal\">添加图片</label><label class=\"col-sm-2 font-normal\"><input class=\" delectbtn btn btn-info\" choicebtn=\"photo\" value=\"删除\" index=\""+value.PLACES+"\" type=\"button\"></label><div class=\"col-sm-3 input-group\"> <div id=\"Cover"+value.PLACES+"\" class=\"input-group photodiv\" style=\"border:1px solid #e0e0e0\"><img src=\"http://localhost:9088/P2P/images/"+value.URL+"\" style=\"width:350px;height:250px\"></div><input type=\"file\" class=\"myFile\" index=\""+value.PLACES+"\"  style=\"position:absolute;left:0;bottom:0;font-size:34px; opacity:0;width:92;height:34\"></div> </div>";
 							$("#Relevantdata").append(photo);
 						}
@@ -162,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	$("#upda").click(function(){
 		var projectsid=parseInt($.cookie('projectsid'));
-		alert(projectsid);
+		
 		var data={};
 		var index={};
 		var title={};
@@ -236,7 +232,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$(".delectbtn").click(function(){
 			var btnindex=parseInt($(this).attr("index"));
 			var choicebtn=$(this).attr("choicebtn")
-			alert(btnindex);
+			//alert(btnindex);
 			$(".deldiv[index=\""+btnindex+"\"]").remove();
 			if(btnindex<=initialindex||choicebtn=="photo"){
 				deleteindetail(btnindex,choicebtn);
@@ -277,7 +273,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}).on("fileuploaded", function (event, data) { 
         	var photourl=data.response.url;
         	if(data.response.flag==0){
-        		alert(data.extra.places);
+        		//alert(data.extra.places);
         		$("#Cover"+data.extra.places+"").html("");
         		alert("上传成功");
         		url="<img src=\"http://localhost:9088/P2P/images/"+photourl+"\" class=\"img-responsive\" style=\"width:350px;height:250px\">";

@@ -35,7 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="panel-body" style="padding-bottom:0px;">
         <div id="borderdiv"><b>我的发起 <input type="button" class="btn btn-info saveprojects" value="个人发起众筹"/></b>
         	
-        <input type="button" class="btn btn-info saveprojects" value="机构发起众筹"/> 
         </div>      
 		
 		
@@ -67,20 +66,23 @@ var empid1=$.cookie('empid');
 			url:"http://localhost:9088/P2P/ProjectsController/SaveProjects.do",
 			data:{"empid":empid,"originatortype":9,"addtime":time,"projectsstate":57,"launchtype":launchtype},
 			success:function(data){
-				alert(data);
-				if(data!="success"){
+				if(data=="err1"){
+					alert("您当前已存在一个正在运作的项目");
+				}else if(data=="err"){
+					alert("项目发起失败");
+				}else {
 					$.cookie('projectsid', parseInt(data),{path:"/"});
 					topWindow.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
 					//window.location.replace("http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp");
 					//window.location.href = 'http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp';
-				}				
+				
+				}
 			}
 		})
 		
 	})
 	
 	$(function () {
-		alert("1");
 	    //1.初始化Table
 	    var oTable = new TableInit();
 	    oTable.Init();
@@ -131,7 +133,7 @@ var TableInit = function () {
                 }
             },{
                 field: 'ADDTIME',
-                title: '创建时间'
+                title: '项目创建日期'
             },{
                 field: 'PROJECTSSTATE',
                 title: '项目状态'
@@ -150,10 +152,8 @@ var TableInit = function () {
     
     window.operateEvents={
     		"click .editbtn":function(e,value,row,index){
-					alert(row.PROJECTSID);
 					var projectsid=row.PROJECTSID;
 					$.cookie('projectsid', projectsid,{path:"/"});
-					alert(row.PROJECTSSTATE);
 					if(row.PROJECTSSTATE=="草稿箱"){
 						topWindow.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
 						
@@ -169,8 +169,6 @@ var TableInit = function () {
     		},"click .delectbtn":function(e,value,row,index){
 				var projectsid=row.PROJECTSID;
 				if(row.PROJECTSSTATE=="草稿箱"){
-					alert("123");
-					
 					$.ajax({
 						type:"post",
 						url:"http://localhost:9088/P2P/ProjectsController/DelProjects.do",
@@ -194,7 +192,6 @@ var TableInit = function () {
     }
     $(".editbtn").click(function(){
     	//var projects=$(this).name();
-    	alert(projects);
     })
     //得到查询的参数
     oTableInit.queryParams = function (params) {

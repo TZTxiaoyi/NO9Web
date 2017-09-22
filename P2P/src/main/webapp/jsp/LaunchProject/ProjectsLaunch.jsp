@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   	})
 	$("#wewr").click(function(){
-		alert("555");
+		//alert("555");
 			var projectsid=$.cookie('projectsid');
 			var originatorname=$("#originatorname").val();
 			var idcard=$("#idcard").val();
@@ -128,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data["idcard"]=parseInt(idcard);
 			data["telephone"]=parseInt(telephone);
 			data["protypeid"]=parseInt(protypeid);
-			alert("456");
+			//alert("456");
 			$.ajax({
 				type:"post",
 				url:"http://localhost:9088/P2P/PerProController/UpataPerPro.do",
@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var projectsid=$.cookie('projectsid');
 		var input="<input type=\"hidden\" name=\"projectsid\" value=\""+projectsid+"\"/>"; 
 		$("#Relevantdata").append(input);
-		alert(projectsid);
+		//alert(projectsid);
 		var data={};
 		data["projectsid"]=projectsid;
 		

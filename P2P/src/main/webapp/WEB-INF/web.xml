@@ -8,7 +8,9 @@
 	</context-param>
 	<session-config> 
 		<session-timeout>-1</session-timeout> 
-	</session-config> 
+
+	</session-config>
+
   <!-- <filter>  
         <filter-name>encodingFilter</filter-name>  
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  

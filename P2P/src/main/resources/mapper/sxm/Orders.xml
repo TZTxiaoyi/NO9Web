@@ -26,7 +26,7 @@
 		p.return_title,o.fraction,to_char(o.order_time,'yyyy-mm-dd hh24:mi:ss') as time
 		from orders o,employee e,pro_return p,pro_back pb
 		where o.empid=e.empid and p.pro_returnid=o.pro_returnid
-		and pb.order_status=96 and o.projectsid= #{projectsid}
+		and pb.order_status=96 and o.ord_id=pb.ord_id and o.projectsid= #{projectsid}
 		
 	</select>
 	<!-- 回报完成 -->

@@ -80,7 +80,7 @@
 						aria-hidden="true">×
 				</button>
 				<h4 class="modal-title" >
-					编辑角色
+					编辑资金流向类型
 				</h4>
 			</div>
 			<div class="modal-body">
@@ -149,8 +149,9 @@ $("#submit").click(function() {
 			success : function(data1) {//data为返回的数据，在这里做数据绑定  
 				if(data1.resultType){
 					alert("修改成功");
-					$('#updataModal').modal('hide');	
+					$('#updateCapitaltype').modal('hide');	
 					 $('#tb_departments').bootstrapTable("refresh");
+					 alert(111);
 				}else{
 					alert("修改失败");
 				} 

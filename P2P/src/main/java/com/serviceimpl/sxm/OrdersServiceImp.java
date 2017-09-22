@@ -5,10 +5,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.ljl.ProjectsDaoLjl;
 import com.dao.sxm.OrdersDao;
 import com.entity.tzt.Orders;
 import com.service.sxm.OrdersService;
@@ -24,12 +26,20 @@ import com.service.sxm.OrdersService;
 public class OrdersServiceImp implements OrdersService{
 	@Autowired
 	OrdersDao oDao;
+	@Autowired
+	ProjectsDaoLjl prodao;
 	@Override
 	/**
 	 * 等待回报项目
 	 */
 	public List selectOrders(Orders o) {
 		// TODO Auto-generated method stub
+		List<Map> pro=prodao.retProjects(o);
+		Map promap=pro.get(0);
+		System.out.println(promap);
+		Integer projectsid=Integer.parseInt(promap.get("PROJECTSID").toString());
+		o.setProjectsid(projectsid);
+		
 		return oDao.selectOrders(o);
 	}
 	@Override
@@ -38,6 +48,7 @@ public class OrdersServiceImp implements OrdersService{
 	 */
 	public int insertOrders(Orders o) {
 		// TODO Auto-generated method stub
+		
 		Date myDate =new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String hehe = dateFormat.format( myDate );
@@ -58,6 +69,10 @@ public class OrdersServiceImp implements OrdersService{
 	 */
 	public List selectback(Orders o) {
 		// TODO Auto-generated method stub
+		List<Map> pro=prodao.retProjects(o);
+		Map promap=pro.get(0);
+		Integer projectsid=Integer.parseInt(promap.get("PROJECTSID").toString());
+		o.setProjectsid(projectsid);
 		return oDao.selectback(o);
 	}
 	@Override
@@ -66,6 +81,10 @@ public class OrdersServiceImp implements OrdersService{
 	 */
 	public List selectalreadyback(Orders o) {
 		// TODO Auto-generated method stub
+		List<Map> pro=prodao.retProjects(o);
+		Map promap=pro.get(0);
+		Integer projectsid=Integer.parseInt(promap.get("PROJECTSID").toString());
+		o.setProjectsid(projectsid);
 		return oDao.selectalreadyback(o);
 	}
 	@Override

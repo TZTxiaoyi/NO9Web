@@ -146,7 +146,7 @@
 								<tr>
 									<td>身份证正面</td>
 									<td id="info_five">
-										<button type="button" class="btn btn-info" id="see_card" >查看</button>
+										<button type="button" class="btn btn-info" id="see_card" data-toggle="modal" data-target="#myModal1">查看</button>
 									</td>
 									<td>
 										<label><input type="radio" name="cardimage1" value="VALUE9"  flag="information" id="oneRadio"/>&nbsp;是</label>
@@ -408,13 +408,50 @@
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal -->
+		</div>
+		<!-- 查看身份证模态框 -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						身份证正、反面
+					</h4>
+				</div>
+				<div class="modal-body" id="card_image">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+		
 	</div>
 	<script type="text/javascript">
 		var auditing=$.cookie("project_auditing");
 		var topWindow=window.top;
 
 		$("#see_card").click(function(){
-			
+			var data1={};
+			data1["projectsid"]=auditing;
+			$.ajax({
+				url: '/P2P/project/sinAuditing.do',
+				type:"post",
+				dataType:"json",
+				data:JSON.stringify(data1),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					$.each(data,function(index,value){
+						var img1="<img src='"+value.CARDIMAGE1+"'><br><img src='"+value.CARDIMAGE2+"'>";											
+						$("#card_image").append(img1);						
+					})
+				}
+			});			
 		})
 		$("#give_up").click(function(){
 			if (!confirm("是否退出审核")) { 				
@@ -476,9 +513,7 @@
 						$("#info_one").append(value.IDCARD);
 						$("#info_two").append(value.ORIGINATORNAME);
 						$("#info_three").append(value.ADDRESS);
-						$("#info_four").append(value.TELEPHONE);
-						$("#info_five").append(img1);
-						$("#info_six").append(img2);
+						$("#info_four").append(value.TELEPHONE);										
 					})
 				}
 			});			
@@ -597,11 +632,7 @@
 						$("input:radio[value='VALUE10']").attr('checked','true');
 					}
 					
-					if(data[0].VALUE6=="yes"){
-						$("input:radio[value='VALUE11']").attr('checked','true');
-					}else if(data[0].VALUE6=="no"){
-						$("input:radio[value='VALUE12']").attr('checked','true');
-					}
+					
 				}
 			});
 		});
@@ -808,13 +839,7 @@
 				data["cardimage1"]=42;
 			}
 
-			if($("input:radio[value='VALUE11']").is(':checked')){
-				data["cardimage2"]=40;
-			}else if($("input:radio[value='VALUE12']").is(':checked')){
-				data["cardimage2"]=41;
-			}else{
-				data["cardimage2"]=42;
-			}
+			
 			$.ajax({
 				type:"post",
 				dataType:"json",
@@ -1000,7 +1025,7 @@
 				}
 			});
 		});
-		//点击提交后，如果 “是”的单选框被标记的数量为21，项目通过
+		//点击提交后，如果 “是”的单选框被标记的数量为20，项目通过
 		$("#save_all").click(function(){
 			var dd={};
 			dd["projectsid"]=auditing;
@@ -1012,7 +1037,7 @@
 				}
 			});
 			
-			if(flag==21){
+			if(flag==20){
 				dd["projectsstate"]=11;
 				$.ajax({					
 					type:"post",

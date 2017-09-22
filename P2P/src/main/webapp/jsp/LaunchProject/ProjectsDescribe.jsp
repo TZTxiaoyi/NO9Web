@@ -112,23 +112,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	})
 	$("#wewr").click(function(){
-		alert("555");
 			var projectsid=$.cookie('projectsid');
 			var title=$("#title").val();
-			alert(title);
+			
 			var goal=$("#goal").val();
-			alert(goal);
+			
 			var financing=$("#financing").val();
-			alert(financing);
+		
 			var financing_day=$("#financing_day").val();
-			alert(financing_day);
+			
 			var data ={};
 			data["projectsid"]=parseInt(projectsid);
 			data["title"]=title;
 			data["goal"]=goal;
 			data["financing"]=parseInt(financing);
 			data["financing_day"]=parseInt(financing_day);
-			alert("456");
 			$.ajax({
 				type:"post",
 				url:"http://localhost:9088/P2P/DescribeContrller/UpdateDescribe.do",
@@ -150,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		var input="<input type=\"hidden\" name=\"projectsid\" value=\""+projectsid+"\"/>"; 
 		$("#Relevantdata").append(input);
-		alert(projectsid);
+		
 		var data={};
 		data["projectsid"]=projectsid;
 		
@@ -159,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			url:"http://localhost:9088/P2P/DescribeContrller/AllDescribe.do",
 			data:data,
 			success:function(data){
-				alert(data);
+				
 				//var json=JSON.parse(data);
 				var cover="<img src=\"http://localhost:9088/P2P/images/"+data[0].COVER+"\" style=\"width:350px;height:250px\">";
 				

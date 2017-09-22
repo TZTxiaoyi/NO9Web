@@ -48,7 +48,7 @@
 				<!-- /page_base_stuff.aciton=perms[staff] staff为数据库中的关键字，即此路径必须具有此权限 -->
 				<!-- /css/** = anon /js/** = anon /login.jsp = anon -->
 				<!-- /js/** = anon /login.jsp* = anon /user/getUser.do = anon -->
-				/bootstrap/** = anon
+				<!-- /bootstrap/** = anon
 				/jq/**=anon
 				/jsp/LaunchProject/**=anon
 				/css/** = anon	
@@ -59,13 +59,15 @@
 				/images/** = anon	
 				/login/logCon.do=anon			
 				/jsp/background/log.jsp= anon
+				/addState/inseProState.do=anon
+				/addState/upRecordTab.do=anon	
 				
 				/zbjsp/**=anon
-				/sxmjsp/**=anon	
+				/sxmjsp/**=anon	 -->
+				/jsp/background/log.jsp= anon		
+				/jsp/background/**.jsp= authc
 				
-				/addState/inseProState.do=anon
-				/addState/upRecordTab.do=anon			
-				/** = authc
+				/** = anon
 			</value>
 		</property>
 	</bean>

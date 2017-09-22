@@ -5,7 +5,7 @@
 <mapper namespace="com.dao.ly.UsersDao">
 	<!-- 查询登录信息是否正确 -->
 	<select id="queryAccounts" resultType="com.entity.tzt.Accounts" parameterType="com.entity.tzt.Accounts">
-		select * from accounts where accounts=#{accounts} 
+		select * from accounts where roleid!=0 and accounts=#{accounts} 
 	</select>
 	<!-- 查询当前用户的所有权限 -->
 	<select id="queryAllFunction" resultType="map" parameterType="com.entity.tzt.Accounts">

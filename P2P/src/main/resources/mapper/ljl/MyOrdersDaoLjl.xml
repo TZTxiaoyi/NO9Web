@@ -9,5 +9,18 @@
 	<update id="UpdateOrders" parameterType="com.entity.tzt.Orders">
 		update orders set ord_status=#{ordstatus} where ord_id=#{ordid}
 	</update>
-
+	<update id="UpdateOrder" parameterType="map">
+		update orders set ord_status=#{ordstatus} where ord_id=#{ordid}
+	</update>
+	<update id="UpdateOrderList" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+                update orders 
+                <set>  
+                  ord_status=#{item.ORDSTATUS}
+                </set>  
+               <where>
+            	  ord_id=#{item.ORD_ID}
+               </where>  
+         </foreach> 
+	</update>
 </mapper>

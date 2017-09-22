@@ -16,7 +16,7 @@ public class Address {
 	private String Phone;//联系电话
 	private int postCodes;//邮政编码
 	private String AddressInfo;//详细地址
-	private int empid;//员工id
+	private int empid;//账号id
 	
 	
 	public int getEmpid() {

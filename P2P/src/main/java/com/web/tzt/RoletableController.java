@@ -89,7 +89,7 @@ public class RoletableController {
 		@ResponseBody
 		public String addRoleTable(@RequestBody Accounts accounts, HttpServletResponse response){
 			response.setCharacterEncoding("UTF-8");
-			response.setHeader("contentType", "22text/JSON;charset=UTF-8");
+			response.setHeader("contentType", "text/JSON;charset=UTF-8");
 			return JSON.toJSONString(AccountsServicetztImpl.queryAccountsTable(accounts));
 		}
 	
