@@ -601,7 +601,7 @@
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					//alert(data[0].VALUE1);
+					alert(data[0].VALUE1);
 					if(data[0].VALUE1=="yes"){
 						$("input:radio[value='VALUE1']").attr('checked','true');
 					}else if(data[0].VALUE1=="no"){
@@ -630,9 +630,7 @@
 						$("input:radio[value='VALUE9']").attr('checked','true');
 					}else if(data[0].VALUE5=="no"){
 						$("input:radio[value='VALUE10']").attr('checked','true');
-					}
-					
-					
+					}									
 				}
 			});
 		});

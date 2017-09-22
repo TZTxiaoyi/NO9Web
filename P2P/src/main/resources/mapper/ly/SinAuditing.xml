@@ -7,7 +7,7 @@
 		select r1.projectsid,w1.value value1,a1.value value2,b1.value value3,c1.value value4,d1.value value5
 		from resumes_auditings r1,word w1,word a1,word b1,word c1,word d1
 		where r1.idcard=w1.key and r1.originatorname=a1.key and r1.address=b1.key 
-		and r1.telephone=c1.key and r1.cardimage1=d1.key  and projectsid=100292
+		and r1.telephone=c1.key and r1.cardimage1=d1.key  and projectsid=#{projectsid}
 	</select>
 	<!-- 项目信息审核 -->
 	<select id="selDeAuditing" resultType="map" parameterType="int">
