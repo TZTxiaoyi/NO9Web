@@ -3,10 +3,11 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ly.SingleProjectDaoLy">
-	<select id="selectProject" resultType="map">
-		select o1.originatorid,p1.projectsid,o1.idcard,o1.originatorname,o1.address,o1.telephone,pt.protypename,o1.cardimage1,o1.cardimage2,w1.value state,p1.approver
+	<select id="selectProject" resultType="map" parameterType="int">
+		select o1.originatorid,p1.projectsid,o1.idcard,o1.originatorname,o1.address,o1.telephone,pt.protypename,w1.value state,p1.approver
 		from originator o1,projects p1,protype pt,word w1
-		where o1.projectsid=p1.projectsid and o1.protypeid=pt.protypeid and w1.key=p1.projectsstate and p1.approver is not null and w1.value !='已审核' and w1.value !='不通过'
+		where o1.projectsid=p1.projectsid and o1.protypeid=pt.protypeid and w1.key=p1.projectsstate and
+		p1.projectsstate=14 and p1.approver=#{approver}
 	</select>
 	<select id="selectsin" resultType="map" parameterType="com.entity.ly.SingleProjectLy">
 		select o1.originatorid,p1.projectsid,o1.idcard,o1.originatorname,o1.address,o1.telephone,pt.protypename,o1.cardimage1,o1.cardimage2,o1.poundage 

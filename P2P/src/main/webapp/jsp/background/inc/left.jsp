@@ -22,7 +22,7 @@
 			<dt><img class="icon1" src="../img/coin01.png" /><img class="icon2"src="../img/coin02.png" />
 				首页<img class="icon3" src="../img/coin19.png" /><img class="icon4" src="../img/coin20.png" /></dt>
 		</dl> -->
-			<!-- <dl class="system_log">
+			<dl class="system_log">
 				<dt>
 					<img class="icon1" src="../img/coin03.png" /><img class="icon2"
 						src="../img/coin04.png" /> 系统管理<img class="icon3"
@@ -39,29 +39,49 @@
 						src="../img/coin222.png" /><a class="cks" href="../user.jsp"
 						target="main">管理员管理</a><img class="icon5" src="../img/coin21.png" />
 				</dd>
-			</dl> -->
+			</dl>
 			<dl class="system_log">
-				<dt>
-					<img class="icon1" src="../img/coin05.png" /><img class="icon2"
-						src="../img/coin06.png" /> 人员管理<img class="icon3"
-						src="../img/coin19.png" /><img class="icon4"
-						src="../img/coin20.png" />
-				</dt>
-				<!-- <dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a class="cks" href="../banner.jsp"
-						target="main">用户管理</a><img class="icon5" src="../img/coin21.png" />
-				</dd> -->
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a class="cks" href="../opinion.jsp"
-						target="main">账号管理</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a class="cks" href="../roletable.jsp"
-						target="main">角色管理</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
+				<shiro:hasPermission name="employeeEdit">
+					<dt>
+						<img class="icon1" src="../img/coin05.png" /><img class="icon2"
+							src="../img/coin06.png" /> 人员管理<img class="icon3"
+							src="../img/coin19.png" /><img class="icon4"
+							src="../img/coin20.png" />
+					</dt>
+				</shiro:hasPermission>
+				
+				<shiro:hasPermission name="employee">
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a class="cks" href="../banner.jsp"
+							target="main">用户管理</a><img class="icon5" src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>
+				
+				<shiro:hasPermission name="accounts">
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a class="cks" href="../opinion.jsp"
+							target="main">账号管理</a><img class="icon5" src="../img/coin21.png" />
+					</dd>				
+				</shiro:hasPermission>
+				
+				<shiro:hasPermission name="roleEdit">
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a class="cks" href="../roletable.jsp"
+							target="main">角色管理</a><img class="icon5" src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>	
+					
+				<shiro:hasPermission name="powerEdit">
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a class="cks" href="../editPower.html"
+							target="main">角色权限管理</a><img class="icon5" src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>
+				
 			</dl>
 			<dl class="system_log">
 				<shiro:hasPermission name="project">
@@ -112,25 +132,44 @@
 							class="cks">审核未通过</a><img class="icon5" src="../img/coin21.png"/>
 					</dd>
 				</shiro:hasPermission>							
-			</dl>
+			</dl>			
 			<dl class="system_log">
-				<dt>
-					<img class="icon1" src="../img/coin11.png" /><img class="icon2"
-						src="../img/coin12.png" />统计查询<img class="icon3"
-						src="../img/coin19.png" /><img class="icon4"
-						src="../img/coin20.png" />
-				</dt>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../projectcount.jsp" target="main"
-						class="cks">项目统计</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../profitcount.jsp" target="main"
-						class="cks">资金统计</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
+			
+				<shiro:hasPermission name="capital">
+					<dt>
+						<img class="icon1" src="../img/coin11.png" /><img class="icon2"
+							src="../img/coin12.png" />统计查询<img class="icon3"
+							src="../img/coin19.png" /><img class="icon4"
+							src="../img/coin20.png" />
+					</dt>
+				</shiro:hasPermission>
+				
+				<shiro:hasPermission name="projectCaptail">
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../projectcount.jsp" target="main"
+							class="cks">项目统计</a><img class="icon5" src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>	
+				
+				<!--<shiro:hasPermission name="moneyCapital">	
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../capitalcount.jsp" target="main"
+							class="cks">资金统计</a><img class="icon5" src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>-->		
+				
+				<shiro:hasPermission name="profitCapital">	
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../profitcount.jsp" target="main"
+							class="cks">资金统计</a><img class="icon5" src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>		
+					
 			</dl>
+			
 			<dl class="system_log">
 			
 				<shiro:hasPermission name="capitalmanage">
@@ -143,49 +182,52 @@
 				</shiro:hasPermission>
 				
 				<shiro:hasPermission name="financingmanage">
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../balance.jsp"
-						target="main" class="cks">项目筹资管理</a><img class="icon5"
-						src="../img/coin21.png" />
-				</dd>
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../balance.jsp"
+							target="main" class="cks">项目筹资管理</a><img class="icon5"
+							src="../img/coin21.png" />
+					</dd>
 				</shiro:hasPermission>
 				
 				<shiro:hasPermission name="capitalflowmanage">
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../capitaltype.jsp"
-						target="main" class="cks">资金流向类型管理</a><img class="icon5"
-						src="../img/coin21.png" />
-				</dd>
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../capitaltype.jsp"
+							target="main" class="cks">资金流向类型管理</a><img class="icon5"
+							src="../img/coin21.png" />
+					</dd>
 				</shiro:hasPermission>
 				
 				<shiro:hasPermission name="platformmanage">
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../capital.jsp"
-						target="main" class="cks">平台资金管理</a><img class="icon5"
-						src="../img/coin21.png" />
-				</dd>
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../capital.jsp"
+							target="main" class="cks">平台资金管理</a><img class="icon5"
+							src="../img/coin21.png" />
+					</dd>
 				</shiro:hasPermission>
 				
 				<shiro:hasPermission name="capitalgrant">
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../TwoLoan.jsp"
-						target="main" class="cks">项目资金发放</a><img class="icon5"
-						src="../img/coin21.png" />
-				</dd>
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../TwoLoan.jsp"
+							target="main" class="cks">项目资金发放</a><img class="icon5"
+							src="../img/coin21.png" />
+					</dd>
 				</shiro:hasPermission>
-				<dd>
-					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
-						src="../img/coin222.png" /><a href="../profit.jsp"
-						target="main" class="cks">盈利资金</a><img class="icon5"
-						src="../img/coin21.png" />
-				</dd>
 				
+				<shiro:hasPermission name="ProfitFund">
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../profit.jsp"
+							target="main" class="cks">盈利资金</a><img class="icon5"
+							src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>
 			</dl>
 			
+
 		</div>
 
 	</div>

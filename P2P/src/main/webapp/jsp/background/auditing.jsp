@@ -19,7 +19,7 @@
 	#save_sinpro,#save_two,#save_three,#save_four{
 		display:block;
 		position:relative;
-		margin-left:900px;
+		margin-left:1000px;
 	}
 	#save_all{
 		display:block;
@@ -32,6 +32,30 @@
 		position:absolute;
 		margin-left:800px;
 		margin-top:40px
+	}
+	#passAll1{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:-45px;
+	}
+	#passAll2{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:10px;
+	}
+	#passAll3{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:10px;
+	}
+	#passAll4{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:10px;
 	}
 </style>
 <script>
@@ -64,8 +88,8 @@
 					<li><a href="#pro_return" data-toggle="tab">项目回报审核</a></li>
 					</ul>
 					项目序号：<span id="projectsid"></span>
-					开始审批：<span id="begin_auditing"></span>
-					上次审批结束：<span id="last_auditing"></span>
+				
+					
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade in active" id="home">
 							<table class="table table-hover">
@@ -121,30 +145,23 @@
 								</tr>
 								<tr>
 									<td>身份证正面</td>
-									<td id="info_five"></td>
+									<td id="info_five">
+										<button type="button" class="btn btn-info" id="see_card" data-toggle="modal" data-target="#myModal1">查看</button>
+									</td>
 									<td>
 										<label><input type="radio" name="cardimage1" value="VALUE9"  flag="information" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="cardimage1" value="VALUE10"  flag="41"/>&nbsp;否</label>										
 									</td>
-								</tr>
-								<tr>
-									<td>身份证反面</td>
-									<td id="info_six"></td>
-									<td>
-										<label><input type="radio" name="cardimage2" value="VALUE11"  id="oneRadio"/>&nbsp;是</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="cardimage2" value="VALUE12"  flag="41"/>&nbsp;否</label>
-									</td>
-								</tr>
+								</tr>								
 							</table>
 							<div class="bbD">
-								<input type="button" id="passAll1" class="btn btn-info btn-xs" value="一键通过">
+								<button type="button" class="btn btn-info" id="save_sinpro">保存</button>
 							</div>
-							<div class="bbD">			
-									<button type="button" class="btn btn-info" id="save_sinpro">保存</button>
+							<div class="bbD">		
+									<input type="button" id="passAll1" class="btn btn-info btn-xs" value="一键通过">	
+									
 							</div>							
 						</div>
 						<div class="tab-pane fade" id="ios">
@@ -356,10 +373,12 @@
 					</div>
 					
 					<div class="bbD">
-						<div id="reasons"></div>
+						<div id="reasons">
+							友情提示：一次审核不完，点击每页保存以便下次继续审核
+						</div>
 						<p class="bbDP">
 							<button class="btn_ok btn_yes" href="#" id="save_all">提交</button>
-							<a class="btn_ok btn_no" href="index.jsp" id="give_up">取消</a>
+							<button class="btn_ok btn_no" id="give_up">取消</button>
 						</p>
 					</div>
 				</div>
@@ -368,7 +387,7 @@
 		</div>
 	</div>
 	
-	//文本详情模态框
+	<!-- 文本详情模态框 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -389,10 +408,58 @@
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal -->
+		</div>
+		<!-- 查看身份证模态框 -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						身份证正、反面
+					</h4>
+				</div>
+				<div class="modal-body" id="card_image">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+		
 	</div>
 	<script type="text/javascript">
 		var auditing=$.cookie("project_auditing");
 		var topWindow=window.top;
+
+		$("#see_card").click(function(){
+			var data1={};
+			data1["projectsid"]=auditing;
+			$.ajax({
+				url: '/P2P/project/sinAuditing.do',
+				type:"post",
+				dataType:"json",
+				data:JSON.stringify(data1),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					$.each(data,function(index,value){
+						var img1="<img src='"+value.CARDIMAGE1+"'><br><img src='"+value.CARDIMAGE2+"'>";											
+						$("#card_image").append(img1);						
+					})
+				}
+			});			
+		})
+		$("#give_up").click(function(){
+			if (!confirm("是否退出审核")) { 				
+		        window.event.returnValue = false; 
+		    } else{
+		    	topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
+			}
+		});
 		
 		$("#passAll1").click(function(){
 			$("input:radio[flag='information']").prop('checked','true');
@@ -446,9 +513,7 @@
 						$("#info_one").append(value.IDCARD);
 						$("#info_two").append(value.ORIGINATORNAME);
 						$("#info_three").append(value.ADDRESS);
-						$("#info_four").append(value.TELEPHONE);
-						$("#info_five").append(img1);
-						$("#info_six").append(img2);
+						$("#info_four").append(value.TELEPHONE);										
 					})
 				}
 			});			
@@ -567,11 +632,7 @@
 						$("input:radio[value='VALUE10']").attr('checked','true');
 					}
 					
-					if(data[0].VALUE6=="yes"){
-						$("input:radio[value='VALUE11']").attr('checked','true');
-					}else if(data[0].VALUE6=="no"){
-						$("input:radio[value='VALUE12']").attr('checked','true');
-					}
+					
 				}
 			});
 		});
@@ -714,7 +775,7 @@
 			});
 		});
 		//修改项目状态
-	$(function(){
+	/* $(function(){
 		var dd={};
 		dd["projectsid"]=auditing;
 		dd["projectsstate"]=14;
@@ -728,7 +789,7 @@
 				//alert(data);
 			}
 		});
-	});
+	}); */
 		//个人信息审核记录，先删除原有数据记录，再进行插入记录
 		$("#save_sinpro").click(function(){
 			//alert(8888);
@@ -778,13 +839,7 @@
 				data["cardimage1"]=42;
 			}
 
-			if($("input:radio[value='VALUE11']").is(':checked')){
-				data["cardimage2"]=40;
-			}else if($("input:radio[value='VALUE12']").is(':checked')){
-				data["cardimage2"]=41;
-			}else{
-				data["cardimage2"]=42;
-			}
+			
 			$.ajax({
 				type:"post",
 				dataType:"json",
@@ -970,7 +1025,7 @@
 				}
 			});
 		});
-		//点击提交后，如果 “是”的单选框被标记的数量为21，项目通过
+		//点击提交后，如果 “是”的单选框被标记的数量为20，项目通过
 		$("#save_all").click(function(){
 			var dd={};
 			dd["projectsid"]=auditing;
@@ -981,8 +1036,8 @@
 					flag++;
 				}
 			});
-			alert(flag);
-			if(flag==21){
+			
+			if(flag==20){
 				dd["projectsstate"]=11;
 				$.ajax({					
 					type:"post",
@@ -997,17 +1052,23 @@
 						topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
 					}					
 				});								
-			}else{7
-				alert(flag);				
+			}else{
+				alert(flag);
+				alert(789);
 				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");					
 			}
 			//修改审核记录，添加最后时间 如果为通过审核，添加未通过原因
+		
+		//修改 状态
+		 
+	});
 		 function mark(){
+				alert(456);
 			var dd={};
 			dd["projectsid"]=auditing;
 			//dd["recordtable_endtime"]=new Date().toLocaleString();
 			dd["reason"]=$("#text").val();
-			alert(JSON.stringify(dd));			
+			//alert(JSON.stringify(dd));			
 			$.ajax({					
 				type:"post",
 				dataType:"json",
@@ -1017,25 +1078,27 @@
 				success:function(datas){										
 					alert("提交成功");
 					upProState();	//修改 状态
-					topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
-					
+										
 				},				
 			});
-		}		
-		//修改 状态
+		}	
+		 
 		 function upProState(){
+				alert(212);
+				var dd={};
 			 dd["projectsstate"]=88;
+			 dd["projectsid"]=auditing;
 				$.ajax({					
 					type:"post",
 					dataType:"json",
 					url:"/P2P/project/upSinProState.do",
 					data:JSON.stringify(dd),
 					contentType:"application/json;charset=UTF-8",
-					success:function(data){					
+					success:function(data){		
+						topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
 					}					
 				});
 		 }
-	});
 	</script>
 </body>
 </html>

@@ -15,7 +15,7 @@
 <style>
 	#save_one,#save_two,#save_three,#save_four{
 		display:block;
-		position:absolute;
+		position:relative;
 		margin-left:1000px;
 	}
 	#save_all{
@@ -29,6 +29,30 @@
 		position:absolute;
 		margin-left:800px;
 		margin-top:80px
+	}
+	#passAll1{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:10px;
+	}
+	#passAll2{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:10px;
+	}
+	#passAll3{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:10px;
+	}
+	#passAll4{
+		display:block;
+		position:absolute;
+		margin-left:800px;
+		margin-top:10px;
 	}
 </style>
 </head>
@@ -356,17 +380,19 @@
 							</table>
 							<div class="bbD">
 								<input type="button" id="passAll4" class="btn btn-info btn-xs" value="一键通过">
-								<input type="button" id="unpassAll4" class="btn btn-info btn-xs" value="取消">
+								
 							</div>
 									<button type="button" class="btn btn-info" id="save_four">保存</button>
 							
 						</div>
 					</div>					
 					<div class="bbD">
-						<div id="reasons"></div>
+						<div id="reasons">
+							友情提示：一次审核不完，点击每页保存以便下次继续审核
+						</div>
 						<p class="bbDP">
-							<button class="btn_ok btn_yes" href="#" id="save_all">提交</button>
-							<a class="btn_ok btn_no" href="#" id="give_up">取消</a>
+							<button class="btn_ok btn_yes" id="save_all">提交</button>
+							<button type="button" class="btn_ok btn_no" id="give_up">取消</button>
 						</p>
 					</div>
 				</div>
@@ -401,6 +427,14 @@
 	<script type="text/javascript">
 		var auditing = parseInt($.cookie("orga_auditing"));
 		var topWindow=window.top;
+		
+		$("#give_up").click(function(){
+			if (!confirm("是否退出审核")) { 				
+		        window.event.returnValue = false; 
+		    } else{
+		    	topWindow.location.href = "http://localhost:9088/P2P/jsp/background/index.jsp";
+			}
+		});
 		
 		$("#passAll1").click(function(){
 			$("input:radio[flag='information']").prop('checked','true');

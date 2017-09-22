@@ -28,6 +28,12 @@
     endY :2100//年份的结束默认为2049
 });
 </script>
+<style>
+	.table th, .table td { 
+text-align: center;
+vertical-align: middle!important;
+}
+</style>
 </head>
 
 <body>
@@ -222,6 +228,7 @@
 			pagination : true, //是否显示分页（*）
 			sortable : false, //是否启用排序
 			sortOrder : "asc", //排序方式
+			singleSelect  : true,           // 单选checkbox 
 			// queryParams: oTableInit.queryParams,//传递参数（*）
 			//  sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, //初始化加载第一页，默认第一页

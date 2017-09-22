@@ -16,7 +16,10 @@
 	<script type="text/javascript" src="../../bootstrap/dist/bootstrap-table.js"></script>
 	<link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
 	<style>
-	
+		.table th, .table td { 
+			text-align: center;
+			vertical-align: middle!important;
+		}
 	</style>
 	<script type="text/javascript">
 	
@@ -75,10 +78,11 @@ function projectstate(data){
 		type:"post",
 		data:JSON.stringify(data),
 		contentType:"application/json;charset=UTF-8",
-		success:function(data){
-			alert(data);
+		success:function(data){			
 			if(data==1){
 				alert("已有在审核项目");
+			}else{
+				$('#protab').bootstrapTable("refresh");
 			}
 		}
 	});
@@ -115,6 +119,7 @@ function projectstate(data){
         pageNumber:1,                       //初始化加载第一页，默认第一页
         pageSize: 10,                       //每页的记录行数（*）
         pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+        singleSelect  : true,           // 单选checkbox 
        // search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
        // strictSearch: true,
         showColumns: true,                  //是否显示所有的列

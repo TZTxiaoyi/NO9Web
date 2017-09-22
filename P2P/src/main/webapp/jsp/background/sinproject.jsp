@@ -20,6 +20,12 @@
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css"
 	type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
+<style>
+	.table th, .table td { 
+text-align: center;
+vertical-align: middle!important;
+}
+</style>
 </head>
 
 <body>
@@ -210,6 +216,7 @@
         pageSize: 10,                       //每页的记录行数（*）
         pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
        // search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+       	singleSelect  : true,           // 单选checkbox 
        // strictSearch: true,
         showColumns: true,                  //是否显示所有的列
         showRefresh: true,                  //是否显示刷新按钮
@@ -243,12 +250,6 @@
         } , {
         	field: 'PROTYPENAME',
             title: '项目类型',
-        } ,{
-        	formatter:mark,
-            title: '身份证正面',
-        } ,{
-        	field: 'CARDIMAGE2',
-            title: '身份证反面',
         },{
         	field: 'APPROVER',
             title: '审批人',

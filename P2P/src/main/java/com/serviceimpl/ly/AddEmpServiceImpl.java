@@ -62,16 +62,18 @@ public class AddEmpServiceImpl implements AddEmployeeService{
 		//System.out.println("=============:"+projectsid.getApprover());
 		aRe.setEmpid(ee);//将员工id放入审核记录对象中
 		aRe.setProjectsid(projectsid.getProjectsid());//将项目序号放入审核记录对象中
-		aRe.setRecordtable_begintime(new Date());//将当前时间放入审核记录对象中
-	
+		//aRe.setRecordtable_begintime(new Date());//将当前时间放入审核记录对象中
 	
 		//System.out.println("ssssddd"+empid.getEmpid());
 		List<Object> eList= projectsDaoLy.selEmProject(projectsid);//查询当前员工是否已经有在审批中的项目
 		int flag1=eList.size();
 		//System.out.println("-------------888:"+flag1);
+		projectsid.setProjectsstate(14);
 		if(flag1 != 0){
 			return 1;
-		}else {												
+		}else {			
+			sinAuditingDao.upSinProSt(projectsid);//修改项目状态
+			System.out.println("begin-----:"+aRe.getRecordtable_begintime());
 			projectsDaoLy.insAuditingRe(aRe);//点击审核时给审核记录一个初始数据，审批人、项目序号、开始审核时间、
 			int emp=projectsDaoLy.upProEmployee(projectsid);//给项目添加一个审批人
 			
@@ -79,18 +81,18 @@ public class AddEmpServiceImpl implements AddEmployeeService{
 				//System.out.println("-----------aaa:"+flag);
 			if (sList.size()==1) {
 				sinAuditingDao.deSinProState(projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（1）
-				//int sin=sinAuditingDao.inSinProState(projectsid);//在所有项目里点击审核，给个人信息审核表一个默认 未审核 的初始值（1）		
+				int sin=sinAuditingDao.inSinProState(projectsid);//在所有项目里点击审核，给个人信息审核表一个默认 未审核 的初始值（1）		
 			}else{
 				sinAuditingDao.deOrProState(projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（1）
-				//int org=sinAuditingDao.inOrProState(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（1）
+				int org=sinAuditingDao.inOrProState(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（1）
 			}
 			sinAuditingDao.deProIndetailState(projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（2）
 			sinAuditingDao.deProDescribeState(projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（3）
 			sinAuditingDao.deProReturnState(projectsid);//在所有项目里点击审核,如果该项目是之前审核没通过的删除原来的审核记录（4）
 			
-			//int pro2=sinAuditingDao.inProIndetailState(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（2）
-			//int pro3=sinAuditingDao.inProDescribeState(projectsid);//在所有项目里点击审核，给 项目描述 审核表一个默认 未审核 的初始值（3）
-			//int pro4=sinAuditingDao.inProReturnState(projectsid);//在所有项目里点击审核，给 项目回报  审核表一个默认 未审核 的初始值（4）
+			int pro2=sinAuditingDao.inProIndetailState(projectsid);//在所有项目里点击审核，给机构信息审核表一个默认 未审核 的初始值（2）
+			int pro3=sinAuditingDao.inProDescribeState(projectsid);//在所有项目里点击审核，给 项目描述 审核表一个默认 未审核 的初始值（3）
+			int pro4=sinAuditingDao.inProReturnState(projectsid);//在所有项目里点击审核，给 项目回报  审核表一个默认 未审核 的初始值（4）
 			
 			return 0;
 		}

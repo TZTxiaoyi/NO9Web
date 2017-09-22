@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.scripting.xmltags.VarDeclSqlNode;
@@ -50,10 +51,11 @@ public class ControllerLy {
 	 * @param response
 	 */
 	@RequestMapping(value="/pro")
-	public void selaudit(HttpServletResponse response){
+	public void selaudit(HttpServletResponse response,HttpServletRequest request){
 		//System.out.println("public________");
 		response.setHeader("content-type","text/html;charset=UTF-8");
-		List<Object> aList = auditingServiceLy.selectpro();
+		int approver = (int)request.getSession().getAttribute("empid");
+		List<Object> aList = auditingServiceLy.selectpro(approver);
 		JSON json =new JSONArray(aList);
 		
 		try {
@@ -250,7 +252,7 @@ public class ControllerLy {
 	@ResponseBody
 	@RequestMapping(value="/upSinProState")
 	public int upSinProSta(@RequestBody Project projectsid,HttpServletResponse response){
-		System.out.println("------------6666:"+projectsid.getProjectsid());
+		System.out.println("-----123-------6666:"+projectsid.getProjectsid());
 		response.setHeader("content-type","text/html;charset=UTF-8");
 		int dList = SinAuditingService.upSinProSt(projectsid);
 		System.out.println("rrrrrrrrr:"+dList);
@@ -265,9 +267,9 @@ public class ControllerLy {
 	@ResponseBody
 	@RequestMapping(value="/upSinProStateEnd")
 	public int upSinProStaEnd(@RequestBody Project projectsid,HttpServletResponse response){
-		System.out.println("------------6666:"+projectsid.getProjectsid());
+		System.out.println("------------修改项目状态，添加项目资金表:"+projectsid.getProjectsid());
 		response.setHeader("content-type","text/html;charset=UTF-8");
-		int dList = SinAuditingService.upSinProSt(projectsid);
+		int dList = SinAuditingService.upSinProStEnd(projectsid);
 		System.out.println("rrrrrrrrr:"+dList);
 		return dList;
 	}

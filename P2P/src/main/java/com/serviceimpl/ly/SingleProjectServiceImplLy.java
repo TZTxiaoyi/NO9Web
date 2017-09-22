@@ -15,9 +15,9 @@ public class SingleProjectServiceImplLy implements SingleProjectServiceLy{
 	SingleProjectDaoLy singleProjectDaoLy;
 	@Autowired 
 	ProjectsDaoLy projects;
-	public List<Object> selectpro() {
+	public List<Object> selectpro(int approver) {
 		// TODO Auto-generated method stub
-		return singleProjectDaoLy.selectProject();
+		return singleProjectDaoLy.selectProject(approver);
 	}
 	
 	public List<Object> selprojects() {

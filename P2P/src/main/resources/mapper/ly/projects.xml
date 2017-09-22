@@ -3,9 +3,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ly.ProjectsDaoLy">
 	<select id="selproject" resultType="map">
-		select p1.projectsid,e1.empid,e1.username,w1.value,p1.addtime,a1.value state ,p1.approver
+		select p1.projectsid,e1.empid,e1.username,w1.value,to_char(p1.addtime,'yyyy-mm-dd hh24:mi:ss') as addtime,a1.value state ,p1.approver
 		from projects p1,employee e1,word w1,word a1
-		where p1.empid=e1.empid  and p1.originatortype=w1.key and a1.key=p1.projectsstate and approver is null and a1.value !='草稿箱'
+		where p1.empid=e1.empid  and p1.originatortype=w1.key and a1.key=p1.projectsstate and
+		approver is null and p1.projectsstate=15 
 	</select>
 	<!-- //给项目添加一个审批人 -->
 	<update id="upProEmployee" parameterType="int">
@@ -14,27 +15,27 @@
 	
 	<!-- //点击审核时给审核记录一个初始数据，审批人、项目序号、开始审核时间 -->
 	<insert id="insAuditingRe" parameterType="map">
-		insert into recordtable(recordtable_id,empid,projectsid,recordtable_begintime) values(auditing_list_recordtable.nextval,#{empid},#{projectsid},#{recordtable_begintime})
+		insert into recordtable(recordtable_id,empid,projectsid,recordtable_begintime) values(auditing_list_recordtable.nextval,#{empid},#{projectsid},sysdate)
 	</insert>
 	<!-- //修改审核记录表，添加结束时间 -->
 	<update id="upRecordTab" parameterType="map">
-		update recordtable set recordtable_endtime=#{recordtable_endtime,jdbcType=DATE},reason=#{reason,jdbcType=VARCHAR} where projectsid=#{projectsid,jdbcType=NUMERIC}
+		update recordtable set recordtable_endtime=sysdate,reason=#{reason,jdbcType=VARCHAR} where projectsid=#{projectsid,jdbcType=NUMERIC}
 	</update>
 	
 	<!-- //查看审核记录表  (通过) -->
 	<select id="selPassPro" resultType="map" parameterType="map">
-		select r1.empid,r1.projectsid,r1.recordtable_begintime,r1.recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
+		select r1.empid,r1.projectsid,to_char(r1.recordtable_begintime,'yyyy-mm-dd hh24:mi:ss') as recordtable_begintime,to_char(r1.recordtable_endtime,'yyyy-mm-dd hh24:mi:ss') as recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
 		from recordtable r1,projects p1,employee e1
 		where r1.empid=e1.empid and r1.projectsid=p1.projectsid  and projectsstate=11
 	</select>
 	<select id="selUnpassPro" resultType="map" parameterType="map">
-		select r1.empid,r1.projectsid,r1.recordtable_begintime,r1.recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
+		select r1.empid,r1.projectsid,to_char(r1.recordtable_begintime,'yyyy-mm-dd hh24:mi:ss') as recordtable_begintime,to_char(r1.recordtable_endtime,'yyyy-mm-dd hh24:mi:ss') as recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
 		from recordtable r1,projects p1,employee e1
 		where r1.empid=e1.empid and r1.projectsid=p1.projectsid  and projectsstate=88
 	</select>
 	<!-- 查询当前员工是否已经有在审批中的项目 -->
 	<select id="selEmProject" resultType="map" parameterType="map">
-		 select approver from projects where approver=#{approver}
+		 select * from recordtable where recordtable_endtime is null and empid=#{approver}
 	</select>
 	<!-- //根据项目id,去查审批人 -->
 	<select id="selProjectEmp" resultType="map" parameterType="map">

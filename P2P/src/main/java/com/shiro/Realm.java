@@ -51,7 +51,7 @@ public class Realm extends AuthorizingRealm{
 		
 		System.out.println("accounts2-------:"+accounts2.getAccounts());
 		Accounts alList= usersDao.queryAccounts(accounts2);
-		
+		System.out.println("password-------:"+alList.getPasswords());
 			
 			//System.out.println("alist---------:"+alList.getEmpid());
 			
