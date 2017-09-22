@@ -12,7 +12,7 @@
 		pro_money pm 
  		<where>
  			<if test="true">
- 				(p.projectsstate=84
+ 				p.projectsstate=84
  			</if><!-- 
  			<if test="true">
  				or p.projectsstate=85)

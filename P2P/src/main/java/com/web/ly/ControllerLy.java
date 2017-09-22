@@ -257,6 +257,21 @@ public class ControllerLy {
 		return dList;
 	}
 	/**
+	 * 点击项目发布后，修改项目状态，添加项目资金表
+	 * @param projectsid
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/upSinProStateEnd")
+	public int upSinProStaEnd(@RequestBody Project projectsid,HttpServletResponse response){
+		System.out.println("------------6666:"+projectsid.getProjectsid());
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		int dList = SinAuditingService.upSinProSt(projectsid);
+		System.out.println("rrrrrrrrr:"+dList);
+		return dList;
+	}
+	/**
 	 * 
 	 * 保存个人信息审核记录
 	 * @param projectsid
