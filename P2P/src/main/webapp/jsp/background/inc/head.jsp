@@ -9,13 +9,13 @@
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/public.js"></script>
 
-<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"
+<script type="text/javascript" src="../../../bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css"
 	type="text/css"></link>
 <script type="text/javascript"
-	src="../../bootstrap/dist/bootstrap-table.js"></script>
+	src="../../../bootstrap/dist/bootstrap-table.js"></script>
 
-<link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css"
+<link rel="stylesheet" href="../../../bootstrap/dist/bootstrap-table.css"
 	type="text/css"></link>
 
 </head>
@@ -32,21 +32,9 @@
 				${empid }
 			</p>
 			<p class="p2">
-				<a href="#" class="resetPWD">重置密码</a>&nbsp;&nbsp;<a
-					href="{:U('Admin/Index/exit')}" class="goOut">退出</a>
-			</p>
-		</div>
-		<!-- onclick="{if(confirm(&quot;确定退出吗&quot;)){return true;}return false;}" -->
-	</div>
-
-	<div class="closeOut">
-		<div class="coDiv">
-			<p class="p1">
-				<span>X</span>
-			</p>
-			<p class="p2">确定退出当前用户？</p>
-			<P class="p3">
-				<a class="ok yes" href="#">确定</a><a class="ok no" href="#">取消</a>
+				<button class="btn btn-primary " >
+					退出登录
+			</button>
 			</p>
 		</div>
 	</div>
@@ -54,4 +42,26 @@
 
 
 </body>
+<script>
+
+$(".btn-primary").click(function() {
+	if (!confirm("确认退出当前账号？")) { 				
+	    window.event.returnValue = false; 
+	} else{
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "/P2P/ProWeb/esclogin.do",//要访问的后台地址  
+			success : function(result) {//data为返回的数据，在这里做数据绑定  
+				var topWindow=window.top;
+				topWindow.location.href = "http://localhost:9088/P2P/jsp/background/log.jsp";
+			},error : function() {
+				alert("error");
+			}
+		});
+	}
+
+});
+
+</script>
 </html>

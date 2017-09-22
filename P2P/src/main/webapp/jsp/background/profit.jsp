@@ -42,7 +42,7 @@
 			<!-- 类型 -->
 			<div class="table-responsive">
 				<table class="queryType-body table table-striped">
-					<tr><td> 金额数量：</td><td><input type="text" id="capital"></td></tr>
+					<tr><td> 金额数量：</td><td><input type="text" id="capital"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"></td></tr>
 					<tr>
 						<td> 资金类型</td>
 						<td>
@@ -89,7 +89,6 @@ $("#submit").click(function(){
 				capital: -$("#capital").val()
 		};
 	}
-	alert(JSON.stringify(data));
 	 $.ajax({
 			type : "post",
 			dataType : "json",

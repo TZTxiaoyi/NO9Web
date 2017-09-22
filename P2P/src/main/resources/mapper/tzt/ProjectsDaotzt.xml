@@ -27,7 +27,7 @@
 		select p.projectsid ,p.empid,w2.value as ORIGINATOR, p.addtime , t.protypename ,w1.value as PROJECTSSTATE ,t.protypename 
 		from projects p,word w1,word w2 ,protype t 
 		where w1.key = p.projectsstate and t.protypeid=p.protypeid and p.originatortype=w2.key and p.projectsstate=w1.key
-
+		order  by p.projectsid desc
 
 	</select>
 </mapper>
