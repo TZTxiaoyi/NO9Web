@@ -120,17 +120,7 @@
 										<label><input type="radio" name="originatorname" value="VALUE4" />&nbsp;否</label>						
 									</td>
 								</tr>
-								<tr>
-									<td>地址</td>
-									<td id="info_three"></td>
-									<td>
-										<label><input type="radio" name="adress" value="VALUE5"  flag="information" id="oneRadio"/>&nbsp;是</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="adress" value="VALUE6" flag="41" />&nbsp;否</label>
-										
-									</td>
-								</tr>
+								
 								<tr>
 									<td>电话</td>
 									<td id="info_four"></td>
@@ -193,16 +183,7 @@
 										<label><input type="radio" name="goal" value="right4"/>&nbsp;否</label>
 									</td>
 								</tr>
-								<tr>
-									<td>项目地点</td>
-									<td id="detail_three"></td>
-									<td>
-										<label><input type="radio" name="location" value="right5" flag="information2" id="oneRadio"/>&nbsp;是</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="location" value="right6"/>&nbsp;否</label>
-									</td>
-								</tr>
+								
 								<tr>
 									<td>筹金金额（元）</td>
 									<td id="detail_four"></td>
@@ -332,16 +313,7 @@
 										<label><input type="radio" name="reContent" value="left8"/>&nbsp;否</label>
 									</td>
 								</tr>
-								<tr>
-									<td>限制人数</td>
-									<td id="return_five"></td>
-									<td>
-										<label><input type="radio" name="reLimit" value="left9" flag="information4" id="oneRadio"/>&nbsp;是</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="reLimit" value="left10"/>&nbsp;否</label>
-									</td>
-								</tr>
+								
 								<tr>
 									<td>回报时间</td>
 									<td id="return_six"></td>
@@ -601,7 +573,7 @@
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
-					alert(data[0].VALUE1);
+					//alert(data[0].VALUE1);
 					if(data[0].VALUE1=="yes"){
 						$("input:radio[value='VALUE1']").attr('checked','true');
 					}else if(data[0].VALUE1=="no"){
@@ -614,11 +586,7 @@
 						$("input:radio[value='VALUE4']").attr('checked','true');
 					}
 					
-					if(data[0].VALUE3=="yes"){
-						$("input:radio[value='VALUE5']").attr('checked','true');
-					}else if(data[0].VALUE3=="no"){
-						$("input:radio[value='VALUE6']").attr('checked','true');
-					}
+					
 					
 					if(data[0].VALUE4=="yes"){
 						$("input:radio[value='VALUE7']").attr('checked','true');
@@ -661,23 +629,19 @@
 						$("input:radio[value='right4']").attr('checked','true');
 					}
 					
-					if(data[0].VALUE3=="yes"){
-						$("input:radio[value='right5']").attr('checked','true');
-					}else if(data[0].VALUE3=="no"){
-						$("input:radio[value='right6']").attr('checked','true');
-					}
+					
 					
 					if(data[0].VALUE4=="yes"){
 						$("input:radio[value='right7']").attr('checked','true');
 					}else if(data[0].VALUE4=="no"){
 						$("input:radio[value='right8']").attr('checked','true');
 					}
-					
-					if(data[0].VALUE5=="yes"){
+					if(data[0].VALUE4=="yes"){
 						$("input:radio[value='right9']").attr('checked','true');
-					}else if(data[0].VALUE5=="no"){
+					}else if(data[0].VALUE4=="no"){
 						$("input:radio[value='right10']").attr('checked','true');
 					}
+					
 					
 					if(data[0].VALUE6=="yes"){
 						$("input:radio[value='right11']").attr('checked','true');
@@ -752,11 +716,7 @@
 						$("input:radio[value='left8']").attr('checked','true');
 					}
 					
-					if(data[0].VALUE5=="yes"){
-						$("input:radio[value='left9']").attr('checked','true');
-					}else if(data[0].VALUE5=="no"){
-						$("input:radio[value='left10']").attr('checked','true');
-					}
+					
 					
 					if(data[0].VALUE6=="yes"){
 						$("input:radio[value='left11']").attr('checked','true');
@@ -1035,7 +995,7 @@
 				}
 			});
 			
-			if(flag==20){
+			if(flag==17){
 				dd["projectsstate"]=11;
 				$.ajax({					
 					type:"post",

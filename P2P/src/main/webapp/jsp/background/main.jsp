@@ -13,7 +13,7 @@
 			<!-- main页面样式 -->
 			<div class="indexL">
 				<img class="indexBn" src="img/indexBanner.png" /><br>
-				更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+				
 			</div>
 			<!-- main页面样式end -->
 		</div>
