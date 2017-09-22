@@ -29,7 +29,9 @@
 		<div class="page">
 			<!-- main页面样式 -->
 			<div class="indexL">
+
 				<div id=projecttype  style="width:100%;height:600px; "></div>
+
 			</div>
 			<!-- main页面样式end -->
 		</div>
