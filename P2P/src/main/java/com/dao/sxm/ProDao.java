@@ -22,5 +22,6 @@ public interface ProDao {
 	    * @throws
 	 */
 	public List<Object>selectProject(ProjectsLjl p);
+	public List danProject(ProjectsLjl p);
 	
 }

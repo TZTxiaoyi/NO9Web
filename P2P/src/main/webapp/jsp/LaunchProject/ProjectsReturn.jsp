@@ -147,25 +147,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	$("#addhdiv").click(function(){
 
-		indexq=indexq+1;
-		adddiv(indexq);
+		
+		adddiv();
 		
 	});
 	function adddiv(){
+		indexq=indexq+1;
 		returnindex=returnindex+1;
 		//alert("sda");
 		//alert(indexq);
 		//alert(returnindex);
 		var addreturn="<form class=\"form-horizontal\" formindex=\""+indexq+"\"><b>回报"+returnindex+"</b><input class=\" delectbtn btn btn-info col-sm-offset-10\" formindex=\""+indexq+"\" value=\"删除\" index=\"1\" type=\"button\"><div class=\"hdiv\"><div id=\"Relevantdata\"><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">选择回报类型：</label><div class=\"col-sm-7\"><input type=\"radio\" value=\"38\" name=\"return_type\" >&nbsp实物回报&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=\"radio\" value=\"39\" name=\"return_type\">&nbsp虚拟回报</div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">支持金额：</label><div class=\"col-sm-8\"><input type=\"text\"  name=\"offer_money\" class=\"form-control\" placeholder=\"输入需要用户支持的金额(必填)\"></div><span id=\"formspan\">元</span></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报标题：</label><div class=\"col-sm-8\"><input type=\"text\"  name=\"return_title\" class=\"form-control\" placeholder=\"输入回报标题（必填）\"></div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报内容：</label><div class=\"col-sm-8\"><textarea  rows=\"3\" name=\"return_content\" class=\"form-control\"    placeholder=\"回报内容（必填）\"></textarea> </div></div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报时间：</label><div class=\"col-sm-8 \"><input type=\"text\" id=\"financing_day\" name=\"return_time\" class=\"form-control\" placeholder=\"\"></div><span id=\"formspan\">天</span></div></div></div></form>";
 		$("#colpadding").append(addreturn);
+		//EventInitialization ();
 	} 
 	function EventInitialization (){
 		//删除回报
 		$(".delectbtn").click(function(){
+			//alert("dd");
 			//alert($(this).attr("formindex"));
 			var btnindex=parseInt($(this).attr("formindex"));
+			//alert(btnindex);
 			$("form[formindex=\""+btnindex+"\"]").remove();
-			if(index<=initialindex){
+			//alert(index);
+			//alert(initialindex);
+			if(btnindex<=initialindex){
+				//alert("14");
 				delectreturn(btnindex);
 				
 			}
@@ -222,6 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$.each(data.formdata,function(index,value){
 						//alert(value.FORMINDEX);
 						returnindex=returnindex+1;
+						//alert(returnindex);
 						//var addreturn="<form class=\"form-horizontal\" formindex=\"\"><b>回报</b><input class=\" delectbtn btn btn-info col-sm-offset-10\" formindex=\"\" value=\"删除\" index=\"1\" type=\"button\"><div class=\"hdiv\"><div id=\"Relevantdata\"><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">选择回报类型：</label><div class=\"col-sm-7\"><input type=\"radio\" value=\"38\" name=\"return_type\" >&nbsp实物回报&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=\"radio\" value=\"39\" name=\"return_type\">&nbsp虚拟回报</div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">支持金额：</label><div class=\"col-sm-8\"><input type=\"text\"  name=\"offer_money\" class=\"form-control\" placeholder=\"输入需要用户支持的金额(必填)\"><br></div><span id=\"formspan\">元</span></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报标题：</label><div class=\"col-sm-8\"><input type=\"text\"  name=\"return_title\" class=\"form-control\" placeholder=\"输入回报标题（必填）\"></div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报内容：</label><div class=\"col-sm-8\"><textarea  rows=\"3\" name=\"return_content\" class=\"form-control\"    placeholder=\"回报内容（必填）\"></textarea> </div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">人数上限：</label><div class=\"col-sm-8 \"><input type=\"text\" id=\"financing_day\" name=\"limit_people\" class=\"form-control\" placeholder=\"\"></div><span id=\"formspan\">个</span></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报时间：</label><div class=\"col-sm-8 \"><input type=\"text\" id=\"financing_day\" name=\"return_time\" class=\"form-control\" placeholder=\"\"></div><span id=\"formspan\">天</span></div></div></div></form>";
 						//alert(addreturn);
 						var eform="<form class=\"form-horizontal\" formindex=\""+value.FORMINDEX+"\"><b>回报"+returnindex+"</b><input class=\" delectbtn btn btn-info col-sm-offset-10\" formindex=\""+value.FORMINDEX+"\" value=\"删除\" index=\"1\" type=\"button\"><div class=\"hdiv\"><div id=\"Relevantdata\"><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">选择回报类型：</label><div  class=\" col-sm-7\"><input type=\"radio\" rindex=\"seleradio38"+value.FORMINDEX+"\" value=\"38\" name=\"return_type\" >&nbsp实物回报&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=\"radio\" value=\"39\" rindex=\"seleradio39"+value.FORMINDEX+"\" name=\"return_type\">&nbsp虚拟回报</div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">支持金额：</label><div class=\"col-sm-8\"><input type=\"text\"  name=\"offer_money\" class=\"form-control\" value=\""+value.OFFER_MONEY+"\" placeholder=\"输入需要用户支持的金额(必填)\"></div><span id=\"formspan\">元</span></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报标题：</label><div class=\"col-sm-8\"><input type=\"text\"  name=\"return_title\" class=\"form-control\" value=\""+value.RETURN_TITLE+"\" placeholder=\"输入回报标题（必填）\"></div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报内容：</label><div class=\"col-sm-8\"><textarea  rows=\"3\" name=\"return_content\" class=\"form-control\" placeholder=\"回报内容（必填）\">"+value.RETURN_CONTENT+"</textarea> </div></div><div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">回报时间：</label><div class=\"col-sm-8 \"><input type=\"text\" id=\"financing_day\" name=\"return_time\" class=\"form-control\" value=\""+value.RETURN_TIME+"\" placeholder=\"\"></div><span id=\"formspan\">天</span></div></div></div></form>";
@@ -241,7 +249,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					adddiv();
 					
 				}
+				//alert("q");
 				EventInitialization();
+				//alert("w");
 				
 			}
 			

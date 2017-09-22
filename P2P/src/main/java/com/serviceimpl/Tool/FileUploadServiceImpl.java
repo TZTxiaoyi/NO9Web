@@ -19,7 +19,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 	public Map SaveFile(MultipartFile myfile) 
 			throws IllegalStateException, IOException {
 		// 图片名称
-		
+		MultipartFile myfile1=myfile;
 				String tomcaturl=System.getProperty("catalina.home");
 
 				//System.out.println(myfile);
@@ -37,6 +37,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 		            File newFile1 = new File("D:\\NO9Web\\P2P\\src\\main\\webapp\\images\\" + newFileName);
 		            // 将内存中的数据写入磁盘
 		            myfile.transferTo(newFile);
+		            myfile1.transferTo(newFile1);
 		           // 将新图片名称返回到前端
 		            Map<String, Object> map = new HashMap<String, Object>();
 		            map.put("flag", 0);

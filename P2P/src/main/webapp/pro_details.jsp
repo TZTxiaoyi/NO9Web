@@ -408,7 +408,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img src="images/<%=img%>" alt="" width="100%" height="400px"> --%>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-12" id="sup">
-					<div>限制人数<span id="limitsup"></span></div>
+					<!-- <div>限制人数<span id="limitsup"></span></div> -->
 					<div>已筹款<span id="raise"></span></div>
 					<div id="progress">
 				
@@ -672,7 +672,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$.ajax({
 			type:"post",
 			dataType:"json",
-			url:"pro/selectPro.do",
+			url:"pro/danPro.do",
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data),
 			success:function(data){	

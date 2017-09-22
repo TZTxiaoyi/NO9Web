@@ -84,7 +84,7 @@ public class PayServicetztImpl implements PayServicetzt {
 			//更新余额
 			/*int ibalance=balance-Paymoney1;*/
 			/*employee.put("balance", ibalance);*/
-			employee.put("balance", Paymoney1);
+			employee.put("balance", -Paymoney1);
 			employeeDaoLjl.UpdateEmployee(employee);
 		}
 		Integer a =ordersDaotzt.addOrders(orders);
@@ -92,14 +92,16 @@ public class PayServicetztImpl implements PayServicetzt {
 		//用户交易记录表
 		Map emap=new HashMap();
 		emap.put("empid", orders.getEmpid());
-		emap.put("money", -balance);
+		emap.put("money", -Paymoney1);
 		emap.put("details",178);
-		employeeDaoLjl.AllTransactionRecord(emap);
+		System.out.println(emap);
+		employeeDaoLjl.InsertTransaction(emap);
 		//平台资金表更新
 		Map pmap=new HashMap();
-		pmap.put("username", -balance);
-		pmap.put("promoney", balance);
-		platdao.Updatefund(emap);
+		pmap.put("username", -Paymoney1);
+		pmap.put("promoney", Paymoney1);
+		System.out.println(pmap);
+		platdao.Updatefund(pmap);
 		Integer b= capitalDaotzt.addCapital(capital);
 		Integer c =promoneyDaotzt.updatePromoney(promoney);
 		if (a!=0&&b!=0&&c!=0) {

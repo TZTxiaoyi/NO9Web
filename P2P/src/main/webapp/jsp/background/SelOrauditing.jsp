@@ -398,20 +398,6 @@
 				}
 			});
 		});
-		$(function(){
-			var dd={};
-			dd["projectsid"]=auditing;			
-			$.ajax({
-				type:"post",
-				dataType:"json",
-				url:"/P2P/project/upSinProState.do",
-				data:JSON.stringify(dd),
-				contentType:"application/json;charset=UTF-8",
-				success:function(data){					
-					//alert(data);
-				}
-			});
-		});
 		// 机构信息项目审核  
 		$(function(){						 
 			//alert(auditing);

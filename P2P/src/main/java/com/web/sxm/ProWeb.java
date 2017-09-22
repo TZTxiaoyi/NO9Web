@@ -32,5 +32,13 @@ public class ProWeb {
 		return pList;
 
 	}
-	
+	@RequestMapping(value="/danPro.do")
+	@ResponseBody
+	public List danPro(@RequestBody ProjectsLjl p){
+		List<Object> pList =pService.danProject(p);
+		System.out.println("ppp"+pList);
+		//response.setCharacterEncoding("utf-8");
+		return pList;
+
+	}
 }

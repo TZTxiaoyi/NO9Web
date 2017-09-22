@@ -154,7 +154,7 @@ var TableInit = function () {
     		"click .editbtn":function(e,value,row,index){
 					var projectsid=row.PROJECTSID;
 					$.cookie('projectsid', projectsid,{path:"/"});
-					if(row.PROJECTSSTATE=="草稿箱"){
+					if(row.PROJECTSSTATE=="草稿箱"||row.PROJECTSSTATE=="不通过"){
 						topWindow.location.href = "http://localhost:9088/P2P/jsp/LaunchProject/SeeProject.jsp";
 						
 					}else{

@@ -26,12 +26,12 @@
 	<select id="selPassPro" resultType="map" parameterType="map">
 		select r1.empid,r1.projectsid,to_char(r1.recordtable_begintime,'yyyy-mm-dd hh24:mi:ss') as recordtable_begintime,to_char(r1.recordtable_endtime,'yyyy-mm-dd hh24:mi:ss') as recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
 		from recordtable r1,projects p1,employee e1
-		where r1.empid=e1.empid and r1.projectsid=p1.projectsid  and projectsstate=11
+		where r1.empid=e1.empid and r1.projectsid=p1.projectsid  and projectsstate=11 order by r1.recordtable_endtime desc
 	</select>
 	<select id="selUnpassPro" resultType="map" parameterType="map">
 		select r1.empid,r1.projectsid,to_char(r1.recordtable_begintime,'yyyy-mm-dd hh24:mi:ss') as recordtable_begintime,to_char(r1.recordtable_endtime,'yyyy-mm-dd hh24:mi:ss') as recordtable_endtime,r1.reason,p1.empid empids,p1.projectsstate
 		from recordtable r1,projects p1,employee e1
-		where r1.empid=e1.empid and r1.projectsid=p1.projectsid  and projectsstate=88
+		where r1.empid=e1.empid and r1.projectsid=p1.projectsid  and (projectsstate=88 or projectsstate=11) order by r1.recordtable_endtime desc
 	</select>
 	<!-- 查询当前员工是否已经有在审批中的项目 -->
 	<select id="selEmProject" resultType="map" parameterType="map">

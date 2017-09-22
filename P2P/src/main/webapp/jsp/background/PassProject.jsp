@@ -96,9 +96,31 @@
 			    	projectstate(dd);
 				}
 				
-			},
+			},'click #orauditing': function (e, value, row, index) {
+				
+				projectsid=parseInt(row.PROJECTSID);
+				var dd={};
+				dd["projectsid"]=projectsid;
+				$.cookie('orga_auditing', projectsid);
+				$.ajax({
+						url:"/P2P/AddState/selProType.do",
+						dataType:"json",
+						type:"post",
+						data:JSON.stringify(dd),
+						contentType:"application/json;charset=UTF-8",
+						success:function(data){				
+							
+							/* if(data==1){
+								window.location.replace("Selauditing.jsp");
+							}else{ */
+								window.location.replace("SelOrauditing.jsp");
+							/* } */
+						}
+					});
+				
+			}
 		}
-	$("#orauditing").click(function() {
+	/* $("#orauditing").click(function() {
 		var ss = $("#protab").bootstrapTable('getSelections');
 		var dd1 = parseInt(ss[0].PROJECTSID);
 		
@@ -124,7 +146,7 @@
 				}
 			});
 		
-	});
+	}); */
 	 function marks(row,index,value){
 		if (index.PROJECTSSTATE==11){
 			return ["审核通过"];
@@ -133,7 +155,12 @@
 		}
 	} 
 	 function buttons(row,index,value){
-		 return ["<a type=\"button\" id=\"see_record\" class=\"btn btn-warning btn-xs\">发布项目</a>"]
+		 if(index.PROJECTSSTATE==11){
+			 return ["<a type=\"button\" id=\"see_record\" class=\"btn btn-warning btn-xs\">发布项目</a>"]
+		 }else if(index.PROJECTSSTATE==88){
+			 return ["<a type=\"button\" id=\"orauditing\" class=\"btn btn-warning btn-xs\">查看审核</a>"]
+
+		 }
 	 }
 	function passproject() {				
 		$('#protab').bootstrapTable({			

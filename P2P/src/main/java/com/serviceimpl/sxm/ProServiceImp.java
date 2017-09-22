@@ -29,4 +29,9 @@ public class ProServiceImp implements ProService{
 		return pDao.selectProject(p);
 		
 	}
+	@Override
+	public List danProject(ProjectsLjl p) {
+		// TODO Auto-generated method stub
+		return pDao.danProject(p);
+	}
 }

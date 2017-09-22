@@ -44,6 +44,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  #Relevantdata{
  	width:150px;
  }
+ .A1{
+ 	height:30px;
+ 	color:red;
+ }
   </style>
   </head>
   <body>
@@ -54,9 +58,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					<h3>个人众筹资料</h3><br>
 					<div id="inputpadding">
-						<input type="text" id="originatorname" name="originatorname" class="form-control" placeholder="输入中文姓名"><br>
-						<input type="text" id="idcard" name="idcard" class="form-control" placeholder="二代身份证，输入数字或字母"><br>
-						<input type="text" id="telephone" name="telephone" class="form-control" placeholder="手机号，输入纯数字"><br>
+						<input type="text" id="originatorname" name="originatorname" class="form-control" placeholder="输入中文姓名">
+						<div id="s1" class="A1"></div><br>
+	
+						<input type="text" id="idcard" name="idcard" class="form-control" placeholder="二代身份证，输入数字或字母">
+						<div id="s2" class="A1"></div><br>
+						
+						<input type="text" id="telephone" name="telephone" class="form-control" placeholder="手机号，输入纯数字">
+						<div id="s3" class="A1"></div><br>
 					</div>
 					<h3>你要创建的项目类型</h3><br>
 					<div id="projecttype">
@@ -98,21 +107,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //表单验证
 	$("#originatorname").blur(function(){
 		if(!/^[\u4e00-\u9fa5]+$/gi.test($("#originatorname").val())){
-			alert("只能输中文");
+			$("#s1").html("只能输中文");
+			
+		}else{
+			$("#s1").html("");
+			
 		}
     	
   	});
   	$("#idcard").blur(function(){
   		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
   		if(!reg.test($("#idcard").val())){ 
-  			alert("身份证输入不合法"); 
+  			$("#s2").html("身份证输入不合法");
+  			
+  		}else{
+  			$("#s2").html("");
+  			
   		}
   	})
   	$("#telephone").blur(function(){
   		var phone=$("#telephone").val();
   		if(!(/^1[34578]\d{9}$/.test(phone))){ 
-  	        alert("手机号码有误，请重填");
-  	    } 
+  			$("#s3").html("手机号码有误，请重填");
+  	       
+  	    } else{
+  	    	$("#s3").html("");
+  	    }
   		
   	})
 	$("#wewr").click(function(){

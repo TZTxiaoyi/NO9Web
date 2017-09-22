@@ -5,36 +5,19 @@
 <mapper namespace="com.dao.sxm.ProDao">
 	<!-- 主页面查询项目 -->
 	<select id="selectProject" resultType="Map">
-		select p.projectsid,p.empid,p.originatortype,p.addtime,
+		select p.projectsid,p.empid,p.originatortype,pm.addtime, 
 		p.projectsstate,p.protypeid,pm.targe_money,nvl(pm.raise_money,0) as raise,
-		pd.title,pd.goal,pd.financing,pd.financing_day,pd.cover,
-		pt.protypename from projects p,projects_describe pd,protype pt,
-		pro_money pm 
- 		<where>
- 			<if test="true">
- 				p.projectsstate=84
- 			</if><!-- 
- 			<if test="true">
- 				or p.projectsstate=85)
- 			</if> -->
- 			<if test="true">
- 				and	p.projectsid=pd.projectsid
- 			</if>
- 			<if test="true">
- 				and p.protypeid=pt.protypeid
- 			</if>
- 			<if test="true">
- 				and pm.projectsid=p.projectsid
- 			</if>
- 			<if test="projectsid>0">
- 				and p.projectsid= #{projectsid}
- 			</if>
- 			<if test="protypeid>0">
- 				and p.protypeid= #{protypeid}
- 			</if>
- 			
- 			
- 		</where>
- 		
+ 		pd.title,pd.goal,pd.financing,pd.financing_day,pd.cover, pt.protypename 
+ 		from projects p,projects_describe pd,protype pt, pro_money pm 
+ 		WHERE p.projectsstate=84 and p.projectsid=pd.projectsid and p.protypeid=pt.protypeid
+  		and pm.projectsid=p.projectsid order by pm.addtime desc
+	</select>
+	<select id="danProject" resultType="Map">
+		select p.projectsid,p.empid,p.originatortype,pm.addtime, 
+		p.projectsstate,p.protypeid,pm.targe_money,nvl(pm.raise_money,0) as raise,
+ 		pd.title,pd.goal,pd.financing,pd.financing_day,pd.cover, pt.protypename 
+ 		from projects p,projects_describe pd,protype pt, pro_money pm 
+ 		WHERE p.projectsstate=84 and p.projectsid=pd.projectsid and p.protypeid=pt.protypeid
+  		and pm.projectsid=p.projectsid and p.projectsid=#{projectsid}
 	</select>
 </mapper>

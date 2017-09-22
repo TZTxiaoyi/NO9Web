@@ -23,4 +23,5 @@ public interface ProService {
 	    * @throws
 	 */
 	public List<Object>selectProject(ProjectsLjl p);
+	public List danProject(ProjectsLjl p);
 }

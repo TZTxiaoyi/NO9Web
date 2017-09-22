@@ -121,7 +121,7 @@
 					<dd>
 						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
 							src="../img/coin222.png" /><a href="../PassProject.jsp" target="main"
-							class="cks">审核通过</a><img class="icon5" src="../img/coin21.png"/>
+							class="cks">项目发布</a><img class="icon5" src="../img/coin21.png"/>
 					</dd>
 				</shiro:hasPermission>
 				
@@ -129,7 +129,7 @@
 					<dd>
 						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
 							src="../img/coin222.png" /><a href="../UnpassPro.jsp" target="main"
-							class="cks">审核未通过</a><img class="icon5" src="../img/coin21.png"/>
+							class="cks">审核记录</a><img class="icon5" src="../img/coin21.png"/>
 					</dd>
 				</shiro:hasPermission>							
 			</dl>			

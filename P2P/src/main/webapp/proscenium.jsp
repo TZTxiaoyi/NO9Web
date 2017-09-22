@@ -421,6 +421,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	})
 	$("#moddel").on('click',".img",function(){
 		var pid=$(this).attr("pid");
+		alert(pid);
 		$.cookie('pid', pid);
 	})
 	/*

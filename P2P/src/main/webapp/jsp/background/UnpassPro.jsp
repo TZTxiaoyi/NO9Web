@@ -73,12 +73,13 @@
 				type:"post",
 				data:JSON.stringify(dd),
 				contentType:"application/json;charset=UTF-8",
-				success:function(data){				
-					if(data==1){
-						window.location.replace("Selauditing.jsp");
-					}else{
+				success:function(data){	
+					window.location.replace("Selauditing.jsp");
+					/* if(data==1){
+						
+					}else{ 
 						window.location.replace("SelOrauditing.jsp");
-					}
+					} */ 
 				}
 			});		
 	});
@@ -86,6 +87,8 @@
 			if (index.PROJECTSSTATE==88){
 			
 				return ["审核不通过"];
+			}else if(index.PROJECTSSTATE==11){
+				return ["审核通过"];
 			}
 		} 
 	$(function() {
