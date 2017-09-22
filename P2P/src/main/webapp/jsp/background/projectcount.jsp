@@ -59,7 +59,7 @@ $(function () {
 	        		enabled: false
 	        	},
 		        title: {
-		            text: '所有项目比率'
+		            text: '项目成功比率'
 		        },
 		        tooltip: {
 		        },
@@ -78,7 +78,7 @@ $(function () {
 		        },
 		        series: [{
 		            type: 'pie',
-		            name:'所有项目比率',
+		            name:'所占比率',
 		            data: result
 		            
 		        }]
@@ -146,7 +146,7 @@ $(function () {
 			        },
 			        title: {
 			            floating:true,
-			            text: '订单回报状态比率'
+			            text: '订单回报比率'
 			        },
 			        tooltip: {
 			            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -183,7 +183,7 @@ $(function () {
 			        series: [{
 			            type: 'pie',
 			            innerSize: '80%',
-			            name: '市场份额',
+			            name: '所占比率',
 			            data:result
 			        }]
 			    }, function(c) {

@@ -113,13 +113,14 @@
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
+            	
                 var datas = {};
                 for (var i = 0; i < data.length; i++) {
                 	//alert(0);
                     datas.i = i+1;
                     datas.roleid=data[i].ROLEID;
                     datas.rolename = data[i].ROLENAME;                    
-                    datas.roleDescription = data[i].roleDescription;
+                    datas.roleDescription = data[i].DESCRIBEROLE;
                     var source = $("#treeSelect-template").html();
                     var template = doT.template(source);
                     var htmlstr = template(datas);
@@ -152,7 +153,7 @@ $(function () {
        var rolename = $(this).parents('tr').find('td').eq(2).text();
        
        roleid=$(this).parents('tr').find('td').eq(1).text();
-        alert(roleid);
+        
          var html ='<select id="authorifyselect" multiple="multiple">' +
         '<option  id="" value="42" data-section="人员管理" >用户管理</option>' +
         
@@ -164,7 +165,7 @@ $(function () {
         '<option  value="11" data-section="项目管理">机构项目</option>' +
         '<option  value="12" data-section="项目管理">审核通过</option>' +
         '<option  value="13" data-section="项目管理">审核未通过</option>' +
-        
+        '<option  value="65" data-section="项目管理">项目查询</option>' +
        
         '<option  value="57" data-section="统计查询">项目统计</option>' +
         
@@ -177,6 +178,9 @@ $(function () {
 		  '<option  value="17" data-section="资金管理">平台资金管理</option>' +
 		  '<option  value="18" data-section="资金管理" id="aaa">项目资金发放</option>' +
 		  '<option  value="60" data-section="资金管理" id="bbb">盈利资金</option>' +
+		  
+		  '<option  value="64" data-section="用户交易">交易记录</option>'+
+		   
                   '</select>'; 
         $("#authorityBody").empty().append(html);
         //$(".selections .section .item input")..removeAttr('checked');
@@ -203,22 +207,23 @@ $(function () {
 })
 var roleid=0;
 $("#selectPower").click(function(){
-	alert(55);
+
 
 	/*  */
 });
 $("#authoritysubmit").click(function(){
-	alert(1);
+	
 	var employee=0;
 	var project=0;
 	var captial=0;
 	var money=0;
+	var users=0;
 	var data={};
 	
 	var arry=new Array();
 	$("option").each(function(){ 		
 		if($(this).is(":checked")){
-			if($(this).val()==9||$(this).val()==10||$(this).val()==11||$(this).val()==12||$(this).val()==13){
+			if($(this).val()==9||$(this).val()==10||$(this).val()==11||$(this).val()==12||$(this).val()==13||$(this).val()==65){
 				var json={};
 				project=8;
 				json["powersid"]=parseInt($(this).val());
@@ -242,6 +247,13 @@ $("#authoritysubmit").click(function(){
 			}	
 			if($(this).val()==57||$(this).val()==58||$(this).val()==59){
 				money=56;
+				var json={};
+				json["powersid"]=parseInt($(this).val());
+				json["roleid"]=parseInt(roleid);
+				arry[arry.length]=json;			
+			}	 
+			if($(this).val()==64){
+				users=63;
 				var json={};
 				json["powersid"]=parseInt($(this).val());
 				json["roleid"]=parseInt(roleid);
@@ -275,9 +287,15 @@ $("#authoritysubmit").click(function(){
 		 json["roleid"]=parseInt(roleid);
 		 arry[arry.length]=json;
 	 }
+	 if(users>0){
+		 var json={};
+		 json["powersid"]=parseInt(users);
+		 json["roleid"]=parseInt(roleid);
+		 arry[arry.length]=json;
+	 }
 	data["powersid"]=arry;
 	data["roleid"]=roleid;
-	 alert(JSON.stringify(data));
+	 //alert(JSON.stringify(data));
 	
 	
 	$.ajax({
@@ -287,7 +305,11 @@ $("#authoritysubmit").click(function(){
 		data:JSON.stringify(data),
 		contentType:"application/json;charset=UTF-8",
 		success:function(data){	
-			alert(data);		
+			if(data==-1){
+				alert("修改成功");
+			}else{
+				alert("修改十遍");
+			}					
 		}		
 	});
 });

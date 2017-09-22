@@ -12,20 +12,21 @@
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
 <style>
-		.table th, .table td { 
-			text-align: center;
-			vertical-align: middle!important;
-		}
-	</style>
+	.table th, .table td { 
+text-align: center;
+vertical-align: middle!important;
+}
+</style>
 </head>
 
 <body>
 	<div id="pageAll">
-		<div class="panel-body" style="padding-bottom: 0px;">
-		<div class="panel panel-default">
-			<div class="panel-body">角色管理</div>
+		<div class="pageTop">
+			<div class="page">
+				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">用户交易</a>&nbsp;-</span>&nbsp;交易记录
+			</div>
 		</div>
-		
 		<div class="page">
 			<!-- opinion 页面样式 -->
 			<table id="tb_departments">
@@ -48,9 +49,7 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				<table class="queryEmployee-body table table-striped">
-					
-				</table>
+			
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" 
@@ -65,34 +64,6 @@
 </div><!-- /.modal -->
 
 
-	<!-- 编辑账号模态框（Modal） -->
-<div class="modal fade" id="queryAccounts" tabindex="-1" role="dialog" aria-labelledby="queryAccounts" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" 
-						aria-hidden="true">×
-				</button>
-				<h4 class="modal-title" >
-					编辑账号信息
-				</h4>
-			</div>
-			<div class="table-responsive">
-				<table class="queryAccounts-body table table-striped">
-					
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" 
-						data-dismiss="modal">关闭
-				</button>
-				<button id="submitAccounts" class="btn btn-primary" >
-					提交更改
-				</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 	
 </body>
 </html>
@@ -111,7 +82,7 @@ var oTableInit = new Object();
 //初始化Table
 oTableInit.Init = function () {
     $('#tb_departments').bootstrapTable({
-        url: '/P2P/back/queryAccountsTable.do'  ,  //请求后台的URL（*）
+        url: '/P2P/login/selUserDeal.do'  ,  //请求后台的URL（*）
         method: 'post',                      //请求方式（*）
         toolbar: '#toolbar',                //工具按钮用哪个容器
         striped: true,                      //是否显示行间隔色
@@ -138,29 +109,24 @@ oTableInit.Init = function () {
         //detailView: false,                  //是否显示父子表
         showColumns:true, 					//是否显示列下拉框
         columns: [{
-            field: 'ACCOUNTSID',
-            title: '账号序列'
+            field: 'TRAID',
+            title: '记录编号'
        		},{       
-            field: 'ACCOUNTS',
-            title: '账号',
-            },{       
             field: 'EMPID',
-            title: '拥有人序列',
+            title: '用户编号',
             },{       
-            field: 'ROLENAME',
-            title: '角色',
+            field: 'USERNAME',
+            title: '用户名',
+            },{       
+            field: 'TIME',
+            title: '交易时间',
+            }, {
+            field: 'MONEY',
+            title: '交易金额',   			
             }, {
             field: 'VALUE',
-            title: '账号状态',
-   			 },{
-                title: '操作',
-                events:operateEvents,
-                formatter:function(value,row,index){ 
-                	return ['<button class=" selectinfo btn btn-primary " > 查询个人信息  </button>',
-                	        '<button class=" updata btn btn-warning " > 编辑 </button>'
-              			  ].join('');
-                }
-            }
+            title: '交易类型',   			
+               }           
           ]
     });
 };
@@ -212,7 +178,7 @@ window.operateEvents = {
      			empid:row.EMPID,
             }   
         	$("#queryEmployee").modal();
-            $(".queryEmployee-body").empty();
+            $(".modal-body").empty();
            
         	 $.ajax({
      			type : "post",
@@ -221,13 +187,12 @@ window.operateEvents = {
      			url : "/P2P/back/queryEmployee.do",//要访问的后台地址  
      			contentType :"application/json;charset=utf-8",
      			success : function(data1) {//data为返回的数据，在这里做数据绑定  
-     				
-					var a="<tr><td>拥有人序列号:</td><td>"+data1[0].EMPID+"</td></tr><tr><td>用户名:</td><td>"+data1[0].USERNAME+
-					"</td></tr><tr><td>真实名:</td><td>"+(data1[0].EMPNAME ==undefined ?'-':data1[0].EMPNAME)+"</td></tr><tr><td>身份证号:</td><td>"+(data1[0].IDCARD ==undefined ?'-':data1[0].IDCARD)+
-					"</td></tr><tr><td>性别:</td><td>"+(data1[0].SEX ==undefined ?'-':data1[0].SEX)+"</td></tr><tr><td>年龄:</td><td>"	+(data1[0].AGE ==undefined ?'-':data1[0].AGE)+
-					"</td></tr><tr><td>地址:</td><td>"+ (data1[0].ADDRESS ==undefined ?'-':data1[0].ADDRESS)+"</td></tr><tr><td>电话:</td><td>"+(data1[0].TELEPHONE ==undefined ?'-':data1[0].TELEPHONE)+
-					"</td></tr><tr><td>账户余额:</td><td>"+(data1[0].BALANCE ==undefined ?'-':data1[0].BALANCE)+"</td></tr>";
-					$(".queryEmployee-body").append(a);
+					var a="拥有人序列号:"+data1[0].EMPID+"</br>用户名:"+data1[0].USERNAME+
+					"</br>真实名:"+data1[0].EMPNAME+"</br>身份证号:"+data1[0].IDCARD+"</br>性别:"+data1[0].SEX+"</br>年龄:"
+					+data1[0].AGE+"</br>地址:"+data1[0].ADDRESS+"</br>电话:"+data1[0].TELEPHONE+"</br>账户余额:"+data1[0].BALANCE
+					+"</br>状态:"+data1[0].EMPSTATE;
+					
+					$(".modal-body").append(a);
      			}
      		});
         

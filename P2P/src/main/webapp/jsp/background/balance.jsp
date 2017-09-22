@@ -64,7 +64,7 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 			</div>
 		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+	</div><!-- /.modal-dialog --> 
 </div><!-- /.modal -->
 		
 		
@@ -107,7 +107,6 @@
 <script>
 var data={};
 $("#removebutton").click(function() {
-	alert(JSON.stringify(data));
 	 $.ajax({
 		type : "post",
 		dataType : "json",
@@ -125,7 +124,6 @@ $("#removebutton").click(function() {
 	}); 
 })
 $("#finshbutton").click(function() {
-	alert(JSON.stringify(data));
 	 $.ajax({
 		type : "post",
 		dataType : "json",
@@ -135,7 +133,7 @@ $("#finshbutton").click(function() {
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
 			alert("放款成功");
-			 $('#tb_departments').bootstrapTable("refresh");;
+			 $('#tb_departments').bootstrapTable("refresh");
 		},error : function() {
 			alert("error");
 		}
@@ -260,12 +258,10 @@ $("#finshbutton").click(function() {
 		 if(row.RAISE_MONEY>=row.TARGE_MONEY){
 			 //筹资成功
 			  $("#finshproject").modal();
-			 alert(JSON.stringify(data));
 			 
 		 }else{
 			 //筹资失败
 			  $("#removeproject").modal();
-			 alert(JSON.stringify(data));
 		 }
 	 } 
 	    };

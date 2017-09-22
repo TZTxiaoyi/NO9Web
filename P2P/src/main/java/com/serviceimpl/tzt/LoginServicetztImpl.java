@@ -27,8 +27,8 @@ public class LoginServicetztImpl implements LoginServicetzt {
 	/**
 	 * 
 	 * Title: register 
-	 * Description:  娉ㄥ唽璐﹀彿
-	 * @param accounts 璐﹀彿淇℃伅
+	 * Description:  注册插入
+	 * @param accounts 账号信息
 	 * @return   int
 	 * @see com.service.tzt.LoginServicetzt#register(com.entity.tzt.Accounts)
 	 */
@@ -58,8 +58,12 @@ public class LoginServicetztImpl implements LoginServicetzt {
 		employee.setEmpid(Integer.valueOf(loginAccounts.get(0).get("EMPID").toString()));
 		List<Map> loginEmployee=employeeDaotzt.queryEmployee(employee);
 		if(loginAccounts.size()==0){
-			result.put("resultType", "noselect");
+			result.put("resultType", "账号或者密码不匹配");
 			return JSON.toJSONString(result);
+		}else if (loginAccounts.get(0).get("VALUE").equals("冻结")) {
+			result.put("resultType", "账号已被冻结");
+			return JSON.toJSONString(result);
+			
 		}else if (loginAccounts.get(0).get("PASSWORDS").equals(accounts.getPasswords())) {
 			result.put("resultType", "true");
 			result.put("resultAccounts", loginAccounts);
@@ -68,7 +72,7 @@ public class LoginServicetztImpl implements LoginServicetzt {
 			return JSON.toJSONString(result);
 
 		}else{
-			result.put("resultType", "passwordsFalse");
+			result.put("resultType", "账号或者密码不匹配");
 			
 			return JSON.toJSONString(result);
 		}

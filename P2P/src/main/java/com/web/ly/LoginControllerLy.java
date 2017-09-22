@@ -28,6 +28,7 @@ import com.dao.ly.UsersDao;
 import com.entity.tzt.Accounts;
 import com.entity.tzt.Employee;
 import com.entity.tzt.Roletable;
+import com.service.ly.UserDealService;
 import com.service.ly.queryAccountService;
 
 @Controller
@@ -37,6 +38,8 @@ public class LoginControllerLy {
 	UsersDao usersDao;
 	@Autowired
 	queryAccountService queryaccountservice;
+	@Autowired
+	UserDealService userdeaservice;
 	@RequestMapping(value="/logCon")
 	public String login_back(Accounts accounts,HttpServletResponse response,HttpServletRequest request){
 		//获得当前用户对象
@@ -105,10 +108,16 @@ public class LoginControllerLy {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/**
+	 * 查询权角色权限
+	 * @param roletable： 角色
+	 * @param response
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/powers")
 	public List<Object> queryAllPower(@RequestBody Roletable roletable,HttpServletResponse response,HttpServletRequest request){
-		System.out.println(000000000000000000);
 		
 		System.out.println("rolename-----:"+roletable.getRoleid());
 		Roletable roleid=queryaccountservice.queryRolename(roletable);
@@ -118,11 +127,25 @@ public class LoginControllerLy {
 		
 		return qList;
 	}
-	
+	/**
+	 * 修改权限
+	 * @param string
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="insertpowers")
 	public int insertPowers(@RequestBody String string){
 		
 		return queryaccountservice.insPowers(string);
+	}
+	/**
+	 * 查询用户交易记录
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="selUserDeal")
+	public List selectUserDeal(HttpServletResponse response){
+		return userdeaservice.selUserDealRecor();
 	}
 }

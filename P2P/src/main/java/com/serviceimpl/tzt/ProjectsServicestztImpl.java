@@ -175,6 +175,12 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		return "true";
 	}
 
+	public List<Map> queryAllProjectAudit() {
+		
+		
+		return projestsdaotzt.queryAllProjectsAudit();
+	}
+
 
 	
 }

@@ -23,7 +23,7 @@
 				首页<img class="icon3" src="../img/coin19.png" /><img class="icon4" src="../img/coin20.png" /></dt>
 		</dl> -->
 			<dl class="system_log">
-				<dt>
+			<!-- 	<dt>
 					<img class="icon1" src="../img/coin03.png" /><img class="icon2"
 						src="../img/coin04.png" /> 系统管理<img class="icon3"
 						src="../img/coin19.png" /><img class="icon4"
@@ -38,7 +38,7 @@
 					<img class="coin11" src="../img/coin111.png" /><img class="coin22"
 						src="../img/coin222.png" /><a class="cks" href="../user.jsp"
 						target="main">管理员管理</a><img class="icon5" src="../img/coin21.png" />
-				</dd>
+				</dd> -->
 			</dl>
 			<dl class="system_log">
 				<shiro:hasPermission name="employeeEdit">
@@ -131,7 +131,15 @@
 							src="../img/coin222.png" /><a href="../UnpassPro.jsp" target="main"
 							class="cks">审核记录</a><img class="icon5" src="../img/coin21.png"/>
 					</dd>
-				</shiro:hasPermission>							
+				</shiro:hasPermission>		
+				
+				<shiro:hasPermission name="selproject">	
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../audit.jsp" target="main"
+							class="cks">项目查询</a><img class="icon5" src="../img/coin21.png"/>
+					</dd>
+				</shiro:hasPermission>						
 			</dl>			
 			<dl class="system_log">
 			
@@ -227,9 +235,30 @@
 				</shiro:hasPermission>
 			</dl>
 			
-
+			<dl class="system_log">
+			
+				<shiro:hasPermission name="userdeal">
+					<dt>
+						<img class="icon1" src="../img/coin17.png" /><img class="icon2"
+							src="../img/coin18.png" />用户交易<img class="icon3"
+							src="../img/coin19.png" /><img class="icon4"
+							src="../img/coin20.png" />
+					</dt>
+				</shiro:hasPermission>
+				
+				<shiro:hasPermission name="dealrecord">
+					<dd>
+						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
+							src="../img/coin222.png" /><a href="../UsersDeal.jsp"
+							target="main" class="cks">交易记录</a><img class="icon5"
+							src="../img/coin21.png" />
+					</dd>
+				</shiro:hasPermission>			
+			</dl>
+			
 		</div>
 
 	</div>
 </body>
 </html>
+ 

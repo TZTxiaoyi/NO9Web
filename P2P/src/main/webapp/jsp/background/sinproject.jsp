@@ -33,7 +33,7 @@ vertical-align: middle!important;
 		<div class="pageTop">
 			<div class="page">
 				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
-					href="#">公共管理</a>&nbsp;-</span>&nbsp;个人项目（未审核）
+					href="#">项目管理</a>&nbsp;-</span>&nbsp;个人项目（未审核）
 			</div>
 		</div>
 
@@ -42,8 +42,8 @@ vertical-align: middle!important;
 			<div class="vip">				
 				<!-- vip 表格 显示 -->
 				<div class="conShow">
-					<a type="button" id="detail"  class="btn btn-info" data-toggle="modal" data-target="#myModal">信息</a>
-					<a type="button" id="describe" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">描述</a>
+					<!-- <a type="button" id="detail"  class="btn btn-info" data-toggle="modal" data-target="#myModal">信息</a>
+					<a type="button" id="describe" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">描述</a> -->
 					<a type="button" id="auditing" class="btn btn-warning">审核</a>		
 					<table border="1" cellspacing="0" cellpadding="0" id="protab">
 						

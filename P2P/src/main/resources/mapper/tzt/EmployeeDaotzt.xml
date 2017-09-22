@@ -13,8 +13,7 @@
 			age,
 			address,
 			telephone,
-			balance,
-			empstate 		
+			balance
 	 	from employee
 	 	<where>
 	 		<if test ="empid!=null">
