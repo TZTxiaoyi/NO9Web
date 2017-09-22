@@ -126,4 +126,13 @@ public class LoginController {
 			return JSON.toJSONString(resultinfo);
 	}
 	
+	@RequestMapping("/esclogin.do")
+	@ResponseBody
+	public String  esclogin( HttpServletResponse response,HttpServletRequest request){
+		request.getSession().removeAttribute("empid");
+		request.getSession().removeAttribute("accounts3");
+
+		return "1111";
+	}
+	
 }
