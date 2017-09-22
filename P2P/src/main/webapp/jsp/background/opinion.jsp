@@ -11,16 +11,21 @@
 
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css" type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
+<style>
+		.table th, .table td { 
+			text-align: center;
+			vertical-align: middle!important;
+		}
+	</style>
 </head>
 
 <body>
 	<div id="pageAll">
-		<div class="pageTop">
-			<div class="page">
-				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
-					href="#">公共管理</a>&nbsp;-</span>&nbsp;意见管理
-			</div>
+		<div class="panel-body" style="padding-bottom: 0px;">
+		<div class="panel panel-default">
+			<div class="panel-body">角色管理</div>
 		</div>
+		
 		<div class="page">
 			<!-- opinion 页面样式 -->
 			<table id="tb_departments">
@@ -43,7 +48,9 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-			
+				<table class="queryEmployee-body table table-striped">
+					
+				</table>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" 
@@ -205,7 +212,7 @@ window.operateEvents = {
      			empid:row.EMPID,
             }   
         	$("#queryEmployee").modal();
-            $(".modal-body").empty();
+            $(".queryEmployee-body").empty();
            
         	 $.ajax({
      			type : "post",
@@ -214,12 +221,13 @@ window.operateEvents = {
      			url : "/P2P/back/queryEmployee.do",//要访问的后台地址  
      			contentType :"application/json;charset=utf-8",
      			success : function(data1) {//data为返回的数据，在这里做数据绑定  
-					var a="拥有人序列号:"+data1[0].EMPID+"</br>用户名:"+data1[0].USERNAME+
-					"</br>真实名:"+data1[0].EMPNAME+"</br>身份证号:"+data1[0].IDCARD+"</br>性别:"+data1[0].SEX+"</br>年龄:"
-					+data1[0].AGE+"</br>地址:"+data1[0].ADDRESS+"</br>电话:"+data1[0].TELEPHONE+"</br>账户余额:"+data1[0].BALANCE
-					+"</br>状态:"+data1[0].EMPSTATE;
-					
-					$(".modal-body").append(a);
+     				
+					var a="<tr><td>拥有人序列号:</td><td>"+data1[0].EMPID+"</td></tr><tr><td>用户名:</td><td>"+data1[0].USERNAME+
+					"</td></tr><tr><td>真实名:</td><td>"+(data1[0].EMPNAME ==undefined ?'-':data1[0].EMPNAME)+"</td></tr><tr><td>身份证号:</td><td>"+(data1[0].IDCARD ==undefined ?'-':data1[0].IDCARD)+
+					"</td></tr><tr><td>性别:</td><td>"+(data1[0].SEX ==undefined ?'-':data1[0].SEX)+"</td></tr><tr><td>年龄:</td><td>"	+(data1[0].AGE ==undefined ?'-':data1[0].AGE)+
+					"</td></tr><tr><td>地址:</td><td>"+ (data1[0].ADDRESS ==undefined ?'-':data1[0].ADDRESS)+"</td></tr><tr><td>电话:</td><td>"+(data1[0].TELEPHONE ==undefined ?'-':data1[0].TELEPHONE)+
+					"</td></tr><tr><td>账户余额:</td><td>"+(data1[0].BALANCE ==undefined ?'-':data1[0].BALANCE)+"</td></tr>";
+					$(".queryEmployee-body").append(a);
      			}
      		});
         

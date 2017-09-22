@@ -10,10 +10,11 @@
 			a.passwords,
 			a.empid,
 			r.rolename,
-			w.value	
+			w.value	,
+			a.accountsstate
 	 	from accounts a,roletable r ,word w
 	 	<where>
-	 		 a.roleid=r.roleid and a.accountsstate=w.key	
+	 		 a.roleid=r.roleid and a.accountsstate=w.key	and r.roleid not in (41)
 	 		<if test ="accounts!=null">
 	 			and accounts= #{accounts}
 	 		</if>

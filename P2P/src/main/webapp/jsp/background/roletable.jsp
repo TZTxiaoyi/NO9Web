@@ -15,6 +15,13 @@
 <link rel="stylesheet" href="../../bootstrap/dist/bootstrap-table.css"
 	type="text/css"></link>
 <script type="text/javascript" src="js/jquery.cookie1.4.1.js"></script>
+
+<style>
+		.table th, .table td { 
+			text-align: center;
+			vertical-align: middle!important;
+		}
+	</style>
 </head>
 <body>
 
@@ -76,9 +83,11 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				角色序列：<span id = "updataId"></span><br/>
-				原角色名称：<span id="updataP"></span><br/>
-				 角色名称：<input type="text" id="updaterolename">
+				<table class="queryAccounts-body table table-striped">
+					<tr><td>角色序列：</td><td id = "updataId"></td></tr>
+					<tr><td>原角色名称：</td><td id = "updataP"></td></tr>
+					<tr><td>角色名称：</td><td><input type="text" id="updaterolename"></td>
+				</table>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" 
@@ -198,6 +207,9 @@ $("#submit").click(function() {
 	        columns: [{
 	            field: 'ROLENAME',
 	            title: '角色名字'
+	        },{
+	            field: 'DESCRIBEROLE',
+	            title: '角色描述'
 	        },{       
 	        	title: '操作',
                 events:operateEvents,

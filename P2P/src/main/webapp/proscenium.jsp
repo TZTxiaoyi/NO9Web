@@ -483,7 +483,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$.cookie('account', result.resultEmployee[0].USERNAME);
 					$.cookie('empid',result.resultEmployee[0].EMPID);
 				}else{
-					alert("用户名和密码不匹配");
+					alert(result.resultType);
 				}
 					
 			},

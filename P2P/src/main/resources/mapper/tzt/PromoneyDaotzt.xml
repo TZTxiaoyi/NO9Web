@@ -43,7 +43,7 @@
 			a.projectsid,
 			a.empid,
 			w1.value as ORIGINATORTYPE,
-			a.addtime,
+			b.addtime,
 	 		w2.value as PROJECTSSTATE,
 	 		b.targe_money,
 	 		b.raise_money

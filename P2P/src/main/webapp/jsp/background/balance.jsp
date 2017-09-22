@@ -64,7 +64,7 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 			</div>
 		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+	</div><!-- /.modal-dialog --> 
 </div><!-- /.modal -->
 		
 		
@@ -135,7 +135,7 @@ $("#finshbutton").click(function() {
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
 			alert("放款成功");
-			 $('#tb_departments').bootstrapTable("refresh");;
+			 $('#tb_departments').bootstrapTable("refresh");
 		},error : function() {
 			alert("error");
 		}
