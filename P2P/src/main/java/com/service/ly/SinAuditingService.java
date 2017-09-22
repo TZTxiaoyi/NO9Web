@@ -38,4 +38,5 @@ public interface SinAuditingService {
 	public int inserProReSt(Project projectsid);//在所有项目里点击审核，给 项目回报  审核表一个默认 未审核 的初始值（4）
 	
 	public List<Object> selProCnnten(Project projectsid);//查询项目描述中的文本
+	public int upSinProStEnd(Project projecstid);//完成项目添加项目金额表
 }

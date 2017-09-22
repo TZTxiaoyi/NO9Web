@@ -89,4 +89,13 @@ public class ProjectMoneyControllertzt {
 		System.out.println( result);
 		return result;
 	}
+	
+	
+	@RequestMapping(value="/queryAllProjectAudit.do",produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String finshProject(){
+		String  result = JSON.toJSONStringWithDateFormat(projectsServerstzt.queryAllProjectAudit(),"YYYY-MM-dd");
+		System.out.println(result);
+		return result;
+	}
 }

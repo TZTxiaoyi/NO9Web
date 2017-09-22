@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.ljl.EmployeeDaoLjl;
+import com.dao.ljl.PlatformFundsDaoLjl;
 import com.dao.tzt.AccountsDaotzt;
 import com.dao.tzt.CapitalDaotzt;
 import com.dao.tzt.OrdersDaotzt;
@@ -36,6 +37,8 @@ public class PayServicetztImpl implements PayServicetzt {
 	AccountsDaotzt accountsDaotzt;
 	@Autowired
 	EmployeeDaoLjl employeeDaoLjl;
+	@Autowired
+	PlatformFundsDaoLjl platdao;
 	
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String payService(Orders orders) {
@@ -86,6 +89,17 @@ public class PayServicetztImpl implements PayServicetzt {
 		}
 		Integer a =ordersDaotzt.addOrders(orders);
 		capital.setOrdid(orders.getOrdid());
+		//用户交易记录表
+		Map emap=new HashMap();
+		emap.put("empid", orders.getEmpid());
+		emap.put("money", -balance);
+		emap.put("details",178);
+		employeeDaoLjl.AllTransactionRecord(emap);
+		//平台资金表更新
+		Map pmap=new HashMap();
+		pmap.put("username", -balance);
+		pmap.put("promoney", balance);
+		platdao.Updatefund(emap);
 		Integer b= capitalDaotzt.addCapital(capital);
 		Integer c =promoneyDaotzt.updatePromoney(promoney);
 		if (a!=0&&b!=0&&c!=0) {

@@ -46,7 +46,22 @@ public class SinAuditingServiceImpl implements SinAuditingService{
 		// TODO Auto-generated method stub
 		return sinAuditingDao.upSinProSt(projecstid);
 	}
-	
+	/**
+	 * 点击项目发布时，修改项目状态 
+	 */
+	public int upSinProStEnd(Project projecstid) {
+		// TODO Auto-generated method stub
+		List<Map> list=describepro.AllDescribeProject(projecstid);
+		Map map=list.get(0);
+		Integer targemoney =Integer.parseInt(map.get("FINANCING").toString());
+		Map promoney=new HashMap();
+		promoney.put("projectsid", projecstid.getProjectsid());
+		promoney.put("targemoney", targemoney);
+		
+		System.out.println(promoney);
+		describepro.addPromoney(promoney);
+		return sinAuditingDao.upSinProSt(projecstid);
+	}
 	
 
 	

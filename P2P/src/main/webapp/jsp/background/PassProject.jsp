@@ -71,7 +71,7 @@
 		$.ajax({					
 			type:"post",
 			dataType:"json",
-			url:"/P2P/project/upSinProState.do",
+			url:"/P2P/project/upSinProStateEnd.do",
 			data:JSON.stringify(dd),
 			contentType:"application/json;charset=UTF-8",
 			success:function(data){
@@ -90,7 +90,7 @@
 				
 				dd["projectsstate"]=84;
 				dd["projectsid"]=projectsid;
-				if (!confirm("确认要审核？")) { 				
+				if (!confirm("确认要发布项目？")) { 				
 			        window.event.returnValue = false; 
 			    } else{
 			    	projectstate(dd);

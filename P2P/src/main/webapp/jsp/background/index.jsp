@@ -6,7 +6,7 @@
 <title>首页-P2P</title>
 </head>
 <frameset rows="100,*" cols="*" scrolling="No" framespacing="0"
-	frameborder="no" border="0"> <frame src="inc/head.html"
+	frameborder="no" border="0"> <frame src="inc/head.jsp"
 	name="headmenu" id="mainFrame" title="mainFrame"><!-- 引用头部 -->
 <!-- 引用左边和主体部分 --> <frameset rows="100*" cols="220,*" scrolling="No"
 	framespacing="0" frameborder="no" border="0"> <frame
