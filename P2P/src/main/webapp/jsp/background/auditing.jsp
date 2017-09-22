@@ -459,7 +459,7 @@
 					$.each(data,function(index,value){
 						var title="<span  class=\"form-control\" id=\"name\" >标题："+value.TITLE+"</span>"+
 						"<p  id=\"body_span\">文本："+value.BODY+"</p>"+
-						"<span  >图片："+value.URL+"</span><hr>";						
+						"<span  >图片：<img src='../../images/"+value.URL+"'style=\"width:350px;height:250px\"></span><hr>";						
 						$("#myModalLabel").append(title);
 					})
 				}
