@@ -107,7 +107,6 @@
 <script>
 var data={};
 $("#removebutton").click(function() {
-	alert(JSON.stringify(data));
 	 $.ajax({
 		type : "post",
 		dataType : "json",
@@ -125,7 +124,6 @@ $("#removebutton").click(function() {
 	}); 
 })
 $("#finshbutton").click(function() {
-	alert(JSON.stringify(data));
 	 $.ajax({
 		type : "post",
 		dataType : "json",
@@ -260,12 +258,10 @@ $("#finshbutton").click(function() {
 		 if(row.RAISE_MONEY>=row.TARGE_MONEY){
 			 //筹资成功
 			  $("#finshproject").modal();
-			 alert(JSON.stringify(data));
 			 
 		 }else{
 			 //筹资失败
 			  $("#removeproject").modal();
-			 alert(JSON.stringify(data));
 		 }
 	 } 
 	    };
