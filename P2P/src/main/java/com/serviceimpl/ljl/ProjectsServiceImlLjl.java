@@ -46,7 +46,7 @@ public class ProjectsServiceImlLjl implements ProjectsServiceLjl{
 	@Transactional(propagation=Propagation.REQUIRED)
 	public String SaveProjects(ProjectsLjl proLjl){
 		List lists=projectsdaoljl.countProjects(proLjl);
-		if(lists.size()>1){
+		if(lists.size()>=1){
 			return "err1";
 			
 		}

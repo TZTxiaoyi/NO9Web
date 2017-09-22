@@ -435,8 +435,8 @@
 	<script type="text/javascript">
 		var auditing=$.cookie("project_auditing");
 		var topWindow=window.top;
-
 		$("#see_card").click(function(){
+			$("#card_image").html("");	
 			var data1={};
 			data1["projectsid"]=auditing;
 			$.ajax({
@@ -447,7 +447,7 @@
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){
 					$.each(data,function(index,value){
-						var img1="<img src='"+value.CARDIMAGE1+"'><br><img src='"+value.CARDIMAGE2+"'>";											
+						var img1="<img src='../../images/"+value.CARDIMAGE1+"'style=\"width:350px;height:250px\"><br><img src='../../images/"+value.CARDIMAGE2+"'style=\"width:350px;height:250px\">";											
 						$("#card_image").append(img1);						
 					})
 				}

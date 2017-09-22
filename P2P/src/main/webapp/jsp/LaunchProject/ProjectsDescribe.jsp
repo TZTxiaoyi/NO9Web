@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->]
+	-->
   <script type="text/javascript" src="../../jq/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="../../jq/jquery.cookie1.4.1.js"></script>
   <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
