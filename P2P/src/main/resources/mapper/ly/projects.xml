@@ -19,7 +19,7 @@
 	</insert>
 	<!-- //修改审核记录表，添加结束时间 -->
 	<update id="upRecordTab" parameterType="map">
-		update recordtable set recordtable_endtime=sysdate,reason=#{reason,jdbcType=VARCHAR} where projectsid=#{projectsid,jdbcType=NUMERIC}
+		update recordtable set recordtable_endtime=sysdate,reason=#{reason,jdbcType=VARCHAR} where projectsid=#{projectsid,jdbcType=NUMERIC} and recordtable_endtime is null
 	</update>
 	
 	<!-- //查看审核记录表  (通过) -->
