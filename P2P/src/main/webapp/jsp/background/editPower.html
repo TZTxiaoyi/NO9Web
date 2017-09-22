@@ -177,6 +177,9 @@ $(function () {
 		  '<option  value="17" data-section="资金管理">平台资金管理</option>' +
 		  '<option  value="18" data-section="资金管理" id="aaa">项目资金发放</option>' +
 		  '<option  value="60" data-section="资金管理" id="bbb">盈利资金</option>' +
+		  
+		  '<option  value="64" data-section="用户交易">交易记录</option>'+
+		   
                   '</select>'; 
         $("#authorityBody").empty().append(html);
         //$(".selections .section .item input")..removeAttr('checked');
@@ -213,6 +216,7 @@ $("#authoritysubmit").click(function(){
 	var project=0;
 	var captial=0;
 	var money=0;
+	var users=0;
 	var data={};
 	
 	var arry=new Array();
@@ -247,6 +251,13 @@ $("#authoritysubmit").click(function(){
 				json["roleid"]=parseInt(roleid);
 				arry[arry.length]=json;			
 			}	 
+			if($(this).val()==64){
+				users=63;
+				var json={};
+				json["powersid"]=parseInt($(this).val());
+				json["roleid"]=parseInt(roleid);
+				arry[arry.length]=json;			
+			}	 
 		} 
 		 
 		
@@ -272,6 +283,12 @@ $("#authoritysubmit").click(function(){
 	 if(money>0){
 		 var json={};
 		 json["powersid"]=parseInt(money);
+		 json["roleid"]=parseInt(roleid);
+		 arry[arry.length]=json;
+	 }
+	 if(users>0){
+		 var json={};
+		 json["powersid"]=parseInt(users);
 		 json["roleid"]=parseInt(roleid);
 		 arry[arry.length]=json;
 	 }

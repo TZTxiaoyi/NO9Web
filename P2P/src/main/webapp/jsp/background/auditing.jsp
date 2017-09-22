@@ -1053,8 +1053,7 @@
 					}					
 				});								
 			}else{
-				alert(flag);
-				alert(789);
+				
 				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");					
 			}
 			//修改审核记录，添加最后时间 如果为通过审核，添加未通过原因
@@ -1063,7 +1062,7 @@
 		 
 	});
 		 function mark(){
-				alert(456);
+				
 			var dd={};
 			dd["projectsid"]=auditing;
 			//dd["recordtable_endtime"]=new Date().toLocaleString();
@@ -1084,7 +1083,7 @@
 		}	
 		 
 		 function upProState(){
-				alert(212);
+				
 				var dd={};
 			 dd["projectsstate"]=88;
 			 dd["projectsid"]=auditing;

@@ -4,10 +4,10 @@
 		"http://mybatis.org.dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ly.SinAuditingDao">
 	<select id="selSinAu" resultType="map" parameterType="int">
-		select r1.projectsid,w1.value value1,a1.value value2,b1.value value3,c1.value value4,d1.value value5,e1.value value6
-		from resumes_auditings r1,word w1,word a1,word b1,word c1,word d1,word e1 
+		select r1.projectsid,w1.value value1,a1.value value2,b1.value value3,c1.value value4,d1.value value5
+		from resumes_auditings r1,word w1,word a1,word b1,word c1,word d1
 		where r1.idcard=w1.key and r1.originatorname=a1.key and r1.address=b1.key 
-		and r1.telephone=c1.key and r1.cardimage1=d1.key and r1.cardimage2=e1.key and projectsid=#{projectsid}
+		and r1.telephone=c1.key and r1.cardimage1=d1.key  and projectsid=100292
 	</select>
 	<!-- 项目信息审核 -->
 	<select id="selDeAuditing" resultType="map" parameterType="int">
@@ -24,7 +24,7 @@
 	
 	<!-- 修改个人信息审核记录 -->
 	<update id="inSinProAuRe" parameterType="int">
-		update resumes_auditings set idcard=#{idcard},originatorname=#{originatorname},address=#{address},telephone=#{telephone},cardimage1=#{cardimage1},cardimage2=#{cardimage2}
+		update resumes_auditings set idcard=#{idcard},originatorname=#{originatorname},address=#{address},telephone=#{telephone},cardimage1=#{cardimage1}
 		where projectsid=#{projectsid}
 	</update>
 
@@ -52,7 +52,7 @@
 	</select>
 	<!-- 在所有项目里点击审核，给个人信息审核表一个默认未审核的初始值（1） -->
 	<insert id="inSinProState" parameterType="int">
-		insert into resumes_auditings values(resumes_auditing.nextval,#{projectsid},42,42,42,42,42,42)
+		insert into resumes_auditings values(resumes_auditing.nextval,#{projectsid},42,42,42,42,42)
 	</insert>
 	<!--  在所有项目里点击审核，给机构信息审核表一个默认未审核的初始值（1）-->
 	<insert id="inOrProState" parameterType="int">
