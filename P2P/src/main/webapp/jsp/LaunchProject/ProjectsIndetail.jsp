@@ -182,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		data["title"]=title;
 		data["body"]=body;
 		data["projectsid"]=projectsid;
-		alert(initialindex);
+		//alert(initialindex);
 		data["initialindex"]=initialindex;
 		//data["photo"]=photo;
 		updateIndetail(data);

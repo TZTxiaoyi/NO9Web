@@ -42,7 +42,7 @@
 	
 	<!-- 修改项目回报审核记录 -->
 	<update id="inProReturnRe" parameterType="map">
-		update retur_auditing_record set return_type=#{return_type},offer_money=#{offer_money},return_title=#{return_title},return_content=#{return_content},return_time=#{return_time},image=#{image}
+		update retur_auditing_record set return_type=#{return_type},offer_money=#{offer_money},return_title=#{return_title},return_content=#{return_content},return_time=#{return_time}
 		where projectsid=#{projectsid}
 	</update>
 	
@@ -69,7 +69,7 @@
 	
 	<!--  在所有项目里点击审核，给项目回报审核表一个默认未审核的初始值（4）-->
 	<insert id="inProReturnState" parameterType="int">
-		insert into retur_auditing_record values(retur_auditing_record_list.nextval,#{projectsid},42,42,42,42,42,42)
+		insert into retur_auditing_record values(retur_auditing_record_list.nextval,#{projectsid},42,42,42,42,42)
 	</insert>
 	
 	<!-- 查询项目描述中的文本 -->

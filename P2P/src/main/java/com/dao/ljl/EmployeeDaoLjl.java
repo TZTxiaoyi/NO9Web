@@ -11,7 +11,7 @@ public interface EmployeeDaoLjl {
 	public int UpdateEmployees(List list);
 	public int InsertTransaction(Map map);
 	public int InsertTransactionList(List list);
-	
+	public int InsertTransactionListremove(List list);
 	public List AllTransactionRecord(Map emp);
 
 }

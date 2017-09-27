@@ -19,42 +19,42 @@
 	#save_sinpro,#save_two,#save_three,#save_four{
 		display:block;
 		position:relative;
-		margin-left:1000px;
+		margin-left:800px;
 	}
 	#save_all{
 		display:block;
 		position:absolute;
-		margin-left:1000px;
+		margin-left:800px;
 		margin-top:40px;		
 	}
 	#give_up{
 		display:block;
 		position:absolute;
-		margin-left:800px;
+		margin-left:600px;
 		margin-top:40px
 	}
 	#passAll1{
 		display:block;
 		position:absolute;
-		margin-left:800px;
+		margin-left:600px;
 		margin-top:-45px;
 	}
 	#passAll2{
 		display:block;
 		position:absolute;
-		margin-left:800px;
+		margin-left:600px;
 		margin-top:10px;
 	}
 	#passAll3{
 		display:block;
 		position:absolute;
-		margin-left:800px;
+		margin-left:600px;
 		margin-top:10px;
 	}
 	#passAll4{
 		display:block;
 		position:absolute;
-		margin-left:800px;
+		margin-left:600px;
 		margin-top:10px;
 	}
 </style>
@@ -206,7 +206,9 @@
 								</tr>
 								<tr>
 									<td>项目封面</td>
-									<td id="detail_six"></td>
+									<td id="detail_six">
+										<button class="btn btn-info" data-toggle="modal" data-target="#myModal6">查看</button>
+									</td>
 									<td>
 										<label><input type="radio" name="cover" value="right11" flag="information2" id="oneRadio"/>&nbsp;是</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -324,16 +326,7 @@
 										<label><input type="radio" name="reTime" value="left12" />&nbsp;否</label>
 									</td>
 								</tr>
-								<tr>
-									<td>实物图</td>
-									<td id="return_seven"></td>
-									<td>
-										<label><input type="radio" name="reImage" value="left13" flag="information4" id="oneRadio"/>&nbsp;是</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label><input type="radio" name="reImage" value="left14" />&nbsp;否</label>
-									</td>
-								</tr>										
+															
 							</table>
 							<div class="bbD">
 								<input type="button" id="passAll4" class="btn btn-info btn-xs" value="一键通过">
@@ -381,28 +374,11 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal -->
 		</div>
-		<!-- 查看身份证模态框 -->
-	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times;
-					</button>
-					<h4 class="modal-title" id="myModalLabel">
-						身份证正、反面
-					</h4>
-				</div>
-				<div class="modal-body" id="card_image">
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-					</button>					
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal -->
 		
+		<!-- 查看项目封面模态框 -->
+	
+	
+
 	</div>
 	<script type="text/javascript">
 		var auditing=$.cookie("project_auditing");
@@ -724,11 +700,7 @@
 						$("input:radio[value='left12']").attr('checked','true');
 					}
 					
-					if(data[0].VALUE7=="yes"){
-						$("input:radio[value='left13']").attr('checked','true');
-					}else if(data[0].VALUE7=="no"){
-						$("input:radio[value='left14']").attr('checked','true');
-					}
+					
 				}
 			});
 		});
@@ -804,8 +776,12 @@
 				url:"/P2P/project/inseSinAudi.do",
 				data:JSON.stringify(data),
 				contentType:"application/json;charset=UTF-8",
-				success:function(data){					
-					//alert(data);
+				success:function(data){
+					if(data==1){
+						
+						alert("保存成功");
+					}
+					
 				}
 			});
 		});
@@ -872,6 +848,10 @@
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
 					//alert(data);
+					if(data==1){
+						
+						alert("保存成功");
+					}
 				}
 			});
 		});
@@ -906,6 +886,10 @@
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
 					//alert(data);
+					if(data==1){
+						
+						alert("保存成功");
+					}
 				}
 			});
 		});
@@ -965,13 +949,7 @@
 				data["return_time"]=42;
 			}
 			
-			if($("input:radio[value='left13']").is(':checked')){
-				data["image"]=40;
-			}else if($("input:radio[value='left14']").is(':checked')){
-				data["image"]=41;
-			}else{
-				data["image"]=42;
-			}
+			
 			$.ajax({
 				type:"post",
 				dataType:"json",
@@ -980,6 +958,10 @@
 				contentType:"application/json;charset=UTF-8",
 				success:function(data){					
 					//alert(data);
+					if(data==1){
+						
+						alert("保存成功");
+					}
 				}
 			});
 		});
@@ -995,7 +977,7 @@
 				}
 			});
 			
-			if(flag==17){
+			if(flag==16){
 				dd["projectsstate"]=11;
 				$.ajax({					
 					type:"post",
@@ -1011,7 +993,7 @@
 					}					
 				});								
 			}else{
-				
+				$("#reasons").html("");
 				$("#reasons").append("请填写未通过原因：<textarea id=\"text\"></textarea> <input type=\"button\" onClick=\"mark()\" value=\"提交\" class=\"btn btn-info\" >");					
 			}
 			//修改审核记录，添加最后时间 如果为通过审核，添加未通过原因

@@ -30,4 +30,10 @@
 			insert into transaction values(list_Transaction.nextval,#{item.EMPID},sysdate,#{item.PROPORTION},#{item.DETAILS})
 		</foreach>
 	</insert>
+	
+	<insert id="InsertTransactionListremove" parameterType="java.util.List" useGeneratedKeys="false">
+		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
+			insert into transaction values(list_Transaction.nextval,#{item.EMPID},sysdate,#{item.PAYMONEY},198)
+		</foreach>
+	</insert>
 </mapper>

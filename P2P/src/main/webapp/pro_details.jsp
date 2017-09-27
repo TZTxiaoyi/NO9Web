@@ -779,11 +779,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:JSON.stringify(data),
 			success:function(data){	 
 				$.each(data,function(index,value){
-					
-					var detail="<div class=\"h3\"><h3>"+value.TITLE+"</h3></div>"+
+					var detail="";
+					if (value.TEXTID!=undefined){
+						detail="<div class=\"h3\"><h3>"+value.TITLE+"</h3></div>"+
+						"<div><p>"+value.BODY+"</p></div>";
+						
+					}else if(value.PHOTOID!=undefined){
+						detail="<div><img src='images/"+value.URL+
+						"' width=\"650px\" height=\"400px;\"/></div>";
+						
+					}
+					/* detail="<div class=\"h3\"><h3>"+value.TITLE+"</h3></div>"+
 							"<div><p>"+value.BODY+"</p></div>"+
 							"<div><img src='images/"+value.URL+
-							"' width=\"650px\" height=\"400px;\"/></div>";
+							"' width=\"650px\" height=\"400px;\"/></div>"; */
 					$("#detailUpdate").append(detail);
 				})
 			},

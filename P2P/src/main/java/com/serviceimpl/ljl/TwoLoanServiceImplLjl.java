@@ -100,9 +100,13 @@ public class TwoLoanServiceImplLjl implements TwoLoanServiceLjl {
 			System.out.println(smoney+","+proempid+","+zmoney);
 			System.out.println("map:"+map);
 			List<Map<String,Object>> listemoney=twoloan.selectemoney(map);
-			System.out.println(listemoney);
-			Map<String,Object> mapemoney=listemoney.get(0);
-			Float emoney=Float.parseFloat(mapemoney.get("EMONEY").toString());
+			System.out.println("list:"+listemoney);
+			Float emoney=(float) 0;
+			if(listemoney.size()!=0){
+				Map<String,Object> mapemoney=listemoney.get(0);
+				emoney=Float.parseFloat(mapemoney.get("EMONEY").toString());
+			}
+			System.out.println("emoney:"+emoney);
 			System.out.println(emoney);
 			if(emoney>smoney){
 				//回报失败百分比退款给用户
@@ -136,31 +140,32 @@ public class TwoLoanServiceImplLjl implements TwoLoanServiceLjl {
 				 System.out.println("552");
 				 return "已向未收到回报的用户退回资金，项目回报成功率过低，项目失败";
 			}else if(emoney<=smoney){
-				List<Map<String,Object>> listemoneysuc=twoloan.selectemoneysuc(map);
-				//回报成功原数退款给用户
-				
-				System.out.println("回报成功原数退款给用户");
-				//更改订单信息
-				orders.UpdateOrderList(listemoneysuc);
-				System.out.println("更改订单信息");
-				//退回至余额
-				 employeedao.UpdateEmployees(listemoneysuc);
-				System.out.println("退回至余额");
-				//添加用户交易记录
-				 employeedao.InsertTransactionList(listemoneysuc);
-				 System.out.println("添加用户交易记录");
-				//更新平台资金流动
-				 platformfunds.UpdatefundsList(listemoneysuc);
-				 System.out.println("更新平台资金流动");
-				//平台资金操作记录表 类型
-				 platformfunds.InsertCapitalList(listemoneysuc);
-				 System.out.println("平台资金操作记录");
-				 
-				 //项目资金操作记录
-				 
-				 
-				
-				 
+				if(emoney>0){
+					System.out.println("213");
+					List<Map<String,Object>> listemoneysuc=twoloan.selectemoneysuc(map);
+					//回报成功原数退款给用户
+					
+					System.out.println("回报成功原数退款给用户");
+					//更改订单信息
+					
+					orders.UpdateOrderList(listemoneysuc);
+					System.out.println("更改订单信息");
+					//退回至余额
+					 employeedao.UpdateEmployees(listemoneysuc);
+					System.out.println("退回至余额");
+					//添加用户交易记录
+					 employeedao.InsertTransactionList(listemoneysuc);
+					 System.out.println("添加用户交易记录");
+					//更新平台资金流动
+					 platformfunds.UpdatefundsList(listemoneysuc);
+					 System.out.println("更新平台资金流动");
+					//平台资金操作记录表 类型
+					 platformfunds.InsertCapitalList(listemoneysuc);
+					 System.out.println("平台资金操作记录");
+					 
+					 //项目资金操作记录
+				}
+
 				Float promoney=smoney-emoney;
 				Map funds=new HashMap();
 					funds.put("promoney",-promoney);

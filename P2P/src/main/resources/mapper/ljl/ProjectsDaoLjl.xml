@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="retProjects" parameterType="com.entity.tzt.Orders" resultType="map">
-		select * from projects where projectsstate!=116 and projectsstate!=156 and projectsstate!=86 and empid=100348	order by projectsid desc
+		select * from projects where projectsstate!=116 and projectsstate!=156 and projectsstate!=86 and empid=#{empid}	order by projectsid desc
 	</select>
 	<select id="AllProjectsType" resultType="HashMap">
 		select * from protype

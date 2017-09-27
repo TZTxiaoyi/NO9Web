@@ -416,12 +416,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	$(".image").click(function(){
 		
 		var pid=$(this).attr("pid");
-		alert(pid);
+		//alert(pid);
 		$.cookie('pid', pid);
 	})
 	$("#moddel").on('click',".img",function(){
 		var pid=$(this).attr("pid");
-		alert(pid);
+		//alert(pid);
 		$.cookie('pid', pid);
 	})
 	/*

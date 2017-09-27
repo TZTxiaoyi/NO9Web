@@ -55,30 +55,13 @@ public class LoginControllerLy {
 		} catch (UnknownAccountException e) {
 			// TODO: handle exception
 			System.out.println("6666666666*****");
-			System.out.println("aaasss"+e.getMessage());
-			/*try {
-				
-				response.getWriter().write(JSON.toJSONString("没有该用户!"));
-				response.getWriter().flush();
-				response.getWriter().close();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				
-			}*/
+			System.out.println("aaasss"+e.getMessage());//"没有该用户!"
+			
 			return "redirect:http://localhost:9088/P2P/jsp/background/log.jsp";
 		}catch(Exception e2){
-			
 			System.out.println(e2.getMessage());//用户密码错误
 			
-			/*try {				
-				response.getWriter().write(JSON.toJSONString("用户密码错误!"));
-				response.getWriter().flush();
-				response.getWriter().close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				System.out.println("aaa"+e1.getMessage());				
-			}*/
+			
 			System.out.println("ssss55");
 			return "redirect:http://localhost:9088/P2P/jsp/background/log.jsp";
 		}
@@ -91,9 +74,7 @@ public class LoginControllerLy {
 			
 			System.out.println("ssss22"); 
 			return "redirect:http://localhost:9088/P2P/jsp/background/index.jsp";
-			/*response.getWriter().write(JSON.toJSONString("登录成功!"));
-			response.getWriter().flush();
-			response.getWriter().close();*/
+			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			System.out.println("ssss"+e1.getMessage());

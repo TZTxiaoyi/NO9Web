@@ -35,12 +35,18 @@ public class OrdersServiceImp implements OrdersService{
 	public List selectOrders(Orders o) {
 		// TODO Auto-generated method stub
 		List<Map> pro=prodao.retProjects(o);
-		Map promap=pro.get(0);
-		System.out.println(promap);
-		Integer projectsid=Integer.parseInt(promap.get("PROJECTSID").toString());
-		o.setProjectsid(projectsid);
+		if(pro.size()>0){
+			
+			Map promap=pro.get(0);
+			System.out.println(promap);
+			Integer projectsid=Integer.parseInt(promap.get("PROJECTSID").toString());
+			o.setProjectsid(projectsid);
+			
+			return oDao.selectOrders(o);
+		}return null;
+			
 		
-		return oDao.selectOrders(o);
+		
 	}
 	@Override
 	/**

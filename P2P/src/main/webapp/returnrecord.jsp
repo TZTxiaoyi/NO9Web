@@ -142,9 +142,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function waitback(){
 		$("#tab1").html("");
 		var pid=$.cookie('pid');
-		//var empid=$.cookie('empid');
+		var empid=$.cookie('empid');
 		data={};
-		//data["empid"]=empid;
+		data["empid"]=empid;
 		data["projectsid"]=pid;
 		$.ajax({
 			type : "post",
@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#tab1").append(th);
 					var i=1;
 					$.each(data,function(index,value){
-						alert(value.ADDRESS);
+						//alert(value.ADDRESS);
 						var tr="<tbody><tr><td>"+i+"</td><td id=\"orderback"+value.ORD_ID+"\">"+value.ORD_ID+"</td><td>"+value.USERNAME+
 						"</td><td>"+value.PAYMONEY+"</td><td>"+value.OFFER_MONEY+"</td><td>"+value.RETURN_TITLE+"</td><td>"+value.FRACTION+
 						"</td><td>"+value.TIME+"</td><td><a id=\"back"+value.ORD_ID+"\" class=\"button border-info return\" data-toggle=\"modal\" data-target=\"#myModal\">"+ 
@@ -172,7 +172,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					});
 			},
 			error : function() {
-				alert("error");
+				alert("你没有发起项目");
 			}
 		});
 	}
@@ -183,9 +183,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function alreadyback(){
 		$("#tab2").html("");
 		var pid=$.cookie('pid');
-		//var empid=$.cookie('empid');
+		var empid=$.cookie('empid');
 		data={};
-		//data["empid"]=empid;
+		data["empid"]=empid;
 		data["projectsid"]=pid;
 		$.ajax({
 			type : "post",
@@ -209,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			},
 			error : function() {
-				alert("error");
+				alert("你没有发起项目");
 			}
 		});
 	}
@@ -219,9 +219,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function backing(){
 		$("#tab3").html("");
 		var pid=$.cookie('pid');
-		//var empid=$.cookie('empid');
+		var empid=$.cookie('empid');
 		data={};
-		//data["empid"]=empid;
+		data["empid"]=empid;
 		data["projectsid"]=pid;
 		$.ajax({
 			type : "post",
@@ -246,7 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			},
 			error : function() {
-				alert("error");
+				alert("你没有发起项目");
 			}
 		});
 	}
@@ -278,7 +278,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#ordid").html(ordid);//订单id
 			},
 			error : function() {
-				alert("error");
+				alert("你没有发起项目");
 			}
 		});
 	})
@@ -311,7 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				backing();
 			},
 			error : function() {
-				alert("error");
+				alert("你没有发起项目");
 			}
 		});
 		}

@@ -116,7 +116,8 @@ $("#removebutton").click(function() {
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
 			
-			alert("成功")
+			alert("成功");
+			$('#removeproject').modal('hide');	
 		 $('#tb_departments').bootstrapTable("refresh");
 		},error : function() {
 			alert("error");
@@ -133,6 +134,7 @@ $("#finshbutton").click(function() {
 		data:JSON.stringify(data),
 		success : function(result) {//data为返回的数据，在这里做数据绑定  
 			alert("放款成功");
+			$('#selectinfoModal').modal('hide');	
 			 $('#tb_departments').bootstrapTable("refresh");
 		},error : function() {
 			alert("error");

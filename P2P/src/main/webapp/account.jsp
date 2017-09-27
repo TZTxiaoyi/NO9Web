@@ -87,7 +87,7 @@
 					contentType : "application/json;charset=utf-8",
 					data : JSON.stringify(data),
 					success : function(data) {								
-						alert("更新成功"+data);						 
+						alert("更新成功");						 
 						$.cookie('account', '', { expires: -1 });
 						$.cookie('account1', '', { expires: -1 });
 						//tiaozhuan

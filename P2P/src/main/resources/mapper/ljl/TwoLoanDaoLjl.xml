@@ -18,10 +18,10 @@
 	</update>
 	
 	<select id="selectemoney" resultType="map" parameterType="map">
-		select ord_id,empid,projectsid,paymoney,sum(paymoney) over() emoney ,round(paymoney/sum(paymoney) over() * #{money},2) proportion,87 ordstatus,158 DETAILS,31 capitalflow from orders where (ord_status=80 or ord_status=136) and projectsid=#{proid}
+		select ord_id,empid,projectsid,paymoney,sum(paymoney) over() emoney ,round(paymoney/sum(paymoney) over() * #{money},2) proportion,87 ordstatus,197 DETAILS,31 capitalflow from orders where (ord_status=80 or ord_status=136) and projectsid=#{proid}
 	</select>
 	<select id="selectemoneysuc" resultType="map" parameterType="map">
-		select ord_id,empid,projectsid,paymoney proportion,sum(paymoney) over() emoney,87 ordstatus,158 DETAILS,31 capitalflow  from orders where (ord_status=80 or ord_status=136) and projectsid=#{proid}
+		select ord_id,empid,projectsid,paymoney proportion,sum(paymoney) over() emoney,87 ordstatus,197 DETAILS,31 capitalflow  from orders where (ord_status=80 or ord_status=136) and projectsid=#{proid}
 	</select>
 	<select id="selectordid" resultType="map">
 		select pb.ord_id,81 ORDSTATUS from  pro_back pb,orders o where

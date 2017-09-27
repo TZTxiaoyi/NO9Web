@@ -109,13 +109,13 @@
 					</dd>
 				</shiro:hasPermission>
 				
-				<shiro:hasPermission name="oraproject">
+				<%-- <shiro:hasPermission name="oraproject">
 					<dd>
 						<img class="coin11" src="../img/coin111.png" /><img class="coin22"
 							src="../img/coin222.png" /><a href="../oraproject.jsp" target="main"
 							class="cks">机构（未审核）</a><img class="icon5" src="../img/coin21.png"/>
 					</dd>	
-				</shiro:hasPermission>
+				</shiro:hasPermission> --%>
 				
 				<shiro:hasPermission name="passproject">		
 					<dd>

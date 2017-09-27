@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			show_bankAcount_msg("#Recharge1", "error", "请填写提现金额");
 			return false;
 		}else if(Recharge1 > money){
-			alert(money);
+			//alert(money);
 			alert("余额不足！");
 			show_bankAcount_msg("#Recharge1", "error", "对不起，余额不足");
 			return false;
@@ -219,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			},
 			error : function(data){
-				alert("error"+data);
+				alert("error");
 			}
 		});
 	});
@@ -237,7 +237,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
 			},
 			error : function(data){
-				alert("error"+data);
+				alert("error");
 			}
 		});
 	});
@@ -292,7 +292,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					//alert(sp);
 				},
 				error : function(data){
-					alert("error error"+data);
+					alert("error error");
 				}
 			});
 		}); 
@@ -300,12 +300,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //--------------------------------------------交易记录-------------------------------------------------------------
 var Empid1 = parseInt($.cookie("empid"));
 $(function () {
-		alert("1");
 	    //1.初始化Table
 	    var oTable = new TableInit();
-	    alert("55");
 	    oTable.Init();
-	    alert("54");
 	    //2.初始化Button的点击事件
 	    var oButtonInit = new ButtonInit();
 	    oButtonInit.Init();

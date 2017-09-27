@@ -168,7 +168,7 @@ var TableInit = function () {
 					
     		},"click .delectbtn":function(e,value,row,index){
 				var projectsid=row.PROJECTSID;
-				if(row.PROJECTSSTATE=="草稿箱"){
+				if(row.PROJECTSSTATE=="草稿箱"||row.PROJECTSSTATE=="不通过"){
 					$.ajax({
 						type:"post",
 						url:"http://localhost:9088/P2P/ProjectsController/DelProjects.do",

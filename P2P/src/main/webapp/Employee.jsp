@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var th = "<tr id='trsize'><td>编号</td><td>用户名</td><td>真实姓名</td><td>身份证号</td><td>性别</td><td>年龄</td><td>地址</td><td>电话</td><td>账户余额</td><td>状态</td></tr>";
 				$("#table").append(th);
 				$.each(data,function(index, value) {
-					alert(value.empId);
+					//alert(value.empId);
 					var dd = "<tr><td>"+value.empId+"</td><td>"+value.userName+"</td><td>"+value.empName+"</td><td>"+value.idCard+"</td><td>"+value.sex+"</td><td>"+value.age+"</td><td>"+value.address+"</td><td>"+value.telePhone+"</td><td>"+value.balance+"</td><td>"+value.empState+"</td></tr>"
 					
 					$("#table").append(dd);  

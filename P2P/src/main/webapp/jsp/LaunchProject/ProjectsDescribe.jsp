@@ -72,13 +72,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">项目标题：</label>
 						   <div class="col-sm-6">
-						    	<input type="text" id="title" maxlength="10" name="title" class="form-control" placeholder="给自己的项目取个响亮的名字吧！注意不要超过10个汉字" ><br>
+						    	<input type="text" id="title" maxlength="30" name="title" class="form-control" placeholder="给自己的项目取个响亮的名字吧！注意不要超过10个汉字" ><br>
 						   </div>
   						</div>
   						<div class="form-group">
   							<label for="" class="col-sm-2 control-label">筹款目的：</label>
 						   <div class="col-sm-6">
-						    	<textarea class="form-control" maxlength="75" rows="3" id="goal" name="goal" placeholder="一句话简单介绍下你的项目吧！注意不要超过75个汉字"></textarea> 
+						    	<textarea class="form-control" maxlength="150" rows="3" id="goal" name="goal" placeholder="一句话简单介绍下你的项目吧！注意不要超过75个汉字"></textarea> 
 						   </div>
   						</div>
   						<div class="form-group">

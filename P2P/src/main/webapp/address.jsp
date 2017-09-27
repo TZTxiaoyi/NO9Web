@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		var data ={}
 			data["empid"] = $.cookie("empid");
-			alert(data["empid"]);
+			//alert(data["empid"]);
 		
 		$.ajax({
 			type : "post",
@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data : JSON.stringify(data),
 			success : function(data) {								
 				window.location.reload();
-				alert("ok");				
+				//alert("ok");				
 			},
 			error : function() {
 				alret("error");

@@ -6,6 +6,6 @@
 	<select id="selUserDealRecord" resultType="map">
 		select t1.traid,t1.empid,e1.username,to_char(t1.time,'yyyy-mm-dd hh24:mi:ss') as time,t1.money,w1.value
 		from transaction t1,employee e1,word w1
-		where t1.empid=e1.empid and w1.key=t1.details
+		where t1.empid=e1.empid and w1.key=t1.details order by t1.time desc
 	</select>
 </mapper>

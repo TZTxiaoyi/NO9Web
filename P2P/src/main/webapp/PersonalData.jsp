@@ -140,7 +140,7 @@
 		var idCard = $().val("#idCard");
 		var empId = $.cookie("empid");
 		var account =  $.cookie("account");
-		alert(empId+"______"+account);
+		//alert(empId+"______"+account);
 		var data = {
 				UserName : $("#UserName").val(),
 				Sex : $("input:radio:checked").val(),
@@ -286,7 +286,7 @@
 					
 				},
 				error : function(data){
-					alert("error"+data);
+					alert("error");
 				}
 			});
 		});
@@ -315,7 +315,7 @@
 						 window.top.location.href="http://localhost:9088/P2P/newHome.jsp";
 					},
 					error : function(data){
-						alert("error"+data);
+						alert("error");
 					}
 				}); 
 			

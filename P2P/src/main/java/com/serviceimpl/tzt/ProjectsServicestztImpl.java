@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
+import com.dao.ljl.EmployeeDaoLjl;
 import com.dao.ljl.PlatformFundsDaoLjl;
 import com.dao.ljl.ReturnProjectsDaoLjl;
 import com.dao.sxm.OrdersDao;
@@ -50,6 +51,8 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 	ProfitDaotzt profitDaotzt;
 	@Autowired
 	ReturnProjectsDaoLjl returnprodao; 
+	@Autowired
+	EmployeeDaoLjl employeedao;
 	
 	/**
 	 * Title: RemoveProjects  取消项目
@@ -65,26 +68,34 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		orders.setProjectsid(projectsMoneyinfotzt.getProjectsid());
 		List<Map> projectsorder= ordersDaotzt.queryOrders(orders);
 		System.out.println(JSON.toJSONString(projectsorder));
-		//更改订单信息
-		 orders.setOrdstatus(87);
-		 ordersDaotzt.updateOrders(orders);
-		//退回至余额
-		 EmployeeDaotzt.updataEmployeelist(projectsorder);
-		System.out.println("jine");
-		//添加用户的退款记录
+		if(projectsorder.size()>0){
+			//更改订单信息
+			 orders.setOrdstatus(87);
+			 ordersDaotzt.updateOrders(orders);
+			//退回至余额
+			 EmployeeDaotzt.updataEmployeelist(projectsorder);
+			System.out.println("jine");
+			//添加用户的退款记录
+			employeedao.InsertTransactionListremove(projectsorder);
+			
+			//添加平台资金表记录
+
+			 CapitalDaotzt.addCapitalRemoveProjectList(projectsorder);
+			 
+				//修改总资金
+			 PlatformFundsLjl platfrom=new PlatformFundsLjl();
+			 platfrom.setUsermoney(projectsMoneyinfotzt.getBlacne());
+			 platfrom.setPromoney(-projectsMoneyinfotzt.getBlacne());
+			 
+			 platformFundsDaoLjl.Updatefunds(platfrom);
+			 System.out.println("zongzijin");
+
+		}
+		
+	
 		
 		
-		//添加平台资金表记录
-		 System.out.println(projectsorder.size());
-		 System.out.println(projectsorder.getClass());
-		 CapitalDaotzt.addCapitalRemoveProjectList(projectsorder);
-		 System.out.println("pigntai");
-		//修改总资金
-		 PlatformFundsLjl platfrom=new PlatformFundsLjl();
-		 platfrom.setUsermoney(projectsMoneyinfotzt.getBlacne());
-		 platfrom.setPromoney(-projectsMoneyinfotzt.getBlacne());
-		 platformFundsDaoLjl.Updatefunds(platfrom);
-		 System.out.println("zongzijin");
+
 
 		//修改项目状态
 		 projestsdaotzt.updataProject(projectsMoneyinfotzt);
@@ -133,10 +144,15 @@ public class ProjectsServicestztImpl implements ProjectsServerstzt {
 		System.out.println(JSON.toJSONString(employee));
 		EmployeeDaotzt.updataEmployeeBalance(employee);
 		System.out.println("放款至发起人");
-		
+		//放款记录details
+		Map emap=new HashMap();
+		emap.put("empid", projectsMoneyinfotzt.getEmpid());
+		emap.put("money", blan);
+		emap.put("details", 196);
+		employeedao.InsertTransaction(emap);
 		//增加项目资金记录
 		Capital capital = new Capital();
-		capital.setCapital ((float) (blan+gain));//项目一阶段总发放（放款+盈利收付费）
+		capital.setCapital (-(float) (blan+gain));//项目一阶段总发放（放款+盈利收付费）
 		capital.setProjectsid(projectsMoneyinfotzt.getProjectsid());//项目id
 		capital.setEmpid(projectsMoneyinfotzt.getEmpid()); //发起人的id
 		capital.setStarttime(hehe);

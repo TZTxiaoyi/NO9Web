@@ -51,10 +51,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $("#updateorders").click(function(){
 	$.ajax({
 		type:"post",
+		dataType:"text",
 		url:"http://localhost:9088/P2P/TwoLoanController/updateorders.do",
 		contentType:"application/json;charset=utf-8",
 		success:function(data){
 			alert(data);
+			$('#tb_departments').bootstrapTable("refresh");
 		}
 	})
 	
@@ -161,7 +163,8 @@ var TableInit = function () {
 					contentType:"application/json;charset=utf-8",
 					data:JSON.stringify({"empid":row.EMPID,"proid":row.PROID,"money":mm,"RAISE_MONEY":row.RAISE_MONEY}),
 					success:function(data){
-						//alert(data);
+						alert(data);
+						$('#tb_departments').bootstrapTable("refresh");
 					}
 				})
 				/* 	if(row.PROJECTSSTATE=="回报中"){

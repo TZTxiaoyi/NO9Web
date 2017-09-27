@@ -70,7 +70,7 @@
 					}
 				},
 				error : function(data){
-					alert("error+"+data);
+					alert("error+");
 				}
 			});
 //===============================================================
@@ -105,7 +105,7 @@
 					}
 				},
 				error : function(data){
-					alert("error1+"+data);
+					alert("error1+");
 				}
 			});
 		});
