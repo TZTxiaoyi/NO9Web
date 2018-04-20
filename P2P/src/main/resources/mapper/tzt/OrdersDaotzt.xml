@@ -37,11 +37,10 @@
 	 	
 	</select>
 	
-	<insert id="addOrders" parameterType="com.entity.tzt.Orders" >
-		 <selectKey keyProperty="ordid" resultType="int" order="AFTER">  
-	         SELECT list_orders.currval  as id from DUAL 
-	    </selectKey> 
-		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
+	<insert id="addOrders" parameterType="com.entity.tzt.Orders"
+			useGeneratedKeys="true" keyProperty="ordid" >
+
+		insert into orders(empid, projectsid, paymoney, fraction, address, order_time, ord_status, pro_returnid) values(#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
 		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')
 		,76,#{proreturnid,jdbcType=NUMERIC},#{address}) 
 	</insert>

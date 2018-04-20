@@ -52,11 +52,11 @@
 	</select>
 	<!-- 在所有项目里点击审核，给个人信息审核表一个默认未审核的初始值（1） -->
 	<insert id="inSinProState" parameterType="int">
-		insert into resumes_auditings values(resumes_auditing.nextval,#{projectsid},42,42,42,42)
+		insert into resumes_auditings values(#{projectsid},42,42,42,42)
 	</insert>
 	<!--  在所有项目里点击审核，给机构信息审核表一个默认未审核的初始值（1）-->
 	<insert id="inOrProState" parameterType="int">
-		insert into organiza_auditing values(orga_auditing.nextval,#{projectsid},42,42,42,42,42,42,42,42)
+		insert into organiza_auditing values(#{projectsid},42,42,42,42,42,42,42,42)
 	</insert>
 	<!--  在所有项目里点击审核，给项目信息审核表一个默认未审核的初始值（2）-->
 	<insert id="inProIndetailState" parameterType="int">

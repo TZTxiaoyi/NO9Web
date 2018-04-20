@@ -50,7 +50,7 @@
 	</insert>
 	<insert id="InsertCapitalList" parameterType="java.util.List" useGeneratedKeys="false">		
 		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
-			insert into capital values(list_capital.nextval,#{item.EMPID},#{item.ORD_ID},#{item.PROJECTSID},#{item.CAPITALFLOW},#{item.PROPORTION},sysdate)
+			insert into capital(accountsid, ordid, projectsid, capitalflow, capital, "time") values(#{item.EMPID},#{item.ORD_ID},#{item.PROJECTSID},#{item.CAPITALFLOW},#{item.PROPORTION},sysdate)
 		</foreach>
 	</insert>
 	

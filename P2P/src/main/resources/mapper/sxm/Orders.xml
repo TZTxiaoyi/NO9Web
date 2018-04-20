@@ -40,7 +40,7 @@
 	</select>
 	<!-- 插入订单 -->
 	<insert id="insertOrders" parameterType="com.entity.tzt.Orders">
-		insert into orders values(list_orders.nextval,#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
+		insert into orders(empid, projectsid, paymoney, fraction, address, order_time, ord_status, pro_returnid) values(#{empid,jdbcType=NUMERIC},#{projectsid,jdbcType=NUMERIC},
 		#{paymoney,jdbcType=REAL},1,to_date(#{ordertime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS'),
 		76,#{proreturnid,jdbcType=NUMERIC}) 
 

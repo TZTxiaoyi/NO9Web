@@ -27,7 +27,7 @@
 	
 	<!--  账号状态默认为4可用 -->
 	<insert id="addAccounts" parameterType="com.entity.tzt.Accounts" >
-		insert into accounts values(list_accounts.nextval,#{accounts,jdbcType=VARCHAR},#{passwords,jdbcType=VARCHAR},#{empid,jdbcType=NUMERIC},<!-- #{roleid,jdbcType=NUMERIC} -->0,2) 
+		insert into accounts(accounts, passwords, empid, roleid, accountsstate) values(#{accounts,jdbcType=VARCHAR},#{passwords,jdbcType=VARCHAR},#{empid,jdbcType=NUMERIC},<!-- #{roleid,jdbcType=NUMERIC} -->0,2)
 	</insert>
 	
 	<update id="updateAccounts" parameterType="map" >

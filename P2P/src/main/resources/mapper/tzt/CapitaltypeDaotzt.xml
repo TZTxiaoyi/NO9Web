@@ -18,8 +18,8 @@
 
 	<!-- 账号状态默认为4可用 -->
 	<insert id="addCapitaltype" parameterType="com.entity.tzt.Capitaltype">
-		insert into capitaltype
-		values(list_capitaltype.nextval,#{value,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},20)
+		insert into capitaltype("value",remark,state)
+		values(#{value,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},20)
 	</insert>
 
 	<update id="updateCapitaltype" parameterType="com.entity.tzt.Capitaltype">

@@ -42,7 +42,7 @@
 	</select>
 	
 	<insert id="addCapital" parameterType="com.entity.tzt.Capital" >
-		insert into capital values(list_capital.nextval,#{empid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
+		insert into capital(accountsid, ordid, projectsid, capitalflow, capital, "time") values(#{empid,jdbcType=NUMERIC},#{ordid,jdbcType=NUMERIC},
 		#{projectsid,jdbcType=NUMERIC},#{capitalflow,jdbcType=NUMERIC},
 		#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS')) 
 	</insert>

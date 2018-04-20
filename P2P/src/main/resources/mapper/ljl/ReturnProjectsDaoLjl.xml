@@ -64,7 +64,7 @@
         insert into students(<include refid="key"/>) values(<include refid="value"/>)
     </insert> -->
 	<insert id="SaveReturnProjects" parameterType="map">
-		insert into pro_return(pro_returnid,<include refid="key"/>) values(list_pro_return.nextval,<include refid="value"/>)
+		insert into pro_return(<include refid="key"/>) values(<include refid="value"/>)
 	</insert>
 	<select id="AllReturnProjects" parameterType="com.entity.ljl.ReturnLjl" resultType="map">
 		select * from pro_return where projectsid=#{projectsid} order by formindex	

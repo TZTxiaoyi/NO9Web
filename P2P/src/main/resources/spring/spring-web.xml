@@ -64,6 +64,7 @@
 				
 				/zbjsp/**=anon
 				/sxmjsp/**=anon	 -->
+				/wxlogin/**=anon
 				/jsp/background/log.jsp= anon		
 				/jsp/background/**.jsp= authc
 				

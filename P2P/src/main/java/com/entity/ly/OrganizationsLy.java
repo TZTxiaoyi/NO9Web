@@ -2,17 +2,17 @@ package com.entity.ly;
 
 public class OrganizationsLy {
 	int organizationsrid;//id
-	int projectsid;//ÏîÄ¿id
-	String oname;//»ú¹¹Ãû³Æ
-	String ocode;//»ú¹¹´úÂë
-	String corporation;//·¨¶¨´ú±íÈË
-	String register_address;//»ú¹¹×¢²áµØÖ·
-	String linkman;//ÁªÏµÈËĞÕÃû
-	String linkphone;//ÁªÏµÈËÊÖ»úºÅ
-	String abbreviation;//»ú¹¹¼ò³Æ
-	String business_address;//»ú¹¹¾­ÓªµØÖ·
-	String protypeid;//ÏîÄ¿ÀàĞÍ
-	int poundage;//Æ½Ì¨ÇşµÀ·Ñ
+	int projectsid;//é¡¹ç›®id
+	String oname;//æœºæ„åç§°
+	String ocode;//æœºæ„ä»£ç 
+	String corporation;//æ³•å®šä»£è¡¨äºº
+	String register_address;//æœºæ„æ³¨å†Œåœ°å€
+	String linkman;//è”ç³»äººå§“å
+	String linkphone;//è”ç³»äººæ‰‹æœºå·
+	String abbreviation;//æœºæ„ç®€ç§°
+	String business_address;//æœºæ„ç»è¥åœ°å€
+	String protypeid;//é¡¹ç›®ç±»å‹
+	int poundage;//å¹³å°æ¸ é“è´¹
 	public int getOrganizationsrid() {
 		return organizationsrid;
 	}
@@ -85,5 +85,5 @@ public class OrganizationsLy {
 	public void setPoundage(int poundage) {
 		this.poundage = poundage;
 	}
-	
+
 }

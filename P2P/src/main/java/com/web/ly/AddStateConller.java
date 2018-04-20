@@ -25,8 +25,6 @@ import com.entity.tzt.Employee;
 import com.service.ly.AddEmployeeService;
 import com.service.ly.SinAuditingService;
 
-import oracle.sql.DATE;
-
 @Controller
 @RequestMapping(value="/AddState")
 public class AddStateConller{

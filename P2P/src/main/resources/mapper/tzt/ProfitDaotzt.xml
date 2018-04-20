@@ -40,7 +40,7 @@
 	</select>
 	
 	<insert id="addProfit" parameterType="com.entity.tzt.Profit" >
-		insert into profit values(list_profit.nextval,#{projectsid,jdbcType=NUMERIC},
+		insert into profit(projectsid, capitalflow, capital, balance, "time") values(#{projectsid,jdbcType=NUMERIC},
 		#{capitalflow,jdbcType=NUMERIC},#{capital,jdbcType=REAL},to_date(#{starttime,jdbcType=VARCHAR},'yyyy-MM-dd HH24:MI:SS'),
 		 #{operator,jdbcType=VARCHAR})
 	</insert>

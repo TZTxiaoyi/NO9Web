@@ -36,6 +36,6 @@
 	</select>
 	
 	<insert id="addPromoney" parameterType="map" >
-		insert into pro_money values(list_capital.nextval,#{projectsid},#{targemoney},0.00 ,sysdate)
+		insert into pro_money(projectsid, targe_money, raise_money) values(#{projectsid},#{targemoney},0.00 ,sysdate)
 	</insert>
 </mapper>

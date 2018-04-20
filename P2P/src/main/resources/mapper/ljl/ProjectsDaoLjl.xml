@@ -30,22 +30,22 @@
 	
 	<!-- //机构项目基础信息 -->
 	<insert id="SaveOrganizationsProjects" parameterType="map">
-		insert into organizations(organizationsrid,projectsid) values(list_originator.nextval,#{projectsid})	
+		insert into organizations(projectsid) values(#{projectsid})
 	</insert>
 	
 	<!-- //项目描述表 -->
 	<insert id="SaveDescribeProjects" parameterType="map">
-		insert into projects_describe(pdid,projectsid) values(list_projects_describe.nextval,#{projectsid})	
+		insert into projects_describe(projectsid) values(#{projectsid})
 	</insert>
 	
 	<!-- //项目详情表 -->
 	<insert id="SaveIndetailProjects" parameterType="map">
-		insert into projects_indetail(indetailid,projectsid) values(list_projects_indetail.nextval,#{projectsid})	
+		insert into projects_indetail(projectsid) values(#{projectsid})
 	</insert>
 	
 	<!-- //项目回报 -->
 	<insert id="SaveReturnProjects" parameterType="map">
-		insert into pro_return(pro_returnid,projectsid) values(list_pro_return.nextval,#{projectsid})	
+		insert into pro_return(projectsid) values(#{projectsid})
 	</insert>
 	<update id="UpdateProType" parameterType="com.entity.ljl.PerProLjl">
 		update projects set protypeid=#{protypeid} where projectsid=#{projectsid}

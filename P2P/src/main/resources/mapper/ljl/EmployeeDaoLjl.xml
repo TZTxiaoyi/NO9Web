@@ -23,11 +23,11 @@
          </foreach> 
 	</update>
 	<insert id="InsertTransaction" parameterType="map">
-		insert into transaction values(list_Transaction.nextval,#{empid},sysdate,#{money},#{details})
+		insert into transaction(empid, "time", money, details) values(#{empid},sysdate,#{money},#{details})
 	</insert>
 	<insert id="InsertTransactionList" parameterType="java.util.List" useGeneratedKeys="false">
 		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
-			insert into transaction values(list_Transaction.nextval,#{item.EMPID},sysdate,#{item.PROPORTION},#{item.DETAILS})
+			insert into transaction(empid, "time", money, details) values(#{item.EMPID},sysdate,#{item.PROPORTION},#{item.DETAILS})
 		</foreach>
 	</insert>
 	

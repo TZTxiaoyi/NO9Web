@@ -27,7 +27,7 @@
 	</select>
 	
 	<insert id="addPromoney" parameterType="com.entity.tzt.Promoney" >
-		insert into pro_money values(list_capital.nextval,#{projectsid,jdbcType=NUMERIC},
+		insert into pro_money(projectsid, targe_money, raise_money) values(#{projectsid,jdbcType=NUMERIC},
 		#{targemoney,jdbcType=REAL},#{raisemoney,jdbcType=REAL}
 	</insert>
 	

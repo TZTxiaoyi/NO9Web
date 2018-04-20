@@ -27,7 +27,7 @@
 	</delete>
 	<insert id="insertPower" parameterType="java.util.List" useGeneratedKeys="false">
 		<foreach collection="list" item="item" index="index" open=" begin" close=";end;" separator=";">  
-			insert into role_powers values(list_role_powers.nextval,#{item.roleid},#{item.powersid})
+			insert into role_powers values(#{item.roleid},#{item.powersid})
 		</foreach>
 	</insert>
 	

@@ -2,7 +2,6 @@ package com.entity.ly;
 
 import java.util.Date;
 
-import oracle.sql.DATE;
 
 public class AuditingRe {
 	int recordtable_id;

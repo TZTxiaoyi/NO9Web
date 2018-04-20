@@ -10,7 +10,7 @@
 	</select>
 	<!-- 点击汇报按钮插入回报记录表 -->
 	<insert id="insertProBack" parameterType="com.entity.sxm.ProBack">
-		insert into pro_back values(list_pro_back.nextval,#{sponsor_id},
+		insert into pro_back(sponsor_id, support_id, back_mode, ord_id, addressid, consignee, order_status, logistics, deliverytime) values(#{sponsor_id},
 		#{support_id},38,#{ord_id},#{addressid},96,
 		#{logistics},sysdate)
 	</insert>

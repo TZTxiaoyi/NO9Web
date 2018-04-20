@@ -20,7 +20,7 @@
 	
 	<!--  账号状态默认为4可用 -->
 	<insert id="addRoletable" parameterType="com.entity.tzt.Roletable" >
-		insert into roletable values(list_roletable.nextval,#{rolename,},20) 
+		insert into roletable(rolename, rolestate) values(#{rolename,},20)
 	</insert>
 	
 	<update id="updateRoletable" parameterType="com.entity.tzt.Roletable" >

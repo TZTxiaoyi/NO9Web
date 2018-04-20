@@ -9,7 +9,7 @@
 		select b.empId,b.bank_account bankAccounts from bank_account b where b.empId = #{empId}
 	</select> 
 	<insert id="addBankAccount" parameterType="com.entity.zb.BankAccount">
-		insert into bank_account values(list_account.nextval,#{empId},#{bankAccounts},#{bankName})
+		insert into bank_account(empid, bank_account, bank_name) values(#{empId},#{bankAccounts},#{bankName})
 	</insert>
 	
 	<update id="updateBankAccount" parameterType="com.entity.zb.Employeezb" >

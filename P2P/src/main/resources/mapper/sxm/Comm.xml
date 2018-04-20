@@ -5,7 +5,7 @@
 <mapper namespace="com.dao.sxm.CommDao">
 	<!-- 插入评论 -->
 	<insert id="saveComm" parameterType="com.entity.sxm.Commentary">
-		insert into commentary values(list_commentary.nextval,#{projectsid},#{empid},#{content},#{time})
+		insert into commentary(projectsid, empid, content, "time") values(#{projectsid},#{empid},#{content},#{time})
 		<where>
 			<if test="empid>0">
 			
